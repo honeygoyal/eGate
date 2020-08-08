@@ -1,0 +1,157 @@
+#logo {
+  width: 18rem;
+  height: auto;
+  color: rgb(201, 193, 193);
+}
+
+#main-nav {
+  .bgimage {
+    position: absolute;
+    width: 25%;
+    z-index: -1000;
+    top: -3%;
+    right: 0;
+    overflow: hidden;
+  }
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  overflow: hidden;
+
+  ul {
+    display: flex;
+    z-index: 1;
+  }
+
+  li {
+    padding: 1rem 2rem;
+  }
+
+  a {
+    color: #333;
+    border-bottom: 3px transparent solid;
+    padding-bottom: 0.5rem;
+    transition: border-color 0.5s;
+    font-size: 1rem;
+    font-weight: bold;
+
+    &:hover {
+    }
+
+    &.current {
+      border-color: #07c4fb;
+    }
+  }
+}
+
+// .headerimage {
+//   width: 30rem;
+//   height: 20rem;
+//   position: absolute;
+//   border: 1px transparent white;
+//   border-radius: 50%;
+//   top: -7.2rem;
+//   left: 75%;
+//   background: url(./../../assets/Group15.png) no-repeat 0 0;
+// }
+
+@media (max-width: 1024px) {
+  #main-nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    a {
+      font-size: 0.7rem;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  #main-nav {
+    li {
+      padding: 1rem 1rem;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  #main-nav {
+    flex-direction: column;
+    align-items: center;
+
+    li {
+      padding: 0.2rem;
+    }
+    a {
+      font-size: 0.6rem;
+    }
+  }
+}
+.link-button {
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+  background: #07c4fb;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#navbar ul {
+  list-style: none;
+}
+#navbar ul li {
+  color: #333;
+  display: inline-block;
+  padding: 1rem;
+  position: relative;
+}
+#navbar ul li a {
+  color: #333;
+  text-decoration: none;
+}
+/* HIde nested ul by default */
+#navbar ul li ul {
+  display: none;
+}
+
+#navbar ul li:hover {
+  cursor: pointer;
+  background: coral;
+  color: #fff;
+}
+#navbar ul li:hover a {
+  color: #fff;
+}
+
+/* nested dropdown show */
+#navbar ul li:hover ul {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 200px;
+  margin-top: 1rem;
+}
+#navbar ul li:hover ul li {
+  display: block;
+  background: #e7e7e7;
+}
+navbar ul li:hover ul li a {
+  color: #333;
+}
+#navbar ul li:hover ul li:hover {
+  background: #e0e0e0;
+  color: inherit;
+}
+#navbar ul li:hover ul li span {
+  float: right;
+  color: #fff;
+  background: coral;
+  padding: 0.2rem 0.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  border-radius: 5px;
+}
+#navbar ul li:hover ul li:hover span {
+  background: chocolate;
+}

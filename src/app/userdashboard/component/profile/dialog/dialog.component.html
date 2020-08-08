@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Change Password</h1>
+<div style="margin: 0rem 1rem; height: 15rem;" mat-dialog-content>
+  <form [formGroup]="form" (ngSubmit)="submit(form)">
+    <mat-form-field style="width: 20rem;" appearance="fill">
+      <mat-label>Old Password</mat-label>
+      <input formControlName="oldpassword" type="password" matInput />
+    </mat-form-field>
+    <br />
+    <mat-form-field style="width: 20rem;" appearance="fill">
+      <mat-label>New Password</mat-label>
+      <input formControlName="newpassword" type="password" matInput />
+    </mat-form-field>
+    <br />
+    <div style="float: right;" mat-dialog-actions>
+      <button mat-button mat-dialog-close>Close</button>
+      <button type="submit" mat-button>
+        Submit
+      </button>
+    </div>
+  </form>
+</div>

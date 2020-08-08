@@ -1,0 +1,3653 @@
+<div class="container">
+  <div style="padding: 2rem;" id="content">
+    <div id="header-exam">
+      <div class="left-content">
+        <p
+          style="
+            font-size: 1.1rem;
+            text-align: center;
+            margin-left: 0.8rem;
+            background: #424244;
+            color: white;
+            padding: 0.2rem;
+            border-radius: 10px;
+          "
+          *ngIf="subjectSelected === 'gate'"
+        >
+          Conducting Institute <br />
+          <span style="color: #07c4fb;">IIT Bombay</span>
+        </p>
+        <p
+          style="
+            font-size: 1.1rem;
+            text-align: center;
+            margin-left: 0.8rem;
+            background: #424244;
+            color: white;
+            padding: 0.2rem;
+            border-radius: 10px;
+          "
+          *ngIf="subjectSelected === 'ipate'"
+        >
+          Conducting Organization <br />
+          <span style="color: #07c4fb;">CII</span>
+        </p>
+
+        <p
+          style="
+            font-size: 1.1rem;
+            text-align: center;
+            margin-left: 0.8rem;
+            background: #424244;
+            color: white;
+            padding: 0.2rem;
+            border-radius: 10px;
+          "
+          *ngIf="
+            subjectSelected === 'bhel' ||
+            subjectSelected === 'barc' ||
+            subjectSelected === 'isro' ||
+            subjectSelected === 'cil'
+          "
+        >
+          Conducting Institute <br />
+          <span style="color: #07c4fb;">{{ subjectSelected | uppercase }}</span>
+        </p>
+        <p
+          style="
+            font-size: 1.1rem;
+            text-align: center;
+            margin-left: 0.8rem;
+            background: #424244;
+            color: white;
+            padding: 0.2rem;
+            border-radius: 10px;
+          "
+          *ngIf="subjectSelected === 'sail'"
+        >
+          SAIL Conducting Institute <br />
+          <span style="color: #07c4fb;">Through GATE 2019</span>
+        </p>
+        <p
+          style="
+            font-size: 1.1rem;
+            text-align: center;
+            margin-left: 0.8rem;
+            background: #424244;
+            color: white;
+            padding: 0.2rem;
+            border-radius: 10px;
+          "
+          *ngIf="subjectSelected === 'rinl'"
+        >
+          RINL Conducting Institute <br />
+          <span style="color: #07c4fb;">Vizag Steel</span>
+        </p>
+      </div>
+      <div class="right-content">
+        <button class="btn" *ngIf="subjectSelected === 'gate'">
+          <a
+            href="http://gate.iitd.ac.in/"
+            target="_blank"
+            style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+            >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
+          >
+        </button>
+        <button class="btn" *ngIf="subjectSelected === 'ipate'">
+          <a
+            href="http://ipate.in/"
+            target="_blank"
+            style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+            >iPATE OFFICIAL WEBSITE</a
+          >
+        </button>
+        <button
+          class="btn"
+          *ngIf="
+            subjectSelected === 'bhel' ||
+            subjectSelected === 'cil' ||
+            subjectSelected === 'sail' ||
+            subjectSelected === 'rinl' ||
+            subjectSelected === 'isro' ||
+            subjectSelected === 'barc'
+          "
+        >
+          <a
+            *ngIf="subjectSelected === 'rinl'"
+            href="https://www.vizagsteel.com/index.asp"
+            target="_blank"
+            style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+            >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
+          >
+          <a
+            *ngIf="subjectSelected === 'bhel'"
+            href="http://www.bhel.com/index.php/"
+            target="_blank"
+            style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+            >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
+          >
+          <a
+            *ngIf="subjectSelected === 'cil'"
+            href="https://www.coalindia.in/index.html"
+            target="_blank"
+            style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+            >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
+          >
+          <a
+            *ngIf="subjectSelected === 'sail'"
+            href="https://www.sail.co.in/"
+            target="_blank"
+            style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+            >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
+          >
+          <a
+            *ngIf="subjectSelected === 'isro'"
+            href="https://www.isro.gov.in/"
+            target="_blank"
+            style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+            >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
+          >
+          <a
+            *ngIf="subjectSelected === 'barc'"
+            href="http://www.barc.gov.in/"
+            target="_blank"
+            style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+            >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
+          >
+        </button>
+      </div>
+    </div>
+    <div
+      *ngIf="subjectSelected !== 'gate' && subjectSelected !== 'ipate'"
+      id="dropdown-course"
+    >
+      Select Course
+      <select
+        (change)="onChange($event.target.value)"
+        name="examname"
+        id="examname"
+        value="bhel"
+      >
+        <option value="bhel">BHEL</option>
+        <option value="cil">CIL</option>
+        <option value="sail">SAIL</option>
+        <option value="rinl">RINL</option>
+        <option value="barc">BARC</option>
+        <option value="isro">ISRO</option>
+      </select>
+    </div>
+    <mat-accordion>
+      <mat-expansion-panel class="expansion-panel">
+        <mat-expansion-panel-header class="expansion-panel-header">
+          <mat-panel-title class="expansion-title"
+            ><h3 *ngIf="subjectSelected != 'ipate'">
+              {{ subjectSelected | uppercase }} 2021
+            </h3>
+            <h3 *ngIf="subjectSelected == 'ipate'">
+              iPATE 2021
+            </h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div
+          style="overflow: auto; padding: 0rem 2rem;"
+          *ngIf="subjectSelected === 'gate'"
+        >
+          <p>
+            Graduate Aptitude Test in Engineering (GATE) is an examination
+            conducted jointly by the Indian Institute of Science (IISc),
+            Bangalore and the seven Indian Institutes of Technology (at Bombay,
+            Delhi, Guwahati, Kanpur, Kharagpur, Madras and Roorkee) on behalf of
+            the National Coordination Board (NCB)-GATE, Department of Higher
+            Education, Ministry of Human Resource Development (MHRD), Government
+            of India.
+          </p>
+          <p>
+            Qualifying in GATE is a mandatory requirement for seeking admission
+            and/or financial assistance to:
+          </p>
+          <ul style="list-style: disc; list-style-position: outside;">
+            <li>
+              <p>
+                Master’s programs and direct Doctoral programs in
+                Engineering/Technology/Architecture and
+              </p>
+            </li>
+            <li>
+              <p>
+                Doctoral programs in relevant branches of Science, in the
+                institutions supported by the MHRD and other Government
+                agencies. Even in some colleges and institutions, which admit
+                students without MHRD scholarship/assistantship, the GATE
+                qualification is mandatory. Further, many Public Sector
+                Undertakings (PSUs) have been using the GATE score in their
+                recruitment process.
+              </p>
+            </li>
+          </ul>
+          <br />
+          <p>
+            Graduate Aptitude Test in Engineering (GATE) is basically an
+            examination on the comprehensive understanding of the candidates in
+            various undergraduate subjects in Engineering/Technology/
+            Architecture and post-graduate level subjects in Science. GATE 2020
+            will be conducted for 25 subjects (also referred to as “papers”) and
+            it would be distributed over 1st, 2nd, 8th & 9th of February 2020.
+            The GATE examination centres are spread in different cities across
+            India, as well as, in six cities outside India. The examination
+            would be purely a Computer Based Test (CBT).
+          </p>
+          <p>
+            The GATE score would reflect the relative performance level of the
+            candidate in a particular subject, which is quantified based on the
+            several years of examination data. Note that the GATE 2020 score is
+            valid for <b> THREE YEARS</b> from the date of announcement of the
+            results.
+          </p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'ipate'"
+        >
+          <p>
+            <b>iPATE 2021</b><br /><br />
+            <b
+              >CII - iPATE 1.0 (2020) <br />
+              Online Competitive Examination: <br />
+              to screen Technical Talent on PAN India basis <br />
+              for CII Member Companies to recruit <br />
+              Organized By: <br />
+              <i>Confederation of Indian Industry (CII)</i> <br />
+              <br
+            /></b>
+            India’s premier and one of the largest business associations, <br />
+            with 9,100+ members from PSUs, MNCs & SMEs <br />
+            and indirect membership of 3,00,000+ enterprises <br />
+            from 291 national and regional sectoral industry bodies <br />
+            <br />
+
+            <b
+              >For <br />
+              Standardizing the Technical Recruitment Process & Protocol for
+              Indian Industry <br />
+              Setting a Benchmark to assess industrial aptitude & proficiency of
+              Engineering <br />
+              Graduates across India</b
+            >
+            <br />
+            To build one-stop solution for Indian Industry to recruit technical
+            talent across India <br />
+            To map employable engineering graduates with engineering acumen and
+            <br />
+            reasonable industrial proficiency, across geographies <br />
+            To facilitate the Technical hiring pipeline for Indian Industry with
+            minimal time, cost and effort.
+          </p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'cil'"
+        >
+          <h2>
+            Name of the Exam : Coal India Limited(CIL)- Management Trainee
+          </h2>
+          <p>
+            The duration of computer based test will be for 3 hours (one
+            sitting) consisting of two papers (Paper – I & Paper – II) of 100
+            marks each. Paper – I will consist of General Knowledge / Awareness,
+            Reasoning, Numerical Ability and General English. Paper – II will
+            consist of Professional Knowledge (Discipline related) with 100
+            multiple choice questions in each paper.
+          </p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'sail'"
+        >
+          <h2>
+            Name of the Exam : Steel Authority of India Limited(SAIL)-
+            Management Trainee
+          </h2>
+          <p>
+            SAIL recruits <strong>Management Trainee </strong>through Graduate
+            Aptitude Test in Engineering (GATE &ndash; 2019) in any of the
+            following six engineering disciplines:
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td width="118">
+                  <p><strong>Discipline</strong></p>
+                </td>
+                <td width="110">
+                  <p><strong>Corresponding GATE Paper</strong></p>
+                </td>
+                <td width="339">
+                  <p>
+                    <strong
+                      >Related Engineering disciplines which are
+                      eligible</strong
+                    >
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="118">
+                  <p>Mechanical Engineering</p>
+                </td>
+                <td width="110">
+                  <p>ME</p>
+                </td>
+                <td width="339">
+                  <p>
+                    Mechanical Engineering, Mechanical &amp; Automation
+                    Engineering, Production &amp; Industrial Engineering,
+                    Production Engineering / Technology, Mechanical Production
+                    and Tool Engineering, Industrial Engineering / Technology,
+                    Thermal Engineering, Manufacturing Process and Automation,
+                    Mechatronics, Manufacturing engineering / Technology,
+                    Manufacturing Science and Engineering, Energy Engineering,
+                    Machine Engineering, Mechatronics &amp; Automation
+                    Engineering
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="118">
+                  <p>Metallurgical Engineering</p>
+                </td>
+                <td width="110">
+                  <p>MT</p>
+                </td>
+                <td width="339">
+                  <p>
+                    Metallurgical Engineering, Material Sciences &amp;
+                    Engineering / Technology, Industrial Metallurgy
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="118">
+                  <p>Electrical Engineering</p>
+                </td>
+                <td width="110">
+                  <p>EE</p>
+                </td>
+                <td width="339">
+                  <p>
+                    Electrical Engineering, Electrical Machine, Power Systems
+                    &amp; High Voltage Engineering, Power Plant Engineering,
+                    Electronics &amp; Power Electronics / Engineering,
+                    Electrical Instrumentation &amp; Control Engineering,
+                    Electrical &amp; Instrumentation Engineering, Electrical
+                    &amp; Mechanical Engineering, Power Engineering, Electrical
+                    &amp; Power Engineering, Electrical &amp; Electronics
+                    Engineering
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="118">
+                  <p>Chemical Engineering</p>
+                </td>
+                <td width="110">
+                  <p>CH</p>
+                </td>
+                <td width="339">
+                  <p>
+                    Chemical Engineering / Technology, Electro Chemical
+                    Engineering
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="118">
+                  <p>Instrumentation Engineering</p>
+                </td>
+                <td width="110">
+                  <p>IN</p>
+                </td>
+                <td width="339">
+                  <p>
+                    Electronics Engineering, Electronics &amp; Instrumentation,
+                    Electronics &amp; Communication, Electronics &amp;
+                    Telecommunication, Electronics &amp; Control, Industrial
+                    Electronics, Applied Electronics Engineering / Technology,
+                    Electronics Design &amp; Technology, Mechatronics,
+                    Electronics &amp; Electrical, Electronics &amp; Power,
+                    Electronics Communication &amp; Instrumentation,
+                    Instrumentation&nbsp; Engineering / Technology,
+                    Instrumentation &amp; Control / Engineering, Robotics &amp;
+                    Automation / Automation &amp; robotics, Communication
+                    Engineering, Control &amp; Instrumentation Engineering
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="118">
+                  <p>Mining Engineering</p>
+                </td>
+                <td width="110">
+                  <p>MN</p>
+                </td>
+                <td width="339">
+                  <p>
+                    Mining Engineering / Technology, Mining &amp; Machinery
+                    Engineering / Mineral Engineering
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>&nbsp;</p>
+          <p>
+            Candidates for MT posts in SAIL should possess Degree in Engineering
+            / Technology with 65% marks (average of all semesters, irrespective
+            of weightage given to any particular year by Institute / University)
+            in the above-mentioned Engineering disciplines.
+          </p>
+          <p>
+            <strong><u>Age Limit:</u></strong> 28 years as on 14 &ndash; 06
+            &ndash; 2019
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td width="312">
+                  <p>Category</p>
+                </td>
+                <td width="190">
+                  <p>Age (as on June 14,2019)</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>General (UR)</p>
+                </td>
+                <td width="190">
+                  <p><strong>28 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>OBC</p>
+                </td>
+                <td width="190">
+                  <p><strong>31 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>SC/ST</p>
+                </td>
+                <td width="190">
+                  <p><strong>33 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>Persons domiciled in J&amp;K (General)</p>
+                </td>
+                <td width="190">
+                  <p><strong>38 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>Persons domiciled in J&amp;K (OBC)</p>
+                </td>
+                <td width="190">
+                  <p><strong>41 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>Persons domiciled in J&amp;K (SC / ST)</p>
+                </td>
+                <td width="190">
+                  <p><strong>43 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>Persons with disabilities (General)</p>
+                </td>
+                <td width="190">
+                  <p><strong>38 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>Persons with disabilities (OBC)</p>
+                </td>
+                <td width="190">
+                  <p><strong>41 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>Persons with disabilities (SC / ST)</p>
+                </td>
+                <td width="190">
+                  <p><strong>43 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>Departmental candidates upper age limit</p>
+                </td>
+                <td width="190">
+                  <p><strong>45 years</strong></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>&nbsp;</p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'bhel'"
+        >
+          <h2>
+            Name of the Exam : BHEL Heavy Electricals Limited(BHEL)- Management
+            Trainee
+          </h2>
+          <br />
+          <p>
+            BHEL recruits for <strong>Engineer Trainee </strong>(for Mechanical
+            or Electrical or Civil or Chemical) and
+            <strong>Executive Trainee </strong>(for HR &amp; Finance) in the
+            following disciplines:
+          </p>
+          <br />
+          <table>
+            <tbody>
+              <tr>
+                <td width="123">
+                  <p><strong>Position</strong></p>
+                </td>
+                <td width="290">
+                  <p><strong>Educational Qualification</strong></p>
+                </td>
+                <td width="153">
+                  <p>
+                    <strong>Upper Age Limit (years) (as on 01/04/2019)</strong>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="123">
+                  <p>
+                    Engineer Trainee in Mechanical / Electrical / Civil /
+                    Chemical
+                  </p>
+                </td>
+                <td width="290">
+                  <p>
+                    Full time bachelor&rsquo;s degree in Engineering /
+                    Technology or Five year integrated Master&rsquo;s degree or
+                    Dual degree programme in Engineering or Technology in the
+                    disciplines of Mechanical or Electrical or Civil or Chemical
+                    Engineering from a recognised Indian University / Institute
+                  </p>
+                </td>
+                <td width="153">
+                  <p>
+                    27 years (Candidates born before 01/04/1992) are not
+                    eligible to apply.
+                  </p>
+                  <p>&nbsp;</p>
+                  <p>
+                    29 years for candidates having two years full time Post
+                    Graduate in Engineering or Business Administration /
+                    Management
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="123">
+                  <p>Executive Trainee in HR</p>
+                </td>
+                <td width="290">
+                  <p>
+                    Full time regular Bachelor&rsquo;s degree from a recognised
+                    Indian University with at least 60% marks in aggregate in
+                    all years
+                  </p>
+                  <p>With</p>
+                  <p>
+                    Two years full &ndash; time regular Post Graduate Degree /
+                    Diploma in Human Resource Management / Personnel Management
+                    and Industrial Relations / Social Work / Business
+                    Administration with specialisation in Personnel Management
+                    or Labour Welfare or HRM from a recognised Indian University
+                    / Institute with minimum 55% marks in aggregate of all years
+                    / semesters.
+                  </p>
+                </td>
+                <td width="153">
+                  <p>&nbsp;</p>
+                  <p>&nbsp;</p>
+                  <p>&nbsp;</p>
+                  <p>
+                    29 years (Candidates born before 01 /04 /1990 are not
+                    eligible to apply)
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>&nbsp;</p>
+          <p>
+            <strong
+              ><u
+                >Equivalent Qualifications in Mechanical / Civil / Electrical /
+                Chemical Engineering considered for Engineer Trainee:</u
+              ></strong
+            >
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td width="268">
+                  <p><strong>BHEL Advertised Discipline</strong></p>
+                </td>
+                <td width="298">
+                  <p>
+                    <strong
+                      >Disciplines of Engineering Considered for the position of
+                      Engineer Trainee</strong
+                    >
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="268">
+                  <p>Mechanical</p>
+                </td>
+                <td width="298">
+                  <p>
+                    1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Industrial and Production
+                    Engineering
+                  </p>
+                  <p>2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Industrial Engineering</p>
+                  <p>
+                    3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mechanical Production and
+                    Tool Engineering
+                  </p>
+                  <p>
+                    4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Production Technology
+                    Manufacturing Engineering (NIFFT Ranchi)
+                  </p>
+                  <p>5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Mechatronics</p>
+                  <p>
+                    6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Manufacturing Process and
+                    Automation
+                  </p>
+                  <p>
+                    7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Power Plant Engineering
+                  </p>
+                  <p>
+                    8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Production and Industrial
+                    Engineering
+                  </p>
+                  <p>9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Production Engineering</p>
+                  <p>10.&nbsp;&nbsp; Thermal Engineering</p>
+                  <p>11.&nbsp;&nbsp; Manufacturing Technology</p>
+                  <p>12.&nbsp;&nbsp; Power Engineering</p>
+                  <p>&nbsp;</p>
+                  <p>
+                    <strong><u>Note:</u></strong
+                    ><strong>
+                      Candidates having qualification in above Engineering
+                      disciplines should appear for Examination in
+                      &ldquo;Mechanical&rdquo; Discipline.</strong
+                    >
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="268">
+                  <p>Electrical</p>
+                </td>
+                <td width="298">
+                  <p>
+                    1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Electrical &amp;
+                    Electronics
+                  </p>
+                  <p>
+                    2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Electrical, Instrumentation
+                    &amp; Control
+                  </p>
+                  <p>
+                    3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; High Voltage Engineering
+                  </p>
+                  <p>
+                    4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Power Systems &amp; High
+                    Voltage Engineering
+                  </p>
+                  <p>5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Electrical Machine</p>
+                  <p>
+                    6.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Electronics &amp; Power
+                  </p>
+                  <p>7.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Power Electronics</p>
+                  <p>
+                    8.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Power Plant Engineering
+                  </p>
+                  <p>9.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Energy Engineering</p>
+                  <p>10.&nbsp;&nbsp; Power Engineering</p>
+                  <p>&nbsp;</p>
+                  <p>
+                    <strong><u>Note:</u></strong
+                    ><strong>
+                      Candidates having qualifications in above Engineering
+                      disciplines should appear for Examination in
+                      &ldquo;Electrical&rdquo; Discipline</strong
+                    >
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="268">
+                  <p>Civil</p>
+                </td>
+                <td width="298">
+                  <p>1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Civil Engineering</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="268">
+                  <p>Chemical</p>
+                </td>
+                <td width="298">
+                  <p>1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Chemical Engineering</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>&nbsp;</p>
+          <p>
+            <strong
+              ><u
+                >Equivalent Qualifications in Human Resource Management
+                Discipline:</u
+              ></strong
+            >
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td width="275">
+                  <p><strong>BHEL Advertised Discipline</strong></p>
+                </td>
+                <td width="291">
+                  <p>
+                    <strong
+                      >Disciplines of Engineering Considered for the position of
+                      Executive Trainee (HR)</strong
+                    >
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="275">
+                  <p>Human Resource Management</p>
+                </td>
+                <td width="291">
+                  <p>1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personnel Management</p>
+                  <p>2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Social Work*</p>
+                  <p>3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HRM</p>
+                  <p>
+                    4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Personnel Management &amp;
+                    IR
+                  </p>
+                  <p>
+                    5.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Business Administration
+                  </p>
+                  <p>&nbsp;</p>
+                  <p>
+                    *Candidates with PG in Social Work or Business
+                    Administration qualifications should have specialisation /
+                    elective in Personnel Management / Labour Welfare / HRM in
+                    their final year
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>&nbsp;</p>
+          <p>
+            <strong
+              ><u>Equivalent Qualifications in Finance Discipline:</u></strong
+            >
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td width="281">
+                  <p><strong>BHEL Advertised Discipline</strong></p>
+                </td>
+                <td width="285">
+                  <p>
+                    <strong
+                      >Disciplines of Engineering Considered for the position of
+                      Executive Trainee - Finance</strong
+                    >
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="281">
+                  <p>Finance</p>
+                </td>
+                <td width="285">
+                  <p>1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CA</p>
+                  <p>2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ICWA / CMA</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>&nbsp;</p>
+          <p>&nbsp;</p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'rinl'"
+        >
+          <h2>
+            Name of the Exam :Rashtriya Ispat Nigam Limited (Vizag Steel)-
+            Management Trainee
+          </h2>
+          <br />
+          <p>
+            RINL recruits <strong>Management Trainees (Technical)</strong> in
+            the following disciplines
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td width="172">
+                  <p><strong>Discipline</strong></p>
+                </td>
+                <td width="393">
+                  <p>
+                    <strong>Eligible Full time Degree in Engineering</strong>
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="172">
+                  <p>Ceramics</p>
+                </td>
+                <td width="393">
+                  <p>
+                    Ceramic Engineering / Refractory Engineering / Ceramic
+                    Technology
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="172">
+                  <p>Chemical</p>
+                </td>
+                <td width="393">
+                  <p>
+                    Chemical Engineering / Chemical Technology / Chemical
+                    Science and Technology / Polymer Science and Chemical
+                    Technology
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="172">
+                  <p>Civil</p>
+                </td>
+                <td width="393">
+                  <p>
+                    Civil Engineering / Civil &amp; Structural Engineering /
+                    Building Technology and Construction Management /
+                    Environmental Engineering / Geotechnical Engineering
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="172">
+                  <p>Electrical</p>
+                </td>
+                <td width="393">
+                  <p>
+                    Electrical Engineering / Electrical &amp; Electronics
+                    Engineering / Electrical, Instrumentation &amp; Control /
+                    Power Electronics / Energy Engineering / Control Systems
+                    Engineering
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="172">
+                  <p>Instrumentation &amp; Electronics</p>
+                </td>
+                <td width="393">
+                  <p>
+                    Instrumentation Engineering / Electronics &amp;
+                    Instrumentation Engineering / Instrumentation &amp; Control
+                    Engineering / Instrumentation and signal Process Engineering
+                    / Electronics Engineering / Electronics and
+                    Telecommunications / Electronics and Communications
+                    Engineering / Electronics &amp; Instrumentation Engineering
+                    / Telecom System engineering / Electronics and Control
+                    Engineering / Electronics and Computer Engineering
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="172">
+                  <p>Mechanical</p>
+                </td>
+                <td width="393">
+                  <p>
+                    Mechanical Engineering / Industrial &amp; Production
+                    Engineering / Industrial Engineering / Mechanical Production
+                    &amp; Tool Engineering / Production Technology /
+                    Manufacturing Engineering / Production Engineering
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="172">
+                  <p>Metallurgy</p>
+                </td>
+                <td width="393">
+                  <p>
+                    Metallurgy, Metallurgy &amp; Material Science / Material
+                    Science &amp; Technology
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="172">
+                  <p>Mining</p>
+                </td>
+                <td width="393">
+                  <p>
+                    Mining engineering / Mineral Engineering / Mining Machinery
+                    Engineering
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>&nbsp;</p>
+          <p>
+            Full &ndash; time Bachelor&rsquo;s degree in Engineering &amp;
+            Technology in Ceramics / Chemical / Civil / Electrical /
+            Instrumentation &amp; Electronics / Mechanical / Metallurgy / Mining
+            disciplines from a University / Deemed to be University / Institute
+            of National Importance, recognised by AICTE with minimum 60% marks
+            in the aggregate of all years / semesters and all subjects (50% in
+            aggregate for SC / PWD candidates).
+          </p>
+          <p>
+            <strong><u>Age Requirement:</u></strong> Upper age limit is 27 years
+            (as on 01/01/2020). Upper age limit is relaxable by 5 years for SC,
+            3 years for OBC (non-creamy layer) and 10 years for PWD candidates.
+            Persons domiciled in the state of Jammu &amp; Kashmir from 1/1/80 to
+            31/12/1989 will be allowed for 5 years relaxation in upper age
+            limit.
+          </p>
+          <p>
+            <strong><u>RINL Selection Process:</u></strong> It includes online
+            test followed by personal interview.
+          </p>
+          <p>
+            Online test comprises of General Awareness, Numerical Ability /
+            Aptitude, General English, Data &ndash; Interpretation, Verbal and
+            Non &ndash; verbal Reasoning and separate paper for each discipline.
+            Candidates should secure 50% in each segment (40% for SC, OBC and
+            PWD candidates) separately for qualifying the online test.
+          </p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'isro'"
+        >
+          <h2>ISRO SC EXAM</h2>
+          <p>
+            Indian Space Research Organization/Department of Space Centres/Units
+            are engaged in Research and Development activities in development of
+            Space Application, Space Science and Technology for the benefit of
+            society at large and for serving the nation by achieving
+            self-reliance and developing capacity to design and build Launch
+            Vehicles and Communication/Remote Sensing Satellites and thereafter
+            launch them. <br />
+            Online applications are invited from meritorious graduates for the
+            vacancies of Scientist/Engineer ‘SC’ in Level 10 of Pay Matrix at
+            constituent ISRO Centres (Group ‘A’ Gazetted posts) and in
+            Autonomous Body (Group ‘A’ Non-Gazetted posts) will be invited as
+            against the notification given.
+          </p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'barc'"
+        >
+          <p>
+            <strong><u>BARC 2021</u></strong>
+          </p>
+          <p>
+            <strong
+              >Recruitment of Scientific Officers in the Department of Atomic
+              Energy (Group-A Post of Government of India) through the Bhabha
+              Atomic Research Centre Training Schools</strong
+            >
+          </p>
+          <p>
+            BARC Training Schools provide two Training Schemes to deserving
+            candidates ambitious of pursuing a rewarding career in Nuclear
+            Science, Engineering and Technology and
+          </p>
+          <ul style="list-style: disc; margin-left: 0.5rem;">
+            <li>
+              who would relish challenges in frontier areas of Science &amp;
+              Technology,
+            </li>
+            <li>
+              who would like to be part of an expanding program of Nuclear Power
+              / Research Reactors, Accelerators and Nuclear Fuel Cycle
+              Technologies, and
+            </li>
+            <li>
+              who would enjoy pursuing innovative research in frontier areas of
+              Engineering, Physics, Chemistry, Bioscience and Geology. They are
+              respectively called Orientation Course for Engineering Graduates
+              and Science Postgraduates (OCES) and DAE Graduate Fellowship
+              Scheme for Engineering Graduates and Physics Postgraduates (DGFS).
+            </li>
+          </ul>
+          <p>
+            <strong
+              >Successful completion of the Training Schemes guarantees
+              employment as Scientific Officer &ldquo;C‟ in one of the DAE units
+              or Atomic Energy Regulatory Board with attractive career
+              progression opportunities up to the highest echelons.
+            </strong>
+          </p>
+          <p>
+            <strong
+              >&ldquo;DAE strives to have a workforce which reflects gender
+              balance and women candidates are encouraged to
+              apply.&rdquo;</strong
+            >
+          </p>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel
+        class="expansion-panel"
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title
+            ><h3 *ngIf="subjectSelected !== 'ipate'">
+              {{ subjectSelected | uppercase }} EXAM STRUCTURE
+            </h3>
+            <h3 *ngIf="subjectSelected === 'ipate'">
+              iPATE 2021 EXAM STRUCTURE
+            </h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div *ngIf="subjectSelected === 'gate'">
+          <p>
+            Not Announced Yet
+          </p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'ipate'"
+        >
+          <h2>Examination Duration</h2>
+          <p>
+            iPATE examination will be for 3 hours duration and consist of total
+            100 questions for 100 marks. Since the examination is an ONLINE
+            computer based test, at the end of the stipulated time (3 hours),
+            the online system will automatically close the Exam inhibiting any
+            further action. Candidates will be permitted to occupy their
+            allotted seats 30 minutes before the scheduled start of the
+            examination. Candidates can login and start reading the instructions
+            15 minutes before the start of examination. Candidates will NOT be
+            permitted to enter the examination hall after 10:00 hours in the
+            forenoon session and after 15:00 hours in the afternoon session.
+            Candidates will NOT be permitted to leave the examination hall
+            before the end of the examination.
+          </p>
+          <h2>Pattern of Questions</h2>
+          <p>
+            Question types shall be Multiple Choice or Numerical type, carrying
+            1 mark each in all the sections. These questions are objective and
+            comprehensive in nature, and the candidate has to select (mark) or
+            put the correct answer. Section-I shall assess the Management skills
+            of the candidate. Section-II shall assess the Professional skills of
+            the candidate, which emphasizes on basic knowledge. Section-III
+            shall assess the Engineering skills and acumen of the candidate,
+            which emphasizes on functional and practical aspects of Engineering
+            Subjects. For a wrong answer, there will be negative marking of 1/2
+            mark, which will be deducted.
+          </p>
+          <h3>Marks</h3>
+          <p>
+            There will be a total of 100 questions carrying 100 marks. the
+            details are as follows:
+          </p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Section</th>
+                <th scope="col">Topics</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  Section I:Cognitive Abilities<br />
+                  20 Questions carrying 20 marks
+                </th>
+                <td style="padding: 2rem;">
+                  <ul style="list-style: disc;">
+                    <li>Quanititative Aptitude</li>
+                    <li>Analytical Reasoning</li>
+                    <li>Data Interpretation</li>
+                    <li>English Communication</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  Section II:Professional Abilities<br />
+                  20 Questions carrying 20 marks
+                </th>
+                <td style="padding: 2rem;">
+                  <ul style="list-style: disc;">
+                    <li>Project Management</li>
+                    <li>Finance and Accounts</li>
+                    <li>Legal Contracts and Arbitration</li>
+                    <li>Environmental Laws</li>
+                    <li>Health,safety and Risk Management</li>
+                    <li>Social Respomsibility and Ethics</li>
+                  </ul>
+                </td>
+              </tr>
+
+              <tr>
+                <th scope="row">
+                  Section III(A):Technical Abilities<br />
+                  10 Questions carrying 10 marks
+                </th>
+                <td style="padding: 2rem;">
+                  <ul style="list-style: disc;">
+                    <li>Physics and Chemistry(10+2 level)</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  Section III(B):Technical Abilities<br />
+                  50 Questions carrying 50 marks
+                </th>
+                <td style="padding: 2rem;">
+                  <ul style="list-style: disc;">
+                    <li>Engineering Discipline-wise Subjects</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'cil'"
+        >
+          <p>
+            <strong><u>CIL Exam Details:</u></strong> The duration of computer
+            based test will be for 3 hours (one sitting) consisting of two
+            papers (Paper &ndash; I &amp; Paper &ndash; II) of 100 marks each.
+          </p>
+          <p>
+            Paper &ndash; I will consist of General Knowledge / Awareness,
+            Reasoning, Numerical Ability and General English.
+          </p>
+          <p>
+            Paper &ndash; II&nbsp; will consist of Professional Knowledge
+            (Discipline related) with 100 multiple choice questions in each
+            paper.
+          </p>
+          <p>
+            <strong><u>CIL Exam Structure</u></strong>
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td width="208">
+                  <p><strong>Mode of Examination</strong></p>
+                </td>
+                <td width="209">
+                  <p><strong>ONLINE</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>No. of Questions</strong></p>
+                </td>
+                <td width="209">
+                  <p>200</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Exam Duration</strong></p>
+                </td>
+                <td width="209">
+                  <p>180 minutes (3 hours)</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Max. Marks</strong></p>
+                </td>
+                <td width="209">
+                  <p>200</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Marks for Correct answer</strong></p>
+                </td>
+                <td width="209">
+                  <p><strong>+1</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Deduction for Incorrect Answer</strong></p>
+                </td>
+                <td width="209">
+                  <p><strong>-</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Question type</strong></p>
+                </td>
+                <td width="209">
+                  <p>MCQ (Only one correct Answer)</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <p>
+            <strong><u>Age Limit:</u></strong>
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td width="312">
+                  <p>Category</p>
+                </td>
+                <td width="190">
+                  <p>Age (as on April 1,2020)</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>General (UR)</p>
+                </td>
+                <td width="190">
+                  <p><strong>30 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>OBC</p>
+                </td>
+                <td width="190">
+                  <p><strong>33 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>SC/ST</p>
+                </td>
+                <td width="190">
+                  <p><strong>35 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>Persons domiciled in Kashmir Division of J&amp;K</p>
+                </td>
+                <td width="190">
+                  <p><strong>35 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>Persons with disabilities for General (UR)</p>
+                </td>
+                <td width="190">
+                  <p><strong>40 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>Persons with disabilities for OBC</p>
+                </td>
+                <td width="190">
+                  <p><strong>43 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>Persons with disabilities for SC / ST</p>
+                </td>
+                <td width="190">
+                  <p><strong>45 years</strong></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            Relaxation for Ex &ndash; servicemen category candidates is as per
+            extant Govt. of India guidelines.
+          </p>
+          <p>
+            <strong><u>Note:</u></strong> The upper age limit is relaxed subject
+            to the condition that maximum age of the applicant on the crucial
+            date i.e., 01 &ndash; 04 &ndash; 2020 shall not exceed
+            <strong>56 years.</strong>
+          </p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'sail'"
+        >
+          <p>
+            No separate exam is conducted by SAIL since the recruitment is
+            through GATE Examination.
+          </p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'bhel'"
+        >
+          <table>
+            <tbody>
+              <tr>
+                <td width="208">
+                  <p><strong>Mode of Examination</strong></p>
+                </td>
+                <td width="209">
+                  <p><strong>ONLINE</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>No. of Questions</strong></p>
+                </td>
+                <td width="209">
+                  <p>50% General, 50% Discipline</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Exam Duration</strong></p>
+                </td>
+                <td width="209">
+                  <p>150 minutes (2.5 hours)</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Max. Marks</strong></p>
+                </td>
+                <td width="209">
+                  <p>-</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Marks for Correct answer</strong></p>
+                </td>
+                <td width="209">
+                  <p><strong>-</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Deduction for Incorrect Answer</strong></p>
+                </td>
+                <td width="209">
+                  <p>
+                    1/4<sup>th</sup> mark assigned to each question is deducted
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Question type</strong></p>
+                </td>
+                <td width="209">
+                  <p>MCQ (Only one correct Answer)</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            <strong><u>&nbsp;</u></strong>
+          </p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'rinl'"
+        >
+          <table>
+            <tbody>
+              <tr>
+                <td width="208">
+                  <p><strong>Mode of Examination</strong></p>
+                </td>
+                <td width="209">
+                  <p><strong>ONLINE</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>No. of Questions</strong></p>
+                </td>
+                <td width="209">
+                  <p>200</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Exam Duration</strong></p>
+                </td>
+                <td width="209">
+                  <p>180 minutes (3 hours)</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Max. Marks</strong></p>
+                </td>
+                <td width="209">
+                  <p>200</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Marks for Correct answer</strong></p>
+                </td>
+                <td width="209">
+                  <p>+1</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Deduction for Incorrect Answer</strong></p>
+                </td>
+                <td width="209">
+                  <p>-</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Question type</strong></p>
+                </td>
+                <td width="209">
+                  <p>MCQ (Only one correct Answer)</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>&nbsp;</p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'isro'"
+        >
+          <p>
+            The ISRO Selection Procedure consists of two stages and they are
+            listed below: <br />
+            Stage 1: Written Test <br />
+            Stage 2: Personal Interview <br />
+          </p>
+          <br />
+          <p>
+            The Written Test is the first stage of the selection process. The
+            ISRO Exam Pattern for Written Test for all the streams is the same
+            and is tabulated below:
+            <br />
+          </p>
+          <ul>
+            <li>1. There will be a total of 80 questions in the exam.</li>
+            <li>2. The duration of the exam is 90 minutes.</li>
+            <li>3. Total marks of the exam are 240.</li>
+            <li>4. Each correct answer will be awarded 3 marks.</li>
+            <li>5. Only objective type questions are asked in the exam</li>
+            <li>6. The medium of the language will be English.</li>
+            <li>7. For every incorrect answer, 1 mark will be deducted</li>
+            <li>8. The ISRO exam will be held in offline mode only</li>
+          </ul>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'barc'"
+        >
+          <p>
+            <strong><u>BARC EXAM STRUCTURE</u></strong>
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td width="208">
+                  <p><strong>Mode of Examination</strong></p>
+                </td>
+                <td width="209">
+                  <p><strong>ONLINE</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>No. of Questions</strong></p>
+                </td>
+                <td width="209">
+                  <p>100</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Exam Duration</strong></p>
+                </td>
+                <td width="209">
+                  <p>120 min (2 hours)</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Max. Marks</strong></p>
+                </td>
+                <td width="209">
+                  <p>300</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Marks for Correct answer</strong></p>
+                </td>
+                <td width="209">
+                  <p><strong>+3</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Deduction for Incorrect Answer</strong></p>
+                </td>
+                <td width="209">
+                  <p><strong>-1</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Question type</strong></p>
+                </td>
+                <td width="209">
+                  <p>MCQ (Only one correct Answer)</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="208">
+                  <p><strong>Calculator</strong></p>
+                </td>
+                <td width="209">
+                  <p>Virtual Calculator provided</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel
+        class="expansion-panel"
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title
+            ><h3 *ngIf="subjectSelected !== 'ipate'">
+              {{ subjectSelected | uppercase }} IMPORTANT DATES
+            </h3>
+            <h3 *ngIf="subjectSelected === 'ipate'">iPATE IMPORTANT DATES</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'gate'"
+        >
+          <p>
+            Not Announced Yet
+          </p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'ipate'"
+        >
+          <table class="table table-striped">
+            <thead>
+              <!-- <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr> -->
+            </thead>
+            <tbody style="text-align: left;">
+              <tr>
+                <th scope="row">
+                  <h2 style="color: black; font-size: 1.2rem;">
+                    Online Registration
+                  </h2>
+
+                  <p style="color: #5e5e63; font-style: normal;">
+                    Last date extended due to Novel Coronavirus (COVID 19)
+                  </p>
+                </th>
+                <td>JAN 01, 2020 - MAY 10, 2020 (Closed)</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <h2 style="color: black; font-size: 1.2rem;">
+                    Online Preparation
+                  </h2>
+                  <p style="color: #5e5e63;">
+                    Strength & Weakness Analysis, Learning & Upskilling
+                    facilities for enrolled candidates till the Exam
+                  </p>
+                </th>
+                <td>FEB 01, 2020 onwards</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <h2 style="color: black; font-size: 1.2rem;">
+                    Online Admit Card Generation
+                  </h2>
+                  <p style="color: #5e5e63;">
+                    Details of Candidate with respective Exam Center and
+                    Scheduled date & time slot of Exam to be downloaded
+                  </p>
+                </th>
+                <td>JUL 2020</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <h2 style="color: black; font-size: 1.2rem;">
+                    CII iPATE 2020 - Online Examination
+                  </h2>
+                  <p style="color: #5e5e63;">
+                    3 Hrs. Online Examination on any scheduled date and time
+                    slot as per Admit card
+                  </p>
+                </th>
+                <td>AUG 2020</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <h2 style="color: black; font-size: 1.2rem;">
+                    Online Certification of CII - iPATE
+                  </h2>
+                  <p style="color: #5e5e63;">
+                    Availability of Scorecard & Certificate to be downloaded
+                  </p>
+                </th>
+                <td>SEP 2020</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <h2 style="color: black; font-size: 1.2rem;">
+                    Online Job Board of CII - iPATE
+                  </h2>
+                  <p style="color: #5e5e63;">
+                    Access to Job Board to apply suitable opportunities from CII
+                    member companies
+                  </p>
+                </th>
+                <td>SEP 2020 onwards</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'cil'"
+        >
+          <table>
+            <tbody>
+              <tr>
+                <td width="284">
+                  <p><strong>Activity</strong></p>
+                </td>
+                <td width="282">
+                  <p><strong>Important Dates</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="284">
+                  <p>Opening date for Online Registration of Applications</p>
+                </td>
+                <td width="282">
+                  <p>Saturday, 21 &ndash; 12 &ndash; 2019, 10:00 AM</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="284">
+                  <p>
+                    Last date for Online Submission of Applications with Fee
+                  </p>
+                </td>
+                <td width="282">
+                  <p>Sunday, 19 &ndash; 01 &ndash; 2020, 11:00 PM</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="284">
+                  <p>Tentative dates of Computer Based Online Test</p>
+                </td>
+                <td width="282">
+                  <p>
+                    Thursday, 27 &ndash; 02 &ndash; 2020 &amp; Friday, 28
+                    &ndash; 02 &ndash; 2020
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'sail'"
+        >
+          <table>
+            <tbody>
+              <tr>
+                <td width="284">
+                  <p><strong>Activity</strong></p>
+                </td>
+                <td width="282">
+                  <p><strong>Important Dates</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="284">
+                  <p>Opening date for Online Registration of Applications</p>
+                </td>
+                <td width="282">
+                  <p>25 &ndash; 05 &ndash; 2019</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="284">
+                  <p>
+                    Last date for Online Submission of Applications with Fee
+                  </p>
+                </td>
+                <td width="282">
+                  <p>14 &ndash; 06 &ndash; 2019</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'bhel'"
+        >
+          <table>
+            <tbody>
+              <tr>
+                <td width="284">
+                  <p><strong>Activity</strong></p>
+                </td>
+                <td width="281">
+                  <p><strong>Important Dates</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="284">
+                  <p>Opening date for Online Registration of Applications</p>
+                </td>
+                <td width="281">
+                  <p>16 April 2019 at 10:00 PM</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="284">
+                  <p>
+                    Last date for Online Submission of Applications with Fee
+                  </p>
+                </td>
+                <td width="281">
+                  <p>6 May 2019 at 11:45 PM</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="284">
+                  <p>Last Date for Online payment of fees</p>
+                </td>
+                <td width="281">
+                  <p>8 May 2019 at 6:00 PM</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="284">
+                  <p>Date of Examination</p>
+                </td>
+                <td width="281">
+                  <p>25<sup>th</sup> and 26<sup>th</sup> May 2019</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'rinl'"
+        >
+          <table>
+            <tbody>
+              <tr>
+                <td width="284">
+                  <p><strong>Activity</strong></p>
+                </td>
+                <td width="282">
+                  <p><strong>Important Dates</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="284">
+                  <p>Opening date for Online Registration of Applications</p>
+                </td>
+                <td width="282">
+                  <p>24 &ndash; 01 &ndash; 2020</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="284">
+                  <p>
+                    Last date for Online Submission of Applications with Fee
+                  </p>
+                </td>
+                <td width="282">
+                  <p>13 &ndash; 02 - 2020</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="284">
+                  <p>Last Date for payment gateway</p>
+                </td>
+                <td width="282">
+                  <p>14 &ndash; 02 - 2020</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'isro'"
+        >
+          <p>Soon to be Updated</p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'barc'"
+        >
+          <p>
+            <strong><u>BARC IMPORTANT DATES</u></strong>
+          </p>
+          <table width="0">
+            <tbody>
+              <tr>
+                <td width="548">
+                  <p>
+                    <strong
+                      >Launching of Online Application Portal for
+                      OCES/DGFS-2020</strong
+                    >
+                  </p>
+                </td>
+                <td width="161">
+                  <p><strong>Jan 6, 2020</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="548">
+                  <p><strong>Last date for Online Application</strong></p>
+                </td>
+                <td width="161">
+                  <p>Feb 3, 2020</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="548">
+                  <p><strong>Admit Card Release Date</strong></p>
+                </td>
+                <td width="161">
+                  <p>March 05, 2020&nbsp;</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="548">
+                  <p><strong>Online Test</strong></p>
+                </td>
+                <td width="161">
+                  <p>March 13 to 19, 2020</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="548">
+                  <p>
+                    <strong
+                      >Last date for candidates to upload their GATE-2020
+                      score</strong
+                    >
+                  </p>
+                </td>
+                <td width="161">
+                  <p>April 1, 2020</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="548">
+                  <p>
+                    <strong
+                      >Display of List of candidates short-listed for Interview
+                      on Online Application Portal</strong
+                    >
+                  </p>
+                </td>
+                <td width="161">
+                  <p>April 15, 2020</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="548">
+                  <p>
+                    <strong
+                      >Availability based option on Online Application Portal to
+                      select Interview Slot for qualified candidates</strong
+                    >
+                  </p>
+                </td>
+                <td width="161">
+                  <p>April 17 to 21, 2020</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="548">
+                  <p><strong>Selection Interviews</strong></p>
+                </td>
+                <td width="161">
+                  <p>May 14 to June 13, 2020</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="548">
+                  <p>
+                    <strong
+                      >Display of List of Candidates finally selected for
+                      OCES-2020 on Online Application Portal</strong
+                    >
+                  </p>
+                </td>
+                <td width="161">
+                  <p>Last week of June 2020</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="548">
+                  <p>
+                    <strong
+                      >Last Date for Selected OCES-2020 Candidates desirous of
+                      DGFS to give details of M.Tech/ M.Chem.Engg. admission in
+                      a DGFS institute</strong
+                    >
+                  </p>
+                </td>
+                <td width="161">
+                  <p>July 5, 2020</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="548">
+                  <p>
+                    <strong
+                      >Declaration of List of Persons Selected for DGFS-2020 on
+                      Online Application Portal</strong
+                    >
+                  </p>
+                </td>
+                <td width="161">
+                  <p>2nd week of July 2020</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>&nbsp;</p>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel
+        class="expansion-panel"
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title
+            ><h3 *ngIf="subjectSelected !== 'ipate'">
+              {{ subjectSelected | uppercase }} ELIGIBILITY CRITERIA
+            </h3>
+            <h3 *ngIf="subjectSelected === 'ipate'">
+              iPATE ELIGIBILITY CRITERIA
+            </h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div
+          style="overflow: auto; padding: 0rem 2rem;"
+          *ngIf="subjectSelected === 'gate'"
+        >
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Qualifying Degree</th>
+                <th scope="col">Qualifying Degree / Examination</th>
+                <th scope="col">Description of Eligible Candidates</th>
+                <th scope="col">Year of Qualification not later than</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">B.E./B.Tech./ B.Pharm.</th>
+                <td>
+                  Bachelor’s degree holders in Engineering/ Technology (4 years
+                  after 10+2 or 3 years after B.Sc./Diploma in
+                  Engineering/Technology)
+                </td>
+                <td>Currently in the final year or already completed</td>
+                <td>2020</td>
+              </tr>
+              <tr>
+                <th scope="row">B.Arch</th>
+                <td>
+                  Bachelor’s degree holders of Architecture (5 years
+                  course)/Naval Architecture (4 years course)/Planning (4 years
+                  course)
+                </td>
+                <td>Currently in the final year or already completed</td>
+                <td>2020</td>
+              </tr>
+              <tr>
+                <th scope="row">B.Sc.(Research) / B.S.</th>
+                <td>
+                  Bachelor’s degree in Science (Post-Diploma/4 years after 10+2)
+                </td>
+                <td>Currently in the 4th year or already completed</td>
+                <td>2020</td>
+              </tr>
+              <tr>
+                <th scope="row">Pharm. D.(after 10+2)</th>
+                <td>
+                  6 years program, consisting of internship or residency
+                  training during sixth year
+                </td>
+                <td>Currently in the 4th/5th/6th year or already completed</td>
+                <td>2022</td>
+              </tr>
+              <tr>
+                <th scope="row">M.B.B.S</th>
+                <td>Four and half (4.5) years program</td>
+                <td>7th, 8th, 9th or already completed</td>
+                <td>2020</td>
+              </tr>
+              <tr>
+                <th scope="row">M.Sc./ M.A./MCA or equivalent</th>
+                <td>
+                  Master’s degree in any branch of Science/
+                  Mathematics/Statistics/ Computer Applications or equivalent
+                </td>
+                <td>Currently in the final year or already completed</td>
+                <td>2020</td>
+              </tr>
+              <tr>
+                <th scope="row">Int. M.E./ M.Tech. (Post-B.Sc.)</th>
+                <td>
+                  Post-B.Sc. Integrated Master’s degree programs in
+                  Engineering/Technology (4 years program)
+                </td>
+                <td>Currently in the 2nd/ 3rd/4th year or already completed</td>
+                <td>2022</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  Int. M.E./ M.Tech. or Dual Degree (after Diploma or 10+2)
+                </th>
+                <td>
+                  Integrated Master’s degree program or Dual Degree program in
+                  Engineering/ Technology (5 years program)
+                </td>
+                <td>Currently in the 4th/5th year or already completed</td>
+                <td>2021</td>
+              </tr>
+              <tr>
+                <th scope="row">Int. M.Sc./ Int. B.S.-M.S.</th>
+                <td>
+                  Integrated M.Sc. or 5 years integrated B.S.-M.S. program
+                </td>
+                <td>Currently in the final year or already completed</td>
+                <td>2020</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  Professional Society Examinations* (equivalent to
+                  B.E./B.Tech./B.Arch.)
+                </th>
+                <td>
+                  B.E./B.Tech./B.Arch. equivalent examinations of Professional
+                  Societies, recognized by MHRD/UPSC/AICTE (e.g., AMIE by
+                  Institution of Engineers- India, AMICE by the Institute of
+                  Civil Engineers-India and so on)
+                </td>
+                <td>
+                  Completed Section A or equivalent of such professional courses
+                </td>
+                <td>NA</td>
+              </tr>
+            </tbody>
+          </table>
+          <h3>
+            Some of these Professional Societies / Institutions, which conduct
+            examination in various fields of engineering, are as follows:
+          </h3>
+          <ul style="list-style: disc; list-style-position: outside;">
+            <li>The Institution of Engineers (India) (IE)</li>
+            <li>The Institution of Civil Engineers (ICE)</li>
+            <li>
+              The Institution of Electronics and Telecommunication Engineers
+              (IETE)
+            </li>
+            <li>The Aeronautical Society of India (AeSI)</li>
+            <li>
+              The Indian Institute of Chemical Engineers, including Polymer and
+              Environmental Group (IIChemE)
+            </li>
+            <li>The Indian Institute of Metals (IIM)</li>
+            <li>The Indian Institute of Industrial Engineers (IIE)</li>
+          </ul>
+          <p>
+            However, the candidates who possess certification from any of the
+            professional societies must ensure that those examinations conducted
+            by the societies are approved by MHRD/AICTE/UGC/UPSC as equivalent
+            to B.E./B.Tech./B.Arch./B.Planning etc.
+          </p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'ipate'"
+        >
+          <ul style="list-style: disc;">
+            <li>B.E./B.Tech(4 years course after 10+2)</li>
+            <li>
+              B.E./B.Tech(3 years course after B.Sc/Diploma in
+              Engineering/Technology)
+            </li>
+            <li>
+              B.Arch(5 years course)/Naval Architecture(4 years
+              course)/Planning(4 years course)
+            </li>
+            <li>
+              Professional Society Examinations(equivalent to
+              B.E./B.Tech/B.Arch) recognized by MHRD/UPSC/AICTE
+            </li>
+            <li>
+              B.E./B.Tech/B.Arch Final year students(passing out in 2020) can
+              apply
+            </li>
+            <li>
+              Post Graduate (PG) Engineers and PG Engineering Students can also
+              apply
+            </li>
+          </ul>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'cil'"
+        >
+          <table>
+            <tbody>
+              <tr>
+                <td width="74">
+                  <p><strong>Post Code</strong></p>
+                </td>
+                <td width="155">
+                  <p><strong>Name of the Discipline</strong></p>
+                </td>
+                <td width="337">
+                  <p><strong>Minimum Qualification</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="74">
+                  <p>11</p>
+                </td>
+                <td width="155">
+                  <p>Mining</p>
+                </td>
+                <td rowspan="4" width="337">
+                  <p>
+                    BE / B.Tech / B. Sc (Engg.) in relevant branch of
+                    Engineering with minimum 60 % marks
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="74">
+                  <p>12</p>
+                </td>
+                <td width="155">
+                  <p>Electrical</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="74">
+                  <p>13</p>
+                </td>
+                <td width="155">
+                  <p>Mechanical</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="74">
+                  <p>14</p>
+                </td>
+                <td width="155">
+                  <p>Civil</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="74">
+                  <p>15</p>
+                </td>
+                <td width="155">
+                  <p>Coal Preparation</p>
+                </td>
+                <td width="337">
+                  <p>
+                    BE / B.Tech / B. Sc (Engg.) in Chemical / Mineral
+                    Engineering with minimum 60 % marks
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="74">
+                  <p>16</p>
+                </td>
+                <td width="155">
+                  <p>Systems</p>
+                </td>
+                <td width="337">
+                  <p>
+                    BE / B.Tech / B. Sc (Engg.) in Computer Science / Computer
+                    Engineering / IT or MCA with minimum 60 % marks
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="74">
+                  <p>17</p>
+                </td>
+                <td width="155">
+                  <p>Materials Management</p>
+                </td>
+                <td width="337">
+                  <p>
+                    Engineering Degree in Electrical or Mechanical Engineering
+                    with 2 years full time MBA / PG Diploma in Management with
+                    minimum 60% marks.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="74">
+                  <p>18</p>
+                </td>
+                <td width="155">
+                  <p>Finance &amp; Accounts</p>
+                </td>
+                <td width="337">
+                  <p>Qualified CA / ICWA</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="74">
+                  <p>19</p>
+                </td>
+                <td width="155">
+                  <p>Personnel &amp; HR</p>
+                </td>
+                <td width="337">
+                  <p>
+                    Graduates with at least two years full time Post Graduate
+                    Degree / PG Diploma / Post Graduate Program in Management
+                    with specialization in HR / Industrial Relations / Personnel
+                    Management or MHROD or MBA or Master of Social Work with
+                    specialisation in HR (Major) from recognized Indian
+                    University / Institute with minimum 60% marks.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="74">
+                  <p>20</p>
+                </td>
+                <td width="155">
+                  <p>Marketing&nbsp; &amp; Sales</p>
+                </td>
+                <td width="337">
+                  <p>
+                    Recognised Degree with 2 years full time MBA / PG Diploma in
+                    Management with specialisation in Marketing (Major) from
+                    recognised institute / University with minimum 60% marks.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="74">
+                  <p>21</p>
+                </td>
+                <td width="155">
+                  <p>Community Development</p>
+                </td>
+                <td width="337">
+                  <p>
+                    Minimum two years fill time Post Graduate Degree or Post
+                    Graduate Diploma of two &ndash; year duration from a
+                    recognised University / Institute in Community Development /
+                    Rural Development / community organisation and Development
+                    Practice / Urban and rural community Development / Rural and
+                    Tribal Development / Development Management / Rural
+                    Management with minimum 60% marks.
+                  </p>
+                  <p>&nbsp;</p>
+                  <p>(OR)</p>
+                  <p>&nbsp;</p>
+                  <p>
+                    Minimum 2 year full time Post Graduate Degree (from
+                    recognised University / Institute) in Social Work with
+                    specialisation &ndash; Community Development / Rural
+                    Development / Community Organisation &amp; Development
+                    Practice / Urban &amp; Rural Community Development / Rural
+                    &amp; Tribal Development / Development Management with 60%
+                    marks.
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <p>
+            <strong
+              ><u
+                >ENGINEERING DEPARTMENTS WHICH ARE NOT ELIGIBLE FOR CIL &ndash;
+                Management Trainee</u
+              ></strong
+            >
+          </p>
+          <table>
+            <tbody>
+              <tr>
+                <td width="186">
+                  <p><strong>Discipline (Post Code)</strong></p>
+                </td>
+                <td width="186">
+                  <p><strong>Eligible Relevant Branches</strong></p>
+                </td>
+                <td width="194">
+                  <p><strong>Not eligible Branches</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="186">
+                  <p>Mechanical (13)</p>
+                </td>
+                <td width="186">
+                  <p>Mechanical Engineering</p>
+                </td>
+                <td width="194">
+                  <p>
+                    Production, Industrial, Automation, Thermal, Manufacturing
+                    Engineering and Combination of Mechanical Engineering with
+                    any of these or similar branches.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="186">
+                  <p>Electrical (12)</p>
+                </td>
+                <td width="186">
+                  <p>Electrical, Electrical &amp; Electronics Engineering</p>
+                </td>
+                <td width="194">
+                  <p>
+                    Instrumentation &amp; Control, Power System, Power
+                    Electronics, Power Engineering and combination of Electrical
+                    Engineering with any of these or similar branches.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="186">
+                  <p>Civil (14)</p>
+                </td>
+                <td width="186">
+                  <p>Civil Engineering</p>
+                </td>
+                <td width="194">
+                  <p>
+                    Civil with Architecture or Structural Engineering or any
+                    other combinations with Civil Engineering.
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td width="186">
+                  <p>Finance &amp; Accounts (18)</p>
+                </td>
+                <td width="186">
+                  <p>Qualified CA or ICWA</p>
+                </td>
+                <td width="194">
+                  <p>MBA or MCOM</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'sail'"
+        >
+          <table class="table table-striped">
+            <thead>
+              <!-- <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr> -->
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Degree Requirements</th>
+                <td>B.Tech</td>
+              </tr>
+              <tr>
+                <th scope="row">Age</th>
+                <td>28 years as on 14 – 06 – 2019</td>
+              </tr>
+              <tr>
+                <th scope="row">% of Mark</th>
+                <td>Minimum 60%</td>
+              </tr>
+              <tr>
+                <th scope="row">National exam Cutoff</th>
+                <td>Same as GATE Examination</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'bhel'"
+        >
+          <table class="table table-striped">
+            <thead>
+              <!-- <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr> -->
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Degree Requirements</th>
+                <td>Full Time B.Tech or 5-year integrated Master’s degree</td>
+              </tr>
+              <tr>
+                <th scope="row">Age</th>
+                <td>27 years (B.Tech); 29 years (full time PG)</td>
+              </tr>
+              <tr>
+                <th scope="row">% of Mark</th>
+                <td>60% (B.Tech); 55% (PG)</td>
+              </tr>
+              <tr>
+                <th scope="row">National exam Cutoff</th>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'rinl'"
+        >
+          <table class="table table-striped">
+            <thead>
+              <!-- <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+              </tr> -->
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Degree Requirements</th>
+                <td>B. Tech</td>
+              </tr>
+              <tr>
+                <th scope="row">Age</th>
+                <td>27 years as on 01 – 01 – 2020</td>
+              </tr>
+              <tr>
+                <th scope="row">% of Mark</th>
+                <td>Minimum 60%</td>
+              </tr>
+              <tr>
+                <th scope="row">National exam Cutoff</th>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'isro'"
+        >
+          <p>
+            Candidates who have secured 65% or 6.84 CGPA in B.E/B. Tech. are
+            eligible to apply for ISRO Recruitment for the post of
+            Scientist/Engineer.
+          </p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'barc'"
+        >
+          <p><strong>Eligible disciplines</strong></p>
+          <p>
+            BARC eligibility criteria for different disciplines in OCES/DGFS
+            2020 are different. These are displayed below:
+          </p>
+          <p><strong>For Engineering Disciplines</strong></p>
+          <img src="./../../assets/ds.png" alt="" />
+          <br />
+          <p>
+            Candidate should possess B.E./B.Tech/B.Sc (Engineering)/5-year
+            Integrated M.Sc degree with a minimum of 60% aggregate. candidates
+            who are opting to be evaluated on the GATE score must have a valid
+            GATE 2019 or GATE 2020 score.
+          </p>
+          <p>
+            Candidates possessing any of the degrees from below are not eligible
+            to apply for BARC exam.
+          </p>
+          <ul style="list-style: disc; margin-left: 0.5rem;">
+            <li>
+              Automobile, Automotive, Aerospace, Industrial Production,
+              Reliable, Ceramics, Architecture, Geology, Mining, Bio-Medical
+              Electronics/Instruments, Communication, Information Technology,
+              Master of Computer Applications, Dyes &amp; Dye Intermediaries,
+              Electrochemical, Energy Systems, Oils &amp; Fats, Paints &amp;
+              Varnishes, Petrochemicals, Plastics, Paper, Sugar Technology,
+              Textiles and Mechatronics.
+            </li>
+          </ul>
+          <p><strong>For Fast Reactor Technology-M</strong></p>
+          <p>
+            Candidate should possess B.E./B.Tech/B.Sc (Engineering)/5-year
+            Integrated M.Sc degree with a minimum of 60% aggregate in Mechanical
+            or Chemical Engineering.
+          </p>
+          <p><strong>For Fast Reactor Technology-E</strong></p>
+          <p>
+            Candidate should possess B.E./B.Tech/B.Sc (Engineering)/5-year
+            Integrated M.Sc degree with a minimum of 60% aggregate in Electrical
+            or Electronics Engineering.
+          </p>
+          <p>
+            <strong
+              >For Quality Assurance &amp; Quality Control (QA &amp; QC)</strong
+            >
+          </p>
+          <p>
+            Candidate should possess B.E./B.Tech/B.Sc (Engineering)/5-year
+            Integrated M.Sc degree with a minimum of 60% aggregate in Mechanical
+            or Metallurgical Engineering.
+          </p>
+          <p><strong>Age Limit</strong></p>
+          <table>
+            <tbody>
+              <tr>
+                <td width="312">
+                  <p>Category</p>
+                </td>
+                <td width="190">
+                  <p>Age(as on August 1,2020)</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>General</p>
+                </td>
+                <td width="190">
+                  <p><strong>26 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>OBC</p>
+                </td>
+                <td width="190">
+                  <p><strong>29 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>SC/ST</p>
+                </td>
+                <td width="190">
+                  <p><strong>31 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>Dependents of those who died in 1984 riots</p>
+                </td>
+                <td width="190">
+                  <p><strong>31 years</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="312">
+                  <p>Persons domiciled in Kashmir Division of J&amp;K</p>
+                </td>
+                <td width="190">
+                  <p><strong>31 years</strong></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel
+        class="expansion-panel"
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title
+            ><h3 *ngIf="subjectSelected !== 'ipate'">
+              {{ subjectSelected | uppercase }} CUTOFF MARKS
+            </h3>
+            <h3 *ngIf="subjectSelected === 'ipate'">iPATE CUTOFF MARKS</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'gate'"
+        >
+          <!-- <button class="btn" *ngIf="subjectSelected === 'gate'">
+            <a
+              href="http://gate.iitd.ac.in/syllabi.php"
+              target="_blank"
+              style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+              >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
+            >
+          </button> -->
+          <p>NA</p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'ipate'"
+        >
+          <p>NA</p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'cil'"
+        >
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Category</th>
+                <th scope="col">Qualifying Marks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">PWD / ST / SC</th>
+                <td>Min. 30 marks in each paper</td>
+              </tr>
+              <tr>
+                <th scope="row">OBC</th>
+                <td>Min. 35 marks in each paper</td>
+              </tr>
+              <tr>
+                <th scope="row">General</th>
+                <td>Min. 40 marks in each paper</td>
+              </tr>
+              <tr>
+                <th scope="row">National exam Cutoff</th>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <p><strong>2020</strong></p>
+          <table width="0">
+            <tbody>
+              <tr>
+                <td width="55">
+                  <p><strong>Dept.</strong></p>
+                </td>
+                <td width="65">
+                  <p><strong>Mining</strong></p>
+                </td>
+                <td width="55">
+                  <p><strong>Elec.</strong></p>
+                </td>
+                <td width="64">
+                  <p><strong>Mech</strong></p>
+                </td>
+                <td width="63">
+                  <p><strong>Civil</strong></p>
+                </td>
+                <td width="64">
+                  <p><strong>Coal Prep.</strong></p>
+                </td>
+                <td width="74">
+                  <p><strong>Systems</strong></p>
+                </td>
+                <td width="96">
+                  <p><strong>Materials Management</strong></p>
+                </td>
+                <td width="70">
+                  <p><strong>Finance &amp; Accounts</strong></p>
+                </td>
+                <td width="47">
+                  <p><strong>Pers. &amp; HR</strong></p>
+                </td>
+                <td width="84">
+                  <p><strong>Marketing &amp; sales</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="55">
+                  <p>Exam</p>
+                </td>
+                <td width="65">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="55">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="64">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="63">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="64">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="74">
+                  <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  </p>
+                </td>
+                <td width="96">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="70">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="47">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="84">
+                  <p>&nbsp;</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <br />
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Discipline</th>
+                <th scope="col">Expected Cut Off Marks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Mechanical</th>
+                <td>160-170</td>
+              </tr>
+              <tr>
+                <th scope="row">Civil</th>
+                <td>140-15-</td>
+              </tr>
+              <tr>
+                <th scope="row">Electrical</th>
+                <td>155-160</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'sail'"
+        >
+          <table width="0">
+            <tbody>
+              <tr>
+                <td width="56">
+                  <p><strong>Dept.</strong></p>
+                </td>
+                <td width="85">
+                  <p><strong>Mech</strong>anical Engg</p>
+                </td>
+                <td width="91">
+                  <p>Metallurgical Engg</p>
+                </td>
+                <td width="84">
+                  <p>Electrical Engg</p>
+                </td>
+                <td width="84">
+                  <p>Chemical Engg</p>
+                </td>
+                <td width="113">
+                  <p>Instrumentation Engg</p>
+                </td>
+                <td width="110">
+                  <p>Mining Engg</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="56">
+                  <p><strong>Exam</strong></p>
+                </td>
+                <td width="85">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="91">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="84">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="84">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="113">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="110">
+                  <p>&nbsp;</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'bhel'"
+        >
+          <h2>Cut Off Marks - Category Wise (As given by BHEL Authorities)</h2>
+          <table>
+            <tbody>
+              <tr>
+                <td width="127">
+                  <p><strong>Discipline / Category</strong></p>
+                </td>
+                <td width="70">
+                  <p><strong>UR</strong></p>
+                </td>
+                <td width="92">
+                  <p><strong>EWS</strong></p>
+                </td>
+                <td width="92">
+                  <p><strong>OBC</strong></p>
+                </td>
+                <td width="92">
+                  <p><strong>SC</strong></p>
+                </td>
+                <td width="92">
+                  <p><strong>ST</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="127">
+                  <p>Mechanical</p>
+                </td>
+                <td width="70">
+                  <p>64.86</p>
+                </td>
+                <td width="92">
+                  <p>60.89</p>
+                </td>
+                <td width="92">
+                  <p>62.56</p>
+                </td>
+                <td width="92">
+                  <p>56.64</p>
+                </td>
+                <td width="92">
+                  <p>55.16</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="127">
+                  <p>Electrical</p>
+                </td>
+                <td width="70">
+                  <p>70.70</p>
+                </td>
+                <td width="92">
+                  <p>65.08</p>
+                </td>
+                <td width="92">
+                  <p>65.55</p>
+                </td>
+                <td width="92">
+                  <p>58.52</p>
+                </td>
+                <td width="92">
+                  <p>56.25</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="127">
+                  <p>Civil</p>
+                </td>
+                <td width="70">
+                  <p>71.72</p>
+                </td>
+                <td width="92">
+                  <p>65.13</p>
+                </td>
+                <td width="92">
+                  <p>68.36</p>
+                </td>
+                <td width="92">
+                  <p>61.31</p>
+                </td>
+                <td width="92">
+                  <p>65.25</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="127">
+                  <p>Chemical</p>
+                </td>
+                <td width="70">
+                  <p>69.38</p>
+                </td>
+                <td width="92">
+                  <p>66.47</p>
+                </td>
+                <td width="92">
+                  <p>67.95</p>
+                </td>
+                <td width="92">
+                  <p>65.00</p>
+                </td>
+                <td width="92">
+                  <p>62.19</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <br />
+          <p>
+            <strong><u>Age Relaxation:</u></strong>
+          </p>
+          <ul style="list-style: disc;">
+            <li>
+              Upper age limit is relaxable for candidates belonging to SC / ST
+              &ndash; 5 years; OBC (Non Creamy Layer) &ndash; 3 years.
+            </li>
+            <li>
+              Persons with disabilities candidates &ndash; by 10 years for
+              general, by 13 years for OBC (Non Creamy Layer), by 15 years for
+              SC / ST
+            </li>
+            <li>
+              Relaxation in age for Ex-Servicemen will be as per extant Govt.
+              rules.
+            </li>
+            <li>
+              Upper age limit is relaxable by 5 years for the candidates who had
+              ordinarily been domiciled in the state of Jammu &amp; Kashmir
+              during the period from 1/1/1980 to 31/12/1989.
+            </li>
+          </ul>
+          <p>
+            <strong><u>&nbsp;</u></strong>
+          </p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'rinl'"
+        >
+          <table width="0">
+            <tbody>
+              <tr>
+                <td width="53">
+                  <p><strong>Dept.</strong></p>
+                </td>
+                <td width="79">
+                  <p><strong>Chemical </strong>Engg</p>
+                </td>
+                <td width="74">
+                  <p>Civil Engg</p>
+                </td>
+                <td width="78">
+                  <p>Electrical Engg</p>
+                </td>
+                <td width="109">
+                  <p>Instrumentation &amp; Electronics</p>
+                </td>
+                <td width="103">
+                  <p>Mechanical Engg</p>
+                </td>
+                <td width="98">
+                  <p>Mining Engg</p>
+                </td>
+                <td width="104">
+                  <p>Metallurgical Engg</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="53">
+                  <p><strong>Exam</strong></p>
+                </td>
+                <td width="79">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="74">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="78">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="109">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="103">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="98">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="104">
+                  <p>&nbsp;</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'isro'"
+        >
+          <p>ISRO CUTOFF 2020</p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Post Code</th>
+                <th scope="col">Discipline</th>
+                <th scope="col">Toatal marks</th>
+                <th scope="col">PWBD</th>
+                <th scope="col">Other than PWBD</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">BE001</th>
+                <td>Electronics</td>
+                <td>225</td>
+                <td>69</td>
+                <td>76</td>
+              </tr>
+              <tr>
+                <th scope="row">BE002</th>
+                <td>Mechanical</td>
+                <td>231</td>
+                <td>87</td>
+                <td>153</td>
+              </tr>
+              <tr>
+                <th scope="row">BE003</th>
+                <td>Computer Science</td>
+                <td>216</td>
+                <td>74</td>
+                <td>97</td>
+              </tr>
+              <tr>
+                <th scope="row">BE008</th>
+                <td>Electronics-SCL</td>
+                <td>225</td>
+                <td>-</td>
+                <td>79</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>ISRO Cutoff 2019</p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Post Code</th>
+                <th scope="col">Discipline</th>
+                <th scope="col">Total Marks</th>
+                <th scope="col">UR</th>
+                <th scope="col">SC</th>
+                <th scope="col">ST</th>
+                <th scope="col">OBC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">BE004</th>
+                <td>Civil</td>
+                <td>231</td>
+                <td>190</td>
+                <td>170</td>
+                <td>164</td>
+                <td>187</td>
+              </tr>
+              <tr>
+                <th scope="row">BE005</th>
+                <td>Electrical</td>
+                <td>231</td>
+                <td>180</td>
+                <td>138</td>
+                <td>137</td>
+                <td>171</td>
+              </tr>
+              <tr>
+                <th scope="row">BE006</th>
+                <td>RAC</td>
+                <td>240</td>
+                <td>216</td>
+                <td>167</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <th scope="row">BE007</th>
+                <td>Architecture</td>
+                <td>237</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>129</td>
+              </tr>
+              <tr>
+                <th scope="row">BE006</th>
+                <td>Electrical-SCL</td>
+                <td>231</td>
+                <td>171</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>ISRO CUTOFF 2017</p>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Discipline</th>
+                <th scope="col">MAX Marks</th>
+                <th scope="col">UR</th>
+                <th scope="col">OBC</th>
+                <th scope="col">SC</th>
+                <th scope="col">ST</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Civil</th>
+                <td>228</td>
+                <td>192</td>
+                <td>184</td>
+                <td>172</td>
+                <td>158</td>
+              </tr>
+              <tr>
+                <th scope="row">Civil(SCL)</th>
+                <td>228</td>
+                <td>191</td>
+                <td>-</td>
+                <td>-</td>
+
+                <td>-</td>
+              </tr>
+              <tr>
+                <th scope="row">Electrical</th>
+                <td>228</td>
+                <td>169</td>
+                <td>160</td>
+                <td>152</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <th scope="row">Electrical-SCL</th>
+                <td>228</td>
+                <td>168</td>
+                <td>159</td>
+                <td>129</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <th scope="row">Mechanical</th>
+                <td>234</td>
+                <td colspan="4">139 Overall & 92 Under PWD</td>
+              </tr>
+              <tr>
+                <th scope="row">Computer Science</th>
+                <td>231</td>
+                <td colspan="4">173 Overall & 99 Under PWD</td>
+              </tr>
+              <tr>
+                <th scope="row">Electronics</th>
+                <td>231</td>
+                <td colspan="4">98 Overall & 65 Under PWD</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p>ISRO CUTOFF 2015</p>
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">Statics</th>
+                <th scope="col">EC</th>
+                <th scope="col">ME</th>
+                <th scope="col">CS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">No. of Applications</th>
+                <td>35000-38000</td>
+                <td>24000-28000</td>
+                <td>18000-20000</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  No. of Applications Shortlisted for written Exam
+                </th>
+                <td>22528</td>
+                <td>15992</td>
+                <td>10746</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  No. of Applications Shortlisted for Interview
+                </th>
+                <td>159</td>
+                <td>494</td>
+                <td>9</td>
+              </tr>
+              <tr>
+                <th scope="row">No. of Applicants Selected for Interview</th>
+                <td>56</td>
+                <td>57</td>
+                <td>3</td>
+              </tr>
+              <tr>
+                <th scope="row">Selected No in Advertisement</th>
+                <td>37</td>
+                <td>53</td>
+                <td>18</td>
+              </tr>
+              <tr>
+                <th scope="row">Total Marks</th>
+                <td>240</td>
+                <td>240</td>
+                <td>240</td>
+              </tr>
+              <tr>
+                <th scope="row">Highest Marks</th>
+                <td>159</td>
+                <td>176</td>
+                <td>131</td>
+              </tr>
+              <tr>
+                <th scope="row">Lowest Marks</th>
+                <td>-40</td>
+                <td>-60</td>
+                <td>-44</td>
+              </tr>
+              <tr>
+                <th scope="row">Minimum Cutoff Marks</th>
+                <td>120</td>
+                <td>122</td>
+                <td>101</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'barc'"
+        >
+          <p><strong>2020</strong></p>
+          <table width="0">
+            <tbody>
+              <tr>
+                <td width="104">
+                  <p><strong>DEPARTMENT</strong></p>
+                </td>
+                <td width="66">
+                  <p><strong>ME</strong></p>
+                </td>
+                <td width="66">
+                  <p><strong>CE</strong></p>
+                </td>
+                <td width="66">
+                  <p><strong>MT</strong></p>
+                </td>
+                <td width="67">
+                  <p><strong>ECE</strong></p>
+                </td>
+                <td width="67">
+                  <p><strong>EEE</strong></p>
+                </td>
+                <td width="67">
+                  <p><strong>IN</strong></p>
+                </td>
+                <td width="67">
+                  <p><strong>Chem</strong></p>
+                </td>
+                <td width="67">
+                  <p><strong>CSE</strong></p>
+                </td>
+                <td width="67">
+                  <p><strong>NE</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="104">
+                  <p>ONLINE EXAM</p>
+                </td>
+                <td width="66">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="66">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="66">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="104">
+                  <p>GATE SCORE</p>
+                </td>
+                <td width="66">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="66">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="66">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p>&nbsp;</p>
+          <p><strong>2019</strong></p>
+          <table width="0">
+            <tbody>
+              <tr>
+                <td width="104">
+                  <p><strong>DEPARTMENT</strong></p>
+                </td>
+                <td width="66">
+                  <p><strong>ME</strong></p>
+                </td>
+                <td width="66">
+                  <p><strong>CE</strong></p>
+                </td>
+                <td width="66">
+                  <p><strong>MT</strong></p>
+                </td>
+                <td width="67">
+                  <p><strong>ECE</strong></p>
+                </td>
+                <td width="67">
+                  <p><strong>EEE</strong></p>
+                </td>
+                <td width="67">
+                  <p><strong>IN</strong></p>
+                </td>
+                <td width="67">
+                  <p><strong>Chem</strong></p>
+                </td>
+                <td width="67">
+                  <p><strong>CSE</strong></p>
+                </td>
+                <td width="67">
+                  <p><strong>NE</strong></p>
+                </td>
+              </tr>
+              <tr>
+                <td width="104">
+                  <p>ONLINE EXAM</p>
+                </td>
+                <td width="66">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="66">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="66">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+              </tr>
+              <tr>
+                <td width="104">
+                  <p>GATE SCORE</p>
+                </td>
+                <td width="66">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="66">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="66">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+                <td width="67">
+                  <p>&nbsp;</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </mat-expansion-panel>
+      <mat-expansion-panel
+        class="expansion-panel"
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title
+            ><h3 *ngIf="subjectSelected !== 'ipate'">
+              {{ subjectSelected | uppercase }} SYLLABUS
+            </h3>
+            <h3 *ngIf="subjectSelected === 'ipate'">iPATE SYLLABUS</h3>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'gate'"
+        >
+          <button class="btn" *ngIf="subjectSelected === 'gate'">
+            <a
+              href="http://gate.iitd.ac.in/syllabi.php"
+              target="_blank"
+              style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+              >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
+            >
+          </button>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'ipate'"
+        >
+          <button class="btn" *ngIf="subjectSelected === 'ipate'">
+            <a
+              href="https://www.ipate.in/syllabus/"
+              target="_blank"
+              style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+              >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
+            >
+          </button>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'cil'"
+        >
+          <p>No particular syllabus mentioned in the Official Notification</p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'sail'"
+        >
+          <p>
+            GATE syllabus for respective departments (Since recruitment is
+            through GATE)
+          </p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'bhel'"
+        >
+          <p>No particular syllabus mentioned in the Official Notification</p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'rinl'"
+        >
+          <p>No particular syllabus mentioned in the Official Notification</p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'isro'"
+        >
+          <p>
+            Undergraduate Syllabus of the Respective Department <br />
+            Candidates who generally prepare for GATE exam generally consider
+            the GATE syllabus sufficient to attempt ISRO exam
+          </p>
+        </div>
+        <div
+          style="overflow: auto; padding: 2rem;"
+          *ngIf="subjectSelected === 'barc'"
+        >
+          <p>
+            No particular syllabus mentioned in the Official Notification
+          </p>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

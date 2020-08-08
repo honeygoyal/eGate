@@ -1,0 +1,311 @@
+#signup {
+  &-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &-image {
+      img {
+        margin-top: 3rem;
+        width: 400px;
+        height: 400px;
+      }
+    }
+  }
+}
+
+.signup-card {
+  border-radius: 20px;
+  margin-top: 0rem;
+  background: #333;
+}
+
+.signup-form {
+  padding: 1rem;
+}
+
+.signup-input {
+  width: 15rem;
+  height: 2.5rem;
+  margin: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #333;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1.1rem;
+}
+.signup-select {
+  width: 16rem;
+  height: 2.8rem;
+  margin: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #333;
+  border-radius: 10px;
+  outline: none;
+  font-size: 1.1rem;
+  option {
+    font-size: 1.2rem;
+  }
+}
+
+.signup-textarea {
+  width: 32rem;
+  height: 5rem;
+  margin: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #333;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  outline: none;
+}
+
+.small-btn {
+  width: 16rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
+  background: #fff;
+  border: 1px solid white;
+  border-radius: 20px;
+}
+
+.large-btn {
+  width: 33rem;
+  padding: 1rem;
+  margin: 0.5rem;
+  background: #07c4fb;
+  border: 1px solid white;
+  border-radius: 20px;
+  cursor: pointer;
+  outline: none;
+}
+.large-btn[disabled] {
+  background: #35caf8;
+  cursor: default;
+}
+
+@media (max-width: 500px) {
+  #signup {
+    &-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      &-image {
+        img {
+          margin-top: 3rem;
+          width: 150px;
+          height: 150px;
+        }
+      }
+    }
+  }
+
+  .signup-input {
+    width: 8rem;
+    height: 2.5rem;
+    margin: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid #333;
+    border-radius: 10px;
+    outline: none;
+    font-size: 1rem;
+  }
+
+  .signup-textarea {
+    width: 18rem;
+    height: 5rem;
+    margin: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid #333;
+    border-radius: 10px;
+    font-size: 1rem;
+  }
+
+  .small-btn {
+    width: 9rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    background: #fff;
+    border: 1px solid white;
+    border-radius: 20px;
+  }
+
+  .large-btn {
+    width: 19rem;
+    padding: 1rem;
+    margin: 0.5rem;
+    background: #07c4fb;
+    border: 1px solid white;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 800px) {
+  #signup {
+    &-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+
+      &-image {
+        img {
+          margin-top: 3rem;
+          width: 400px;
+          height: 400px;
+        }
+      }
+    }
+  }
+}
+.dragndrop123 {
+  width: 90%;
+  height: auto;
+  padding: 0.5rem 0;
+  text-align: center;
+  border: dashed 1px #979797;
+  position: relative;
+  margin: 0 auto;
+
+  input {
+    opacity: 0;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  label {
+    color: white;
+    width: 183px;
+    height: 44px;
+    border-radius: 21.5px;
+    background-color: #db202f;
+    padding: 8px 16px;
+  }
+
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #38424c;
+  }
+}
+
+.fileover {
+  animation: shake 1s;
+  animation-iteration-count: infinite;
+}
+
+.files-list {
+  margin-top: 1.5rem;
+
+  .single-file {
+    display: flex;
+    padding: 0.5rem;
+    margin: 0rem 2rem;
+    justify-content: space-between;
+    align-items: center;
+    border: dashed 1px #979797;
+    margin-bottom: 1rem;
+
+    .delete {
+      display: flex;
+      margin-left: 0.5rem;
+      cursor: pointer;
+      align-self: flex-end;
+    }
+
+    display: flex;
+    flex-grow: 1;
+
+    .name {
+      font-size: 14px;
+      font-weight: 500;
+      color: #353f4a;
+      margin: 0;
+    }
+
+    .size {
+      font-size: 12px;
+      font-weight: 500;
+      color: #a4a4a4;
+      margin: 0;
+      margin-bottom: 0.25rem;
+    }
+
+    .info {
+      width: 100%;
+    }
+  }
+}
+
+/* Shake animation */
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+.dissub:disabled {
+  background: #b9c0c7;
+}
+
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+textarea.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+::ng-deep
+  .mat-checkbox-checked.mat-accent
+  .mat-checkbox-ripple
+  .mat-ripple-element {
+  opacity: 0.03 !important;
+  background-color: #07c4fb !important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #07c4fb;
+}

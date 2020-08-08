@@ -1,0 +1,379 @@
+<div
+  cdkDrop
+  id="exam-container"
+  onbeforeunload=" return 'Are you really want to perform the action?'"
+>
+  <div id="logoimage">
+    <img src="./../assets/logocrop.jpg" alt="" id="logo" />
+  </div>
+  <div id="question">
+    <div id="question-section">
+      <div
+        id="head"
+        style="
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: flex-start;
+        "
+      >
+        <mat-chip-list aria-label="Fish selection">
+          <mat-chip style="background: rgb(68, 67, 67); color: white;"
+            ><b>{{ test_title }}</b></mat-chip
+          >
+        </mat-chip-list>
+        <div>
+          <a style="color: black; cursor: pointer;" (click)="hidecalc()"
+            ><i class="fas fa-2x fa-calculator"></i
+          ></a>
+
+          <app-calculator
+            style="position: absolute; z-index: 2000 !important;"
+            [ngClass]="calcstatus ? 'show' : 'hide'"
+          ></app-calculator>
+        </div>
+      </div>
+      <div
+        id="head1"
+        style="
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <h6 style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+          <b>SECTION</b>
+        </h6>
+        <h5>
+          Time Left
+          <countdown
+            [config]="countdownconfig"
+            (event)="timesUp($event)"
+          ></countdown>
+          hrs
+        </h5>
+      </div>
+
+      <div id="section-tab">
+        <mat-tab-group
+          style="z-index: 1;"
+          (wheel)="scrollTabs($event)"
+          #tabGroup
+          (selectedTabChange)="selectedTab($event, questiontoShow)"
+        >
+          <mat-tab [label]="tab.key" *ngFor="let tab of question | keyvalue">
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+      <div>
+        <div
+          id="head1"
+          style="
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+          "
+        >
+          <h5 style="margin-top: 1rem; margin-bottom: 0.5rem; color: #f05666;">
+            QUESTION TYPE : {{ questiontoShow.type }}
+          </h5>
+          <h6>
+            Marks for correct answer
+            <span style="color: green;"> {{ questiontoShow.marks }}</span> |
+            Negative Marks
+            <span style="color: red;"> {{ questiontoShow.negativeMarks }}</span>
+          </h6>
+        </div>
+        <hr style="color: #07c4fb; background: #07c4fb; height: 1px;" />
+        <div id="questionandanswer">
+          <h4 style="margin: 0.2rem 0rem;">Question No: {{ count }}</h4>
+
+          <img
+            [src]="transform(questiontoShow.question)"
+            style="height: auto; width: 40vw;"
+            alt=""
+          />
+          <form
+            #f="ngForm"
+            (ngSubmit)="questiontodisplayincrement(f, questiontoShow.id)"
+          >
+            <div>
+              <mat-radio-group
+                name="optionSelected"
+                [(ngModel)]="currentOption"
+                required
+                BlockCopyPasteDirective
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  margin-top: 0.5rem;
+                "
+                aria-label="Select an option"
+              >
+                <mat-radio-button style="margin-top: 0rem;" value="A"
+                  >A</mat-radio-button
+                >
+                <mat-radio-button value="B">B</mat-radio-button>
+                <mat-radio-button value="C">C</mat-radio-button>
+                <mat-radio-button value="D">D</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <input type="text" name="inputanwer" />
+
+            <div
+              id="actnbtn"
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: 0.4rem;
+              "
+            >
+              <div
+                id="group1"
+                style="
+                  display: flex;
+                  justify-content: flex-start;
+                  align-items: center;
+                "
+              >
+                <a
+                  (click)="markforreviewfun(f, questiontoShow.id)"
+                  style="
+                    text-decoration: none;
+                    color: black;
+                    margin-right: 2rem;
+                    border-radius: 20px;
+                    border: 1px solid #07c4fb;
+                    padding: 0.4rem 1rem;
+                    cursor: pointer;
+                    outline: none;
+                  "
+                >
+                  Mark for Review & Next
+                </a>
+                <a
+                  (click)="clearResponse(f, questiontoShow.id)"
+                  style="
+                    text-decoration: none;
+                    color: black;
+                    border-radius: 20px;
+                    border: 1px solid #07c4fb;
+                    padding: 0.4rem 1rem;
+                    cursor: pointer;
+                    outline: none;
+                  "
+                >
+                  Clear Response
+                </a>
+              </div>
+
+              <div id="group2">
+                <button
+                  type="submit"
+                  style="
+                    text-decoration: none;
+                    background: #07c4fb;
+                    color: white;
+                    border-radius: 20px;
+                    border: 1px solid #07c4fb;
+                    padding: 0.6rem 1rem;
+                    cursor: pointer;
+                    outline: none;
+                  "
+                >
+                  <b>Save & Next</b>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="question-lookup">
+      <mat-card
+        style="
+          z-index: 1;
+          width: 100%;
+          margin-left: 2rem;
+          border-bottom-left-radius: 10px;
+          border-top-left-radius: 10px;
+          background: #3f3d56;
+        "
+      >
+        <div id="instruction">
+          <a href="">
+            <h5>
+              <i
+                style="
+                  color: black;
+                  background: white;
+                  border-radius: 50%;
+                  padding: 0.2rem;
+                "
+                class="fas fa-question"
+              ></i
+              >&nbsp;&nbsp;&nbsp;Question Paper
+            </h5></a
+          >
+
+          <a href="">
+            <h5>
+              <i
+                style="
+                  color: black;
+                  background: white;
+                  border-radius: 50%;
+                  padding: 0.2rem 0.4rem;
+                "
+                class="fas fa-info"
+              ></i
+              >&nbsp;&nbsp;&nbsp;Instructions
+            </h5></a
+          >
+        </div>
+        <div
+          id="profile-image"
+          style="
+            margin-left: 1rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+          "
+        >
+          <img
+            src="./../../../../assets/profilr.jpg"
+            style="
+              width: 6rem;
+              height: 6rem;
+              border-radius: 50%;
+              margin-right: 10%;
+              border: 3px solid white;
+              margin-bottom: 0.5rem;
+            "
+            alt=""
+          />
+          <h3 style="color: white; margin-right: 10%;">{{ name }}</h3>
+        </div>
+        <div id="buttoninstructions">
+          <div class="row">
+            <p style="color: white;">
+              <span
+                style="
+                  padding: 0.1rem 0.4rem;
+                  background: #99d12a;
+                  border-radius: 2px;
+                  color: white;
+                "
+                >1</span
+              >&nbsp;&nbsp;Answered&nbsp;&nbsp;
+            </p>
+            <p style="color: white;">
+              <span
+                style="
+                  padding: 0.1rem 0.4rem;
+                  background: #cf3a05;
+                  border-radius: 2px;
+                "
+                >2</span
+              >&nbsp;&nbsp;Not Answered
+            </p>
+          </div>
+          <div class="row">
+            <p style="color: white;">
+              <span
+                style="
+                  padding: 0.1rem 0.4rem;
+                  background: #fff;
+                  border-radius: 2px;
+                  color: black;
+                "
+                >3</span
+              >&nbsp;&nbsp;Not Visited
+            </p>
+            <p style="color: white;">
+              <span
+                style="
+                  padding: 0.1rem 0.4rem;
+                  background: #7c589f;
+                  border-radius: 2px;
+                "
+                >4</span
+              >&nbsp;&nbsp;Mark for review
+            </p>
+          </div>
+        </div>
+        <div class="row3" style="margin-left: 1rem;">
+          <p style="color: white;">
+            <span
+              style="
+                padding: 0.1rem 0.4rem;
+                background: #7c589f;
+                border-radius: 2px;
+                color: white;
+              "
+              >3</span
+            >&nbsp;&nbsp;Answered & Marked for Review <br />
+            &nbsp; &nbsp; &nbsp; &nbsp;<span style="font-size: 0.7rem;"
+              >(will be considered for evaluation)</span
+            >
+          </p>
+        </div>
+        <h4
+          style="
+            margin-top: 1rem;
+            color: white;
+            text-align: center;
+            border: 1px solid rgb(151, 148, 148);
+            background: rgb(151, 148, 148);
+            padding: 0.2rem 7rem;
+            margin-left: 1rem;
+            border-radius: 5px;
+          "
+        >
+          {{ selectedTabCurrent }}
+        </h4>
+        <div id="choosequestion">
+          <h4 style="color: white; margin-left: 0.6rem;">Choose a question</h4>
+          <div class="grid-container">
+            <a
+              *ngFor="let group of questionGroup; let i = index"
+              (click)="sidebuttonforquestion(i + 1, questiontoShow)"
+              ><div
+                [ngStyle]="{
+                  background: getColor(group),
+                  border: getBorder(group)
+                }"
+                class="grid-item"
+              >
+                {{ i + 1 }}
+              </div></a
+            >
+          </div>
+        </div>
+        <div id="actionbtn" style="margin-left: 1rem; margin-top: 2rem;">
+          <a
+            (click)="submittheanswer(true)"
+            style="
+              color: white;
+              padding: 0.5rem 8rem;
+              background: #99d12a;
+              border-radius: 20px;
+              margin: auto;
+              text-align: center;
+              cursor: pointer;
+            "
+            ><b>Submit</b></a
+          >
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

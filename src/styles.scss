@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+@import "config";
+@import "utility";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+// @media(min-width:1920){
+//   zoom: 125%;
+// }
+
+body {
+  font-family: "Poppins", sans-serif;
+  line-height: 1.6;
+  background: white;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: rgb(107, 94, 94);
+}

@@ -1,0 +1,190 @@
+<div id="contentcontainer">
+  <mat-tab-group>
+    <mat-tab label="ALL">
+      <mat-card *ngFor="let exam of exams" class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image">
+            <svg height="100" width="100">
+              <circle
+                *ngIf="exam.status === 'COMPLETED'"
+                cx="30"
+                cy="30"
+                r="30"
+                fill="rgba(0,222,147,1)"
+              />
+              <circle
+                *ngIf="exam.status === 'PENDING'"
+                cx="30"
+                cy="30"
+                r="30"
+                fill="#6C63FF"
+              />
+              <circle
+                *ngIf="exam.status !== 'PENDING' && exam.status !== 'COMPLETED'"
+                cx="30"
+                cy="30"
+                r="30"
+                fill="#07C4FB"
+              />
+              <text
+                x="30%"
+                y="35"
+                text-anchor="middle"
+                stroke="black"
+                stroke-width="1px"
+              >
+                {{ exam.test_Title | slice: 0:2 | uppercase }}
+              </text>
+            </svg>
+          </div>
+          <mat-card-title>{{ exam.test_Title }}</mat-card-title>
+          <mat-card-subtitle>{{ exam.test_subtitle }}</mat-card-subtitle>
+          <h5
+            *ngIf="exam.status !== 'PENDING' && exam.status !== 'COMPLETED'"
+            style="color: red; margin-left: 40vw;"
+          >
+            Start date {{ exam.start_date }}
+          </h5>
+          <h5
+            *ngIf="exam.status === 'PENDING'"
+            style="color: red; margin-left: 40vw;"
+          >
+            5 days left
+          </h5>
+        </mat-card-header>
+        <mat-card-content id="card-content">
+          <div id="cont">
+            <div class="sub-cont">
+              <h4>Total Questions</h4>
+              <h5>{{ exam.total_questions }}</h5>
+            </div>
+            <div class="sub-cont">
+              <h4>Total Marks</h4>
+              <h5>{{ exam.total_marks }}</h5>
+            </div>
+            <div class="sub-cont">
+              <h4>Duration</h4>
+              <h5>{{ exam.duration }}</h5>
+            </div>
+          </div>
+          <button
+            *ngIf="exam.status !== 'PENDING' && exam.status !== 'COMPLETED'"
+            (click)="startaction(exam.test_id)"
+            class="btnactioncard"
+            style="background: #07c4fb;"
+          >
+            Start Now
+          </button>
+          <button
+            (click)="startaction()"
+            class="btnactioncard"
+            *ngIf="exam.status === 'PENDING'"
+            style="background: #6c63ff;"
+          >
+            Continue
+          </button>
+          <button
+            (click)="reportshow(exam)"
+            class="btnactioncard"
+            *ngIf="exam.status === 'COMPLETED'"
+          >
+            Report
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+    <mat-tab label="INPROGRESS">
+      <mat-card *ngFor="let exam of examsinprogress" class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image">
+            <svg height="100" width="100">
+              <circle cx="30" cy="30" r="30" fill="#6C63FF" />
+              <text
+                x="30%"
+                y="35"
+                text-anchor="middle"
+                stroke="black"
+                stroke-width="1px"
+              >
+                {{ exam.test_Title | slice: 0:2 | uppercase }}
+              </text>
+            </svg>
+          </div>
+          <mat-card-title>{{ exam.test_Title }}</mat-card-title>
+          <mat-card-subtitle>{{ exam.test_subtitle }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content id="card-content">
+          <div id="cont">
+            <div class="sub-cont">
+              <h4>Total Questions</h4>
+              <h5>{{ exam.total_questions }}</h5>
+            </div>
+            <div class="sub-cont">
+              <h4>Total Marks</h4>
+              <h5>{{ exam.total_marks }}</h5>
+            </div>
+            <div class="sub-cont">
+              <h4>Duration</h4>
+              <h5>{{ exam.duration }}</h5>
+            </div>
+          </div>
+
+          <button
+            (click)="startaction()"
+            class="btnactioncard"
+            *ngIf="exam.status === 'PENDING'"
+            style="background: #6c63ff;"
+          >
+            Continue
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+    <mat-tab click label="COMPLETED">
+      <mat-card *ngFor="let exam of examscompleted" class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image">
+            <svg height="100" width="100">
+              <circle cx="30" cy="30" r="30" fill="rgba(0,222,147,1)" />
+              <text
+                x="30%"
+                y="35"
+                text-anchor="middle"
+                stroke="black"
+                stroke-width="1px"
+              >
+                {{ exam.test_Title | slice: 0:2 | uppercase }}
+              </text>
+            </svg>
+          </div>
+          <mat-card-title>{{ exam.test_Title }}</mat-card-title>
+          <mat-card-subtitle>{{ exam.test_subtitle }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content id="card-content">
+          <div id="cont">
+            <div class="sub-cont">
+              <h4>Total Questions</h4>
+              <h5>{{ exam.total_questions }}</h5>
+            </div>
+            <div class="sub-cont">
+              <h4>Total Marks</h4>
+              <h5>{{ exam.total_marks }}</h5>
+            </div>
+            <div class="sub-cont">
+              <h4>Duration</h4>
+              <h5>{{ exam.duration }}</h5>
+            </div>
+          </div>
+
+          <button
+            (click)="reportshow(exam)"
+            class="btnactioncard"
+            *ngIf="exam.status === 'COMPLETED'"
+          >
+            Report
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
+  </mat-tab-group>
+</div>

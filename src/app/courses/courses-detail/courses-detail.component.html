@@ -1,0 +1,607 @@
+<div id="course-details">
+  <div class="container">
+    <h1
+      style="text-align: center;"
+      *ngIf="contentSelected === 'gate' && content === 'complete course'"
+    >
+      {{ contentSelected | uppercase }} COMPLETE PACKAGE
+    </h1>
+    <h1
+      style="text-align: center;"
+      *ngIf="contentSelected === 'gate' && content === 'video lectures'"
+    >
+      {{ contentSelected | uppercase }} VIDEO LECTURES
+    </h1>
+    <h1
+      style="text-align: center;"
+      *ngIf="contentSelected === 'gate' && content === 'online test series'"
+    >
+      {{ contentSelected | uppercase }} ONLINE TEST SERIES
+    </h1>
+    <h1
+      style="text-align: center;"
+      *ngIf="contentSelected === 'gate' && content === 'e-study material'"
+    >
+      {{ contentSelected | uppercase }} eSTUDY MATERIAL
+    </h1>
+    <h1
+      style="text-align: center;"
+      *ngIf="contentSelected === 'gate' && content === 'question bank'"
+    >
+      {{ contentSelected | uppercase }} QUESTION BANK
+    </h1>
+    <h1
+      style="text-align: center;"
+      *ngIf="contentSelected === 'ipate' && content === 'complete course'"
+    >
+      iPATE COMPLETE PACKAGE
+    </h1>
+    <h1
+      style="text-align: center;"
+      *ngIf="contentSelected === 'ipate' && content === 'video lectures'"
+    >
+      iPATE VIDEO LECTURES
+    </h1>
+    <h1
+      style="text-align: center;"
+      *ngIf="contentSelected === 'ipate' && content === 'online test series'"
+    >
+      iPATE ONLINE TEST SERIES
+    </h1>
+    <h1
+      style="text-align: center;"
+      *ngIf="contentSelected === 'ipate' && content === 'e-study material'"
+    >
+      iPATE eSTUDY MATERIAL
+    </h1>
+    <h1
+      style="text-align: center;"
+      *ngIf="contentSelected === 'ipate' && content === 'question bank'"
+    >
+      iPATE QUESTION BANK
+    </h1>
+    <h1
+      style="text-align: center;"
+      *ngIf="contentSelected === 'psu' && content === 'isro'"
+    >
+      ISRO ONLINE TEST SERIES
+    </h1>
+    <h1
+      style="text-align: center;"
+      *ngIf="contentSelected === 'psu' && content === 'barc'"
+    >
+      BARC ONLINE TEST SERIES
+    </h1>
+    <h1
+      style="text-align: center;"
+      *ngIf="contentSelected === 'psu' && content === 'rinl'"
+    >
+      RINL ONLINE TEST SERIES
+    </h1>
+    <h1
+      style="text-align: center;"
+      *ngIf="contentSelected === 'psu' && content === 'sail'"
+    >
+      SAIL ONLINE TEST SERIES
+    </h1>
+    <h1
+      style="text-align: center;"
+      *ngIf="contentSelected === 'psu' && content === 'cil'"
+    >
+      CIL ONLINE TEST SERIES
+    </h1>
+    <h1
+      style="text-align: center;"
+      *ngIf="contentSelected === 'psu' && content === 'bhel'"
+    >
+      BHEL ONLINE TEST SERIES
+    </h1>
+    <div id="course-details-section">
+      <mat-card class="course-details-card">
+        <div class="divcen">
+          <mat-card-header>
+            <mat-card-title>GENERAL INSTRUCTIONS</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <ol
+              *ngIf="
+                contentSelected === 'gate' && content === 'complete course'
+              "
+            >
+              <li>
+                Complete Package include Question Bank, E-Study Material, Video
+                Lectures, Test Series, Subject wise, topic wise and chapter wise
+                presentation
+              </li>
+              <li>Recorded lectures for entire Syllabus</li>
+              <li>Illustrations for every concept</li>
+              <li>Quick revision summary after every chapter</li>
+              <li>Easy, Medium and Hard classification of Questions</li>
+              <li>Exam Interface similar to GATE</li>
+              <li>Questions prepared by experts and GATE exam toppers</li>
+              <li>Learning concepts through question methodology</li>
+              <li>Detailed solutions to every questions</li>
+              <li>Performance Analysis for every Exam</li>
+              <li>Complete coverage of syllabus</li>
+              <li>Rank Analysis for comparison</li>
+              <li>Video Solutions for difficult questions</li>
+              <li>Detailed Question Analysis for every question</li>
+              <li>Option to challenge every question</li>
+              <li>Toppers list for every examination</li>
+              <li>Previous GATE papers in exam format for practice</li>
+            </ol>
+            <ol
+              *ngIf="contentSelected === 'gate' && content === 'video lectures'"
+            >
+              <li>Recorded lectures for entire Syllabus</li>
+              <li>Videos prepared by experts and toppers</li>
+              <li>Step by step instructions to problem solving</li>
+              <li>Objective questions practice videos</li>
+              <li>Shortcuts, tips and tricks for high scoring</li>
+            </ol>
+            <ol
+              *ngIf="
+                contentSelected === 'gate' && content === 'online test series'
+              "
+            >
+              <li>Exam Interface similar to GATE</li>
+              <li>Questions prepared by experts and GATE exam toppers</li>
+              <li>Detailed solutions to every questions</li>
+              <li>Performance Analysis for every Exam</li>
+              <li>Complete coverage of syllabus</li>
+              <li>Rank Analysis for comparison</li>
+            </ol>
+            <ol
+              *ngIf="
+                contentSelected === 'gate' && content === 'e-study material'
+              "
+            >
+              <li>Comprehensive coverage of theory</li>
+              <li>Content prepared by subject matter experts</li>
+              <li>Complete Coverage of syllabus</li>
+              <li>Subject wise, topicwise and chapterwise presentation</li>
+              <li>Illustrations for every concept</li>
+              <li>Quick revision summary after every chapter</li>
+            </ol>
+            <ol
+              *ngIf="contentSelected === 'gate' && content === 'question bank'"
+            >
+              <li>Practice Questions from every topic</li>
+              <li>Easy, Medium and Hard classification of Questions</li>
+              <li>Questions prepared by subject matter experts</li>
+              <li>Complete Coverage of syllabus</li>
+              <li>Learning concepts through question methodology</li>
+              <li>Subject wise, topic wise and chapter wise presentation</li>
+              <li>Video solutions for difficult questions</li>
+              <li>Exam like interface for effective practice</li>
+            </ol>
+            <ol
+              *ngIf="
+                contentSelected === 'ipate' && content === 'complete course'
+              "
+            >
+              <li>
+                Complete Package include Question Bank, E-Study Material, Video
+                Lectures, Test Series, Subject wise, topic wise and chapter wise
+                presentation
+              </li>
+              <li>Recorded lectures for entire Syllabus</li>
+              <li>Illustrations for every concept</li>
+              <li>Quick revision summary after every chapter</li>
+              <li>Easy, Medium and Hard classification of Questions</li>
+              <li>Exam Interface similar to iPATE</li>
+              <li>Questions prepared by subject matter experts</li>
+              <li>Learning concepts through question methodology</li>
+              <li>Detailed solutions to every questions</li>
+              <li>Performance Analysis for every Exam</li>
+              <li>Complete coverage of syllabus</li>
+              <li>Rank Analysis for comparison</li>
+              <li>Video Solutions for difficult questions</li>
+              <li>Detailed Question Analysis for every question</li>
+              <li>Option to challenge every question</li>
+              <li>Toppers list for every examination</li>
+            </ol>
+            <ol
+              *ngIf="
+                contentSelected === 'ipate' && content === 'video lectures'
+              "
+            >
+              <li>Recorded lectures for entire Syllabus</li>
+              <li>Videos prepared by subject matter experts</li>
+              <li>Step by step instructions to problem solving</li>
+              <li>Objective questions practice videos</li>
+            </ol>
+            <ol
+              *ngIf="
+                contentSelected === 'ipate' && content === 'online test series'
+              "
+            >
+              <li>Exam Interface similar to iPATE</li>
+              <li>Questions prepared by experts and iPATE exam toppers</li>
+              <li>Detailed solutions to every questions</li>
+              <li>Performance Analysis for every Exam</li>
+              <li>Complete coverage of syllabus</li>
+              <li>Rank Analysis for comparison</li>
+            </ol>
+            <ol
+              *ngIf="
+                contentSelected === 'ipate' && content === 'e-study material'
+              "
+            >
+              <li>Comprehensive coverage of theory</li>
+              <li>Content prepared by subject matter experts</li>
+              <li>Complete Coverage of syllabus</li>
+              <li>Subject wise, topicwise and chapterwise presentation</li>
+              <li>Illustrations for every concept</li>
+              <li>Quick revision summary after every chapter</li>
+            </ol>
+            <ol
+              *ngIf="contentSelected === 'ipate' && content === 'question bank'"
+            >
+              <li>Practice Questions from every topic</li>
+              <li>Easy, Medium and Hard classification of Questions</li>
+              <li>Questions prepared by subject matter experts</li>
+              <li>Complete Coverage of syllabus</li>
+              <li>Learning concepts through question methodology</li>
+              <li>Subject wise, topic wise and chapter wise presentation</li>
+              <li>Video solutions for difficult questions</li>
+              <li>Exam like interface for effective practice</li>
+            </ol>
+            <ol *ngIf="contentSelected === 'psu' && content != 'rinl'">
+              <li
+                *ngIf="
+                  content === 'isro' ||
+                  content === 'barc' ||
+                  content === 'cil' ||
+                  content === 'sail' ||
+                  content === 'bhel'
+                "
+              >
+                Exam Interface similar to {{ content | uppercase }} EXAM PATTERN
+              </li>
+
+              <li>Questions prepared by subject matter experts</li>
+              <li>Detailed solutions to every question</li>
+              <li>Performance Analysis for every Exam</li>
+              <li>Complete coverage of syllabus</li>
+              <li>Rank Analysis for comparison</li>
+            </ol>
+            <ol *ngIf="contentSelected === 'psu' && content === 'rinl'">
+              <li>
+                Exam Interface similar to {{ content | uppercase }} EXAM PATTERN
+              </li>
+
+              <li>Questions prepared by subject matter experts</li>
+              <li>Detailed solutions to every question</li>
+              <li>Performance Analysis for every Exam</li>
+              <li>Complete coverage of syllabus</li>
+              <li>Rank Analysis for comparison</li>
+            </ol>
+          </mat-card-content>
+        </div>
+      </mat-card>
+      <mat-card class="course-details-card">
+        <div class="divcen">
+          <mat-card-header>
+            <mat-card-title>
+              DEPARTMENTS
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <ol
+              *ngIf="
+                contentSelected === 'gate' && content === 'complete course'
+              "
+            >
+              <li>COMPUTER SCIENCE AND ENGINEERING</li>
+              <li>MECHANICAL ENGINEERING</li>
+              <li>PRODUCTION AND INDUSTRIAL ENGINEERING</li>
+              <li>CHEMICAL ENGINEERING</li>
+              <li>METALLURGICAL ENGINEERING</li>
+              <li>CIVIL ENGINEERING</li>
+              <li>MATHEMATICS</li>
+              <li>AEROSPACE ENGINEERING</li>
+              <li>ENGINEERING SCIENCES</li>
+              <ol style="list-style: lower-alpha; margin-left: 1rem;">
+                <li>SOLID MECHANICS</li>
+                <li>MATERIAL SCIENCE</li>
+                <li>FLUID MECHANICS</li>
+                <li>THERMODYNAMICS</li>
+              </ol>
+            </ol>
+            <p
+              *ngIf="contentSelected === 'gate' && content === 'video lectures'"
+            >
+              1. COMPUTER SCIENCE AND ENGINEERING<br />2. MECHANICAL
+              ENGINEERING<br />3. PRODUCTION AND INDUSTRIAL ENGINEERING<br />4.
+              CHEMICAL ENGINEERING<br />5. METALLURGICAL ENGINEERING<br />6.
+              CIVIL ENGINEERING<br />7. MATHEMATICS<br />8. AEROSPACE
+              ENGINEERING<br />9. ENGINEERING SCIENCES<br />&nbsp; &nbsp; a.
+              SOLID MECHANICS<br />&nbsp; &nbsp; b. MATERIAL SCIENCE<br />&nbsp;
+              &nbsp; c. FLUID MECHANICS<br />&nbsp; &nbsp; d. THERMODYNAMICS
+            </p>
+            <ol
+              *ngIf="
+                contentSelected === 'gate' && content === 'online test series'
+              "
+            >
+              <li>COMPUTER SCIENCE AND ENGINEERING</li>
+              <li>MECHANICAL ENGINEERING</li>
+              <li>PRODUCTION AND INDUSTRIAL ENGINEERING</li>
+              <li>CHEMICAL ENGINEERING</li>
+              <li>METALLURGICAL ENGINEERING</li>
+              <li>CIVIL ENGINEERING</li>
+              <li>MATHEMATICS</li>
+              <li>AEROSPACE ENGINEERING</li>
+              <li>ELECTRICAL ENGINEERING</li>
+              <li>ELECTRONICS AND COMMUNICATION ENGINEERING</li>
+              <li>INSTRUMENTATION ENGINEERING</li>
+              <li>ENGINEERING SCIENCES</li>
+
+              <ol style="list-style: lower-alpha; margin-left: 0.8rem;">
+                <li>SOLID MECHANICS</li>
+                <li>MATERIAL SCIENCE</li>
+                <li>FLUID MECHANICS</li>
+                <li>THERMODYNAMICS</li>
+              </ol>
+            </ol>
+            <p
+              *ngIf="
+                contentSelected === 'gate' && content === 'e-study material'
+              "
+            >
+              1. COMPUTER SCIENCE AND ENGINEERING<br />2. MECHANICAL
+              ENGINEERING<br />3. PRODUCTION AND INDUSTRIAL ENGINEERING<br />4.
+              CHEMICAL ENGINEERING<br />5. METALLURGICAL ENGINEERING<br />6.
+              CIVIL ENGINEERING<br />7. MATHEMATICS<br />8. AEROSPACE
+              ENGINEERING<br />9. ELECTRICAL ENGINEERING<br />10. ELECTRONICS
+              AND COMMUNICATION ENGINEERING<br />11. INSTRUMENTATION
+              ENGINEERING<br />12. ENGINEERING SCIENCES<br />&nbsp;&nbsp;&nbsp;&nbsp;a.
+              SOLID MECHANICS<br />&nbsp;&nbsp;&nbsp;&nbsp;b. MATERIAL
+              SCIENCE<br />&nbsp;&nbsp;&nbsp;&nbsp;c. FLUID MECHANICS<br />&nbsp;&nbsp;&nbsp;&nbsp;d.
+              THERMODYNAMICS
+            </p>
+            <ol
+              *ngIf="contentSelected === 'gate' && content === 'question bank'"
+            >
+              <li>COMPUTER SCIENCE AND ENGINEERING</li>
+              <li>MECHANICAL ENGINEERING</li>
+              <li>PRODUCTION AND INDUSTRIAL ENGINEERING</li>
+              <li>CHEMICAL ENGINEERING</li>
+              <li>METALLURGICAL ENGINEERING</li>
+              <li>CIVIL ENGINEERING</li>
+              <li>MATHEMATICS</li>
+              <li>AEROSPACE ENGINEERING</li>
+              <li>ELECTRICAL ENGINEERING</li>
+              <li>ELECTRONICS AND COMMUNICATION ENGINEERING</li>
+              <li>INSTRUMENTATION ENGINEERING</li>
+              <li>ENGINEERING SCIENCES</li>
+              <ol style="list-style: lower-alpha; margin-left: 0.8rem;">
+                <li>SOLID MECHANICS</li>
+                <li>MATERIAL SCIENCE</li>
+                <li>FLUID MECHANICS</li>
+                <li>THERMODYNAMICS</li>
+              </ol>
+            </ol>
+            <ol
+              *ngIf="
+                contentSelected === 'ipate' && content === 'complete course'
+              "
+            >
+              <li>COMPUTER SCIENCE AND ENGINEERING</li>
+              <li>MECHANICAL ENGINEERING</li>
+              <li>PRODUCTION AND INDUSTRIAL ENGINEERING</li>
+              <li>CHEMICAL ENGINEERING</li>
+              <li>METALLURGICAL ENGINEERING</li>
+              <li>CIVIL ENGINEERING</li>
+              <li>AEROSPACE ENGINEERING</li>
+              <li>ELECTRICAL ENGINEERING</li>
+              <li>ELECTRONICS AND COMMUNICATION ENGINEERING</li>
+              <li>INSTRUMENTATION ENGINEERING</li>
+            </ol>
+            <ol
+              *ngIf="
+                contentSelected === 'ipate' && content === 'video lectures'
+              "
+            >
+              <li>COMPUTER SCIENCE AND ENGINEERING</li>
+              <li>MECHANICAL ENGINEERING</li>
+              <li>PRODUCTION AND INDUSTRIAL ENGINEERING</li>
+              <li>CHEMICAL ENGINEERING</li>
+              <li>METALLURGICAL ENGINEERING</li>
+              <li>CIVIL ENGINEERING</li>
+              <li>AEROSPACE ENGINEERING</li>
+              <li>ELECTRICAL ENGINEERING</li>
+              <li>ELECTRONICS AND COMMUNICATION ENGINEERING</li>
+              <li>INSTRUMENTATION ENGINEERING</li>
+            </ol>
+            <ol
+              *ngIf="
+                contentSelected === 'ipate' && content === 'online test series'
+              "
+            >
+              <li>COMPUTER SCIENCE AND ENGINEERING</li>
+              <li>MECHANICAL ENGINEERING</li>
+              <li>PRODUCTION AND INDUSTRIAL ENGINEERING</li>
+              <li>CHEMICAL ENGINEERING</li>
+              <li>METALLURGICAL ENGINEERING</li>
+              <li>CIVIL ENGINEERING</li>
+              <li>AEROSPACE ENGINEERING</li>
+              <li>ELECTRICAL ENGINEERING</li>
+              <li>ELECTRONICS AND COMMUNICATION ENGINEERING</li>
+              <li>INSTRUMENTATION ENGINEERING</li>
+            </ol>
+            <ol
+              *ngIf="
+                contentSelected === 'ipate' && content === 'e-study material'
+              "
+            >
+              <li>COMPUTER SCIENCE AND ENGINEERING</li>
+              <li>MECHANICAL ENGINEERING</li>
+              <li>PRODUCTION AND INDUSTRIAL ENGINEERING</li>
+              <li>CHEMICAL ENGINEERING</li>
+              <li>METALLURGICAL ENGINEERING</li>
+              <li>CIVIL ENGINEERING</li>
+              <li>AEROSPACE ENGINEERING</li>
+              <li>ELECTRICAL ENGINEERING</li>
+              <li>ELECTRONICS AND COMMUNICATION ENGINEERING</li>
+              <li>INSTRUMENTATION ENGINEERING</li>
+            </ol>
+            <ol
+              *ngIf="contentSelected === 'ipate' && content === 'question bank'"
+            >
+              <li>COMPUTER SCIENCE AND ENGINEERING</li>
+              <li>MECHANICAL ENGINEERING</li>
+              <li>PRODUCTION AND INDUSTRIAL ENGINEERING</li>
+              <li>CHEMICAL ENGINEERING</li>
+              <li>METALLURGICAL ENGINEERING</li>
+              <li>CIVIL ENGINEERING</li>
+              <li>AEROSPACE ENGINEERING</li>
+              <li>ELECTRICAL ENGINEERING</li>
+              <li>ELECTRONICS AND COMMUNICATION ENGINEERING</li>
+              <li>INSTRUMENTATION ENGINEERING</li>
+            </ol>
+            <ol *ngIf="contentSelected === 'psu' && content === 'isro'">
+              <li>MECHANICAL ENGINEERING</li>
+              <li>MECHANICAL ENGINEERING (REF &amp; AIR CONDITIONING)</li>
+              <li>CIVIL ENGINEERING</li>
+              <li>ELECTRICAL ENGINEERING</li>
+              <li>ELECTRONICS AND COMMUNICATION ENGINEERING</li>
+              <li>COMPUTER SCIENCE AND ENGINEERING</li>
+            </ol>
+            <ol *ngIf="contentSelected === 'psu' && content === 'barc'">
+              <li>MECHANICAL ENGINEERING</li>
+              <li>CHEMICAL ENGINNERING</li>
+              <li>METALLURGICAL ENGINEERING</li>
+              <li>ELECTRUICAL ENGINEERING</li>
+              <li>ELECTRONICS ENGINEERING</li>
+              <li>COMPUTER SCIENCE AND ENGINEERING</li>
+              <li>CIVIL ENGINEERING</li>
+            </ol>
+            <ol *ngIf="contentSelected === 'psu' && content === 'sail'">
+              <li>MECHANICAL ENGINEERING</li>
+              <li>METALLURGICAL ENGINEERING</li>
+              <li>ELECTRICAL ENGINEERING</li>
+              <li>CHEMICAL ENGINEERING</li>
+              <li>INSTRUMENTATION ENGINEERING</li>
+            </ol>
+            <ol *ngIf="contentSelected === 'psu' && content === 'cil'">
+              <li>ELECTRICAL ENGINEERING</li>
+              <li>MECHANICAL ENGINEERING</li>
+              <li>CIVIL ENGINEERING</li>
+              <li>CHEMICAL ENGINEERING</li>
+              <li>COMPUTER SCIENCE AND ENGINEERING</li>
+            </ol>
+            <ol *ngIf="contentSelected === 'psu' && content === 'rinl'">
+              <li>CHEMICAL ENGINEERING</li>
+              <li>CIVIL ENGINEERING</li>
+              <li>ELECTRICAL ENGINEERING</li>
+              <li>ELECTRONICS ENGINEERING</li>
+              <li>MECHANICAL ENGINEERING</li>
+              <li>METALLURGICAL ENGINEERING</li>
+            </ol>
+            <ol *ngIf="contentSelected === 'psu' && content === 'bhel'">
+              <li>MECHANICAL ENGINEERING</li>
+              <li>CIVIL ENGINEERING</li>
+              <li>CHEMICAL ENGINEERING</li>
+            </ol>
+          </mat-card-content>
+        </div>
+      </mat-card>
+      <mat-card class="course-details-card-price">
+        <div class="divcen">
+          <mat-card-header>
+            <mat-card-title>
+              ENROLLMENT STARTS FROM AUGUST 1<sup>st</sup> 2020
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <h1
+              *ngIf="
+                contentSelected === 'gate' && content === 'complete course'
+              "
+            >
+              <span style="color: #07c4fb;">(</span>7999/-<sup>*</sup
+              ><span style="color: #07c4fb;">)</span>
+            </h1>
+            <h1
+              *ngIf="contentSelected === 'gate' && content === 'video lectures'"
+            >
+              <span style="color: #07c4fb;">(</span>3999/-<sup>*</sup
+              ><span style="color: #07c4fb;">)</span>
+            </h1>
+            <h1
+              *ngIf="
+                contentSelected === 'gate' && content === 'online test series'
+              "
+            >
+              <span style="color: #07c4fb;">(</span>1299/-<sup>*</sup
+              ><span style="color: #07c4fb;">)</span>
+            </h1>
+            <h1
+              *ngIf="
+                contentSelected === 'gate' && content === 'e-study material'
+              "
+            >
+              <span style="color: #07c4fb;">(</span>2999/-<sup>*</sup
+              ><span style="color: #07c4fb;">)</span>
+            </h1>
+            <h1
+              *ngIf="contentSelected === 'gate' && content === 'question bank'"
+            >
+              <span style="color: #07c4fb;">(</span>1999/-<sup>*</sup
+              ><span style="color: #07c4fb;">)</span>
+            </h1>
+            <h1
+              *ngIf="
+                contentSelected === 'ipate' && content === 'complete course'
+              "
+            >
+              <span style="color: #07c4fb;">(</span>8999/-<sup>*</sup
+              ><span style="color: #07c4fb;">)</span>
+            </h1>
+            <h1
+              *ngIf="
+                contentSelected === 'ipate' && content === 'video lectures'
+              "
+            >
+              <span style="color: #07c4fb;">(</span>4999/-<sup>*</sup
+              ><span style="color: #07c4fb;">)</span>
+            </h1>
+            <h1
+              *ngIf="
+                contentSelected === 'ipate' && content === 'online test series'
+              "
+            >
+              <span style="color: #07c4fb;">(</span>1699/-<sup>*</sup
+              ><span style="color: #07c4fb;">)</span>
+            </h1>
+            <h1
+              *ngIf="contentSelected === 'ipate' && content === 'question bank'"
+            >
+              <span style="color: #07c4fb;">(</span>1999/-<sup>*</sup
+              ><span style="color: #07c4fb;">)</span>
+            </h1>
+            <h1
+              *ngIf="
+                contentSelected === 'ipate' && content === 'e-study material'
+              "
+            >
+              <span style="color: #07c4fb;">(</span>2999/-<sup>*</sup
+              ><span style="color: #07c4fb;">)</span>
+            </h1>
+            <h1 *ngIf="contentSelected === 'psu'">
+              <span style="color: #07c4fb;">(</span>599/-<sup>*</sup
+              ><span style="color: #07c4fb;">)</span>
+            </h1>
+            <h6 style="color: #07c4fb; margin-left: 5rem;">
+              *inclusive of all GST
+            </h6>
+            <button (click)="paymentstart()" id="payinside">BUY NOW</button>
+          </mat-card-content>
+        </div>
+      </mat-card>
+    </div>
+    <!-- <button id="pay">BUY NOW</button> -->
+  </div>
+</div>

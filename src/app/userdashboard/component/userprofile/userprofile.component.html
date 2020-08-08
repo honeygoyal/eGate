@@ -1,0 +1,125 @@
+<div class="container">
+  <div class="left-container" style="width: 20%;">
+    <!-- <div class="col-sm-12 mx-auto" > -->
+    <div
+      id="profilesection"
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+        flex-direction: column;
+      "
+    >
+      <a routerLink="/userdashboard/profile">
+        <img
+          src="./../../../../assets/profilr.jpg"
+          style="width: 6rem; height: 6rem; border-radius: 50%;"
+          alt=""
+        />
+      </a>
+
+      <h3 style="margin-top: 0.5rem;">Welcome {{ name }}</h3>
+      <a style="color: black;" (click)="logout()" routerLink="/login"
+        ><i style="color: black;" class="fas fa-sign-out-alt"></i
+      ></a>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-4">
+        <button
+          style="
+            cursor: pointer;
+            outline: none;
+            border: 1px solid rgba(255, 153, 0, 1);
+          "
+          routerLink="/userdashboard/demoseries"
+          class="btn btn-primary"
+          (click)="demo('DEMO')"
+        >
+          Demo
+        </button>
+      </div>
+    </div>
+
+    <div class="side-content">
+      <div class="left-content">
+        <p>&nbsp;</p>
+        <p>G</p>
+        <P>A</P>
+        <p>T</p>
+        <p>E</p>
+        <p>&nbsp;</p>
+      </div>
+      <div class="right-content">
+        <ul id="icon-list" style="list-style-type: none;">
+          <!-- <li><a href="#">Complete Course</a></li> -->
+          <li>
+            <a
+              (click)="testseries('GATE')"
+              [ngClass]="{ sideSelect: selectedItem == 'GATE-OTS' }"
+              >Online Test Series</a
+            >
+          </li>
+          <li><a href="#">Video Lectures</a></li>
+          <li><a href="#">Previous Year Papers</a></li>
+          <li><a href="#">Question Bank</a></li>
+          <li><a href="#">E-study Matetial</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="side-content">
+      <div class="left-content">
+        <p>i</p>
+        <P>P</P>
+        <p>A</p>
+        <p>T</p>
+        <p>E</p>
+      </div>
+      <div class="right-content">
+        <ul id="icon-list" style="list-style-type: none;">
+          <!-- <li><a href="#">Complete Course</a></li> -->
+          <li><a href="#">Online Test Series</a></li>
+          <li><a href="#">Video Lectures</a></li>
+          <li><a href="#">Question Bank</a></li>
+          <li><a href="#">E-study Matetial</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="side-content">
+      <div class="left-content">
+        <p style="margin-top: 0.5rem;">&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>P</p>
+        <P>S</P>
+        <p style="margin-bottom: 0.5rem;">U</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+      </div>
+      <div class="right-content">
+        <ul id="icon-list" style="list-style-type: none;">
+          <li><a href="#">ISRO Test Series</a></li>
+          <li><a href="#">BARC Test Series</a></li>
+          <li><a href="#">SAIL Test Series</a></li>
+          <li><a href="#">CIL Test Series</a></li>
+          <li><a href="#">RINL Test Series</a></li>
+          <li style="margin-bottom: 2rem;"><a href="#">BHEL Test Series</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!--  </div> -->
+  <div class="right-container" style="width: 75%;">
+    <router-outlet></router-outlet>
+  </div>
+
+  <!-- <div class="w3-sidebar side-nav" style="width: 25%">
+  <div class="col-sm-4">
+    <button class="btn btn-primary">Demo</button>
+  </div>
+</div>
+
+<div class="page-content" style="margin-left: 25%">
+</div> -->
+</div>

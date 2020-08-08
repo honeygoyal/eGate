@@ -1,0 +1,62 @@
+<app-loader></app-loader>
+<div id="login">
+  <div class="container">
+    <div id="login-content">
+      <div id="login-content-image">
+        <img src="./../../assets/Group258.png" alt="" />
+      </div>
+      <div id="login-content-form">
+        <div class="login-card">
+          <div style="color: white; text-align: center;" id="form-head">
+            <h2 style="padding-top: 1rem;">Login</h2>
+          </div>
+          <form
+            class="login-form"
+            [formGroup]="loginForm"
+            (ngSubmit)="onSubmit()"
+          >
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <input
+                    formControlName="username"
+                    class="login-input"
+                    placeholder="  Email"
+                    type="text"
+                  />
+                </td>
+              </tr>
+            </table>
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <input
+                    formControlName="password"
+                    type="password"
+                    class="login-input"
+                    placeholder="  Password"
+                  />
+                </td>
+              </tr>
+            </table>
+
+            <a class="forgetpasswd" href="">Forget Password?</a>
+
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <button class="large-btn" type="submit">
+                    <h3>Login</h3>
+                  </button>
+                </td>
+              </tr>
+            </table>
+
+            <a class="dontaccount" routerLink="/signup">Don't have account?</a
+            ><span routerLink="/signup" class="small-btn">Create</span>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

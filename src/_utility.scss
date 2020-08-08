@@ -1,0 +1,15 @@
+.container {
+  max-width: $website-width;
+  padding: 0 1.5rem;
+  margin: auto;
+}
+
+.bluebutton {
+  color: white;
+  display: inline-block;
+  border-radius: 5px;
+  background: #07c4fb;
+  padding: 0.8rem 2rem;
+  margin: 1rem 1rem 1rem 0rem;
+  cursor: pointer;
+}

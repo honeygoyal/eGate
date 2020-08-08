@@ -1,0 +1,235 @@
+<div class="container">
+  <!-- <div id="body">
+    <div id="body-content">
+      <div class="hi">
+        <h2>
+          Welcome to <span style="color: #07c4fb;">e</span>GATE<span
+            style="color: #07c4fb;"
+            >Tutor</span
+          >...!
+        </h2>
+        <h4>
+          ...tutoring by grads from IIT's/IISc
+        </h4>
+      </div>
+      <h2 class="kkr">
+        GATE&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;iPATE&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;PSU&nbsp;&nbsp;&nbsp;
+      </h2>
+      <div id="body-content-action">
+       
+
+        <a (click)="regtoopen()" class="bluebutton" href="#">Register Here</a>
+        <h3 style="margin-right: 1rem; margin-left: 2rem;">
+          Explore <br />
+          Courses
+        </h3>
+        <a
+          href=""
+          style="color: #333; text-decoration: none; margin-top: 1rem;"
+          routerLink="/courses"
+        >
+          <i class="fas right-arrow fa-arrow-right fa-2x"></i
+        ></a>
+      </div>
+    </div>
+    <div id="body-image">
+      <img src="./../../assets/Group11.png" alt="" id="showcase-image" />
+    </div>
+  </div>
+  <br /> -->
+
+  <div id="body">
+    <div id="body-content">
+      <div id="body-content-text">
+        <img src="./../../assets/Group506.png" alt="" />
+        <div id="body-content-text-action">
+          <a routerLink="/signup" class="bluebutton" href="#">Register Here</a>
+
+          <a href="" style="color: #6b5e5e;" routerLink="/courses">
+            <i
+              style="
+                border: 2px solid #07c4fb;
+                padding: 0.5rem;
+                border-radius: 50%;
+              "
+              class="fas right-arrow fa-arrow-right fa-2x"
+            ></i
+          ></a>
+          <h3>
+            Explore <br />
+            Courses
+          </h3>
+        </div>
+      </div>
+
+      <div id="body-content-image">
+        <img src="./../../assets/Group521.png" alt="" id="showcase-image" />
+      </div>
+    </div>
+    <img class="bgimage" src="./../../assets/Group43.png" alt="" />
+  </div>
+
+  <!-- <div id="social-logo" style="text-align: center; margin: 2rem;">
+    <a target="_blank" href="https://www.facebook.com/egate.tutor.18"
+      ><i class="fab social-icon fa-facebook-square fa-2x"></i
+    ></a>
+    <a href="#"><i class="fab social-icon fa-telegram fa-2x"></i></a>
+    <a target="_blank" href="https://www.instagram.com/egatetutor/"
+      ><i class="fab social-icon fa-instagram fa-2x"></i
+    ></a>
+    <a target="_blank" href="https://www.youtube.com/egatetutor"
+      ><i class="fab social-icon fa-youtube fa-2x"></i
+    ></a>
+  </div> -->
+  <h1 style="text-align: center; margin-bottom: 2.5rem;">
+    Our Courses
+  </h1>
+  <div id="course">
+    <div class="course-card" id="course-gate">
+      <h2 style="text-align: center;">GATE</h2>
+      <ul>
+        <li>
+          <a
+            [routerLink]="['/courses', 'gate', 'complete course']"
+            class="button-look"
+            >Complete Course</a
+          >
+        </li>
+        <li>
+          <a
+            [routerLink]="['/courses', 'gate', 'online test series']"
+            class="button-look"
+            >Online Test Series</a
+          >
+        </li>
+        <li>
+          <a
+            [routerLink]="['/courses', 'gate', 'video lectures']"
+            class="button-look"
+            >Video Lectures</a
+          >
+        </li>
+
+        <li>
+          <a
+            [routerLink]="['/courses', 'gate', 'question bank']"
+            class="button-look"
+            >Question Bank</a
+          >
+        </li>
+        <li>
+          <a
+            style="text-transform: none;"
+            [routerLink]="['/courses', 'gate', 'e-study material']"
+            class="button-look"
+            href="#"
+            >eSTUDY MATERIAL</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="course-card" id="course-ipat">
+      <h2 style="text-align: center;">iPATE</h2>
+      <ul>
+        <li>
+          <a
+            [routerLink]="['/courses', 'ipate', 'complete course']"
+            class="button-look"
+            href="#"
+            >Complete Course</a
+          >
+        </li>
+        <li>
+          <a
+            [routerLink]="['/courses', 'ipate', 'online test series']"
+            class="button-look"
+            href="#"
+            >Online Test Series</a
+          >
+        </li>
+        <li>
+          <a
+            [routerLink]="['/courses', 'ipate', 'video lectures']"
+            class="button-look"
+            href="#"
+            >Video Lectures</a
+          >
+        </li>
+
+        <li>
+          <a
+            [routerLink]="['/courses', 'ipate', 'question bank']"
+            class="button-look"
+            href="#"
+            >Question Bank</a
+          >
+        </li>
+        <li>
+          <a
+            style="text-transform: none;"
+            [routerLink]="['/courses', 'ipate', 'e-study material']"
+            class="button-look"
+            href="#"
+            >eSTUDY MATERIAL</a
+          >
+        </li>
+      </ul>
+    </div>
+    <div class="course-card" id="course-psu">
+      <h2 style="text-align: center;">PSU</h2>
+      <ul>
+        <li>
+          <a
+            [routerLink]="['/courses', 'psu', 'isro']"
+            class="button-look"
+            href="#"
+            >ISRO TEST SERIES</a
+          >
+        </li>
+        <li>
+          <a
+            [routerLink]="['/courses', 'psu', 'barc']"
+            class="button-look"
+            href="#"
+            >BARC TEST SERIES</a
+          >
+        </li>
+        <li>
+          <a
+            [routerLink]="['/courses', 'psu', 'sail']"
+            class="button-look"
+            href="#"
+            >SAIL TEST SERIES</a
+          >
+        </li>
+        <li>
+          <a
+            [routerLink]="['/courses', 'psu', 'cil']"
+            class="button-look"
+            href="#"
+            >CIL TEST SERIES</a
+          >
+        </li>
+        <li>
+          <a
+            [routerLink]="['/courses', 'psu', 'bhel']"
+            class="button-look"
+            href="#"
+            >RINL TEST SERIES</a
+          >
+        </li>
+        <li>
+          <a
+            [routerLink]="['/courses', 'psu', 'bhel']"
+            class="button-look"
+            href="#"
+            >BHEL TEST SERIES</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <br /><br /><br />
+</div>
+<!-- <img class="bgimage2" src="./../../assets/Group44.png" alt="" /> -->

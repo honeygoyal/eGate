@@ -1,0 +1,145 @@
+<div id="courses" class="container">
+  <div class="divcon">
+    <h2 style="text-align: center;">Online Courses</h2>
+    <div class="courses-heading" style="margin-bottom: 1rem;">
+      <div class="courses-heading-content">
+        <h3 style="margin-bottom: 1rem; font-size: 2rem; font-weight: bolder;">
+          GATE
+        </h3>
+        <h5 style="margin-bottom: 0.5rem;">Buy Individual Packages</h5>
+      </div>
+      <div id="courses-heading-button" style="padding-top: 4rem;">
+        <a
+          [routerLink]="['/courses', 'gate', 'complete course']"
+          class="buy-button"
+          href=""
+          >Buy Complete Package</a
+        >
+      </div>
+    </div>
+    <div class="courses-cards">
+      <div
+        [routerLink]="['/courses', 'gate', 'question bank']"
+        class="course-card"
+      >
+        <img class="ebookimg" alt="" />
+        <h5>GATE QUESTION BANK</h5>
+      </div>
+      <div
+        [routerLink]="['/courses', 'gate', 'online test series']"
+        class="course-card"
+      >
+        <img class="tvimg" alt="" />
+        <h5>GATE ONLINE TEST SERIES</h5>
+      </div>
+      <div
+        [routerLink]="['/courses', 'gate', 'video lectures']"
+        class="course-card"
+      >
+        <img class="tubeimg" alt="" />
+        <h5>GATE VIDEO LECTURES</h5>
+      </div>
+      <div
+        [routerLink]="['/courses', 'gate', 'e-study material']"
+        class="course-card"
+      >
+        <img class="studyimg" alt="" />
+        <h5>eSTUDY MATERIAL</h5>
+      </div>
+    </div>
+    <div class="courses-heading" style="margin-top: 3rem;">
+      <div class="courses-heading-content">
+        <h3 style="margin-bottom: 1rem; font-size: 2rem; font-weight: bolder;">
+          iPATE
+        </h3>
+        <h5 style="margin-bottom: 1rem;">Buy Individual Packages</h5>
+      </div>
+      <div id="courses-heading-button" style="padding-top: 4rem;">
+        <a
+          [routerLink]="['/courses', 'ipate', 'complete course']"
+          class="buy-button"
+          href=""
+          >Buy Complete Package</a
+        >
+      </div>
+    </div>
+    <div class="courses-cards">
+      <div
+        [routerLink]="['/courses', 'ipate', 'question bank']"
+        class="course-card"
+      >
+        <img class="ebookimg" alt="" />
+        <h5>iPATE QUESTION BANK</h5>
+      </div>
+      <div
+        [routerLink]="['/courses', 'ipate', 'online test series']"
+        class="course-card"
+      >
+        <img class="tvimg" alt="" />
+        <h5>iPATE ONLINE TEST SERIES</h5>
+      </div>
+      <div
+        [routerLink]="['/courses', 'ipate', 'video lectures']"
+        class="course-card"
+      >
+        <img class="tubeimg" alt="" />
+        <h5>iPATE VIDEO LECTURES</h5>
+      </div>
+      <div
+        [routerLink]="['/courses', 'ipate', 'e-study material']"
+        class="course-card"
+      >
+        <img class="studyimg" alt="" />
+        <h5>eSTUDY MATERIAL</h5>
+      </div>
+    </div>
+    <div class="courses-heading-psu">
+      <h3
+        style="
+          margin: 4rem 0rem 2rem 0rem;
+          font-size: 2rem;
+          font-weight: bolder;
+        "
+      >
+        PSU
+      </h3>
+    </div>
+    <div class="courses-cards">
+      <div [routerLink]="['/courses', 'psu', 'isro']" class="course-card">
+        <img class="tvimg" alt="" />
+        <h5>ISRO TEST SERIES</h5>
+      </div>
+      <div [routerLink]="['/courses', 'psu', 'barc']" class="course-card">
+        <img class="tvimg" alt="" />
+        <h5>BARC TEST SERIES</h5>
+      </div>
+      <div [routerLink]="['/courses', 'psu', 'sail']" class="course-card">
+        <img class="tvimg" alt="" />
+        <h5>SAIL TEST SERIES</h5>
+      </div>
+      <div [routerLink]="['/courses', 'psu', 'cil']" class="course-card">
+        <img class="tvimg" alt="" />
+        <h5>CIL TEST SERIES</h5>
+      </div>
+
+      <!-- <div (click)="soonUpdateMessage()" class="flex-4 course-card">
+        <img class="tvimg" alt="" />
+        <h5>RINL TEST SERIES</h5>
+      </div>
+      <div (click)="soonUpdateMessage()" class="flex-4 course-card">
+        <img class="tvimg" alt="" />
+        <h5>BHEL TEST SERIES</h5>
+      </div> -->
+    </div>
+    <div [routerLink]="['/courses', 'psu', 'rinl']" class="courses-cards-last">
+      <div class="course-card">
+        <img class="tvimg" alt="" />
+        <h5>RINL TEST SERIES</h5>
+      </div>
+      <div [routerLink]="['/courses', 'psu', 'bhel']" class="course-card">
+        <img class="tvimg" alt="" />
+        <h5>BHEL TEST SERIES</h5>
+      </div>
+    </div>
+  </div>
+</div>

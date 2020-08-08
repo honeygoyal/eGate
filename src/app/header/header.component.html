@@ -1,0 +1,82 @@
+<header id="header-home">
+  <div class="container">
+    <nav id="main-nav">
+      <!-- <img class="bgimage" src="./../../assets/susa.png" alt="" /> -->
+      <a
+        style="text-decoration: none;"
+        routerLinkActive="current1"
+        href=""
+        routerLink=""
+        ><img src="./../assets/logocrop.jpg" alt="" id="logo"
+      /></a>
+      <ul>
+        <li>
+          <a href="#" routerLink="/courses" routerLinkActive="current"
+            >Courses</a
+          >
+        </li>
+        <li>
+          <a routerLinkActive="current" routerLink="/about" href="#"
+            >About Us</a
+          >
+        </li>
+        <li>
+          <a routerLinkActive="current" routerLink="/examdetails/gate">GATE</a>
+        </li>
+        <li>
+          <a
+            style="text-transform: none;"
+            routerLinkActive="current"
+            routerLink="/examdetails/ipate"
+            href="#"
+            >iPATE</a
+          >
+        </li>
+        <li>
+          <a routerLinkActive="current" routerLink="/examdetails/bhel" href="#"
+            >PSU</a
+          >
+        </li>
+        <li>
+          <a href="#" (click)="downloadSoon()">Download</a>
+        </li>
+        <!-- login redirect -->
+        <li style="padding-right: 1rem;">
+          <a *ngIf="isLoggedOut$ | async" routerLink="/login">Login</a>
+          <a (click)="logout()" *ngIf="isLoggedIn$ | async" routerLink="/login"
+            >Logout</a
+          >
+
+          <!-- <div style="display: flex;">
+            <mat-icon>user</mat-icon>
+            <a *ngIf="isLoggedIn$ | async" (click)="logout()">Logout</a>
+          </div> -->
+        </li>
+        <li style="padding-left: 0rem;">
+          <a
+            style="cursor: pointer;"
+            routerLink="/userdashboard/profile"
+            href=""
+          >
+            <span
+              *ngIf="isLoggedIn$ | async"
+              class="material-icons"
+              style="color: rgba(7, 196, 251, 1);"
+            >
+              face
+            </span></a
+          >
+        </li>
+
+        <!-- <li>
+          <button (click)="logsoon()" class="link-button" href="#">
+            Login
+          </button>
+        </li> -->
+      </ul>
+    </nav>
+    <div id="image">
+      <img class="headerimage" alt="" />
+    </div>
+  </div>
+</header>
