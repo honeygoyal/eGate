@@ -26,7 +26,7 @@ export class UserprofileComponent implements OnInit {
       console.log(data);
       this.name = data.user.name;
       this.branch = data.user.discipline;
-      this.examref = [...data.user.examref];
+      this.examref = [...data.user.coursesOffered];
       console.log(data);
 
     });
@@ -40,14 +40,16 @@ export class UserprofileComponent implements OnInit {
   //test-series Selection
   testseries(content: string) {
     this.selectedItem = "GATE-OTS";
-    console.log(content);
-    var testseriesurl: string =
-      "/userdashboard/testseries/" + this.branch + "-" + content + "-OTS";
+    //console.log(content);
+    var testseriesurl: string;
     var show: boolean = false;
     console.log(this.examref);
     for (let exam of this.examref) {
-      if (exam.exam_name_service === "GATE ONLINE TEST SERIES") {
+      if (exam.examNameService === "GATE ONLINE TEST SERIES") {
         show = true;
+        let courseOfferedId=exam.id;
+        testseriesurl =
+      "/userdashboard/testseries/" + exam.id;
         break;
       }
     }

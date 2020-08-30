@@ -30,7 +30,7 @@ export class TestseriesComponent implements OnInit {
       this.exam_code = params["subject"];
     });
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
-      this.email = data.user.email;
+      this.email = data.user.emailId;
       this.testseries
         .getTestSeries(this.exam_code, this.email)
         .subscribe((data) => {
