@@ -6,7 +6,6 @@ import {
   HostListener,
   OnDestroy,
 } from "@angular/core";
-import swal from "sweetalert2";
 import Swal from "sweetalert2";
 import { QuestionsService } from "../../services/questions.service";
 import { ActivatedRoute, Params, Router } from "@angular/router";
@@ -50,6 +49,9 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   selectedTabCurrent: string;
   test_title: string;
   submit_button_status: boolean = true;
+  courseId: number;
+  userId: number;
+  notVisitedCount:number;
   //constructor
   constructor(
     private quesService: QuestionsService,
@@ -66,14 +68,16 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.test_code = params["test_id"];
+      console.log("test_code: "+  params["test_id"]);
     });
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
-      this.email = data.user.email;
+      this.email = data.user.emailId;
       this.name = data.user.name;
+      this.userId= data.user.id;
+
       this.quesService
         .getQuestionsForTestSeries(this.test_code)
         .subscribe((data) => {
-          console.log(data);
           this.question = data;
           console.log(this.question);
         });
@@ -99,24 +103,24 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     return this.sanitizer.bypassSecurityTrustResourceUrl(base64Image);
   }
 
-  @HostListener("window:blur", ["$event"])
-  onblur(event: any): void {
-    if (this.attempts !== 0) {
-      Swal.fire({
-        icon: "error",
-        title: "Window Changed Alert",
-        text: this.attempts + " attempts left",
-      });
-      this.attempts = this.attempts - 1;
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Maximum attempt tried",
-        text: "You exam is ended",
-      });
-      window.close();
-    }
-  }
+  // @HostListener("window:blur", ["$event"])
+  // onblur(event: any): void {
+  //   if (this.attempts !== 0) {
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Window Changed Alert",
+  //       text: this.attempts + " attempts left",
+  //     });
+  //     this.attempts = this.attempts - 1;
+  //   } else {
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Maximum attempt tried",
+  //       text: "You exam has ended",
+  //     });
+  //     window.close();
+  //   }
+  // }
 
   @HostListener("window:unload", ["$event"])
   unloadHandler(event) {
@@ -130,7 +134,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
 
   optionSelectedpreviously(ques_Id: number) {
     this.answerDataofUser.forEach((element, index) => {
-      if (element.question_id === ques_Id) {
+      if (element.questionId === ques_Id) {
         this.currentOption = element.answerSubmitted;
       }
     });
@@ -140,8 +144,8 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   getColor(group: any): string {
     var returnColor: string = "White";
     this.answerDataofUser.forEach((element, index) => {
-      if (element.question_id === group.id) {
-        returnColor = this.finalColor(element.status);
+      if (element.questionId === group.id) {
+        returnColor = this.finalColor(element.questionStatus);
       }
     });
     return returnColor;
@@ -149,11 +153,13 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
 
   finalColor(status: String): string {
     switch (status) {
-      case "COMPLETED":
+      case "ANS":
         return "#99D12A";
-      case "UNANSWERED":
+      case "NO_ANS":
         return "#D03B06";
-      case "REVIEW":
+      case "MARK_ANS":
+        return "#6C63FF";
+      case "MARK_NOANS":
         return "#6C63FF";
       default:
         return "white";
@@ -176,16 +182,16 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       console.log("");
       this.end = new Date().getTime();
       this.answerDataofUser.forEach((element, index) => {
-        if (element.question_id === prevquestion["id"]) {
+        if (element.questionId === prevquestion["id"]) {
           t = element.answerSubmitted;
-          r = element.status;
+          r = element.questionStatus;
         }
       });
       console.log(t);
       console.log(r);
 
       this.pushToArray(this.answerDataofUser, {
-        question_id: prevquestion["id"],
+        questionId: prevquestion["id"],
         timetaken: this.end - this.start,
         answerSubmitted: t === undefined ? null : t,
         status: r === undefined ? "UNANSWERED" : r,
@@ -193,9 +199,10 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     }
     this.selectedTabCurrent = event.tab.textLabel;
     var sect = event.tab.textLabel;
-    this.duration = [...this.question[sect]][0]["test_id"]["duration"];
-    this.test_title = [...this.question[sect]][0]["test_id"]["test_Title"];
-
+    this.duration = [...this.question[sect]][0]["courseId"]["duration"];
+    this.test_title = [...this.question[sect]][0]["courseId"]["title"];
+    this.courseId = [...this.question[sect]][0]["courseId"]["id"];
+    this.notVisitedCount=[...this.question[sect]].length;
     if (this.timer === 1) {
       this.countdownconfig = {
         leftTime: +this.duration * 60,
@@ -205,18 +212,20 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     }
     this.questionGroup = [...this.question[sect]];
     console.log(this.questionGroup);
+    console.log(this.questionGroup);
     this.questiontoShow = {
       ...this.questionGroup[0],
     };
     this.start = new Date().getTime();
     this.answerDataofUser.forEach((element, index) => {
-      if (element.question_id === this.questiontoShow.id) {
+      if (element.questionId === this.questiontoShow.id) {
         this.currentOption = element.answerSubmitted;
       }
     });
   }
   start: any;
   end: any;
+
   questiontodisplayincrement(form: NgForm, quesId: number) {
     this.end = new Date().getTime();
     console.log(form.value.optionSelected);
@@ -225,18 +234,21 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       form.value.optionSelected === null
     ) {
       this.pushToArray(this.answerDataofUser, {
-        question_id: quesId,
-        status: "UNANSWERED",
+        questionId: quesId,
+        status: "NO_ANS",
         answerSubmitted: form.value.optionSelected,
         timetaken: this.end - this.start,
       });
+       
+      this.savetheanswer(form.value.optionSelected,quesId,"NO_ANS",this.end - this.start); 
     } else {
       this.pushToArray(this.answerDataofUser, {
-        question_id: quesId,
-        status: "COMPLETED",
+        questionId: quesId,
+        status: "ANS",
         answerSubmitted: form.value.optionSelected,
         timetaken: this.end - this.start,
       });
+      this.savetheanswer(form.value.optionSelected,quesId,"ANS",this.end - this.start); 
     }
 
     console.log(this.answerDataofUser);
@@ -252,7 +264,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     };
 
     this.answerDataofUser.forEach((element, index) => {
-      if (element.question_id === this.questiontoShow.id) {
+      if (element.questionId === this.questiontoShow.id) {
         this.currentOption = element.answerSubmitted;
       }
     });
@@ -268,18 +280,22 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       form.value.optionSelected === null
     ) {
       this.pushToArray(this.answerDataofUser, {
-        question_id: quesId,
-        status: "REVIEW",
+        questionId: quesId,
+        status: "MARK_NOANS",
         answerSubmitted: form.value.optionSelected,
         timetaken: this.end - this.start,
       });
+
+      this.savetheanswer(form.value.optionSelected,quesId,"MARK_NOANS",this.end - this.start); 
     } else {
       this.pushToArray(this.answerDataofUser, {
-        question_id: quesId,
-        status: "REVIEW",
+        questionId: quesId,
+        status: "MARK_ANS",
         answerSubmitted: form.value.optionSelected,
         timetaken: this.end - this.start,
       });
+
+      this.savetheanswer(form.value.optionSelected,quesId,"MARK_ANS",this.end - this.start); 
     }
 
     if (this.count === this.questionGroup.length) {
@@ -292,7 +308,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       ...this.questionGroup[this.count],
     };
     this.answerDataofUser.forEach((element, index) => {
-      if (element.question_id === this.questiontoShow.id) {
+      if (element.questionId === this.questiontoShow.id) {
         this.currentOption = element.answerSubmitted;
       }
     });
@@ -317,7 +333,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   clearResponse(form: NgForm, quesId: number) {
     form.reset();
     this.pushToArray(this.answerDataofUser, {
-      question_id: quesId,
+      questionId: quesId,
       status: "UNANSWERED",
       answerSubmitted: form.value.optionSelected,
       timetaken: "4",
@@ -338,13 +354,13 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   //   }
   // }
   pushToArray(arr, obj) {
-    var existingIds = arr.map((obj) => obj.question_id);
+    var existingIds = arr.map((obj) => obj.questionId);
 
-    if (!existingIds.includes(obj.question_id)) {
+    if (!existingIds.includes(obj.questionId)) {
       arr.push(obj);
     } else {
       arr.forEach((element, index) => {
-        if (element.question_id === obj.question_id) {
+        if (element.questionId === obj.questionId) {
           obj.timetaken += element.timetaken;
 
           arr[index] = obj;
@@ -373,16 +389,16 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       console.log("");
       this.end = new Date().getTime();
       this.answerDataofUser.forEach((element, index) => {
-        if (element.question_id === prevquestion["id"]) {
+        if (element.questionId === prevquestion["id"]) {
           t = element.answerSubmitted;
-          r = element.status;
+          r = element.questionStatus;
         }
       });
       console.log(t);
       console.log(r);
 
       this.pushToArray(this.answerDataofUser, {
-        question_id: prevquestion["id"],
+        questionId: prevquestion["id"],
         timetaken: this.end - this.start,
         answerSubmitted: t === undefined ? null : t,
         status: r === undefined ? "UNANSWERED" : r,
@@ -390,7 +406,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     }
 
     this.answerDataofUser.forEach((element, index) => {
-      if (element.question_id === this.questiontoShow.id) {
+      if (element.questionId === this.questiontoShow.id) {
         this.currentOption = element.answerSubmitted;
       }
     });
@@ -414,22 +430,51 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   }
 
   hidecalc() {
-    this.calcstatus = !this.calcstatus;
+    let clsBtn = document.getElementById("keyPad");
+    if (clsBtn.style.display === "none" || clsBtn.style.display === "") {
+      clsBtn.style.display = "block";
+      this.calcstatus = true;
+    } else {
+      clsBtn.style.display = "none";
+      this.calcstatus = false;
+    }
+   
   }
 
   ngOnDestroy() {
     alert(`I'm leaving the app!`);
   }
+
+  savetheanswer(answerSubmitted:string,questionId:number,questionStatus:string,timeTaken:number) {
+      this.quesService
+        .postSavedAnswer({
+          answerSubmitted: answerSubmitted,
+          courseId: +this.courseId,
+          questionId: questionId,
+          questionStatus: questionStatus,
+          timeTaken: timeTaken,
+          userId: +this.userId
+        })
+        .subscribe(
+          (data) => {
+            console.log("Successfully saved the answer");
+          },
+          (err) => {
+            console.log(err);
+          }
+        );
+  }
+
   submittheanswer(exam_over: boolean) {
     if (exam_over) {
       console.log("Exam is over");
       //window.close();
       this.quesService
         .postSubmittedAnswer({
-          email: this.email,
-          test_id: this.test_code,
-          time_left: "21",
-          answerModel: this.answerDataofUser,
+          courseId: +this.courseId,
+          status: "COMPLETED",
+          totalTime: "0",
+          userId: +this.userId
         })
         .subscribe(
           (data) => {
@@ -437,6 +482,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
             //console.log(window.length);
             console.log("Closing the window");
             window.close();
+
             //myWindow.close();
           },
           (err) => {

@@ -13,8 +13,12 @@ import { Router } from "@angular/router";
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent implements OnInit {
+
+  checkForCurrentUrl=location.href.includes('/exampanel');
+
   ngOnInit(): void {
     const userProfile = localStorage.getItem("user");
+   
     if (userProfile) {
       this.store.dispatch(login({ user: JSON.parse(userProfile) }));
     }

@@ -41,31 +41,28 @@
           <a href="#" (click)="downloadSoon()">Download</a>
         </li>
         <!-- login redirect -->
-        <li style="padding-right: 1rem;">
+        <!-- <li style="padding-right: 1rem;">
           <a *ngIf="isLoggedOut$ | async" routerLink="/login">Login</a>
-          <a (click)="logout()" *ngIf="isLoggedIn$ | async" routerLink="/login"
-            >Logout</a
-          >
+          <a (click)="logout()" *ngIf="isLoggedIn$ | async" routerLink="/login">Logout</a>
 
-          <!-- <div style="display: flex;">
-            <mat-icon>user</mat-icon>
-            <a *ngIf="isLoggedIn$ | async" (click)="logout()">Logout</a>
-          </div> -->
-        </li>
+      
+        </li> -->
         <li style="padding-left: 0rem;">
-          <a
-            style="cursor: pointer;"
-            routerLink="/userdashboard/profile"
-            href=""
-          >
-            <span
-              *ngIf="isLoggedIn$ | async"
-              class="material-icons"
-              style="color: rgba(7, 196, 251, 1);"
-            >
-              face
-            </span></a
-          >
+          <div style="width: 33%; float: left">
+           <a style="cursor: pointer;margin-left: 12px;"
+              routerLink="/userdashboard/profile"
+              href="">
+              <span *ngIf="isLoggedIn$ | async"
+                    class="material-icons"
+                    style="color: rgba(7, 196, 251, 1);">
+                <img src= "{{profilePhoto}}" 
+                    style="width: 2rem; height: 2rem; border-radius: 50%;"
+                    alt=""/>
+              </span>   
+            </a> 
+            <a *ngIf="isLoggedOut$ | async" routerLink="/login">Login</a>
+            <button style="border-color: #07C4FB" *ngIf="isLoggedIn$ | async"><a (click)="logout()" routerLink="/login">Logout</a></button> 
+          </div>               
         </li>
 
         <!-- <li>

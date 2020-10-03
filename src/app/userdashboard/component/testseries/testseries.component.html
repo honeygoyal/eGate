@@ -33,34 +33,34 @@
                 stroke="black"
                 stroke-width="1px"
               >
-                {{ exam.test_Title | slice: 0:2 | uppercase }}
+                {{ exam.title | slice: 0:2 | uppercase }}
               </text>
             </svg>
           </div>
-          <mat-card-title>{{ exam.test_Title }}</mat-card-title>
+          <mat-card-title>{{ exam.title }}</mat-card-title>
           <mat-card-subtitle>{{ exam.test_subtitle }}</mat-card-subtitle>
           <h5
             *ngIf="exam.status !== 'PENDING' && exam.status !== 'COMPLETED'"
             style="color: red; margin-left: 40vw;"
           >
-            Start date {{ exam.start_date }}
+         Start date {{ exam.startDate }}
           </h5>
           <h5
             *ngIf="exam.status === 'PENDING'"
             style="color: red; margin-left: 40vw;"
           >
-            5 days left
+         {{exam.checkForRemainingDays}}
           </h5>
         </mat-card-header>
         <mat-card-content id="card-content">
           <div id="cont">
             <div class="sub-cont">
               <h4>Total Questions</h4>
-              <h5>{{ exam.total_questions }}</h5>
+              <h5>{{ exam.totalQuestion }}</h5>
             </div>
             <div class="sub-cont">
               <h4>Total Marks</h4>
-              <h5>{{ exam.total_marks }}</h5>
+              <h5>{{ exam.totalMarks }}</h5>
             </div>
             <div class="sub-cont">
               <h4>Duration</h4>
@@ -68,17 +68,17 @@
             </div>
           </div>
           <button
-            *ngIf="exam.status !== 'PENDING' && exam.status !== 'COMPLETED'"
-            (click)="startaction(exam.test_id)"
+            *ngIf="exam.status !== 'PENDING' && exam.status !== 'COMPLETED' && exam.isExamActive === true"
+            (click)="startaction(exam.courseId)"
             class="btnactioncard"
             style="background: #07c4fb;"
           >
             Start Now
           </button>
           <button
-            (click)="startaction()"
+            (click)="startaction(exam.courseId)"
             class="btnactioncard"
-            *ngIf="exam.status === 'PENDING'"
+            *ngIf="exam.status === 'PENDING' && exam.isExamActive === true"
             style="background: #6c63ff;"
           >
             Continue
@@ -106,22 +106,22 @@
                 stroke="black"
                 stroke-width="1px"
               >
-                {{ exam.test_Title | slice: 0:2 | uppercase }}
+                {{ exam.title | slice: 0:2 | uppercase }}
               </text>
             </svg>
           </div>
-          <mat-card-title>{{ exam.test_Title }}</mat-card-title>
+          <mat-card-title>{{ exam.title }}</mat-card-title>
           <mat-card-subtitle>{{ exam.test_subtitle }}</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content id="card-content">
+        <mat-card-content id="card-content" style="margin-top: 2rem;">
           <div id="cont">
             <div class="sub-cont">
               <h4>Total Questions</h4>
-              <h5>{{ exam.total_questions }}</h5>
+              <h5>{{ exam.totalQuestion }}</h5>
             </div>
             <div class="sub-cont">
               <h4>Total Marks</h4>
-              <h5>{{ exam.total_marks }}</h5>
+              <h5>{{ exam.totalMarks }}</h5>
             </div>
             <div class="sub-cont">
               <h4>Duration</h4>
@@ -130,7 +130,7 @@
           </div>
 
           <button
-            (click)="startaction()"
+            (click)="startaction(exam.courseId)"
             class="btnactioncard"
             *ngIf="exam.status === 'PENDING'"
             style="background: #6c63ff;"
@@ -153,22 +153,22 @@
                 stroke="black"
                 stroke-width="1px"
               >
-                {{ exam.test_Title | slice: 0:2 | uppercase }}
+                {{ exam.title | slice: 0:2 | uppercase }}
               </text>
             </svg>
           </div>
-          <mat-card-title>{{ exam.test_Title }}</mat-card-title>
+          <mat-card-title>{{ exam.title }}</mat-card-title>
           <mat-card-subtitle>{{ exam.test_subtitle }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content id="card-content">
           <div id="cont">
             <div class="sub-cont">
               <h4>Total Questions</h4>
-              <h5>{{ exam.total_questions }}</h5>
+              <h5>{{ exam.totalQuestion }}</h5>
             </div>
             <div class="sub-cont">
               <h4>Total Marks</h4>
-              <h5>{{ exam.total_marks }}</h5>
+              <h5>{{ exam.totalMarks }}</h5>
             </div>
             <div class="sub-cont">
               <h4>Duration</h4>

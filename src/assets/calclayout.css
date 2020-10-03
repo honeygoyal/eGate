@@ -8,9 +8,9 @@ body {
   font-family: Arial;
 }
 .calc_close {
-  background: url("./sprite.png.png") no-repeat -204px -13px;
-  width: 16px;
-  height: 16px;
+  background: url("../assets/popclose.png") no-repeat;
+  width: 20px;
+  height: 20px;
   color: #fff;
   cursor: pointer;
   font-size: 12px;
@@ -27,8 +27,8 @@ body {
 }
 #keyPad_Help {
   color: #000;
-  background: url("./sprite.png.png") no-repeat -22px -8px;
-  width: 54px;
+  background: url("./../assets/Icon-sprite.png") no-repeat -134px 0px;
+  width: 31px;
   height: 25px;
   padding: 1px;
   cursor: pointer;
@@ -36,7 +36,7 @@ body {
   font-weight: bold;
   line-height: 20px;
   position: absolute;
-  right: 79px;
+  right: 44px;
   text-align: center;
   top: 7px;
   /*	border:1px solid;
@@ -50,14 +50,14 @@ body {
 	-ms-box-shadow:0 2px 2px #000000;*/
 }
 #keyPad_Help:hover {
-  background: url("./sprite.png.png") no-repeat -82px -8px;
-  width: 54px;
+  background: url("./../assets/Icon-sprite.png") no-repeat -134px 0px;
+  width: 31px;
   height: 25px;
 }
 #keyPad_Helpback {
   color: #000;
-  background: url("./sprite.png.png") no-repeat -22px -43px;
-  width: 54px;
+  background: url("./../assets/Icon-sprite.png") no-repeat -134px 0px;
+  width: 31px;
   height: 25px;
   padding: 1px;
   cursor: pointer;
@@ -65,13 +65,13 @@ body {
   font-weight: bold;
   line-height: 20px;
   position: absolute;
-  right: 79px;
+  right: 44px;
   text-align: center;
   top: 7px;
 }
 #keyPad_Helpback:hover {
-  background: url("./sprite.png.png") no-repeat -82px -43px;
-  width: 54px;
+  background: url("./../assets/Icon-sprite.png") no-repeat -134px 0px;
+  width: 31px;
   height: 25px;
 }
 .calc_min {
@@ -117,9 +117,9 @@ body {
   white-space: pre;
   width: 74px !important;
 }
-.calc_close:hover {
+/* .calc_close:hover {
   background: #c0392b;
-}
+} */
 #mainContentArea {
   margin-top: 0px;
   padding: 10px;
@@ -133,10 +133,6 @@ body {
   width: 463px;
   border-bottom: 7px solid #999;
   position: relative;
-}
-#keyPad_Help {
-  /* position: absolute!important;
-    right: 125px;*/
 }
 .left_sec {
   float: left;
@@ -325,30 +321,8 @@ body {
 #helptopDiv {
   margin-bottom: 5px;
   padding: 10px;
-  background-color: #4286f3;
-  color: #ffffff;
+  background-color:#EEE;
+  color: black;
   /* cursor: move; */
 }
-#keyPad_Help,
-#keyPad_Helpback {
-  /*float:right !important;*/
-}
-/** new help changes **/
-#helpContent {
-  height: 263px;
-  margin-right: 6px;
-  overflow: auto;
-  padding: 10px;
-}
-#helptopDiv {
-  margin-bottom: 5px;
-  padding: 10px;
-  background-color: #4286f3;
-  color: #ffffff;
-  /* cursor: move; */
-}
-#keyPad_Help,
-#keyPad_Helpback {
-  /*float:right !important;*/
-}
-/** new help changes **/
+

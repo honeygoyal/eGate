@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 import { UserprofileComponent } from "./component/userprofile/userprofile.component";
 import { RouterModule } from "@angular/router";
 import { ProfileComponent } from "./component/profile/profile.component";
@@ -97,7 +97,7 @@ import { ReportComponent } from "./component/report/report.component";
       fromUserdashboard.reducers
     ),
   ],
-  providers: [authInterceptorProviders, TestseriesService],
+  providers: [authInterceptorProviders, TestseriesService, DatePipe],
   entryComponents: [DialogComponent],
 })
 export class UserdashboardModule {}

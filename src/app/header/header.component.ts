@@ -15,10 +15,14 @@ export class HeaderComponent implements OnInit {
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
   constructor(private store: Store<AppState>) {}
-
+  profilePhoto: string;
   ngOnInit() {
     this.isLoggedIn$ = this.store.pipe(select(isLoggedIn));
     this.isLoggedOut$ = this.store.pipe(map(isLoggedOut));
+    this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
+      console.log(data);
+      this.profilePhoto = data.user.photo;
+    });
   }
   logsoon() {
     event.preventDefault();

@@ -6,21 +6,15 @@
   <span class="subheadings">&nbsp;&nbsp;PERSONAL INFORMATION</span>
   <mat-card class="card-design" style="margin: 1rem 0rem;">
     <pre class="panel-text">Name        :     {{ user.user.name }}</pre>
-    <pre class="panel-text">
-Mobile       :     {{ user.user.mobilenumber }}</pre
-    >
+    <pre class="panel-text">Mobile       :     {{ user.user.mobileNumber }}</pre>
     <pre class="panel-text">Address    :     {{ user.user.address }}</pre>
-    <pre class="panel-text">
-Course       :     {{ user.user.qualification }}</pre
-    >
-    <!-- <pre class="panel-text">City            :     {{ user.user.address }}</pre>
-    <pre class="panel-text">State          :     {{ user.user.address }}</pre> -->
+    <pre class="panel-text">Course      :     {{ user.user.qualification }}</pre>
   </mat-card>
 
   <i class="fa fa-lock" style="color: rgb(78, 48, 214);" aria-hidden="true"></i>
   <span>&nbsp;&nbsp;SECURITY</span>
   <mat-card class="card-design" style="margin: 1rem 0rem;">
-    <pre class="panel-text">Email          :     {{ user.user.email }}</pre>
+    <pre class="panel-text">Email          :     {{ user.user.emailId }}</pre>
     <button
       mat-button
       (click)="openDialog()"

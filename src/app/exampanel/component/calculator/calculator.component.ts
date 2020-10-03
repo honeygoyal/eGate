@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import "./../../../../assets/jquery-1.js";
-import "./../../../../assets/oscZenoedited.js";
-import "./../../../../assets/jquery-ui.js";
+import "./../../../../assets/SCIENTIFIC CALCULATOR_files/jquery-1.js";
+import "./../../../../assets/SCIENTIFIC CALCULATOR_files/oscZenoedited.js";
+import "./../../../../assets/SCIENTIFIC CALCULATOR_files/jquery-ui.js";
+import "./../../../../assets/calc.js";
+
 
 @Component({
   selector: "app-calculator",
@@ -11,5 +13,7 @@ import "./../../../../assets/jquery-ui.js";
 export class CalculatorComponent implements OnInit {
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 }

@@ -1,6 +1,8 @@
 export interface Useranswer {
-  question_id: number;
-  status: string;
   answerSubmitted: string;
-  timetaken: number;
+  courseId: number;
+  questionId: number;
+  questionStatus: string;
+  timeTaken: number;
+  userId: number;
 }

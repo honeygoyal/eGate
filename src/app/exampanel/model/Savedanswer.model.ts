@@ -1,9 +1,11 @@
 import { EmailValidator } from "@angular/forms";
 import { Useranswer } from "./Useranswer.model";
 
-export interface AnswerSubmitModel {
+export interface SavedAnswerModel {
+  answerSubmitted: string;
   courseId: number;
-  status: string;
-  totalTime: string;
+  questionId: number;
+  questionStatus: string;
+  timeTaken: number;
   userId: number;
 }
