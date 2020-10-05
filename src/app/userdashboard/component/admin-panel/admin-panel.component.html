@@ -1,0 +1,140 @@
+<mat-card style="margin-left: 3rem">
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup" (ngSubmit)="onSubmit()">
+        <ng-template matStepLabel>Create Test</ng-template>
+        <mat-form-field>
+          <mat-label>Test ID</mat-label>
+          <input matInput formControlName="courseId" required />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input matInput formControlName="title" required />
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 8rem">
+          <mat-label>Description</mat-label>
+          <input matInput formControlName="description" required />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <!-- <mat-label>Exam Code</mat-label>
+          <input matInput formControlName="Exam_Code" required /> -->
+          <mat-label>Exam Code</mat-label>
+          <mat-select formControlName="examId" required>
+            <mat-option *ngFor="let exam of exams_code" [value]="exam">
+              {{ exam.examId }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 8rem">
+          <mat-label>Total Marks</mat-label>
+          <input type="number" matInput formControlName="totalMarks" required />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Number of Questions</mat-label>
+          <input
+            type="number"
+            matInput
+            formControlName="totalQuestion"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 8rem">
+          <mat-label>Duration Of Test(min)</mat-label>
+          <input type="number" matInput formControlName="duration" required />
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+          <mat-label>Start Date</mat-label>
+          <input type="date" matInput formControlName="startDate" required />
+        </mat-form-field>
+
+        <mat-form-field style="margin-left: 8rem">
+          <mat-label>End Date</mat-label>
+          <input type="date" matInput formControlName="endDate" required />
+        </mat-form-field>
+        <div>
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="!firstFormGroup.valid"
+            matStepperNext
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup" (ngSubmit)="onSubmitfile()">
+        <ng-template matStepLabel>Upload Test</ng-template>
+        <mat-form-field>
+          <mat-label>Exam Code</mat-label>
+          <mat-select
+            formControlName="examId"
+            required
+            [(ngModel)]="examCode"
+            (ngModelChange)="onExamCodeSelect()"
+          >
+            <mat-option *ngFor="let exam of exams_code" [value]="exam">
+              {{ exam.examId }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+        <!-- <mat-form-field>
+          <mat-label>Test Id</mat-label>
+          <input matInput formControlName="courseId" required />
+        </mat-form-field> -->
+        <mat-form-field>
+          <mat-label>Test Code</mat-label>
+          <mat-select formControlName="courseId" required>
+            <mat-option *ngFor="let test of testList" [value]="test">
+              {{ test }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <br />
+
+        <!-- <mat-label>File</mat-label>
+          <input matInput formControlName="file" required /> -->
+        <!-- <button type="button" mat-raised-button (click)="fileInput.click()">
+          Choose File
+        </button> -->
+        <input
+          (change)="onFileSelected()"
+          #fileInput
+          type="file"
+          id="file"
+          formControlName="file"
+        />
+        <br />
+
+        <!-- <mat-form-field>
+          <ngx-mat-file-input
+            #removableInput
+            formControlName="file"
+            placeholder="Removable Input"
+          ></ngx-mat-file-input>
+          <button
+            mat-icon-button
+            matSuffix
+            *ngIf="!removableInput.empty"
+            (click)="removableInput.clear($event)"
+          >
+            <mat-icon>clear</mat-icon>
+          </button>
+        </mat-form-field> -->
+        <br />
+        <div>
+          <button mat-raised-button color="primary" matStepperNext>Save</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-card>

@@ -34,6 +34,8 @@
     "ng4-loading-spinner": "^1.2.3",
     "ngx-countdown": "^10.0.0",
     "ngx-countdown-2": "^1.0.3",
+    "ngx-mat-select-search": "^3.1.0",
+    "ngx-material-file-input": "^2.1.1",
     "ngx-timer": "^1.0.6",
     "rxjs": "~6.4.0",
     "sweetalert": "^2.1.2",
