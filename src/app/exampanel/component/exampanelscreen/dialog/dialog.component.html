@@ -1,0 +1,55 @@
+<h2 style="text-align: center" mat-dialog-title>Questions</h2>
+
+<div *ngFor="let key of arrayofkeys; let i = index">
+  <br /><br />
+  <h2>Section : {{ key }}</h2>
+  <hr />
+  <div *ngFor="let question1 of questions.question[key]; let i = index">
+    <h5>QNo.{{ i + 1 }}</h5>
+    <img
+      [src]="transform(question1.question)"
+      style="height: auto; width: 50vw"
+      alt=""
+    />
+    <div style="display: flex; color: black">
+      <h5>
+        Question Type:
+        <span style="color: black">{{ question1.questionType }}</span
+        >;
+      </h5>
+      <h5>
+        Marks for correct answer:
+        <span style="color: green">{{ question1.marks }}</span
+        >;
+      </h5>
+      <h5>
+        Negative Marks:<span style="color: red">{{
+          question1.negativeMarks
+        }}</span>
+      </h5>
+    </div>
+    <br />
+    <hr />
+  </div>
+</div>
+
+<!-- <div style="margin: 0rem 1rem; height: 15rem;" mat-dialog-content>
+  <form [formGroup]="form" (ngSubmit)="submit(form)">
+    <mat-form-field style="width: 20rem;" appearance="fill">
+      <mat-label>Old Password</mat-label>
+      <input formControlName="oldpassword" type="password" matInput />
+    </mat-form-field>
+    <br />
+    <mat-form-field style="width: 20rem;" appearance="fill">
+      <mat-label>New Password</mat-label>
+      <input formControlName="newpassword" type="password" matInput />
+    </mat-form-field>
+    <br />
+    <div style="float: right;" mat-dialog-actions>
+      <button mat-button mat-dialog-close>Close</button>
+      <button type="submit" mat-button>
+        Submit
+      </button>
+    </div>
+  </form>
+</div> -->

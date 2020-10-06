@@ -5,6 +5,7 @@ import {
   ViewEncapsulation,
   HostListener,
   OnDestroy,
+  Inject,
 } from "@angular/core";
 import Swal from "sweetalert2";
 import { QuestionsService } from "../../services/questions.service";
@@ -20,6 +21,12 @@ import { NgForm } from "@angular/forms";
 import { Subject, interval } from "rxjs";
 import { TimerService } from "src/app/shared/timer.service";
 import { myWindow } from "src/app/userdashboard/component/testseries/testseries.component";
+import { MatDialog, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { DialogComponent } from "./dialog/dialog.component";
+
+export interface DialogData {
+  animal: "panda" | "unicorn" | "lion";
+}
 @Component({
   selector: "app-exampanelscreen",
   templateUrl: "./exampanelscreen.component.html",
@@ -51,29 +58,39 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   submit_button_status: boolean = true;
   courseId: number;
   userId: number;
-  notVisitedCount:number;
-  //constructor
+  notVisitedCount: number;
+  //constructorftransform
   constructor(
     private quesService: QuestionsService,
     private route: ActivatedRoute,
     private store: Store<AppState>,
     private sanitizer: DomSanitizer,
     private timerService: TimerService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {
     this.gridContainer = document.getElementsByClassName("grid-container");
+  }
+
+  openDialog() {
+    console.log(this.question);
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: "80vw",
+      maxHeight: "80vh",
+      data: { question: this.question },
+    });
   }
 
   //ngOninit
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.test_code = params["test_id"];
-      console.log("test_code: "+  params["test_id"]);
+      console.log("test_code: " + params["test_id"]);
     });
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
       this.email = data.user.emailId;
       this.name = data.user.name;
-      this.userId= data.user.id;
+      this.userId = data.user.id;
 
       this.quesService
         .getQuestionsForTestSeries(this.test_code)
@@ -202,7 +219,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     this.duration = [...this.question[sect]][0]["courseId"]["duration"];
     this.test_title = [...this.question[sect]][0]["courseId"]["title"];
     this.courseId = [...this.question[sect]][0]["courseId"]["id"];
-    this.notVisitedCount=[...this.question[sect]].length;
+    this.notVisitedCount = [...this.question[sect]].length;
     if (this.timer === 1) {
       this.countdownconfig = {
         leftTime: +this.duration * 60,
@@ -239,8 +256,13 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         answerSubmitted: form.value.optionSelected,
         timetaken: this.end - this.start,
       });
-       
-      this.savetheanswer(form.value.optionSelected,quesId,"NO_ANS",this.end - this.start); 
+
+      this.savetheanswer(
+        form.value.optionSelected,
+        quesId,
+        "NO_ANS",
+        this.end - this.start
+      );
     } else {
       this.pushToArray(this.answerDataofUser, {
         questionId: quesId,
@@ -248,7 +270,12 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         answerSubmitted: form.value.optionSelected,
         timetaken: this.end - this.start,
       });
-      this.savetheanswer(form.value.optionSelected,quesId,"ANS",this.end - this.start); 
+      this.savetheanswer(
+        form.value.optionSelected,
+        quesId,
+        "ANS",
+        this.end - this.start
+      );
     }
 
     console.log(this.answerDataofUser);
@@ -286,7 +313,12 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         timetaken: this.end - this.start,
       });
 
-      this.savetheanswer(form.value.optionSelected,quesId,"MARK_NOANS",this.end - this.start); 
+      this.savetheanswer(
+        form.value.optionSelected,
+        quesId,
+        "MARK_NOANS",
+        this.end - this.start
+      );
     } else {
       this.pushToArray(this.answerDataofUser, {
         questionId: quesId,
@@ -295,7 +327,12 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         timetaken: this.end - this.start,
       });
 
-      this.savetheanswer(form.value.optionSelected,quesId,"MARK_ANS",this.end - this.start); 
+      this.savetheanswer(
+        form.value.optionSelected,
+        quesId,
+        "MARK_ANS",
+        this.end - this.start
+      );
     }
 
     if (this.count === this.questionGroup.length) {
@@ -438,31 +475,35 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       clsBtn.style.display = "none";
       this.calcstatus = false;
     }
-   
   }
 
   ngOnDestroy() {
     alert(`I'm leaving the app!`);
   }
 
-  savetheanswer(answerSubmitted:string,questionId:number,questionStatus:string,timeTaken:number) {
-      this.quesService
-        .postSavedAnswer({
-          answerSubmitted: answerSubmitted,
-          courseId: +this.courseId,
-          questionId: questionId,
-          questionStatus: questionStatus,
-          timeTaken: timeTaken,
-          userId: +this.userId
-        })
-        .subscribe(
-          (data) => {
-            console.log("Successfully saved the answer");
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
+  savetheanswer(
+    answerSubmitted: string,
+    questionId: number,
+    questionStatus: string,
+    timeTaken: number
+  ) {
+    this.quesService
+      .postSavedAnswer({
+        answerSubmitted: answerSubmitted,
+        courseId: +this.courseId,
+        questionId: questionId,
+        questionStatus: questionStatus,
+        timeTaken: timeTaken,
+        userId: +this.userId,
+      })
+      .subscribe(
+        (data) => {
+          console.log("Successfully saved the answer");
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 
   submittheanswer(exam_over: boolean) {
@@ -474,7 +515,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           courseId: +this.courseId,
           status: "COMPLETED",
           totalTime: "0",
-          userId: +this.userId
+          userId: +this.userId,
         })
         .subscribe(
           (data) => {
