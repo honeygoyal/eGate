@@ -1,16 +1,21 @@
-<h2 style="text-align: center" mat-dialog-title>Questions</h2>
-
+<h3
+  style="text-align: center; background-color: #07c4fb; color: white"
+  mat-dialog-title
+>
+  Question Paper
+</h3>
 <div *ngFor="let key of arrayofkeys; let i = index">
-  <br /><br />
-  <h2>Section : {{ key }}</h2>
+  <h2 style="color: #07c4fb">{{ key }}</h2>
   <hr />
   <div *ngFor="let question1 of questions.question[key]; let i = index">
-    <h5>QNo.{{ i + 1 }}</h5>
+    <h3>QNo.{{ i + 1 }}</h3>
     <img
       [src]="transform(question1.question)"
       style="height: auto; width: 50vw"
       alt=""
     />
+    <br />
+    <br />
     <div style="display: flex; color: black">
       <h5>
         Question Type:
@@ -18,12 +23,12 @@
         >;
       </h5>
       <h5>
-        Marks for correct answer:
+        &nbsp;&nbsp; Marks for correct answer:
         <span style="color: green">{{ question1.marks }}</span
         >;
       </h5>
       <h5>
-        Negative Marks:<span style="color: red">{{
+        &nbsp;&nbsp; Negative Marks:<span style="color: red">{{
           question1.negativeMarks
         }}</span>
       </h5>
