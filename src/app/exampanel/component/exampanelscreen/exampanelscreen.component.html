@@ -268,10 +268,10 @@
             <div class="diff_type_notation_area_inner">
               <div class="notation_type_description">
                 <div class="notation_typeDiv leftdiv_notation">
-                  <span class="answered answeredCount" id="">0</span> <span class="type_title answeredLabel longtext-hide" id="" title="Answered">Answered</span>
+                  <span class="answered answeredCount" id="">{{answeredCount}}</span> <span class="type_title answeredLabel longtext-hide" id="" title="Answered">Answered</span>
                 </div>
                 <div class="notation_typeDiv">
-                  <span class="not_answered notAnsweredCount" id="">1</span> <span class="type_title notAnsweredLabel longtext-hide" id="" title="Not Answered">Not Answered</span>
+                  <span class="not_answered notAnsweredCount" id="">{{notAnsweredCount}}</span> <span class="type_title notAnsweredLabel longtext-hide" id="" title="Not Answered">Not Answered</span>
                 </div>
 
                 <div class="clear"></div>
@@ -279,16 +279,12 @@
                   <span class="not_visited notVisitedCount" id=""> {{notVisitedCount}}</span> <span class="type_title notVisitedLabel longtext-hide" id="" title="Not Visited">Not Visited</span>
                 </div>
                 <div class="notation_typeDiv MarkForReviewDiv">
-                  <span class="review markedCount" id="">0</span> <span class="type_title markedLabel longtext-hide" id="" title="Marked for Review">Marked for Review</span>
+                  <span class="review markedCount" id="">{{markedForReviewCount}}</span> <span class="type_title markedLabel longtext-hide" id="" title="Marked for Review">Marked for Review</span>
                 </div>
 
-                <div class="clear"></div>
-                <div class="notation_typeDiv answered_review_container review_mark" id="" style="display: none;">
-                  <span class="review_marked markedReviewCount" id="">0</span>
-                  <span class="type_title markedAndAnsweredLabel" id="" title="Answered &amp; Marked for Review (will be considered for evaluation)">Answered &amp; Marked for Review (will be considered for evaluation)</span>
-                </div>
+                <div class="clear"></div>           
                 <div class="notation_typeDiv answered_review_container review_answer" id="">
-                  <span class="review_answered markedAnsweredCount" id="">0</span>
+                  <span class="review_answered markedAnsweredCount" id="">{{markedForReviewWithAnswerCount}}</span>
                   <span class="type_title markedAndAnsweredLabel" id="" title="Answered &amp; Marked for Review (will be considered for evaluation)">Answered &amp; Marked for Review (will be considered for evaluation)</span>
                 </div>
                 <div class="clear"></div>
@@ -313,16 +309,13 @@
         </h4>
         <div id="choosequestion">
           <h4 style="color: white; margin-left: 0.6rem;">Choose a question</h4>
-          <div class="grid-container">
+          <div class="grid-container question_area">
             <a
               *ngFor="let group of questionGroup; let i = index"
               (click)="sidebuttonforquestion(i + 1, questiontoShow)"
               ><div
-                [ngStyle]="{
-                  background: getColor(group),
-                  border: getBorder(group)
-                }"
-                class="grid-item question_area"
+                [ngStyle]="getStyles(group)"
+                class="grid-item"
               >
                 {{ i + 1 }}
               </div></a

@@ -52,6 +52,17 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   courseId: number;
   userId: number;
   notVisitedCount:number;
+  markedForReviewCount:number=0;
+  markedForReviewWithAnswerCount:number=0;
+  answeredCount:number=0;
+  notAnsweredCount:number=1;
+  sectionansweredCount:string;
+  sectionnotAnsweredCount:string;
+  sectionmarkedForReviewCount:string;
+  sectionmarkedForReviewWithAnswerCount:string;
+  sectionnotvisitedCount:string;
+  sect:string;
+  startingTime = new Date().getTime();
   //constructor
   constructor(
     private quesService: QuestionsService,
@@ -68,7 +79,6 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.test_code = params["test_id"];
-      console.log("test_code: "+  params["test_id"]);
     });
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
       this.email = data.user.emailId;
@@ -79,7 +89,6 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         .getQuestionsForTestSeries(this.test_code)
         .subscribe((data) => {
           this.question = data;
-          console.log(this.question);
         });
     });
   }
@@ -138,48 +147,52 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         this.currentOption = element.answerSubmitted;
       }
     });
-    console.log(this.currentOption);
   }
 
-  getColor(group: any): string {
-    var returnColor: string = "White";
+  getStyles(group: any): any {
+    let myStyles= {
+      'background':"url('questions-sprite.png') no-repeat",
+      'color': 'white',
+      'background-position': '-157px -4px',
+      'padding':'8px',
+      'height':'48px'
+    }
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === group.id) {
-        returnColor = this.finalColor(element.questionStatus);
+        let finalPosition = this.finalPosition(element.questionStatus);
+        myStyles= {
+          'background':"url('questions-sprite.png') no-repeat",
+          'color': 'white',
+          'background-position': finalPosition,
+          'padding':'8px',
+          'height':'48px'
+        }
       }
     });
-    return returnColor;
+    return myStyles;
   }
 
-  finalColor(status: String): string {
+  finalPosition(status: String): string {
     switch (status) {
       case "ANS":
-        return "#99D12A";
+        return '-4px -126px';
       case "NO_ANS":
-        return "#D03B06";
+        return '-57px -6px';
       case "MARK_ANS":
-        return "#6C63FF";
+        return '-66px -178px';
       case "MARK_NOANS":
-        return "#6C63FF";
+        return '-108px -1px';
       default:
-        return "white";
+        return '-157px -4px';
     }
   }
 
-  getBorder(group: any): string {
-    var returnString: string = "1px solid white";
-    if (group.id === this.questiontoShow.id) {
-      returnString = "2px solid #07C4FB";
-    }
-    return returnString;
-  }
   selectedTab(event: MatTabChangeEvent, prevquestion: any) {
     this.count = 1;
     var t: string;
     var r: string;
-    console.log(prevquestion);
+
     if (prevquestion !== undefined) {
-      console.log("");
       this.end = new Date().getTime();
       this.answerDataofUser.forEach((element, index) => {
         if (element.questionId === prevquestion["id"]) {
@@ -187,22 +200,39 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           r = element.questionStatus;
         }
       });
-      console.log(t);
-      console.log(r);
 
       this.pushToArray(this.answerDataofUser, {
         questionId: prevquestion["id"],
         timetaken: this.end - this.start,
         answerSubmitted: t === undefined ? null : t,
-        status: r === undefined ? "UNANSWERED" : r,
-      });
+        questionStatus: r === undefined ? "NO_ANS" : r,
+      },true);
     }
     this.selectedTabCurrent = event.tab.textLabel;
-    var sect = event.tab.textLabel;
-    this.duration = [...this.question[sect]][0]["courseId"]["duration"];
-    this.test_title = [...this.question[sect]][0]["courseId"]["title"];
-    this.courseId = [...this.question[sect]][0]["courseId"]["id"];
-    this.notVisitedCount=[...this.question[sect]].length;
+    this.sect = event.tab.textLabel;
+    this.duration = [...this.question[this.sect]][0]["courseId"]["duration"];
+    this.test_title = [...this.question[this.sect]][0]["courseId"]["title"];
+    this.courseId = [...this.question[this.sect]][0]["courseId"]["id"];
+    
+    
+    this.sectionnotvisitedCount=this.sect+"notvisitedCount";
+    this.sectionansweredCount=this.sect+"answeredCount";
+    this.sectionnotAnsweredCount=this.sect+"notAnsweredCount";
+    this.sectionmarkedForReviewCount=this.sect+"markedForReviewCount";
+    this.sectionmarkedForReviewWithAnswerCount=this.sect+"markedForReviewWithAnswerCount";
+ 
+    [...this.question[this.sect]][0][this.sectionansweredCount]=[...this.question[this.sect]][0][this.sectionansweredCount] === undefined?0:[...this.question[this.sect]][0][this.sectionansweredCount];
+    [...this.question[this.sect]][0][this.sectionnotAnsweredCount]=[...this.question[this.sect]][0][this.sectionnotAnsweredCount] === undefined?0:[...this.question[this.sect]][0][this.sectionnotAnsweredCount];
+    [...this.question[this.sect]][0][this.sectionmarkedForReviewCount]=[...this.question[this.sect]][0][this.sectionmarkedForReviewCount] === undefined?0:[...this.question[this.sect]][0][this.sectionmarkedForReviewCount];
+    [...this.question[this.sect]][0][this.sectionmarkedForReviewWithAnswerCount]=[...this.question[this.sect]][0][this.sectionmarkedForReviewWithAnswerCount] === undefined?0:[...this.question[this.sect]][0][this.sectionmarkedForReviewWithAnswerCount];
+    [...this.question[this.sect]][0][this.sectionnotvisitedCount]=[...this.question[this.sect]][0][this.sectionnotvisitedCount] === undefined?[...this.question[this.sect]].length:[...this.question[this.sect]][0][this.sectionnotvisitedCount];
+    
+    this.answeredCount=[...this.question[this.sect]][0][this.sectionansweredCount];
+    this.notAnsweredCount=[...this.question[this.sect]][0][this.sectionnotAnsweredCount];
+    this.markedForReviewCount=[...this.question[this.sect]][0][this.sectionmarkedForReviewCount];
+    this.markedForReviewWithAnswerCount=[...this.question[this.sect]][0][this.sectionmarkedForReviewWithAnswerCount];
+    this.notVisitedCount=[...this.question[this.sect]][0][this.sectionnotvisitedCount];
+
     if (this.timer === 1) {
       this.countdownconfig = {
         leftTime: +this.duration * 60,
@@ -210,9 +240,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       };
       this.timer = 0;
     }
-    this.questionGroup = [...this.question[sect]];
-    console.log(this.questionGroup);
-    console.log(this.questionGroup);
+    this.questionGroup = [...this.question[this.sect]];
     this.questiontoShow = {
       ...this.questionGroup[0],
     };
@@ -228,30 +256,30 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
 
   questiontodisplayincrement(form: NgForm, quesId: number) {
     this.end = new Date().getTime();
-    console.log(form.value.optionSelected);
     if (
       form.value.optionSelected === "z" ||
       form.value.optionSelected === null
     ) {
       this.pushToArray(this.answerDataofUser, {
         questionId: quesId,
-        status: "NO_ANS",
+        questionStatus: "NO_ANS",
         answerSubmitted: form.value.optionSelected,
         timetaken: this.end - this.start,
-      });
-       
+      },false);
+     
       this.savetheanswer(form.value.optionSelected,quesId,"NO_ANS",this.end - this.start); 
     } else {
       this.pushToArray(this.answerDataofUser, {
         questionId: quesId,
-        status: "ANS",
+        questionStatus: "ANS",
         answerSubmitted: form.value.optionSelected,
         timetaken: this.end - this.start,
-      });
+      },false);
+
+    
       this.savetheanswer(form.value.optionSelected,quesId,"ANS",this.end - this.start); 
     }
 
-    console.log(this.answerDataofUser);
     if (this.count === this.questionGroup.length) {
       if (this.tabGroup["selectedIndex"]++ >= this.questionGroup.length)
         this.tabGroup["selectedIndex"] = 0;
@@ -266,9 +294,11 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
         this.currentOption = element.answerSubmitted;
+      } else{
+        //form.reset();
       }
     });
-    form.reset();
+    //form.reset();
     this.start = new Date().getTime();
     this.count++;
   }
@@ -281,19 +311,19 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     ) {
       this.pushToArray(this.answerDataofUser, {
         questionId: quesId,
-        status: "MARK_NOANS",
+        questionStatus: "MARK_NOANS",
         answerSubmitted: form.value.optionSelected,
         timetaken: this.end - this.start,
-      });
+      },false);
 
       this.savetheanswer(form.value.optionSelected,quesId,"MARK_NOANS",this.end - this.start); 
     } else {
       this.pushToArray(this.answerDataofUser, {
         questionId: quesId,
-        status: "MARK_ANS",
+        questionStatus: "MARK_ANS",
         answerSubmitted: form.value.optionSelected,
         timetaken: this.end - this.start,
-      });
+      },false);
 
       this.savetheanswer(form.value.optionSelected,quesId,"MARK_ANS",this.end - this.start); 
     }
@@ -311,22 +341,22 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       if (element.questionId === this.questiontoShow.id) {
         this.currentOption = element.answerSubmitted;
       }
+      else{
+        //form.reset();
+      }
     });
-    form.reset();
+
     this.count++;
     this.start = new Date().getTime();
   }
 
   timesUp(event) {
-    console.log(event);
-
     if (
       event["action"] === "done" &&
       event["left"] === 0 &&
       event["status"] === 3
     ) {
       this.submittheanswer(true);
-      //console.log("finished");
     }
   }
 
@@ -334,10 +364,10 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     form.reset();
     this.pushToArray(this.answerDataofUser, {
       questionId: quesId,
-      status: "UNANSWERED",
+      questionStatus: "NO_ANS",
       answerSubmitted: form.value.optionSelected,
       timetaken: "4",
-    });
+    },false);
   }
 
   // pushToArray(arr, obj) {
@@ -353,40 +383,61 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   //     });
   //   }
   // }
-  pushToArray(arr, obj) {
+  pushToArray(arr, obj,checkIfTabChanged) {
     var existingIds = arr.map((obj) => obj.questionId);
 
     if (!existingIds.includes(obj.questionId)) {
       arr.push(obj);
+
+      if(this.notVisitedCount !== 0){
+        [...this.question[this.sect]][0][this.sectionnotvisitedCount]=[...this.question[this.sect]][0][this.sectionnotvisitedCount]-1;
+        this.notVisitedCount=[...this.question[this.sect]][0][this.sectionnotvisitedCount];
+      }
+
+      this.methodToManipulateTheCount(obj.questionStatus,1);
     } else {
       arr.forEach((element, index) => {
         if (element.questionId === obj.questionId) {
           obj.timetaken += element.timetaken;
-
           arr[index] = obj;
+          if(!checkIfTabChanged){
+            this.methodToManipulateTheCount(element.questionStatus,-1);
+            this.methodToManipulateTheCount(obj.questionStatus,1); 
+          }
         }
       });
     }
   }
 
+  methodToManipulateTheCount(status:string,count:number){
+    switch (status) {
+      case "ANS":
+        [...this.question[this.sect]][0][this.sectionansweredCount] = (count === -1) ?(this.answeredCount !== 0 ? [...this.question[this.sect]][0][this.sectionansweredCount]+count:this.answeredCount):[...this.question[this.sect]][0][this.sectionansweredCount]+count;
+        this.answeredCount=[...this.question[this.sect]][0][this.sectionansweredCount];
+        break;
+      case "NO_ANS":
+        [...this.question[this.sect]][0][this.sectionnotAnsweredCount] = (count === -1) ?(this.notAnsweredCount !== 0 ? [...this.question[this.sect]][0][this.sectionnotAnsweredCount]+count:this.notAnsweredCount):[...this.question[this.sect]][0][this.sectionnotAnsweredCount]+count;
+        this.notAnsweredCount=[...this.question[this.sect]][0][this.sectionnotAnsweredCount];
+        break;
+      case "MARK_ANS":
+        [...this.question[this.sect]][0][this.sectionmarkedForReviewWithAnswerCount] = (count === -1) ?(this.markedForReviewWithAnswerCount !== 0 ? [...this.question[this.sect]][0][this.sectionmarkedForReviewWithAnswerCount]+count:this.markedForReviewWithAnswerCount):[...this.question[this.sect]][0][this.sectionmarkedForReviewWithAnswerCount]+count;
+        this.markedForReviewWithAnswerCount=[...this.question[this.sect]][0][this.sectionmarkedForReviewWithAnswerCount];
+        break;
+      case "MARK_NOANS":
+        [...this.question[this.sect]][0][this.sectionmarkedForReviewCount] = (count === -1) ?(this.markedForReviewCount !== 0 ? [...this.question[this.sect]][0][this.sectionmarkedForReviewCount]+count:this.markedForReviewCount):[...this.question[this.sect]][0][this.sectionmarkedForReviewCount]+count;
+        this.markedForReviewCount=[...this.question[this.sect]][0][this.sectionmarkedForReviewCount];
+        break;
+    }
+  }
+
   sidebuttonforquestion(position: number, prevquestion: any) {
-    console.log("previous question");
-    console.log(prevquestion);
     this.questiontoShow = {
       ...this.questionGroup[position - 1],
     };
 
-    // this.end = new Date().getTime();
-    // this.pushToArray(this.answerDataofUser, {
-    //   question_id: prevquestion["id"],
-    //   timetaken: this.start - this.end,
-    //   answerSubmitted: null,
-    //   status: "UNANSWERED",
-    // });
     var t: string;
     var r: string;
     if (prevquestion !== undefined) {
-      console.log("");
       this.end = new Date().getTime();
       this.answerDataofUser.forEach((element, index) => {
         if (element.questionId === prevquestion["id"]) {
@@ -394,15 +445,13 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           r = element.questionStatus;
         }
       });
-      console.log(t);
-      console.log(r);
 
       this.pushToArray(this.answerDataofUser, {
         questionId: prevquestion["id"],
         timetaken: this.end - this.start,
         answerSubmitted: t === undefined ? null : t,
-        status: r === undefined ? "UNANSWERED" : r,
-      });
+        questionStatus: r === undefined ? "NO_ANS" : r,
+      },true);
     }
 
     this.answerDataofUser.forEach((element, index) => {
@@ -438,7 +487,6 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       clsBtn.style.display = "none";
       this.calcstatus = false;
     }
-   
   }
 
   ngOnDestroy() {
@@ -468,31 +516,28 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   submittheanswer(exam_over: boolean) {
     if (exam_over) {
       console.log("Exam is over");
-      //window.close();
+      let endingTime = new Date().getTime();
+      let totalTimeTaken= endingTime - this.startingTime;
       this.quesService
         .postSubmittedAnswer({
           courseId: +this.courseId,
           status: "COMPLETED",
-          totalTime: "0",
+          totalTime: totalTimeTaken.toString(),
           userId: +this.userId
         })
         .subscribe(
           (data) => {
-            //console.log("Window close");
-            //console.log(window.length);
-            console.log("Closing the window");
-            window.close();
-
-            //myWindow.close();
+            myWindow.close();
           },
           (err) => {
             console.log(err);
-            //window.close();
+            myWindow.close();
           }
         );
     }
   }
 }
+
 
 // Swal.fire({
 //   title: "Are you sure?",
