@@ -35,6 +35,7 @@ import { CountdownModule, CountdownGlobalConfig } from "ngx-countdown";
 import { TimerComponentComponent } from "./component/timer-component/timer-component.component";
 import { DialogComponent } from "./component/exampanelscreen/dialog/dialog.component";
 import { MatDialogModule } from "@angular/material/dialog";
+import { InstructionDialogComponent } from "./component/exampanelscreen/instruction-dialog/instruction-dialog.component";
 // function countdownConfigFactory(): CountdownGlobalConfig {
 //   return { locale: 'mm:ss' };
 // }
@@ -46,6 +47,7 @@ import { MatDialogModule } from "@angular/material/dialog";
     CalculatorComponent,
     TimerComponentComponent,
     DialogComponent,
+    InstructionDialogComponent,
   ],
   imports: [
     CountdownModule,
@@ -85,6 +87,6 @@ import { MatDialogModule } from "@angular/material/dialog";
     ]),
   ],
   providers: [authInterceptorProviders, { provide: CountdownGlobalConfig }],
-  entryComponents: [DialogComponent],
+  entryComponents: [DialogComponent, InstructionDialogComponent],
 })
 export class ExampanelModule {}

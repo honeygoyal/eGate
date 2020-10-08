@@ -23,6 +23,7 @@ import { TimerService } from "src/app/shared/timer.service";
 import { myWindow } from "src/app/userdashboard/component/testseries/testseries.component";
 import { MatDialog, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { DialogComponent } from "./dialog/dialog.component";
+import { InstructionDialogComponent } from "./instruction-dialog/instruction-dialog.component";
 
 export interface DialogData {
   animal: "panda" | "unicorn" | "lion";
@@ -78,6 +79,13 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       width: "80vw",
       maxHeight: "80vh",
       data: { question: this.question },
+    });
+  }
+  openDialog1() {
+    const dialogRef = this.dialog.open(InstructionDialogComponent, {
+      width: "80vw",
+      maxHeight: "80vh",
+      data: {},
     });
   }
 
