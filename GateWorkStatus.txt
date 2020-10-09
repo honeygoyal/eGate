@@ -1,0 +1,63 @@
+1) Check whetehr start date is less than today's date and today's date is less than end date--> Test is active , opposite of this Inactive (Your test will start on xxx day) -- Done
+2) Number of days left will be shown only when it is less than one month remaining -done
+
+3)Put Div's into the exam panel with percentages - done
+4)To remove header and footer always loading for - done 
+5) save and next integration - done
+6) size of the window when test is launched - done 
+
+7) change images to that of madeeasy - done
+8) 
+9) Images shld match if mark for reviewd,answered etc respectively - done
+10) Calculator to make this work -- done
+
+
+
+Have a demo tomorrow (3,4,5,6)  
+
+ {{this.todaysDate - this.datepipe.transform(exam.endDate,'yyyy-MM-dd')}}
+ 
+Oct 1:
+
+Calculator UI (remove minimze and add close and help, and it shld be moving)
+change images to that of madeeasy
+
+Images shld match if mark for reviewd,answered etc respectively
+To handle below as well:
+
+
+Screens (Instructions) 
+
+Oct 2:
+
+
+ 
+By 7th Oct:
+
+Running test series
+
+
+...........................................................................................................
+
+
+9 october 2020:
+
+1) Present options based on question type. 
+MSQ   -- multiple choice (more than 1) -- (A,B) or (A,B,C)
+NAT   -- provide virtual pad
+
+2) Questions and Instructions in modal window
+
+3) Instructions screen on launching the exam
+Instructions and paper wise instructions with disclaimer
+
+4) Admin panel
+   uploading of exam is remaining
+
+5) Total Count against Exam
+   Individual count against sections
+
+6) Report generation   
+   
+
+
