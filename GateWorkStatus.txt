@@ -37,27 +37,41 @@ By 7th Oct:
 Running test series
 
 
-...........................................................................................................
+...............................................Please see below for current tasks to be done............................................................
 
 
 9 october 2020:
 
+To be completed by Hari
 1) Present options based on question type. 
 MSQ   -- multiple choice (more than 1) -- (A,B) or (A,B,C)
 NAT   -- provide virtual pad
 
+
+To be completed by Himanshu
 2) Questions and Instructions in modal window
 
+To be completed by Himanshu
 3) Instructions screen on launching the exam
 Instructions and paper wise instructions with disclaimer
 
+To be checked by Hari/Honey
 4) Admin panel
    uploading of exam is remaining
 
+To be completed by Himanshu
 5) Total Count against Exam
    Individual count against sections
 
+
 6) Report generation   
-   
+   Performance analysis - Test Analytics screen -- To be completed by Hari
+   Solutions - Question image , 4 tabs ( solution, videosolution, challenge question, question analysis) -- To be completed by Himanshu
+   Top Rankers screen -- To be completed by Himanshu
+   Note: Refer to the performance analysis PPT
+
+7) Signup
+8) Payment
+9) Profile (to upload photos and other details)
 
 
