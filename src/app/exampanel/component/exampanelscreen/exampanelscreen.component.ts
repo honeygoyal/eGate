@@ -187,7 +187,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectedTab(event: MatTabChangeEvent, prevquestion: any) {
+  selectedTab(event: MatTabChangeEvent, prevquestion: any,form: NgForm) {
     this.count = 1;
     var t: string;
     var r: string;
@@ -245,11 +245,21 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       ...this.questionGroup[0],
     };
     this.start = new Date().getTime();
+
+    let assignedCurrentOption=false;
+    let missedOutOnCurrentOption=false;
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
         this.currentOption = element.answerSubmitted;
+        assignedCurrentOption=true;
+      } else{
+        missedOutOnCurrentOption=true;
       }
     });
+    
+    if(!assignedCurrentOption && missedOutOnCurrentOption){
+     form.reset();
+    }
   }
   start: any;
   end: any;
@@ -291,14 +301,21 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       ...this.questionGroup[this.count],
     };
 
+    let assignedCurrentOption=false;
+    let missedOutOnCurrentOption=false;
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
         this.currentOption = element.answerSubmitted;
+        assignedCurrentOption=true;
       } else{
-        //form.reset();
+        missedOutOnCurrentOption=true;
       }
     });
-    //form.reset();
+    
+    if(!assignedCurrentOption && missedOutOnCurrentOption){
+      form.reset();
+    }
+    
     this.start = new Date().getTime();
     this.count++;
   }
@@ -337,14 +354,21 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     this.questiontoShow = {
       ...this.questionGroup[this.count],
     };
+
+    let assignedCurrentOption=false;
+    let missedOutOnCurrentOption=false;
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
         this.currentOption = element.answerSubmitted;
-      }
-      else{
-        //form.reset();
+        assignedCurrentOption=true;
+      } else{
+        missedOutOnCurrentOption=true;
       }
     });
+
+    if(!assignedCurrentOption && missedOutOnCurrentOption){
+      form.reset();
+    }
 
     this.count++;
     this.start = new Date().getTime();

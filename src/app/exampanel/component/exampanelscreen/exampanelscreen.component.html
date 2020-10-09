@@ -60,7 +60,7 @@
           style="z-index: 1;"
           (wheel)="scrollTabs($event)"
           #tabGroup
-          (selectedTabChange)="selectedTab($event, questiontoShow)"
+          (selectedTabChange)="selectedTab($event, questiontoShow,f)"
         >
           <mat-tab [label]="tab.key" *ngFor="let tab of question | keyvalue">
           </mat-tab>
