@@ -80,7 +80,7 @@
             Start Now
           </button>
           <button
-            (click)="startaction(exam.courseId)"
+            (click)="startaction(exam.courseId, exam)"
             class="btnactioncard"
             *ngIf="exam.status === 'PENDING' && exam.isExamActive === true"
             style="background: #6c63ff"
@@ -134,7 +134,7 @@
           </div>
 
           <button
-            (click)="startaction(exam.courseId)"
+            (click)="startaction(exam.courseId, exam)"
             class="btnactioncard"
             *ngIf="exam.status === 'PENDING'"
             style="background: #6c63ff"
