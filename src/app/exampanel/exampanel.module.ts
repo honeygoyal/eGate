@@ -36,6 +36,7 @@ import { TimerComponentComponent } from "./component/timer-component/timer-compo
 import { DialogComponent } from "./component/exampanelscreen/dialog/dialog.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { InstructionDialogComponent } from "./component/exampanelscreen/instruction-dialog/instruction-dialog.component";
+import { ExamInstructionsComponent } from "./component/exam-instructions/exam-instructions.component";
 // function countdownConfigFactory(): CountdownGlobalConfig {
 //   return { locale: 'mm:ss' };
 // }
@@ -48,6 +49,7 @@ import { InstructionDialogComponent } from "./component/exampanelscreen/instruct
     TimerComponentComponent,
     DialogComponent,
     InstructionDialogComponent,
+    ExamInstructionsComponent,
   ],
   imports: [
     CountdownModule,
@@ -80,9 +82,10 @@ import { InstructionDialogComponent } from "./component/exampanelscreen/instruct
     MatProgressBarModule,
     MatSelectModule,
     RouterModule.forChild([
+      { path: "exam/:test_id", component: ExampanelscreenComponent },
       {
         path: "",
-        component: ExampanelscreenComponent,
+        component: ExamInstructionsComponent,
       },
     ]),
   ],

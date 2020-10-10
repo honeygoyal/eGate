@@ -4,10 +4,10 @@ import { TestseriesService } from "../../service/testseries.service";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/reducers";
 import { map, filter } from "rxjs/operators";
-import { DatePipe } from '@angular/common';
+import { DatePipe } from "@angular/common";
 
 export var myWindow;
-
+export var examsExport;
 @Component({
   selector: "app-testseries",
   templateUrl: "./testseries.component.html",
@@ -19,7 +19,7 @@ export class TestseriesComponent implements OnInit {
   exams: any[] = [];
   examsinprogress: any[] = [];
   examscompleted: any[] = [];
-  currentDateAsString=this.datepipe.transform(new Date(), 'yyyy-MM-dd');
+  currentDateAsString = this.datepipe.transform(new Date(), "yyyy-MM-dd");
   constructor(
     private route: ActivatedRoute,
     private testseries: TestseriesService,
@@ -39,7 +39,7 @@ export class TestseriesComponent implements OnInit {
         .subscribe((data) => {
           this.exams = [...data];
           this.filterexams();
-          console.log("exams: "+this.exams);
+          console.log("exams: " + this.exams);
         });
     });
   }
@@ -49,30 +49,33 @@ export class TestseriesComponent implements OnInit {
     for (let exam of this.exams) {
       if (exam.status === "PENDING") {
         let endDate = new Date(exam.endDate);
-        let daysRemaining="";
-        let diffDays:any;
-        exam.isExamActive=true;
-        if(endDate >= currentDate){
+        let daysRemaining = "";
+        let diffDays: any;
+        exam.isExamActive = true;
+        if (endDate >= currentDate) {
           let timeDiff = Math.abs(endDate.getTime() - currentDate.getTime());
           diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-          daysRemaining= daysRemaining.concat(diffDays.toString()," days left for the exam to expire");
-        }else if(currentDate > endDate){
-          daysRemaining= "Exam has already expired";
-          exam.isExamActive=false;
-          exam.checkForRemainingDays=daysRemaining;
+          daysRemaining = daysRemaining.concat(
+            diffDays.toString(),
+            " days left for the exam to expire"
+          );
+        } else if (currentDate > endDate) {
+          daysRemaining = "Exam has already expired";
+          exam.isExamActive = false;
+          exam.checkForRemainingDays = daysRemaining;
         }
-        if(diffDays <= 30){
-          exam.checkForRemainingDays=daysRemaining;
+        if (diffDays <= 30) {
+          exam.checkForRemainingDays = daysRemaining;
         }
-        
+
         this.examsinprogress.push(exam);
       }
       if (exam.status === "START") {
         let startDate = new Date(exam.startDate);
-        if(startDate > currentDate){
-          exam.isExamActive=false;
-        }else if(currentDate >= startDate){
-          exam.isExamActive=true;
+        if (startDate > currentDate) {
+          exam.isExamActive = false;
+        } else if (currentDate >= startDate) {
+          exam.isExamActive = true;
         }
       }
       if (exam.status === "COMPLETED") {
@@ -81,12 +84,19 @@ export class TestseriesComponent implements OnInit {
     }
   }
 
-  startaction(id: string) {
-    var params='scrollbars=0,resizable=1,fullscreen=1,menubar=0,width='+(screen.width-20)+', height='+(screen.height-120)+',statusbar=0,toolbar=0';
-    myWindow = window.open(
-      "/exampanel/" + id,"windowOpenTab",params);
-    if (window.focus) {myWindow.focus()}
-      return false;
+  startaction(id: string, exam: any) {
+    var params =
+      "scrollbars=0,resizable=1,fullscreen=1,menubar=0,width=" +
+      (screen.width - 20) +
+      ", height=" +
+      (screen.height - 120) +
+      ",statusbar=0,toolbar=0";
+    localStorage.setItem("exam", JSON.stringify(exam));
+    myWindow = window.open("/exampanel/", "windowOpenTab", params);
+    if (window.focus) {
+      myWindow.focus();
+    }
+    return false;
   }
 
   reportshow(exam: any) {
