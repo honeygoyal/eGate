@@ -9,7 +9,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 export class InstructionDialogComponent implements OnInit {
   constructor(
     public dialogRef: MatDialogRef<InstructionDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public question: any
+    @Inject(MAT_DIALOG_DATA) public courseDetails: any
   ) {}
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.courseDetails);
+  }
 }

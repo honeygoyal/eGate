@@ -1,9 +1,8 @@
-<h3
-  style="text-align: center; background-color: #07c4fb; color: white"
-  mat-dialog-title
->
-  Question Paper
-</h3>
+<div class="question-header">
+  <h3 class="h3-header" mat-dialog-title>Question Paper</h3>
+  <button class="close" mat-button mat-dialog-close>X</button>
+</div>
+
 <div *ngFor="let key of arrayofkeys; let i = index">
   <h2 style="color: #07c4fb">{{ key }}</h2>
   <hr />

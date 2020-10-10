@@ -60,6 +60,9 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   courseId: number;
   userId: number;
   notVisitedCount: number;
+  totalquestions: string;
+  totalmarks: string;
+  testname: string;
   //constructorftransform
   constructor(
     private quesService: QuestionsService,
@@ -73,7 +76,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     this.gridContainer = document.getElementsByClassName("grid-container");
   }
 
-  openDialog() {
+  questionDialog() {
     console.log(this.question);
     const dialogRef = this.dialog.open(DialogComponent, {
       width: "80vw",
@@ -81,11 +84,16 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       data: { question: this.question },
     });
   }
-  openDialog1() {
+  instructionDialog() {
     const dialogRef = this.dialog.open(InstructionDialogComponent, {
       width: "80vw",
       maxHeight: "80vh",
-      data: {},
+      data: {
+        duration: this.duration,
+        totalquestions: this.totalquestions,
+        totalmarks: this.totalmarks,
+        testname: this.test_title,
+      },
     });
   }
 
@@ -225,6 +233,10 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     this.selectedTabCurrent = event.tab.textLabel;
     var sect = event.tab.textLabel;
     this.duration = [...this.question[sect]][0]["courseId"]["duration"];
+    this.totalmarks = [...this.question[sect]][0]["courseId"]["totalMarks"];
+    this.totalquestions = [...this.question[sect]][0]["courseId"][
+      "totalQuestion"
+    ];
     this.test_title = [...this.question[sect]][0]["courseId"]["title"];
     this.courseId = [...this.question[sect]][0]["courseId"]["id"];
     this.notVisitedCount = [...this.question[sect]].length;
