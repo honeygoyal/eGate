@@ -19,7 +19,9 @@
       >
         <mat-chip-list aria-label="Fish selection">
           <mat-chip style="background: rgb(68, 67, 67); color: white"
-            ><b>{{ test_title }}</b></mat-chip
+            ><b>{{ test_title }} </b>&nbsp;&nbsp;<mat-icon
+              >info</mat-icon
+            ></mat-chip
           >
         </mat-chip-list>
         <div>
@@ -33,7 +35,8 @@
           ></app-calculator>
         </div>
       </div>
-      <div *ngIf="questiontoShow !== undefined"
+      <div
+        *ngIf="questiontoShow !== undefined"
         id="head1"
         style="
           display: flex;
@@ -62,7 +65,74 @@
           #tabGroup
           (selectedTabChange)="selectedTab($event, questiontoShow, f)"
         >
-          <mat-tab [label]="tab.key" *ngFor="let tab of question | keyvalue">
+          <mat-tab [label]="tab.key" *ngFor="let tab of question | keyvalue"
+            ><ng-template mat-tab-label>
+              {{ tab.key }}
+              &nbsp;&nbsp;
+              <a class="tooltip1 tooltipSelected1">
+                <mat-icon class="subject_instruction_icon1">info</mat-icon>
+                <div class="subject_information_div1">
+                  <div>
+                    <div class="subject_name" style="text-align: left">
+                      General Aptitude
+                    </div>
+                  </div>
+                  <div
+                    class="notation_type_description diff_type_notation_area_inner"
+                    style="
+                      background: #e5f6fc none repeat scroll 0 0;
+                      text-align: left;
+                    "
+                  >
+                    <div class="notation_typeDiv" title="Answered">
+                      <span class="answered">0</span
+                      ><span
+                        class="type_title secAnswered"
+                        style="text-align: left"
+                        >Answered</span
+                      >
+                    </div>
+                    <div class="notation_typeDiv" title="Not Answered">
+                      <span class="not_answered">1</span
+                      ><span
+                        class="type_title secNotAnswered"
+                        style="text-align: left"
+                        >Not Answered</span
+                      >
+                    </div>
+                    <div class="notation_typeDiv" title="Not Visited">
+                      <span class="not_visited">9</span
+                      ><span
+                        class="type_title secNotAttempted"
+                        style="text-align: left"
+                        >Not Visited</span
+                      >
+                    </div>
+                    <div class="notation_typeDiv" title="Marked for Review">
+                      <span class="review">0</span
+                      ><span
+                        class="type_title secMarkReview"
+                        style="text-align: left"
+                        >Marked for Review</span
+                      >
+                    </div>
+                    <div
+                      class="notation_typeDiv review_answer"
+                      id=""
+                      title="Answered &amp; Marked for Review (will be considered for evaluation)"
+                    >
+                      <span class="review_answered">0</span
+                      ><span
+                        class="type_title secMarkedAndAnswered"
+                        style="text-align: left"
+                        >Answered &amp; Marked for Review (will be considered
+                        for evaluation)
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </ng-template>
           </mat-tab>
         </mat-tab-group>
       </div>
@@ -105,7 +175,10 @@
               #f="ngForm"
               (ngSubmit)="questiontodisplayincrement(f, questiontoShow.id)"
             >
-              <div id="radioButtonGroup" *ngIf="questiontoShow.questionType !== 'NAT'">
+              <div
+                id="radioButtonGroup"
+                *ngIf="questiontoShow.questionType !== 'NAT'"
+              >
                 <mat-radio-group
                   name="optionSelected"
                   [(ngModel)]="currentOption"
@@ -126,26 +199,70 @@
                   <mat-radio-button value="D">D</mat-radio-button>
                 </mat-radio-group>
               </div>
-              
-              <div *ngIf="questiontoShow.questionType === 'NAT'" style="padding-left: 2%;margin-top: 20px;margin-bottom: 20px;" id="numericKeyBoardDiv">
-                <input type="text" id="answer" autocomplete="off" class="keyboardInput answer" value="">
+
+              <div
+                *ngIf="questiontoShow.questionType === 'NAT'"
+                style="padding-left: 2%; margin-top: 20px; margin-bottom: 20px"
+                id="numericKeyBoardDiv"
+              >
+                <input
+                  type="text"
+                  id="answer"
+                  autocomplete="off"
+                  class="keyboardInput answer"
+                  value=""
+                />
                 <div id="vKeyboard" class="vKeyboard">
-                  <span class="vKeyboardSplKeys" style="border-radius: 6px;">Backspace</span><br>
-                  <span class="vKeyboardKeys" style="border-radius: 6px;">7</span>
-                  <span class="vKeyboardKeys" style="border-radius: 6px;">8</span>
-                  <span class="vKeyboardKeys" style="border-radius: 6px;">9</span><br>
-                  <span class="vKeyboardKeys" style="border-radius: 6px;">4</span>
-                  <span class="vKeyboardKeys" style="border-radius: 6px;">5</span>
-                  <span class="vKeyboardKeys" style="border-radius: 6px;">6</span><br>
-                  <span class="vKeyboardKeys" style="border-radius: 6px;">1</span>
-                  <span class="vKeyboardKeys" style="border-radius: 6px;">2</span>
-                  <span class="vKeyboardKeys" style="border-radius: 6px;">3</span><br>
-                  <span class="vKeyboardKeys" style="border-radius: 6px;">0</span>
-                  <span class="vKeyboardKeys" style="border-radius: 6px;">.</span>
-                  <span class="vKeyboardKeys" style="border-radius: 6px;">-</span><br>
-                  <span class="vKeyboardSplKeys" data="left" style="font-weight: normal; border-radius: 6px;">←</span>
-                  <span class="vKeyboardSplKeys" data="right" style="font-weight: normal; border-radius: 6px;">→</span><br>
-                  <span class="vKeyboardSplKeys" style="border-radius: 6px;">Clear All</span><br>
+                  <span class="vKeyboardSplKeys" style="border-radius: 6px"
+                    >Backspace</span
+                  ><br />
+                  <span class="vKeyboardKeys" style="border-radius: 6px"
+                    >7</span
+                  >
+                  <span class="vKeyboardKeys" style="border-radius: 6px"
+                    >8</span
+                  >
+                  <span class="vKeyboardKeys" style="border-radius: 6px">9</span
+                  ><br />
+                  <span class="vKeyboardKeys" style="border-radius: 6px"
+                    >4</span
+                  >
+                  <span class="vKeyboardKeys" style="border-radius: 6px"
+                    >5</span
+                  >
+                  <span class="vKeyboardKeys" style="border-radius: 6px">6</span
+                  ><br />
+                  <span class="vKeyboardKeys" style="border-radius: 6px"
+                    >1</span
+                  >
+                  <span class="vKeyboardKeys" style="border-radius: 6px"
+                    >2</span
+                  >
+                  <span class="vKeyboardKeys" style="border-radius: 6px">3</span
+                  ><br />
+                  <span class="vKeyboardKeys" style="border-radius: 6px"
+                    >0</span
+                  >
+                  <span class="vKeyboardKeys" style="border-radius: 6px"
+                    >.</span
+                  >
+                  <span class="vKeyboardKeys" style="border-radius: 6px">-</span
+                  ><br />
+                  <span
+                    class="vKeyboardSplKeys"
+                    data="left"
+                    style="font-weight: normal; border-radius: 6px"
+                    >←</span
+                  >
+                  <span
+                    class="vKeyboardSplKeys"
+                    data="right"
+                    style="font-weight: normal; border-radius: 6px"
+                    >→</span
+                  ><br />
+                  <span class="vKeyboardSplKeys" style="border-radius: 6px"
+                    >Clear All</span
+                  ><br />
                 </div>
               </div>
 
