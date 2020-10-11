@@ -5,6 +5,7 @@ import {
   ViewEncapsulation,
   HostListener,
   OnDestroy,
+  Inject,
 } from "@angular/core";
 import Swal from "sweetalert2";
 import { QuestionsService } from "../../services/questions.service";
@@ -20,7 +21,13 @@ import { NgForm } from "@angular/forms";
 import { Subject, interval } from "rxjs";
 import { TimerService } from "src/app/shared/timer.service";
 import "./../../../../assets/virtual_keyboard.js";
+import { MatDialog, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { DialogComponent } from "./dialog/dialog.component";
+import { InstructionDialogComponent } from "./instruction-dialog/instruction-dialog.component";
 
+export interface DialogData {
+  animal: "panda" | "unicorn" | "lion";
+}
 @Component({
   selector: "app-exampanelscreen",
   templateUrl: "./exampanelscreen.component.html",
@@ -72,15 +79,41 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   sect:string;
   startingTime = new Date().getTime();
   //constructor
+  totalquestions: string;
+  totalmarks: string;
+  testname: string;
+  //constructorftransform
   constructor(
     private quesService: QuestionsService,
     private route: ActivatedRoute,
     private store: Store<AppState>,
     private sanitizer: DomSanitizer,
     private timerService: TimerService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {
     this.gridContainer = document.getElementsByClassName("grid-container");
+  }
+
+  questionDialog() {
+    console.log(this.question);
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: "80vw",
+      maxHeight: "80vh",
+      data: { question: this.question },
+    });
+  }
+  instructionDialog() {
+    const dialogRef = this.dialog.open(InstructionDialogComponent, {
+      width: "80vw",
+      maxHeight: "80vh",
+      data: {
+        duration: this.duration,
+        totalquestions: this.totalquestions,
+        totalmarks: this.totalmarks,
+        testname: this.test_title,
+      },
+    });
   }
 
   //ngOninit
@@ -91,7 +124,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
       this.email = data.user.emailId;
       this.name = data.user.name;
-      this.userId= data.user.id;
+      this.userId = data.user.id;
 
       this.quesService
         .getQuestionsForTestSeries(this.test_code)
@@ -158,23 +191,23 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   }
 
   getStyles(group: any): any {
-    let myStyles= {
-      'background':"url('questions-sprite.png') no-repeat",
-      'color': 'white',
-      'background-position': '-157px -4px',
-      'padding':'8px',
-      'height':'48px'
-    }
+    let myStyles = {
+      background: "url('questions-sprite.png') no-repeat",
+      color: "white",
+      "background-position": "-157px -4px",
+      padding: "8px",
+      height: "48px",
+    };
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === group.id) {
         let finalPosition = this.finalPosition(element.questionStatus);
-        myStyles= {
-          'background':"url('questions-sprite.png') no-repeat",
-          'color': 'white',
-          'background-position': finalPosition,
-          'padding':'8px',
-          'height':'48px'
-        }
+        myStyles = {
+          background: "url('questions-sprite.png') no-repeat",
+          color: "white",
+          "background-position": finalPosition,
+          padding: "8px",
+          height: "48px",
+        };
       }
     });
     return myStyles;
@@ -183,19 +216,19 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   finalPosition(status: String): string {
     switch (status) {
       case "ANS":
-        return '-4px -126px';
+        return "-4px -126px";
       case "NO_ANS":
-        return '-57px -6px';
+        return "-57px -6px";
       case "MARK_ANS":
-        return '-66px -178px';
+        return "-66px -178px";
       case "MARK_NOANS":
-        return '-108px -1px';
+        return "-108px -1px";
       default:
-        return '-157px -4px';
+        return "-157px -4px";
     }
   }
 
-  selectedTab(event: MatTabChangeEvent, prevquestion: any,form: NgForm) {
+  selectedTab(event: MatTabChangeEvent, prevquestion: any, form: NgForm) {
     this.count = 1;
     var t: string;
     var r: string;
@@ -209,37 +242,82 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         }
       });
 
-      this.pushToArray(this.answerDataofUser, {
-        questionId: prevquestion["id"],
-        timetaken: this.end - this.start,
-        answerSubmitted: t === undefined ? null : t,
-        questionStatus: r === undefined ? "NO_ANS" : r,
-      },true);
+      this.pushToArray(
+        this.answerDataofUser,
+        {
+          questionId: prevquestion["id"],
+          timetaken: this.end - this.start,
+          answerSubmitted: t === undefined ? null : t,
+          questionStatus: r === undefined ? "NO_ANS" : r,
+        },
+        true
+      );
     }
     this.selectedTabCurrent = event.tab.textLabel;
     this.sect = event.tab.textLabel;
     this.duration = [...this.question[this.sect]][0]["courseId"]["duration"];
     this.test_title = [...this.question[this.sect]][0]["courseId"]["title"];
     this.courseId = [...this.question[this.sect]][0]["courseId"]["id"];
-    
-    
-    this.sectionnotvisitedCount=this.sect+"notvisitedCount";
-    this.sectionansweredCount=this.sect+"answeredCount";
-    this.sectionnotAnsweredCount=this.sect+"notAnsweredCount";
-    this.sectionmarkedForReviewCount=this.sect+"markedForReviewCount";
-    this.sectionmarkedForReviewWithAnswerCount=this.sect+"markedForReviewWithAnswerCount";
- 
-    [...this.question[this.sect]][0][this.sectionansweredCount]=[...this.question[this.sect]][0][this.sectionansweredCount] === undefined?0:[...this.question[this.sect]][0][this.sectionansweredCount];
-    [...this.question[this.sect]][0][this.sectionnotAnsweredCount]=[...this.question[this.sect]][0][this.sectionnotAnsweredCount] === undefined?0:[...this.question[this.sect]][0][this.sectionnotAnsweredCount];
-    [...this.question[this.sect]][0][this.sectionmarkedForReviewCount]=[...this.question[this.sect]][0][this.sectionmarkedForReviewCount] === undefined?0:[...this.question[this.sect]][0][this.sectionmarkedForReviewCount];
-    [...this.question[this.sect]][0][this.sectionmarkedForReviewWithAnswerCount]=[...this.question[this.sect]][0][this.sectionmarkedForReviewWithAnswerCount] === undefined?0:[...this.question[this.sect]][0][this.sectionmarkedForReviewWithAnswerCount];
-    [...this.question[this.sect]][0][this.sectionnotvisitedCount]=[...this.question[this.sect]][0][this.sectionnotvisitedCount] === undefined?[...this.question[this.sect]].length:[...this.question[this.sect]][0][this.sectionnotvisitedCount];
-    
-    this.answeredCount=[...this.question[this.sect]][0][this.sectionansweredCount];
-    this.notAnsweredCount=[...this.question[this.sect]][0][this.sectionnotAnsweredCount];
-    this.markedForReviewCount=[...this.question[this.sect]][0][this.sectionmarkedForReviewCount];
-    this.markedForReviewWithAnswerCount=[...this.question[this.sect]][0][this.sectionmarkedForReviewWithAnswerCount];
-    this.notVisitedCount=[...this.question[this.sect]][0][this.sectionnotvisitedCount];
+    this.totalmarks = [...this.question[this.sect]][0]["courseId"][
+      "totalMarks"
+    ];
+    this.totalquestions = [...this.question[this.sect]][0]["courseId"][
+      "totalQuestion"
+    ];
+
+    this.sectionnotvisitedCount = this.sect + "notvisitedCount";
+    this.sectionansweredCount = this.sect + "answeredCount";
+    this.sectionnotAnsweredCount = this.sect + "notAnsweredCount";
+    this.sectionmarkedForReviewCount = this.sect + "markedForReviewCount";
+    this.sectionmarkedForReviewWithAnswerCount =
+      this.sect + "markedForReviewWithAnswerCount";
+
+    [...this.question[this.sect]][0][this.sectionansweredCount] =
+      [...this.question[this.sect]][0][this.sectionansweredCount] === undefined
+        ? 0
+        : [...this.question[this.sect]][0][this.sectionansweredCount];
+    [...this.question[this.sect]][0][this.sectionnotAnsweredCount] =
+      [...this.question[this.sect]][0][this.sectionnotAnsweredCount] ===
+      undefined
+        ? 0
+        : [...this.question[this.sect]][0][this.sectionnotAnsweredCount];
+    [...this.question[this.sect]][0][this.sectionmarkedForReviewCount] =
+      [...this.question[this.sect]][0][this.sectionmarkedForReviewCount] ===
+      undefined
+        ? 0
+        : [...this.question[this.sect]][0][this.sectionmarkedForReviewCount];
+    [...this.question[this.sect]][0][
+      this.sectionmarkedForReviewWithAnswerCount
+    ] =
+      [...this.question[this.sect]][0][
+        this.sectionmarkedForReviewWithAnswerCount
+      ] === undefined
+        ? 0
+        : [...this.question[this.sect]][0][
+            this.sectionmarkedForReviewWithAnswerCount
+          ];
+    [...this.question[this.sect]][0][this.sectionnotvisitedCount] =
+      [...this.question[this.sect]][0][this.sectionnotvisitedCount] ===
+      undefined
+        ? [...this.question[this.sect]].length
+        : [...this.question[this.sect]][0][this.sectionnotvisitedCount];
+
+    this.answeredCount = [...this.question[this.sect]][0][
+      this.sectionansweredCount
+    ];
+    this.notAnsweredCount = [...this.question[this.sect]][0][
+      this.sectionnotAnsweredCount
+    ];
+
+    this.markedForReviewCount = [...this.question[this.sect]][0][
+      this.sectionmarkedForReviewCount
+    ];
+    this.markedForReviewWithAnswerCount = [...this.question[this.sect]][0][
+      this.sectionmarkedForReviewWithAnswerCount
+    ];
+    this.notVisitedCount = [...this.question[this.sect]][0][
+      this.sectionnotvisitedCount
+    ];
 
     if (this.timer === 1) {
       this.countdownconfig = {
@@ -254,19 +332,19 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     };
     this.start = new Date().getTime();
 
-    let assignedCurrentOption=false;
-    let missedOutOnCurrentOption=false;
+    let assignedCurrentOption = false;
+    let missedOutOnCurrentOption = false;
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
         this.currentOption = element.answerSubmitted;
-        assignedCurrentOption=true;
-      } else{
-        missedOutOnCurrentOption=true;
+        assignedCurrentOption = true;
+      } else {
+        missedOutOnCurrentOption = true;
       }
     });
-    
-    if(!assignedCurrentOption && missedOutOnCurrentOption){
-     form.reset();
+
+    if (!assignedCurrentOption && missedOutOnCurrentOption) {
+      form.reset();
     }
   }
   start: any;
@@ -278,24 +356,41 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       form.value.optionSelected === "z" ||
       form.value.optionSelected === null
     ) {
-      this.pushToArray(this.answerDataofUser, {
-        questionId: quesId,
-        questionStatus: "NO_ANS",
-        answerSubmitted: form.value.optionSelected,
-        timetaken: this.end - this.start,
-      },false);
-     
-      this.savetheanswer(form.value.optionSelected,quesId,"NO_ANS",this.end - this.start); 
-    } else {
-      this.pushToArray(this.answerDataofUser, {
-        questionId: quesId,
-        questionStatus: "ANS",
-        answerSubmitted: form.value.optionSelected,
-        timetaken: this.end - this.start,
-      },false);
+      this.pushToArray(
+        this.answerDataofUser,
+        {
+          questionId: quesId,
+          questionStatus: "NO_ANS",
+          answerSubmitted: form.value.optionSelected,
+          timetaken: this.end - this.start,
+        },
+        false
+      );
 
-    
-      this.savetheanswer(form.value.optionSelected,quesId,"ANS",this.end - this.start); 
+      this.savetheanswer(
+        form.value.optionSelected,
+        quesId,
+        "NO_ANS",
+        this.end - this.start
+      );
+    } else {
+      this.pushToArray(
+        this.answerDataofUser,
+        {
+          questionId: quesId,
+          questionStatus: "ANS",
+          answerSubmitted: form.value.optionSelected,
+          timetaken: this.end - this.start,
+        },
+        false
+      );
+
+      this.savetheanswer(
+        form.value.optionSelected,
+        quesId,
+        "ANS",
+        this.end - this.start
+      );
     }
 
     if (this.count === this.questionGroup.length) {
@@ -309,21 +404,21 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       ...this.questionGroup[this.count],
     };
 
-    let assignedCurrentOption=false;
-    let missedOutOnCurrentOption=false;
+    let assignedCurrentOption = false;
+    let missedOutOnCurrentOption = false;
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
         this.currentOption = element.answerSubmitted;
-        assignedCurrentOption=true;
-      } else{
-        missedOutOnCurrentOption=true;
+        assignedCurrentOption = true;
+      } else {
+        missedOutOnCurrentOption = true;
       }
     });
-    
-    if(!assignedCurrentOption && missedOutOnCurrentOption){
+
+    if (!assignedCurrentOption && missedOutOnCurrentOption) {
       form.reset();
     }
-    
+
     this.start = new Date().getTime();
     this.count++;
   }
@@ -334,23 +429,41 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       form.value.optionSelected === "z" ||
       form.value.optionSelected === null
     ) {
-      this.pushToArray(this.answerDataofUser, {
-        questionId: quesId,
-        questionStatus: "MARK_NOANS",
-        answerSubmitted: form.value.optionSelected,
-        timetaken: this.end - this.start,
-      },false);
+      this.pushToArray(
+        this.answerDataofUser,
+        {
+          questionId: quesId,
+          questionStatus: "MARK_NOANS",
+          answerSubmitted: form.value.optionSelected,
+          timetaken: this.end - this.start,
+        },
+        false
+      );
 
-      this.savetheanswer(form.value.optionSelected,quesId,"MARK_NOANS",this.end - this.start); 
+      this.savetheanswer(
+        form.value.optionSelected,
+        quesId,
+        "MARK_NOANS",
+        this.end - this.start
+      );
     } else {
-      this.pushToArray(this.answerDataofUser, {
-        questionId: quesId,
-        questionStatus: "MARK_ANS",
-        answerSubmitted: form.value.optionSelected,
-        timetaken: this.end - this.start,
-      },false);
+      this.pushToArray(
+        this.answerDataofUser,
+        {
+          questionId: quesId,
+          questionStatus: "MARK_ANS",
+          answerSubmitted: form.value.optionSelected,
+          timetaken: this.end - this.start,
+        },
+        false
+      );
 
-      this.savetheanswer(form.value.optionSelected,quesId,"MARK_ANS",this.end - this.start); 
+      this.savetheanswer(
+        form.value.optionSelected,
+        quesId,
+        "MARK_ANS",
+        this.end - this.start
+      );
     }
 
     if (this.count === this.questionGroup.length) {
@@ -363,18 +476,18 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       ...this.questionGroup[this.count],
     };
 
-    let assignedCurrentOption=false;
-    let missedOutOnCurrentOption=false;
+    let assignedCurrentOption = false;
+    let missedOutOnCurrentOption = false;
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
         this.currentOption = element.answerSubmitted;
-        assignedCurrentOption=true;
-      } else{
-        missedOutOnCurrentOption=true;
+        assignedCurrentOption = true;
+      } else {
+        missedOutOnCurrentOption = true;
       }
     });
 
-    if(!assignedCurrentOption && missedOutOnCurrentOption){
+    if (!assignedCurrentOption && missedOutOnCurrentOption) {
       form.reset();
     }
 
@@ -394,12 +507,16 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
 
   clearResponse(form: NgForm, quesId: number) {
     form.reset();
-    this.pushToArray(this.answerDataofUser, {
-      questionId: quesId,
-      questionStatus: "NO_ANS",
-      answerSubmitted: form.value.optionSelected,
-      timetaken: "4",
-    },false);
+    this.pushToArray(
+      this.answerDataofUser,
+      {
+        questionId: quesId,
+        questionStatus: "NO_ANS",
+        answerSubmitted: form.value.optionSelected,
+        timetaken: "4",
+      },
+      false
+    );
   }
 
   // pushToArray(arr, obj) {
@@ -422,43 +539,88 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     if (!existingIds.includes(obj.questionId)) {
       arr.push(obj);
 
-      if(this.notVisitedCount !== 0){
-        [...this.question[this.sect]][0][this.sectionnotvisitedCount]=[...this.question[this.sect]][0][this.sectionnotvisitedCount]-1;
-        this.notVisitedCount=[...this.question[this.sect]][0][this.sectionnotvisitedCount];
+      if (this.notVisitedCount !== 0) {
+        [...this.question[this.sect]][0][this.sectionnotvisitedCount] =
+          [...this.question[this.sect]][0][this.sectionnotvisitedCount] - 1;
+        this.notVisitedCount = [...this.question[this.sect]][0][
+          this.sectionnotvisitedCount
+        ];
       }
 
-      this.methodToManipulateTheCount(obj.questionStatus,1);
+      this.methodToManipulateTheCount(obj.questionStatus, 1);
     } else {
       arr.forEach((element, index) => {
         if (element.questionId === obj.questionId) {
           obj.timetaken += element.timetaken;
           arr[index] = obj;
-          if(!checkIfTabChanged){
-            this.methodToManipulateTheCount(element.questionStatus,-1);
-            this.methodToManipulateTheCount(obj.questionStatus,1); 
+          if (!checkIfTabChanged) {
+            this.methodToManipulateTheCount(element.questionStatus, -1);
+            this.methodToManipulateTheCount(obj.questionStatus, 1);
           }
         }
       });
     }
   }
 
-  methodToManipulateTheCount(status:string,count:number){
+  methodToManipulateTheCount(status: string, count: number) {
     switch (status) {
       case "ANS":
-        [...this.question[this.sect]][0][this.sectionansweredCount] = (count === -1) ?(this.answeredCount !== 0 ? [...this.question[this.sect]][0][this.sectionansweredCount]+count:this.answeredCount):[...this.question[this.sect]][0][this.sectionansweredCount]+count;
-        this.answeredCount=[...this.question[this.sect]][0][this.sectionansweredCount];
+        [...this.question[this.sect]][0][this.sectionansweredCount] =
+          count === -1
+            ? this.answeredCount !== 0
+              ? [...this.question[this.sect]][0][this.sectionansweredCount] +
+                count
+              : this.answeredCount
+            : [...this.question[this.sect]][0][this.sectionansweredCount] +
+              count;
+        this.answeredCount = [...this.question[this.sect]][0][
+          this.sectionansweredCount
+        ];
         break;
       case "NO_ANS":
-        [...this.question[this.sect]][0][this.sectionnotAnsweredCount] = (count === -1) ?(this.notAnsweredCount !== 0 ? [...this.question[this.sect]][0][this.sectionnotAnsweredCount]+count:this.notAnsweredCount):[...this.question[this.sect]][0][this.sectionnotAnsweredCount]+count;
-        this.notAnsweredCount=[...this.question[this.sect]][0][this.sectionnotAnsweredCount];
+        [...this.question[this.sect]][0][this.sectionnotAnsweredCount] =
+          count === -1
+            ? this.notAnsweredCount !== 0
+              ? [...this.question[this.sect]][0][this.sectionnotAnsweredCount] +
+                count
+              : this.notAnsweredCount
+            : [...this.question[this.sect]][0][this.sectionnotAnsweredCount] +
+              count;
+        this.notAnsweredCount = [...this.question[this.sect]][0][
+          this.sectionnotAnsweredCount
+        ];
         break;
       case "MARK_ANS":
-        [...this.question[this.sect]][0][this.sectionmarkedForReviewWithAnswerCount] = (count === -1) ?(this.markedForReviewWithAnswerCount !== 0 ? [...this.question[this.sect]][0][this.sectionmarkedForReviewWithAnswerCount]+count:this.markedForReviewWithAnswerCount):[...this.question[this.sect]][0][this.sectionmarkedForReviewWithAnswerCount]+count;
-        this.markedForReviewWithAnswerCount=[...this.question[this.sect]][0][this.sectionmarkedForReviewWithAnswerCount];
+        [...this.question[this.sect]][0][
+          this.sectionmarkedForReviewWithAnswerCount
+        ] =
+          count === -1
+            ? this.markedForReviewWithAnswerCount !== 0
+              ? [...this.question[this.sect]][0][
+                  this.sectionmarkedForReviewWithAnswerCount
+                ] + count
+              : this.markedForReviewWithAnswerCount
+            : [...this.question[this.sect]][0][
+                this.sectionmarkedForReviewWithAnswerCount
+              ] + count;
+        this.markedForReviewWithAnswerCount = [...this.question[this.sect]][0][
+          this.sectionmarkedForReviewWithAnswerCount
+        ];
         break;
       case "MARK_NOANS":
-        [...this.question[this.sect]][0][this.sectionmarkedForReviewCount] = (count === -1) ?(this.markedForReviewCount !== 0 ? [...this.question[this.sect]][0][this.sectionmarkedForReviewCount]+count:this.markedForReviewCount):[...this.question[this.sect]][0][this.sectionmarkedForReviewCount]+count;
-        this.markedForReviewCount=[...this.question[this.sect]][0][this.sectionmarkedForReviewCount];
+        [...this.question[this.sect]][0][this.sectionmarkedForReviewCount] =
+          count === -1
+            ? this.markedForReviewCount !== 0
+              ? [...this.question[this.sect]][0][
+                  this.sectionmarkedForReviewCount
+                ] + count
+              : this.markedForReviewCount
+            : [...this.question[this.sect]][0][
+                this.sectionmarkedForReviewCount
+              ] + count;
+        this.markedForReviewCount = [...this.question[this.sect]][0][
+          this.sectionmarkedForReviewCount
+        ];
         break;
     }
   }
@@ -479,12 +641,16 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         }
       });
 
-      this.pushToArray(this.answerDataofUser, {
-        questionId: prevquestion["id"],
-        timetaken: this.end - this.start,
-        answerSubmitted: t === undefined ? null : t,
-        questionStatus: r === undefined ? "NO_ANS" : r,
-      },true);
+      this.pushToArray(
+        this.answerDataofUser,
+        {
+          questionId: prevquestion["id"],
+          timetaken: this.end - this.start,
+          answerSubmitted: t === undefined ? null : t,
+          questionStatus: r === undefined ? "NO_ANS" : r,
+        },
+        true
+      );
     }
 
     this.answerDataofUser.forEach((element, index) => {
@@ -526,37 +692,42 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     alert(`I'm leaving the app!`);
   }
 
-  savetheanswer(answerSubmitted:string,questionId:number,questionStatus:string,timeTaken:number) {
-      this.quesService
-        .postSavedAnswer({
-          answerSubmitted: answerSubmitted,
-          courseId: +this.courseId,
-          questionId: questionId,
-          questionStatus: questionStatus,
-          timeTaken: timeTaken,
-          userId: +this.userId
-        })
-        .subscribe(
-          (data) => {
-            console.log("Successfully saved the answer");
-          },
-          (err) => {
-            console.log(err);
-          }
-        );
+  savetheanswer(
+    answerSubmitted: string,
+    questionId: number,
+    questionStatus: string,
+    timeTaken: number
+  ) {
+    this.quesService
+      .postSavedAnswer({
+        answerSubmitted: answerSubmitted,
+        courseId: +this.courseId,
+        questionId: questionId,
+        questionStatus: questionStatus,
+        timeTaken: timeTaken,
+        userId: +this.userId,
+      })
+      .subscribe(
+        (data) => {
+          console.log("Successfully saved the answer");
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 
   submittheanswer(exam_over: boolean) {
     if (exam_over) {
       //console.log("Exam is over");
       let endingTime = new Date().getTime();
-      let totalTimeTaken= endingTime - this.startingTime;
+      let totalTimeTaken = endingTime - this.startingTime;
       this.quesService
         .postSubmittedAnswer({
           courseId: +this.courseId,
           status: "COMPLETED",
           totalTime: totalTimeTaken.toString(),
-          userId: +this.userId
+          userId: +this.userId,
         })
         .subscribe(
           (data) => {
@@ -570,7 +741,6 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     }
   }
 }
-
 
 // Swal.fire({
 //   title: "Are you sure?",

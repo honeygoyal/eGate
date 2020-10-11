@@ -7,7 +7,6 @@ import { ExamDetailsComponent } from "./exam-details/exam-details.component";
 import { AboutComponent } from "./about/about.component";
 import { UserdashboardModule } from "./userdashboard/userdashboard.module";
 import { AuthGuard } from "./auth/auth.guard";
-
 const routes: Routes = [
   { path: "", component: BodyComponent },
   { path: "home", component: BodyComponent },
@@ -24,7 +23,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: "exampanel/:test_id",
+    path: "exampanel",
     loadChildren: () =>
       import("./exampanel/exampanel.module").then((m) => m.ExampanelModule),
     canActivate: [AuthGuard],

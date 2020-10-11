@@ -37,6 +37,7 @@ import { BuypackageComponent } from "./component/buypackage/buypackage.component
 import { authInterceptorProviders } from "./interceptors/AuthInterceptor";
 import { TestseriesService } from "./service/testseries.service";
 import { ReportComponent } from "./component/report/report.component";
+import { AdminPanelComponent } from "./component/admin-panel/admin-panel.component";
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ReportComponent } from "./component/report/report.component";
     DialogComponent,
     BuypackageComponent,
     ReportComponent,
+    AdminPanelComponent,
   ],
   imports: [
     CommonModule,
@@ -89,6 +91,7 @@ import { ReportComponent } from "./component/report/report.component";
           { path: "report", component: ReportComponent },
           { path: "demoseries", component: DemoseriesComponent },
           { path: "buypackage", component: BuypackageComponent },
+          { path: "adminPanel", component: AdminPanelComponent },
         ],
       },
     ]),

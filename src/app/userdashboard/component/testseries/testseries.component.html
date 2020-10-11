@@ -41,15 +41,15 @@
           <mat-card-subtitle>{{ exam.test_subtitle }}</mat-card-subtitle>
           <h5
             *ngIf="exam.status !== 'PENDING' && exam.status !== 'COMPLETED'"
-            style="color: red; margin-left: 40vw;"
+            style="color: red; margin-left: 40vw"
           >
-         Start date {{ exam.startDate }}
+            Start date {{ exam.startDate }}
           </h5>
           <h5
             *ngIf="exam.status === 'PENDING'"
-            style="color: red; margin-left: 40vw;"
+            style="color: red; margin-left: 40vw"
           >
-         {{exam.checkForRemainingDays}}
+            {{ exam.checkForRemainingDays }}
           </h5>
         </mat-card-header>
         <mat-card-content id="card-content">
@@ -68,18 +68,22 @@
             </div>
           </div>
           <button
-            *ngIf="exam.status !== 'PENDING' && exam.status !== 'COMPLETED' && exam.isExamActive === true"
-            (click)="startaction(exam.courseId)"
+            *ngIf="
+              exam.status !== 'PENDING' &&
+              exam.status !== 'COMPLETED' &&
+              exam.isExamActive === true
+            "
+            (click)="startaction(exam.courseId, exam)"
             class="btnactioncard"
-            style="background: #07c4fb;"
+            style="background: #07c4fb"
           >
             Start Now
           </button>
           <button
-            (click)="startaction(exam.courseId)"
+            (click)="startaction(exam.courseId, exam)"
             class="btnactioncard"
             *ngIf="exam.status === 'PENDING' && exam.isExamActive === true"
-            style="background: #6c63ff;"
+            style="background: #6c63ff"
           >
             Continue
           </button>
@@ -113,7 +117,7 @@
           <mat-card-title>{{ exam.title }}</mat-card-title>
           <mat-card-subtitle>{{ exam.test_subtitle }}</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content id="card-content" style="margin-top: 2rem;">
+        <mat-card-content id="card-content" style="margin-top: 2rem">
           <div id="cont">
             <div class="sub-cont">
               <h4>Total Questions</h4>
@@ -130,10 +134,10 @@
           </div>
 
           <button
-            (click)="startaction(exam.courseId)"
+            (click)="startaction(exam.courseId, exam)"
             class="btnactioncard"
             *ngIf="exam.status === 'PENDING'"
-            style="background: #6c63ff;"
+            style="background: #6c63ff"
           >
             Continue
           </button>

@@ -33,6 +33,10 @@ import { CalculatorComponent } from "./component/calculator/calculator.component
 import { authInterceptorProviders } from "./interceptor/AuthInterceptor";
 import { CountdownModule, CountdownGlobalConfig } from "ngx-countdown";
 import { TimerComponentComponent } from "./component/timer-component/timer-component.component";
+import { DialogComponent } from "./component/exampanelscreen/dialog/dialog.component";
+import { MatDialogModule } from "@angular/material/dialog";
+import { InstructionDialogComponent } from "./component/exampanelscreen/instruction-dialog/instruction-dialog.component";
+import { ExamInstructionsComponent } from "./component/exam-instructions/exam-instructions.component";
 // function countdownConfigFactory(): CountdownGlobalConfig {
 //   return { locale: 'mm:ss' };
 // }
@@ -43,6 +47,9 @@ import { TimerComponentComponent } from "./component/timer-component/timer-compo
     BlockCopyPasteDirective,
     CalculatorComponent,
     TimerComponentComponent,
+    DialogComponent,
+    InstructionDialogComponent,
+    ExamInstructionsComponent,
   ],
   imports: [
     CountdownModule,
@@ -64,7 +71,7 @@ import { TimerComponentComponent } from "./component/timer-component/timer-compo
     MatToolbarModule,
     MatListModule,
     MatGridListModule,
-
+    MatDialogModule,
     MatStepperModule,
     MatTabsModule,
     MatExpansionModule,
@@ -75,12 +82,14 @@ import { TimerComponentComponent } from "./component/timer-component/timer-compo
     MatProgressBarModule,
     MatSelectModule,
     RouterModule.forChild([
+      { path: "exam/:test_id", component: ExampanelscreenComponent },
       {
         path: "",
-        component: ExampanelscreenComponent,
+        component: ExamInstructionsComponent,
       },
     ]),
   ],
   providers: [authInterceptorProviders, { provide: CountdownGlobalConfig }],
+  entryComponents: [DialogComponent, InstructionDialogComponent],
 })
 export class ExampanelModule {}

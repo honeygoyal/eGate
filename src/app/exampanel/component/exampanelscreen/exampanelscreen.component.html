@@ -18,17 +18,17 @@
         "
       >
         <mat-chip-list aria-label="Fish selection">
-          <mat-chip style="background: rgb(68, 67, 67); color: white;"
+          <mat-chip style="background: rgb(68, 67, 67); color: white"
             ><b>{{ test_title }}</b></mat-chip
           >
         </mat-chip-list>
         <div>
-          <a style="color: black; cursor: pointer;" (click)="hidecalc()"
+          <a style="color: black; cursor: pointer" (click)="hidecalc()"
             ><i class="fas fa-2x fa-calculator"></i
           ></a>
 
           <app-calculator
-            style="position: absolute; z-index: 2000 !important;"
+            style="position: absolute; z-index: 2000 !important"
             [ngClass]="calcstatus ? 'show' : 'hide'"
           ></app-calculator>
         </div>
@@ -42,7 +42,7 @@
           align-items: center;
         "
       >
-        <h6 style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+        <h6 style="margin-top: 0.5rem; margin-bottom: 0.5rem">
           <b>SECTION</b>
         </h6>
         <h5>
@@ -57,10 +57,10 @@
 
       <div id="section-tab">
         <mat-tab-group
-          style="z-index: 1;"
+          style="z-index: 1"
           (wheel)="scrollTabs($event)"
           #tabGroup
-          (selectedTabChange)="selectedTab($event, questiontoShow,f)"
+          (selectedTabChange)="selectedTab($event, questiontoShow, f)"
         >
           <mat-tab [label]="tab.key" *ngFor="let tab of question | keyvalue">
           </mat-tab>
@@ -77,27 +77,30 @@
             align-items: center;
           "
         >
-          <h5 style="margin-top: 1rem; margin-bottom: 0.5rem; color: #f05666;">
+          <h5 style="margin-top: 1rem; margin-bottom: 0.5rem; color: #f05666">
             QUESTION TYPE : {{ questiontoShow.questionType }}
           </h5>
           <h6>
-            Marks for correct answer 
-            <span style="color: green;">{{questiontoShow.marks}} </span> |
+            Marks for correct answer
+            <span style="color: green">{{ questiontoShow.marks }} </span> |
             Negative Marks
-            <span style="color: red;"> {{ questiontoShow.negativeMarks }}</span>
+            <span style="color: red"> {{ questiontoShow.negativeMarks }}</span>
           </h6>
         </div>
-        <hr style="color: #07c4fb; background: #07c4fb; height: 1px;" />
-        <div id="quesOuterDiv" style="height: auto; overflow: hidden; position: relative;">
+        <hr style="color: #07c4fb; background: #07c4fb; height: 1px" />
+        <div
+          id="quesOuterDiv"
+          style="height: auto; overflow: hidden; position: relative"
+        >
           <div id="questionandanswer">
-            <h4 style="margin: 0.2rem 0rem;">Question No: {{ count }}</h4>
-              <a target="_blank">
-                <img
-                  [src]="transform(questiontoShow.question)"
-                  style="height: auto; width: 55vw;"
-                  alt=""
-                />
-              </a>
+            <h4 style="margin: 0.2rem 0rem">Question No: {{ count }}</h4>
+            <a target="_blank">
+              <img
+                [src]="transform(questiontoShow.question)"
+                style="height: auto; width: 50vw"
+                alt=""
+              />
+            </a>
             <form
               #f="ngForm"
               (ngSubmit)="questiontodisplayincrement(f, questiontoShow.id)"
@@ -115,7 +118,7 @@
                   "
                   aria-label="Select an option"
                 >
-                  <mat-radio-button style="margin-top: 0rem;" value="A"
+                  <mat-radio-button style="margin-top: 0rem" value="A"
                     >A</mat-radio-button
                   >
                   <mat-radio-button value="B">B</mat-radio-button>
@@ -155,12 +158,14 @@
                   margin-top: 0.4rem;
                 "
               >
-                <div id="group1"
+                <div
+                  id="group1"
                   style="
                     display: flex;
                     justify-content: flex-start;
                     align-items: center;
-                  ">
+                  "
+                >
                   <a
                     (click)="markforreviewfun(f, questiontoShow.id)"
                     style="
@@ -212,7 +217,7 @@
               </div>
             </form>
           </div>
-       </div>
+        </div>
       </div>
     </div>
 
@@ -228,7 +233,7 @@
         "
       >
         <div id="instruction">
-          <a href="">
+          <a (click)="questionDialog()">
             <h5>
               <i
                 style="
@@ -243,7 +248,7 @@
             </h5></a
           >
 
-          <a href="">
+          <a (click)="instructionDialog()">
             <h5>
               <i
                 style="
@@ -282,31 +287,74 @@
             "
             alt=""
           />
-          <h3 style="color: white; margin-right: 10%;">{{ name }}</h3>
+          <h3 style="color: white; margin-right: 10%">{{ name }}</h3>
         </div>
         <div id="buttoninstructions">
           <div class="diff_type_notation_area_outer">
             <div class="diff_type_notation_area_inner">
               <div class="notation_type_description">
                 <div class="notation_typeDiv leftdiv_notation">
-                  <span class="answered answeredCount" id="">{{answeredCount}}</span> <span class="type_title answeredLabel longtext-hide" id="" title="Answered">Answered</span>
+                  <span class="answered answeredCount" id="">{{
+                    answeredCount
+                  }}</span>
+                  <span
+                    class="type_title answeredLabel longtext-hide"
+                    id=""
+                    title="Answered"
+                    >Answered</span
+                  >
                 </div>
                 <div class="notation_typeDiv">
-                  <span class="not_answered notAnsweredCount" id="">{{notAnsweredCount}}</span> <span class="type_title notAnsweredLabel longtext-hide" id="" title="Not Answered">Not Answered</span>
+                  <span class="not_answered notAnsweredCount" id="">{{
+                    notAnsweredCount
+                  }}</span>
+                  <span
+                    class="type_title notAnsweredLabel longtext-hide"
+                    id=""
+                    title="Not Answered"
+                    >Not Answered</span
+                  >
                 </div>
 
                 <div class="clear"></div>
                 <div class="notation_typeDiv leftdiv_notation">
-                  <span class="not_visited notVisitedCount" id=""> {{notVisitedCount}}</span> <span class="type_title notVisitedLabel longtext-hide" id="" title="Not Visited">Not Visited</span>
+                  <span class="not_visited notVisitedCount" id="">
+                    {{ notVisitedCount }}</span
+                  >
+                  <span
+                    class="type_title notVisitedLabel longtext-hide"
+                    id=""
+                    title="Not Visited"
+                    >Not Visited</span
+                  >
                 </div>
                 <div class="notation_typeDiv MarkForReviewDiv">
-                  <span class="review markedCount" id="">{{markedForReviewCount}}</span> <span class="type_title markedLabel longtext-hide" id="" title="Marked for Review">Marked for Review</span>
+                  <span class="review markedCount" id="">{{
+                    markedForReviewCount
+                  }}</span>
+                  <span
+                    class="type_title markedLabel longtext-hide"
+                    id=""
+                    title="Marked for Review"
+                    >Marked for Review</span
+                  >
                 </div>
 
-                <div class="clear"></div>           
-                <div class="notation_typeDiv answered_review_container review_answer" id="">
-                  <span class="review_answered markedAnsweredCount" id="">{{markedForReviewWithAnswerCount}}</span>
-                  <span class="type_title markedAndAnsweredLabel" id="" title="Answered &amp; Marked for Review (will be considered for evaluation)">Answered &amp; Marked for Review (will be considered for evaluation)</span>
+                <div class="clear"></div>
+                <div
+                  class="notation_typeDiv answered_review_container review_answer"
+                  id=""
+                >
+                  <span class="review_answered markedAnsweredCount" id="">{{
+                    markedForReviewWithAnswerCount
+                  }}</span>
+                  <span
+                    class="type_title markedAndAnsweredLabel"
+                    id=""
+                    title="Answered &amp; Marked for Review (will be considered for evaluation)"
+                    >Answered &amp; Marked for Review (will be considered for
+                    evaluation)</span
+                  >
                 </div>
                 <div class="clear"></div>
               </div>
@@ -329,21 +377,18 @@
           {{ selectedTabCurrent }}
         </h4>
         <div id="choosequestion">
-          <h4 style="color: white; margin-left: 0.6rem;">Choose a question</h4>
+          <h4 style="color: white; margin-left: 0.6rem">Choose a question</h4>
           <div class="grid-container question_area">
             <a
               *ngFor="let group of questionGroup; let i = index"
               (click)="sidebuttonforquestion(i + 1, questiontoShow)"
-              ><div
-                [ngStyle]="getStyles(group)"
-                class="grid-item"
-              >
+              ><div [ngStyle]="getStyles(group)" class="grid-item">
                 {{ i + 1 }}
               </div></a
             >
           </div>
         </div>
-        <div id="actionbtn" style="margin-left: 1rem; margin-top: 2rem;">
+        <div id="actionbtn" style="margin-left: 1rem; margin-top: 2rem">
           <a
             (click)="submittheanswer(true)"
             style="
@@ -354,8 +399,10 @@
               margin: auto;
               width: 95%;
               text-align: center;
-              cursor: pointer;">
-              <b>Submit</b>
+              cursor: pointer;
+            "
+          >
+            <b>Submit</b>
           </a>
         </div>
       </mat-card>
