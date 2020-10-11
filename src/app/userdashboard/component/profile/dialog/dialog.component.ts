@@ -21,7 +21,7 @@ export class DialogComponent implements OnInit {
   }
 
   submit(form) {
-    console.log(form.value);
+    //console.log(form.value);
     this.dialogRef.close(`${(form.value.oldpassword, form.value.newpassword)}`);
   }
 }

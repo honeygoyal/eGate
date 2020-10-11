@@ -37,6 +37,7 @@ var vKeyboard = {
 	keyProceed : true
 };
 
+
 function triggerKeyboard(type,isQuesMand){
 	// Numeric Keyboard
 	if(type==1){

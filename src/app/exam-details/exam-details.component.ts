@@ -17,7 +17,7 @@ export class ExamDetailsComponent implements OnInit {
   }
 
   onChange(deviceValue) {
-    console.log(deviceValue);
+    //console.log(deviceValue);
     this.subjectSelected = deviceValue;
   }
 }

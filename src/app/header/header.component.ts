@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     this.isLoggedIn$ = this.store.pipe(select(isLoggedIn));
     this.isLoggedOut$ = this.store.pipe(map(isLoggedOut));
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.profilePhoto = data.user.photo;
     });
   }

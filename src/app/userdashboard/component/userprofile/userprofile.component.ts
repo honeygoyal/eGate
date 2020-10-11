@@ -23,12 +23,11 @@ export class UserprofileComponent implements OnInit {
   ngOnInit(): void {
     // this.user$ = this.store.pipe(select(user));
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
-      console.log(data);
+      //console.log(data);
       this.name = data.user.name;
       this.branch = data.user.discipline;
       this.examref = [...data.user.coursesOffered];
-      console.log(data);
-
+      //console.log(data);
     });
 
     // console.log(this.user$["actionsObserver"]["_value"]["user"]["user"]);
@@ -43,7 +42,7 @@ export class UserprofileComponent implements OnInit {
     //console.log(content);
     var testseriesurl: string;
     var show: boolean = false;
-    console.log(this.examref);
+    //console.log(this.examref);
     for (let exam of this.examref) {
       if (exam.examNameService === "GATE ONLINE TEST SERIES") {
         show = true;

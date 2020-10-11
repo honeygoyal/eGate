@@ -19,7 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (req.headers.get("skip")) return next.handle(req);
     let authReq = req;
     const token = this.getToken();
-    console.log(token);
+    //console.log(token);
     if (token != null) {
       authReq = req.clone({
         headers: req.headers.set(TOKEN_HEADER_KEY, "Bearer " + token),
@@ -38,7 +38,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
   getToken(): string {
     var ret = JSON.parse(localStorage.getItem("user"));
-    console.log(ret.token);
+    //console.log(ret.token);
     return ret.token;
   }
 }

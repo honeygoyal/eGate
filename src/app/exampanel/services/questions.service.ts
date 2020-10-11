@@ -11,7 +11,7 @@ export class QuestionsService {
   constructor(private http: HttpClient) {}
 
   getQuestionsForTestSeries(id: any): Observable<any> {
-    console.log("getQuestionsForTestSeries:"+id);
+    //console.log("getQuestionsForTestSeries:"+id);
     return this.http.get("http://localhost:8080/questionLayout/getQuestions", {
       params: { courseId: id },
     });
@@ -19,7 +19,7 @@ export class QuestionsService {
 
   
   postSavedAnswer(savedAnswerModel: SavedAnswerModel) {
-    console.log(savedAnswerModel);
+    //console.log(savedAnswerModel);
     return this.http.post(
       "http://localhost:8080/reportDetail/saveReportQuestionWise",
       savedAnswerModel
@@ -27,7 +27,7 @@ export class QuestionsService {
   }
 
   postSubmittedAnswer(submitModel: AnswerSubmitModel) {
-    console.log(submitModel);
+    //console.log(submitModel);
     return this.http.post(
       "http://localhost:8080/reportOverall/saveOverallReport",
       submitModel

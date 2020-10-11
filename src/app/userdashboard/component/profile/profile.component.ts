@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
     // this.user$ = this.store.pipe(select(user));
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
       this.user = data;
-      console.log(`current user data: ${this.user}`);
+      //console.log(`current user data: ${this.user}`);
     });
 
     // console.log(this.user$["actionsObserver"]["_value"]["user"]["user"]);

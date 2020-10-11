@@ -39,7 +39,7 @@ export class TestseriesComponent implements OnInit {
         .subscribe((data) => {
           this.exams = [...data];
           this.filterexams();
-          console.log("exams: "+this.exams);
+          //console.log("exams: "+this.exams);
         });
     });
   }

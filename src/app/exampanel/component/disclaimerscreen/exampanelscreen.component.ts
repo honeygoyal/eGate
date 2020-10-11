@@ -19,8 +19,7 @@ import { Useranswer } from "../../model/Useranswer.model";
 import { NgForm } from "@angular/forms";
 import { Subject, interval } from "rxjs";
 import { TimerService } from "src/app/shared/timer.service";
-import "./../../../../assets/virtual_keyboard.js";
-
+import { myWindow } from "src/app/userdashboard/component/testseries/testseries.component";
 @Component({
   selector: "app-exampanelscreen",
   templateUrl: "./exampanelscreen.component.html",
@@ -57,13 +56,6 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   markedForReviewWithAnswerCount:number=0;
   answeredCount:number=0;
   notAnsweredCount:number=1;
-
-  totalNotVisitedCount:number;
-  totalMarkedForReviewCount:number=0;
-  totalMarkedForReviewWithAnswerCount:number=0;
-  totalAnsweredCount:number=0;
-  totalNotAnsweredCount:number=1;
-
   sectionansweredCount:string;
   sectionnotAnsweredCount:string;
   sectionmarkedForReviewCount:string;
@@ -120,34 +112,11 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     return this.sanitizer.bypassSecurityTrustResourceUrl(base64Image);
   }
 
-  // @HostListener("window:blur", ["$event"])
-  // onblur(event: any): void {
-  //   if (this.attempts !== 0) {
-  //     Swal.fire({
-  //       icon: "error",
-  //       title: "Window Changed Alert",
-  //       text: this.attempts + " attempts left",
-  //     });
-  //     this.attempts = this.attempts - 1;
-  //   } else {
-  //     Swal.fire({
-  //       icon: "error",
-  //       title: "Maximum attempt tried",
-  //       text: "You exam has ended",
-  //     });
-  //     window.close();
-  //   }
-  // }
 
   @HostListener("window:unload", ["$event"])
   unloadHandler(event) {
     alert("unload");
   }
-
-  // @HostListener("window:beforeunload", ["$event"])
-  // beforeUnloadHandler(event) {
-  //   alert("bunload");
-  // }
 
   optionSelectedpreviously(ques_Id: number) {
     this.answerDataofUser.forEach((element, index) => {
@@ -402,20 +371,6 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     },false);
   }
 
-  // pushToArray(arr, obj) {
-  //   var existingIds = arr.map((obj) => obj.question_id);
-
-  //   if (!existingIds.includes(obj.question_id)) {
-  //     arr.push(obj);
-  //   } else {
-  //     arr.forEach((element, index) => {
-  //       if (element.question_id === obj.question_id) {
-  //         arr[index] = obj;
-  //       }
-  //     });
-  //   }
-  // }
-
   pushToArray(arr, obj,checkIfTabChanged) {
     var existingIds = arr.map((obj) => obj.questionId);
 
@@ -571,18 +526,3 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   }
 }
 
-
-// Swal.fire({
-//   title: "Are you sure?",
-//   text: "You want to End the Exam?",
-//   icon: "warning",
-//   showCancelButton: true,
-//   confirmButtonColor: "#3085d6",
-//   cancelButtonColor: "#d33",
-//   confirmButtonText: "Yes, Save it!",
-// }).then((result) => {
-//   if (result.value) {
-//     Swal.fire("Saved!", "Exam Over", "success");
-//   }
-//   window.close();
-// });
