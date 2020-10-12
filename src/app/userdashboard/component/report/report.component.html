@@ -1,31 +1,195 @@
 <div id="contentcontainer">
-  <mat-tab-group mat-align-tabs="start">
-    <mat-tab label="Performance Analysis">Performance Analysis</mat-tab>
-    <mat-tab label="Solution">
+  <mat-tab-group id="parent-tab" mat-align-tabs="start">
+    <mat-tab label="TEST ANALYTICS">PERFORMANCE ANALYSIS</mat-tab>
+    <mat-tab label="SOLUTIONS">
       <mat-card
-        style="width: 50rem; margin: 1rem; padding: 0rem; padding-top: 1rem;"
+        *ngFor="let questiondata of questionanalysis; let i = index"
+        style="
+          width: 90%;
+          margin: 1rem;
+          margin-left: 4rem;
+          padding: 0rem;
+          padding-top: 1rem;
+          margin-bottom: 2rem;
+          box-shadow: 0 0 20px 1px gray;
+        "
       >
-        <div style="margin-left: 2rem;">
-          <h4 style="color: red; margin-bottom: 1.5rem;">Question No.1</h4>
-          <p style="margin-bottom: 1.5rem;">
-            Select the word that is most SIMILAR in the meaning to the bold word
-            in the capital letters
-          </p>
-          <p style="margin-bottom: 1rem;">Option A</p>
-          <p style="margin-bottom: 1rem;">Option A</p>
-          <p style="margin-bottom: 1rem;">Option A</p>
-          <p style="margin-bottom: 1rem;">Option A</p>
+        <div style="margin-left: 2rem">
+          <h4 style="color: red; margin-bottom: 1.5rem">
+            Question No. {{ i + 1 }}
+          </h4>
+
+          <img
+            [src]="transform(questiondata.question.question)"
+            style="height: auto; width: 90%; margin-bottom: 1rem"
+            alt=""
+          />
         </div>
-        <div id="2ndmatgroup" style="background: #646464;">
+        <div id="twomatgroup" style="background: white">
           <mat-tab-group>
-            <mat-tab label="Solution">Solution</mat-tab>
-            <mat-tab label="Challenge">Challenge</mat-tab>
-            <mat-tab label="Video Solution">Video Solution</mat-tab>
-            <mat-tab label="Question Analysis">Question Analysis</mat-tab>
+            <mat-tab label="SOLUTION">
+              <div
+                style="
+                  height: 100%;
+                  width: 100%;
+                  padding: 1rem;
+                  overflow: hidden;
+                "
+              >
+                <div style="display: flex; justify-content: space-between">
+                  <a
+                    style="
+                      color: white;
+                      background: #07c4fb;
+                      padding: 0.5rem;
+                      border-radius: 5px;
+                    "
+                    >Correct Answer:
+                    <span style="color: green; font-size: large"
+                      >({{ questiondata.question.answer }})</span
+                    >
+                  </a>
+                  <a
+                    style="
+                      color: white;
+                      background: #07c4fb;
+                      padding: 0.5rem;
+                      border-radius: 5px;
+                      margin-right: 2rem;
+                    "
+                    >Your Answer:
+                    <span
+                      *ngIf="questiondata.yourAnswer === ''"
+                      style="color: red"
+                      >NOT ANSWERED</span
+                    >
+                    <span
+                      *ngIf="questiondata.yourAnswer !== ''"
+                      style="color: BLACK; font-size: large"
+                      >({{ questiondata.yourAnswer }})</span
+                    ></a
+                  >
+                </div>
+
+                <div
+                  style="margin: 1rem; margin-left: 0rem; border-radius: 10px"
+                >
+                  <div
+                    style="
+                      width: 100%;
+                      height: 100%;
+                      overflow: hidden;
+                      border-radius: 10px;
+                    "
+                  >
+                    <img
+                      [src]="transform(questiondata.question.solution)"
+                      style="height: auto; width: 100%"
+                      alt=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab label="CHALLENGE">
+              <div style="height: 25vh; padding: 1rem">
+                <form action="" class="example-form">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Enter your Message</mat-label>
+                    <textarea rows="4" matInput></textarea>
+                  </mat-form-field>
+                </form>
+                <div style="display: flex; justify-content: space-between">
+                  attach
+                  <a
+                    href=""
+                    style="
+                      background: #07c4fb;
+                      padding: 0.5rem 1rem;
+                      border-radius: 5px;
+                    "
+                    >Send</a
+                  >
+                </div>
+              </div>
+            </mat-tab>
+            <mat-tab label="VIDEO SOLUTION">
+              <div style="padding: 1rem">
+                <a
+                  style="
+                    color: black;
+                    background: #07c4fb;
+                    padding: 0.5rem;
+                    border-radius: 5px;
+                  "
+                  href="{{ questiondata.question.videoLink }}"
+                  >CLICK HERE FOR VIDEO SOLUTION</a
+                >
+              </div>
+            </mat-tab>
+            <mat-tab label="QUESTION ANALYSIS">
+              <div
+                style="
+                  height: 25vh;
+                  padding: 1rem;
+                  display: flex;
+                  justify-content: space-between;
+                  background-color: lightblue;
+                "
+              >
+                <div
+                  [ngStyle]="{
+                    background: getColor(
+                      questiondata.question.questionDifficulty
+                    )
+                  }"
+                  class="timedetails"
+                >
+                  <p>Time taken: {{ questiondata.yourTime }}</p>
+                  <p>Average time: {{ questiondata.averageTime }}</p>
+                  <p>Topper's Time : {{ questiondata.topperTime }}</p>
+                </div>
+                <div class="questiondetails">
+                  <p>Total Attempts : {{ questiondata.totalAttempt }}</p>
+                  <p>Correct Attempts: {{ questiondata.correctAttempt }}</p>
+                  <p>Incorrect Attempts: {{ questiondata.inCorrectAttempt }}</p>
+                  <p>Unattempted : {{ questiondata.unAttempt }}</p>
+                </div>
+                <div class="difficultydetails">
+                  <p>Difficulty Level</p>
+                  <p
+                    style="padding: 0.5rem 3rem; border-radius: 5px"
+                    [ngStyle]="{
+                      background: getColor(
+                        questiondata.question.questionDifficulty
+                      )
+                    }"
+                  >
+                    {{ questiondata.question.questionDifficulty }}
+                  </p>
+                </div>
+              </div>
+            </mat-tab>
           </mat-tab-group>
         </div>
       </mat-card>
     </mat-tab>
-    <mat-tab label="Top Rankers">Top Rankers</mat-tab>
+    <mat-tab label="RANKER BOARD">
+      <mat-card class="example-card">
+        <mat-card-content style="text-align: center">
+          <img
+            src="./../../../../assets/profilr.jpg"
+            style="width: 6rem; height: 6rem; border-radius: 50%"
+            alt=""
+          />
+          <p>Name : Himanshu Pandey</p>
+          <p>Email : himanshup6201@gmail.com</p>
+          <p>Exam : GATE</p>
+          <p>Rank : 1</p>
+          <p>Marks : 99/100</p>
+          <p>Time : 12 MIN</p>
+        </mat-card-content>
+      </mat-card>
+    </mat-tab>
   </mat-tab-group>
 </div>

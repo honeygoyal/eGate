@@ -100,6 +100,6 @@ export class TestseriesComponent implements OnInit {
   }
 
   reportshow(exam: any) {
-    this.router.navigateByUrl("/userdashboard/report");
+    this.router.navigateByUrl("/userdashboard/report/"+exam.id);
   }
 }

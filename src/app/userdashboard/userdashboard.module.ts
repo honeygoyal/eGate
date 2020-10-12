@@ -88,7 +88,7 @@ import { AdminPanelComponent } from "./component/admin-panel/admin-panel.compone
         children: [
           { path: "profile", component: ProfileComponent },
           { path: "testseries/:subject", component: TestseriesComponent },
-          { path: "report", component: ReportComponent },
+          { path: "report/:test_id", component: ReportComponent },
           { path: "demoseries", component: DemoseriesComponent },
           { path: "buypackage", component: BuypackageComponent },
           { path: "adminPanel", component: AdminPanelComponent },

@@ -14,6 +14,7 @@ export class ExamInstructionsComponent implements OnInit {
   checked: boolean = false;
   data: any;
   exam: any;
+  user:any;
   constructor(private route: ActivatedRoute, private router: Router) {}
   linkDisp() {
     this.checked = !this.checked;
@@ -21,11 +22,11 @@ export class ExamInstructionsComponent implements OnInit {
   ngOnInit(): void {
     console.log("Route");
     this.exam = JSON.parse(localStorage.getItem("exam"));
+    this.user=JSON.parse(localStorage.getItem("user"))
+    
     localStorage.removeItem("exam");
-    console.log("Hias", this.exam);
-    console.log(this.route);
     this.data = this.route.data.subscribe((data) => {
-      console.log(data);
+   
     });
   }
   test_code: string;
