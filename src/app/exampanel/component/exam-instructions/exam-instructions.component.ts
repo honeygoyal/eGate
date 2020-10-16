@@ -31,6 +31,8 @@ export class ExamInstructionsComponent implements OnInit {
   }
   test_code: string;
   readyToBegin() {
-    this.router.navigateByUrl("/exampanel/exam/" + this.exam.courseId);
+    // this.urlexam="/exampanel/exam/"+this.exam.courseId;
+    // this.router.navigateByUrl("/exampanel/exam/" + this.exam.courseId);
+    location.href=location.href+"/exam/"+this.exam.courseId;
   }
 }

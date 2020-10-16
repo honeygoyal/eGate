@@ -760,10 +760,12 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         .subscribe(
           (data) => {
             window.close();
+            window.opener.location.reload();
           },
           (err) => {
             console.log(err);
             window.close();
+            window.opener.location.reload();
           }
         );
     }
