@@ -415,7 +415,7 @@ mat-radio-button {
 /******Question Buttons Ends******/
 
 .subject_instruction_icon1 {
-  background: url("./../../../../assets/Icon-sprite.png") no-repeat -140px -7px;
+  // background: url("./../../../../assets/Icon-sprite.png") no-repeat -140px -7px;
   width: 18px;
   height: 18px;
   display: inline-block;
@@ -429,7 +429,6 @@ mat-radio-button {
 
 .tooltip1 {
   text-align: center;
-  color: #000000;
   outline: none;
   text-decoration: none;
   cursor: pointer;
@@ -443,83 +442,26 @@ mat-radio-button {
   cursor: pointer;
 }
 
-.tooltip1 .subject_information_div1 {
-  margin-left: -999em;
-}
-
-.tooltip1:hover .subject_information_div1 {
-  font-family: arial, verdana, helvetica, sans-serif;
-  margin-left: -1px;
-  z-index: 1099;
-  display: block;
-}
-
-.subject_information_div1 {
-  width: 240px;
-  border: 1px solid #c3c3c1;
-  background: #e5f6fc;
-  margin-top: 10px;
+.exam_information_div {
+  width: 305px;
+  border: 1px solid white;
+  background: #3f3d56;
+  z-index: 100;
+  margin-top: 22px;
   position: absolute;
-}
-.TabSize {
-  width: 115px;
-  text-align: center;
-}
-.TabSize a {
-  position: relative;
-  float: right;
-  margin-right: 1px;
-}
-
-.TabSize b {
-  position: relative;
-  float: left;
-  margin-left: 3px;
-}
-.subject_information_div1.diff_type_notation_area_inner {
-  background: none;
-}
-.subject_information_div1 .notation_type_description .notation_typeDiv {
-  width: 98%;
-  float: none;
-  margin: 6px auto;
-  height: 27px;
-}
-.subject_information_div1
-  .diff_type_notation_area_inner
-  span.review
-  + span.type_title,
-.subject_information_div
-  .diff_type_notation_area_inner
-  span.review_answered
-  + span.type_title {
-  line-height: 26px;
+  display: none;
+  margin-left: -333px;
+  
+  .notation_typeDiv{
+    float: left;
+    width: 96%;
+    margin-top: 10px;
+    padding-left: 1rem;
+  }
 }
 
-.subject_name {
-  border-bottom: 1px solid #c3c3c1;
-  font-size: 1.083em;
-  font-weight: bold;
-  height: 30px;
-  line-height: 30px;
-  padding-left: 3px;
-}
-.subject_information_div .diff_type_notation_area_inner {
-  background: none;
-}
-.subject_information_div .notation_type_description .notation_typeDiv {
-  width: 98%;
-  float: none;
-  margin: 6px auto;
-}
-
-.subject_information_div
-  .diff_type_notation_area_inner
-  span.review
-  + span.type_title,
-.subject_information_div
-  .diff_type_notation_area_inner
-  span.review_answered
-  + span.type_title {
-  line-height: 26px;
+.examCountClass:hover + .exam_information_div{
+  display: block;
+  margin-left: 10rem;
+  width: 320px;
 }

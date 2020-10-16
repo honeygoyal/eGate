@@ -17,13 +17,65 @@
           align-items: flex-start;
         "
       >
+
+      <div class="examCountClass">
         <mat-chip-list aria-label="Fish selection">
           <mat-chip style="background: rgb(68, 67, 67); color: white"
             ><b>{{ test_title }} </b>&nbsp;&nbsp;<mat-icon
-              >info</mat-icon
-            ></mat-chip
-          >
+              >info</mat-icon>
+            </mat-chip>
         </mat-chip-list>
+      </div>
+
+        <div class="exam_information_div">
+          <div class="notation_type_description diff_type_notation_area_inner">
+            <div class="notation_typeDiv" title="Answered">
+              <span class="answered">{{totalAnsweredCount}}</span
+              ><span
+                class="type_title secAnswered"
+                style="text-align: left"
+                >Answered</span
+              >
+            </div>
+            <div class="notation_typeDiv" title="Not Answered">
+              <span class="not_answered">{{totalNotAnsweredCount}}</span
+              ><span
+                class="type_title secNotAnswered"
+                style="text-align: left"
+                >Not Answered</span
+              >
+            </div>
+            <div class="notation_typeDiv" title="Not Visited">
+              <span class="not_visited">{{totalNotVisitedCount}}</span
+              ><span
+                class="type_title secNotAttempted"
+                style="text-align: left"
+                >Not Visited</span
+              >
+            </div>
+            <div class="notation_typeDiv" title="Marked for Review">
+              <span class="review">{{totalMarkedForReviewCount}}</span
+              ><span
+                class="type_title secMarkReview"
+                style="text-align: left"
+                >Marked for Review</span
+              >
+            </div>
+            <div
+              class="notation_typeDiv review_answer"
+              id=""
+              title="Answered &amp; Marked for Review (will be considered for evaluation)"
+            >
+              <span class="review_answered">{{totalMarkedForReviewWithAnswerCount}}</span
+              ><span
+                class="type_title secMarkedAndAnswered"
+                style="text-align: left"
+                >Answered &amp; Marked for Review (will be considered
+                for evaluation)
+              </span>
+            </div>
+          </div>
+        </div>
         <div>
           <a style="color: black; cursor: pointer" (click)="hidecalc()"
             ><i class="fas fa-2x fa-calculator"></i
@@ -67,75 +119,12 @@
         >
           <mat-tab [label]="tab.key" *ngFor="let tab of question | keyvalue"
             ><ng-template mat-tab-label>
-              {{ tab.key }}
-              &nbsp;&nbsp;
-              <a class="tooltip1 tooltipSelected1">
-                <mat-icon class="subject_instruction_icon1">info</mat-icon>
-                <div class="subject_information_div1">
-                  <div>
-                    <div class="subject_name" style="text-align: left">
-                      General Aptitude
-                    </div>
-                  </div>
-                  <div
-                    class="notation_type_description diff_type_notation_area_inner"
-                    style="
-                      background: #e5f6fc none repeat scroll 0 0;
-                      text-align: left;
-                    "
-                  >
-                    <div class="notation_typeDiv" title="Answered">
-                      <span class="answered">0</span
-                      ><span
-                        class="type_title secAnswered"
-                        style="text-align: left"
-                        >Answered</span
-                      >
-                    </div>
-                    <div class="notation_typeDiv" title="Not Answered">
-                      <span class="not_answered">1</span
-                      ><span
-                        class="type_title secNotAnswered"
-                        style="text-align: left"
-                        >Not Answered</span
-                      >
-                    </div>
-                    <div class="notation_typeDiv" title="Not Visited">
-                      <span class="not_visited">9</span
-                      ><span
-                        class="type_title secNotAttempted"
-                        style="text-align: left"
-                        >Not Visited</span
-                      >
-                    </div>
-                    <div class="notation_typeDiv" title="Marked for Review">
-                      <span class="review">0</span
-                      ><span
-                        class="type_title secMarkReview"
-                        style="text-align: left"
-                        >Marked for Review</span
-                      >
-                    </div>
-                    <div
-                      class="notation_typeDiv review_answer"
-                      id=""
-                      title="Answered &amp; Marked for Review (will be considered for evaluation)"
-                    >
-                      <span class="review_answered">0</span
-                      ><span
-                        class="type_title secMarkedAndAnswered"
-                        style="text-align: left"
-                        >Answered &amp; Marked for Review (will be considered
-                        for evaluation)
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </a>
+              {{ tab.key }}          
             </ng-template>
           </mat-tab>
         </mat-tab-group>
       </div>
+     
       <div *ngIf="questiontoShow !== undefined">
         <div
           id="head1"
@@ -364,7 +353,6 @@
               >&nbsp;&nbsp;&nbsp;Question Paper
             </h5></a
           >
-
           <a (click)="instructionDialog()">
             <h5>
               <i

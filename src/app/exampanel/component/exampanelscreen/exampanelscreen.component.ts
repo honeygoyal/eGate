@@ -66,16 +66,17 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   notAnsweredCount:number=1;
 
   totalNotVisitedCount:number;
-  totalMarkedForReviewCount:number=0;
-  totalMarkedForReviewWithAnswerCount:number=0;
-  totalAnsweredCount:number=0;
-  totalNotAnsweredCount:number=1;
+  totalMarkedForReviewCount:number;
+  totalMarkedForReviewWithAnswerCount:number;
+  totalAnsweredCount:number;
+  totalNotAnsweredCount:number;
 
-  sectionansweredCount:string;
-  sectionnotAnsweredCount:string;
-  sectionmarkedForReviewCount:string;
-  sectionmarkedForReviewWithAnswerCount:string;
-  sectionnotvisitedCount:string;
+  sectionansweredCount:string = "answeredCount";
+  sectionnotAnsweredCount:string= "notAnsweredCount";
+  sectionmarkedForReviewCount:string = "markedForReviewCount";
+  sectionmarkedForReviewWithAnswerCount:string= "markedForReviewWithAnswerCount";
+  sectionnotvisitedCount:string = "notvisitedCount";
+
   sect:string;
   startingTime = new Date().getTime();
   //constructor
@@ -193,7 +194,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   getStyles(group: any): any {
     let myStyles = {
       background: "url('questions-sprite.png') no-repeat",
-      color: "white",
+      color: "black",
       "background-position": "-157px -4px",
       padding: "8px",
       height: "48px",
@@ -265,13 +266,6 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       "totalQuestion"
     ];
 
-    this.sectionnotvisitedCount = this.sect + "notvisitedCount";
-    this.sectionansweredCount = this.sect + "answeredCount";
-    this.sectionnotAnsweredCount = this.sect + "notAnsweredCount";
-    this.sectionmarkedForReviewCount = this.sect + "markedForReviewCount";
-    this.sectionmarkedForReviewWithAnswerCount =
-      this.sect + "markedForReviewWithAnswerCount";
-
     [...this.question[this.sect]][0][this.sectionansweredCount] =
       [...this.question[this.sect]][0][this.sectionansweredCount] === undefined
         ? 0
@@ -319,6 +313,12 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       this.sectionnotvisitedCount
     ];
 
+    // [...this.question].forEach((value: any, key: any) => {
+    //   console.log(key, value);
+    // });
+ 
+    this.calculateTotalCount();
+
     if (this.timer === 1) {
       this.countdownconfig = {
         leftTime: +this.duration * 60,
@@ -344,7 +344,9 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     });
 
     if (!assignedCurrentOption && missedOutOnCurrentOption) {
-      form.reset();
+      if(form !== undefined){
+        form.reset();
+      }
     }
   }
   start: any;
@@ -421,6 +423,8 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
 
     this.start = new Date().getTime();
     this.count++;
+
+    this.calculateTotalCount();
   }
 
   markforreviewfun(form: NgForm, quesId: number) {
@@ -493,6 +497,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
 
     this.count++;
     this.start = new Date().getTime();
+    this.calculateTotalCount();
   }
 
   timesUp(event) {
@@ -517,6 +522,8 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       },
       false
     );
+
+    this.calculateTotalCount();
   }
 
   // pushToArray(arr, obj) {
@@ -660,6 +667,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     });
     this.count = position;
     this.start = new Date().getTime();
+    this.calculateTotalCount();
   }
 
   @ViewChild("tabGroup", { static: true })
@@ -716,6 +724,26 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         }
       );
   }
+
+  calculateTotalCount()
+  {
+    this.totalNotVisitedCount=0;
+    this.totalMarkedForReviewCount=0;
+    this.totalMarkedForReviewWithAnswerCount=0;
+    this.totalAnsweredCount=0;
+    this.totalNotAnsweredCount=0;
+
+    Object.keys(this.question).forEach(key => {
+      let questionKey=[...this.question[key]][0];
+    
+      this.totalAnsweredCount = questionKey[this.sectionansweredCount] !== undefined ? this.totalAnsweredCount + questionKey[this.sectionansweredCount]:this.totalAnsweredCount;
+      this.totalNotAnsweredCount = questionKey[this.sectionnotAnsweredCount] !== undefined ? this.totalNotAnsweredCount + questionKey[this.sectionnotAnsweredCount]:this.totalNotAnsweredCount;
+      this.totalMarkedForReviewCount = questionKey[this.sectionmarkedForReviewCount] !== undefined ? this.totalMarkedForReviewCount + questionKey[this.sectionmarkedForReviewCount]:this.totalMarkedForReviewCount;
+      this.totalMarkedForReviewWithAnswerCount = questionKey[this.sectionmarkedForReviewWithAnswerCount] !== undefined ? this.totalMarkedForReviewWithAnswerCount + questionKey[this.sectionmarkedForReviewWithAnswerCount]:this.totalMarkedForReviewWithAnswerCount;
+      this.totalNotVisitedCount = questionKey[this.sectionnotvisitedCount] !== undefined ? this.totalNotVisitedCount + questionKey[this.sectionnotvisitedCount]:this.totalNotVisitedCount;
+    });
+  }
+
 
   submittheanswer(exam_over: boolean) {
     if (exam_over) {
