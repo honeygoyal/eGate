@@ -42,15 +42,15 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     this.signupForm = new FormGroup({
       name: new FormControl(null, Validators.required),
-      email: new FormControl(null, [Validators.required, Validators.email]),
+      emailId: new FormControl(null, [Validators.required, Validators.email]),
       confirmemail: new FormControl(null, [
         Validators.required,
         Validators.email,
       ]),
-      mobilenumber: new FormControl(null, Validators.required),
+      mobileNumber: new FormControl(null, Validators.required),
       qualification: new FormControl(null, Validators.required),
       university: new FormControl(null, Validators.required),
-      targetyear: new FormControl(null, Validators.required),
+      targetYear: new FormControl(null, Validators.required),
       discipline: new FormControl(null, Validators.required),
       address: new FormControl(null, Validators.required),
       checkterm: new FormControl(null, Validators.required),
@@ -63,13 +63,13 @@ export class SignupComponent implements OnInit {
   onSubmit() {
     this.signUpData = {
       name: this.signupForm.value.name,
-      email: this.signupForm.value.email,
+      emailId: this.signupForm.value.emailId,
       confirmemail: this.signupForm.value.confirmemail,
-      mobilenumber: this.signupForm.value.mobilenumber,
+      mobileNumber: this.signupForm.value.mobileNumber,
       university: this.signupForm.value.university,
       discipline: this.signupForm.value.discipline,
       qualification: this.signupForm.value.qualification,
-      targetyear: this.signupForm.value.targetyear,
+      targetYear: this.signupForm.value.targetYear,
       address: this.signupForm.value.address,
       checkterm: this.signupForm.value.checkterm,
     };

@@ -1,11 +1,11 @@
 export interface SignUpForm {
   name: string;
-  email: String;
-  mobilenumber: string;
+  emailId: String;
+  mobileNumber: string;
   confirmemail: String;
   qualification: String;
   university: String;
-  targetyear: String;
+  targetYear: String;
   discipline: string;
   address: String;
   checkterm: boolean;
