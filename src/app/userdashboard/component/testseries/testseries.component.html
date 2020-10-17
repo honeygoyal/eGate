@@ -37,17 +37,24 @@
               </text>
             </svg>
           </div>
-          <mat-card-title>{{ exam.title }}</mat-card-title>
-          <mat-card-subtitle>{{ exam.test_subtitle }}</mat-card-subtitle>
+          <mat-card-title
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            "
+          >
+            <span>{{ exam.title }}</span>
+          </mat-card-title>
           <h5
             *ngIf="exam.status !== 'PENDING' && exam.status !== 'COMPLETED'"
-            style="color: red; margin-left: 40vw"
+            style="color: red; position: absolute; right: 5%"
           >
             Start date {{ exam.startDate }}
           </h5>
           <h5
             *ngIf="exam.status === 'PENDING'"
-            style="color: red; margin-left: 40vw"
+            style="color: red; position: absolute; right: 5%"
           >
             {{ exam.checkForRemainingDays }}
           </h5>
@@ -115,7 +122,12 @@
             </svg>
           </div>
           <mat-card-title>{{ exam.title }}</mat-card-title>
-          <mat-card-subtitle>{{ exam.test_subtitle }}</mat-card-subtitle>
+          <h5
+            *ngIf="exam.status === 'PENDING'"
+            style="color: red; position: absolute; right: 5%"
+          >
+            {{ exam.checkForRemainingDays }}
+          </h5>
         </mat-card-header>
         <mat-card-content id="card-content" style="margin-top: 2rem">
           <div id="cont">
@@ -162,7 +174,6 @@
             </svg>
           </div>
           <mat-card-title>{{ exam.title }}</mat-card-title>
-          <mat-card-subtitle>{{ exam.test_subtitle }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content id="card-content">
           <div id="cont">
