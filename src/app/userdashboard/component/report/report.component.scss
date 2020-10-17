@@ -35,7 +35,8 @@
 .example-card {
   max-width: 300px;
   margin: 1rem;
-  border-radius: 5px;
+  border-radius: 20px !important;
+  box-shadow: 0 0 20px 1px #07c4fb !important;
 }
 
 .example-header-image {
