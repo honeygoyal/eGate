@@ -91,6 +91,7 @@ function getHTMLVirtualKeyboard(type){
 /***************************************************Fill Layout****************************************************************/
 function LayoutHTML(type){
 	var str ='';
+	type = 'numericLayout';
 	if(type == 'numericLayout'){
 		for(var i=0;i<vKeyboard.numericLayout.length;i++){
 			for(var j=0;j<vKeyboard.numericLayout[i].length;j++){
@@ -161,6 +162,7 @@ function setCursorPostion(){
 }
 
 function validateAndFill(text){
+	vKeyboard.selectedKeyboard=1;
 	if(vKeyboard.selectedKeyboard == 1){
 		var previousText = $("#"+vKeyboard.saTypeQuesID).val();
 		if(vKeyboard.InsertionS <= previousText.length){
@@ -169,6 +171,7 @@ function validateAndFill(text){
 				$("#"+vKeyboard.saTypeQuesID).val(newStr);
 				vKeyboard.InsertionS++;
 			}
+			localStorage.setItem("natActiveValue",newStr);
 		}else{
 			if(numPadValidate(previousText+text)){
 				$("#"+vKeyboard.saTypeQuesID).val($("#"+vKeyboard.saTypeQuesID).val()+text);

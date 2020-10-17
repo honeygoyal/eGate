@@ -162,11 +162,11 @@
             </a>
             <form
               #f="ngForm"
-              (ngSubmit)="questiontodisplayincrement(f, questiontoShow.id)"
+              (ngSubmit)="questiontodisplayincrement(f, questiontoShow.id,questiontoShow.questionType)"
             >
               <div
                 id="radioButtonGroup"
-                *ngIf="questiontoShow.questionType !== 'NAT'"
+                *ngIf="questiontoShow.questionType === 'MCQ'"
               >
                 <mat-radio-group
                   name="optionSelected"
@@ -199,7 +199,8 @@
                   id="answer"
                   autocomplete="off"
                   class="keyboardInput answer"
-                  value=""
+                  value="{{currentOption}}"
+                  readonly
                 />
                 <div id="vKeyboard" class="vKeyboard">
                   <span class="vKeyboardSplKeys" style="border-radius: 6px"
@@ -256,6 +257,23 @@
               </div>
 
               <div
+              id="radioButtonGroup"
+              *ngIf="questiontoShow.questionType === 'MSQ'"
+              >
+             <div           
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    margin-top: 0.5rem;
+                  "
+              >
+                <mat-checkbox style="margin-top: 0rem" value="A" [(checked)]="IsAChecked" (change)="onMSQChange($event,'A')">A</mat-checkbox>
+                <mat-checkbox [(checked)]="IsBChecked" (change)="onMSQChange($event,'B')">B</mat-checkbox>
+                <mat-checkbox [(checked)]="IsCChecked" (change)="onMSQChange($event,'C')">C</mat-checkbox>
+                <mat-checkbox [(checked)]="IsDChecked" (change)="onMSQChange($event,'D')">D</mat-checkbox>
+              </div>
+            </div>
+              <div
                 id="actnbtn"
                 style="
                   display: flex;
@@ -273,7 +291,7 @@
                   "
                 >
                   <a
-                    (click)="markforreviewfun(f, questiontoShow.id)"
+                    (click)="markforreviewfun(f, questiontoShow.id,questiontoShow.questionType)"
                     style="
                       text-decoration: none;
                       color: black;
@@ -288,7 +306,7 @@
                     Mark for Review & Next
                   </a>
                   <a
-                    (click)="clearResponse(f, questiontoShow.id)"
+                    (click)="clearResponse(f, questiontoShow.id,questiontoShow.questionType)"
                     style="
                       text-decoration: none;
                       color: black;
@@ -486,7 +504,7 @@
           <div class="grid-container question_area">
             <a
               *ngFor="let group of questionGroup; let i = index"
-              (click)="sidebuttonforquestion(i + 1, questiontoShow)"
+              (click)="sidebuttonforquestion(i + 1, questiontoShow,questiontoShow.questionType)"
               ><div [ngStyle]="getStyles(group)" class="grid-item">
                 {{ i + 1 }}
               </div></a

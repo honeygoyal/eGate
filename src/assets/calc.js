@@ -1,6 +1,6 @@
 $(function () {
 
-  $('#keyPad').on('mousemove',function(){
+  $('#keyPad').live('mousemove',function(){
     //Make the DIV element draggagle:
     dragElement(document.getElementById("keyPad"));
   });

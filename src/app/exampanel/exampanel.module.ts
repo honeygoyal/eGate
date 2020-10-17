@@ -37,6 +37,7 @@ import { DialogComponent } from "./component/exampanelscreen/dialog/dialog.compo
 import { MatDialogModule } from "@angular/material/dialog";
 import { InstructionDialogComponent } from "./component/exampanelscreen/instruction-dialog/instruction-dialog.component";
 import { ExamInstructionsComponent } from "./component/exam-instructions/exam-instructions.component";
+import { MatCheckboxModule } from '@angular/material/checkbox';
 // function countdownConfigFactory(): CountdownGlobalConfig {
 //   return { locale: 'mm:ss' };
 // }
@@ -63,6 +64,7 @@ import { ExamInstructionsComponent } from "./component/exam-instructions/exam-in
     MatAutocompleteModule,
     MatDatepickerModule,
     MatRadioModule,
+    MatCheckboxModule,
     MatSliderModule,
     HttpClientModule,
     MatSlideToggleModule,

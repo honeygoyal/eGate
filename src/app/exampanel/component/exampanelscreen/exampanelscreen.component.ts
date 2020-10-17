@@ -53,7 +53,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   questionGroup: any[];
   questiontoShow: any;
   answerDataofUser: Useranswer[] = [];
-  currentOption = "z";
+  currentOption = "";
   selectedTabCurrent: string;
   test_title: string;
   submit_button_status: boolean = true;
@@ -83,6 +83,13 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   totalquestions: string;
   totalmarks: string;
   testname: string;
+  natInput: string = '';
+  IsAChecked:boolean;
+  IsBChecked:boolean;
+  IsCChecked:boolean;
+  IsDChecked:boolean;
+  finalCheckedValue:boolean=false;
+  totalOptionsChecked:string="";
   //constructorftransform
   constructor(
     private quesService: QuestionsService,
@@ -147,6 +154,48 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   @HostListener("window:focus", ["$event"])
   onfocus(event: any): void {
     // Do something
+  }
+
+  assignMSQOptionsChecked(answerSubmitted:string){
+    switch (answerSubmitted) {
+      case "A":
+        this.IsAChecked=true;
+        break;
+      case "B":
+        this.IsBChecked=true;
+        break;
+      case "C":
+        this.IsCChecked=true;
+        break;
+      case "D":
+        this.IsDChecked=true;
+        break;
+    }
+  }
+
+  onMSQChange($event,passedOption){
+    switch (passedOption) {
+      case "A":
+        this.IsAChecked=$event.checked;
+        this.finalCheckedValue=true;
+        this.totalOptionsChecked=this.totalOptionsChecked+passedOption+",";
+        break;
+      case "B":
+        this.IsBChecked=$event.checked;
+        this.finalCheckedValue=true;
+        this.totalOptionsChecked=this.totalOptionsChecked+passedOption+",";
+        break;
+      case "C":
+        this.IsCChecked=$event.checked;
+        this.finalCheckedValue=true;
+        this.totalOptionsChecked=this.totalOptionsChecked+passedOption+",";
+        break;
+      case "D":
+        this.IsDChecked=$event.checked;
+        this.finalCheckedValue=true;
+        this.totalOptionsChecked=this.totalOptionsChecked+passedOption+",";
+        break;
+    }
   }
 
   transform(imageString: string) {
@@ -336,7 +385,18 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     let missedOutOnCurrentOption = false;
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
-        this.currentOption = element.answerSubmitted;
+          if(this.questiontoShow.questionType === "MSQ"){
+           this.IsAChecked=false;
+           this.IsBChecked=false;
+           this.IsCChecked=false;
+           this.IsDChecked=false;
+           let checkBoxOptions=element.answerSubmitted.replace("(","").replace(")","").split(',');
+           checkBoxOptions.forEach(checkedOption => {
+            this.assignMSQOptionsChecked(checkedOption);
+           });
+          }else{
+            this.currentOption = element.answerSubmitted;
+          }
         assignedCurrentOption = true;
       } else {
         missedOutOnCurrentOption = true;
@@ -352,43 +412,76 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   start: any;
   end: any;
 
-  questiontodisplayincrement(form: NgForm, quesId: number) {
+  questiontodisplayincrement(form: NgForm, quesId: number, quesType: string) {
     this.end = new Date().getTime();
+    let submittedTextValue="natNotSelected";
+    this.natInput= localStorage.getItem("natActiveValue");
+    if(quesType === "NAT"){
+        submittedTextValue = this.natInput ;
+    }
+    if(quesType === "MCQ" || quesType === "NAT"){
+      this.finalCheckedValue = true;
+    }
     if (
-      form.value.optionSelected === "z" ||
-      form.value.optionSelected === null
+      form.value.optionSelected === "" ||
+      form.value.optionSelected === null || submittedTextValue === "" || this.finalCheckedValue === false
     ) {
+
+      let selectedValue=form.value.optionSelected;
+      this.finalCheckedValue=false;
+      if(quesType === "NAT" || quesType === "MSQ"){
+        selectedValue = null ;
+      }
+
       this.pushToArray(
         this.answerDataofUser,
         {
           questionId: quesId,
           questionStatus: "NO_ANS",
-          answerSubmitted: form.value.optionSelected,
+          answerSubmitted: selectedValue,
           timetaken: this.end - this.start,
         },
         false
       );
 
       this.savetheanswer(
-        form.value.optionSelected,
+        selectedValue,
         quesId,
         "NO_ANS",
         this.end - this.start
       );
     } else {
+      let selectedValue=form.value.optionSelected;
+
+      if(quesType === "MCQ"){
+        this.finalCheckedValue=false;
+      }
+
+      if(quesType === "NAT"){
+        selectedValue = submittedTextValue ;
+        this.finalCheckedValue=false;
+      }
+
+      if(quesType === "MSQ"){
+        let listOfCheckedValues="("+this.totalOptionsChecked.substring(0, this.totalOptionsChecked.length - 1)+")";
+        selectedValue = listOfCheckedValues ;
+        this.finalCheckedValue=false;
+      }
+
+
       this.pushToArray(
         this.answerDataofUser,
         {
           questionId: quesId,
           questionStatus: "ANS",
-          answerSubmitted: form.value.optionSelected,
+          answerSubmitted: selectedValue,
           timetaken: this.end - this.start,
         },
         false
       );
 
       this.savetheanswer(
-        form.value.optionSelected,
+        selectedValue,
         quesId,
         "ANS",
         this.end - this.start
@@ -410,7 +503,18 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     let missedOutOnCurrentOption = false;
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
-        this.currentOption = element.answerSubmitted;
+          if(this.questiontoShow.questionType === "MSQ"){
+           this.IsAChecked=false;
+           this.IsBChecked=false;
+           this.IsCChecked=false;
+           this.IsDChecked=false;
+           let checkBoxOptions=element.answerSubmitted.replace("(","").replace(")","").split(',');
+           checkBoxOptions.forEach(checkedOption => {
+            this.assignMSQOptionsChecked(checkedOption);
+           });
+          }else{
+            this.currentOption = element.answerSubmitted;
+          }
         assignedCurrentOption = true;
       } else {
         missedOutOnCurrentOption = true;
@@ -427,43 +531,77 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     this.calculateTotalCount();
   }
 
-  markforreviewfun(form: NgForm, quesId: number) {
+
+  markforreviewfun(form: NgForm, quesId: number, quesType: string) {
     this.end = new Date().getTime();
+    let submittedTextValue="natNotSelected";
+    this.natInput= localStorage.getItem("natActiveValue");
+    if(quesType === "NAT"){
+        submittedTextValue = this.natInput ;
+    }
+    if(quesType === "MCQ" || quesType === "NAT"){
+      this.finalCheckedValue = true;
+    }
     if (
-      form.value.optionSelected === "z" ||
-      form.value.optionSelected === null
+      form.value.optionSelected === "" ||
+      form.value.optionSelected === null || submittedTextValue === "" || this.finalCheckedValue === false
     ) {
+
+      let selectedValue=form.value.optionSelected;
+      this.finalCheckedValue=false;
+      if(quesType === "NAT" || quesType === "MSQ"){
+        selectedValue = null ;
+      }
+
       this.pushToArray(
         this.answerDataofUser,
         {
           questionId: quesId,
           questionStatus: "MARK_NOANS",
-          answerSubmitted: form.value.optionSelected,
+          answerSubmitted: selectedValue,
           timetaken: this.end - this.start,
         },
         false
       );
 
       this.savetheanswer(
-        form.value.optionSelected,
+        selectedValue,
         quesId,
         "MARK_NOANS",
         this.end - this.start
       );
     } else {
+
+      let selectedValue=form.value.optionSelected;
+
+      if(quesType === "MCQ"){
+        this.finalCheckedValue=false;
+      }
+
+      if(quesType === "NAT"){
+        selectedValue = submittedTextValue ;
+        this.finalCheckedValue = false;
+      }
+
+      if(quesType === "MSQ"){
+        let listOfCheckedValues="("+this.totalOptionsChecked.substring(0, this.totalOptionsChecked.length - 1)+")";
+        selectedValue = listOfCheckedValues ;
+        this.finalCheckedValue=false;
+      }
+
       this.pushToArray(
         this.answerDataofUser,
         {
           questionId: quesId,
           questionStatus: "MARK_ANS",
-          answerSubmitted: form.value.optionSelected,
+          answerSubmitted: selectedValue,
           timetaken: this.end - this.start,
         },
         false
       );
 
       this.savetheanswer(
-        form.value.optionSelected,
+        selectedValue,
         quesId,
         "MARK_ANS",
         this.end - this.start
@@ -484,7 +622,18 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     let missedOutOnCurrentOption = false;
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
-        this.currentOption = element.answerSubmitted;
+          if(this.questiontoShow.questionType === "MSQ"){
+           this.IsAChecked=false;
+           this.IsBChecked=false;
+           this.IsCChecked=false;
+           this.IsDChecked=false;
+           let checkBoxOptions=element.answerSubmitted.replace("(","").replace(")","").split(',');
+           checkBoxOptions.forEach(checkedOption => {
+            this.assignMSQOptionsChecked(checkedOption);
+           });
+          }else{
+            this.currentOption = element.answerSubmitted;
+          }
         assignedCurrentOption = true;
       } else {
         missedOutOnCurrentOption = true;
@@ -510,8 +659,21 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     }
   }
 
-  clearResponse(form: NgForm, quesId: number) {
+  clearResponse(form: NgForm, quesId: number, quesType:string) {
+    if(quesType === "NAT"){
+      this.currentOption="";
+    }
+
+    if(quesType === "MSQ"){
+      this.IsAChecked=false;
+      this.IsBChecked=false;
+      this.IsCChecked=false;
+      this.IsDChecked=false;
+      this.finalCheckedValue=false;
+    }
+   
     form.reset();
+    localStorage.setItem("natActiveValue","");
     this.pushToArray(
       this.answerDataofUser,
       {
@@ -632,7 +794,8 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     }
   }
 
-  sidebuttonforquestion(position: number, prevquestion: any) {
+  sidebuttonforquestion(position: number, prevquestion: any, quesType: string) {
+    
     this.questiontoShow = {
       ...this.questionGroup[position - 1],
     };
@@ -662,7 +825,18 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
 
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
-        this.currentOption = element.answerSubmitted;
+        if(this.questiontoShow.questionType === "MSQ"){
+         this.IsAChecked=false;
+         this.IsBChecked=false;
+         this.IsCChecked=false;
+         this.IsDChecked=false;
+         let checkBoxOptions=element.answerSubmitted.replace("(","").replace(")","").split(',');
+         checkBoxOptions.forEach(checkedOption => {
+          this.assignMSQOptionsChecked(checkedOption);
+         });
+        }else{
+          this.currentOption = element.answerSubmitted;
+        }
       }
     });
     this.count = position;
@@ -760,10 +934,12 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         .subscribe(
           (data) => {
             window.close();
+            window.opener.location.reload();
           },
           (err) => {
             console.log(err);
             window.close();
+            window.opener.location.reload();
           }
         );
     }

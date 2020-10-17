@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import "./../../../../assets/SCIENTIFIC CALCULATOR_files/jquery-1.js";
-import "./../../../../assets/SCIENTIFIC CALCULATOR_files/oscZenoedited.js";
 import "./../../../../assets/SCIENTIFIC CALCULATOR_files/jquery-ui.js";
+import "./../../../../assets/SCIENTIFIC CALCULATOR_files/oscZenoedited.js";
 import "./../../../../assets/calc.js";
-
+import "./../../../../assets/jquery.caret.min.js";
 
 @Component({
   selector: "app-calculator",
