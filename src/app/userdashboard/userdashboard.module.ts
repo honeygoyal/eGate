@@ -38,7 +38,8 @@ import { authInterceptorProviders } from "./interceptors/AuthInterceptor";
 import { TestseriesService } from "./service/testseries.service";
 import { ReportComponent } from "./component/report/report.component";
 import { AdminPanelComponent } from "./component/admin-panel/admin-panel.component";
-
+import { GoogleChartsModule } from 'angular-google-charts';
+import { ScriptLoaderService } from 'angular-google-charts';
 @NgModule({
   declarations: [
     UserprofileComponent,
@@ -70,7 +71,7 @@ import { AdminPanelComponent } from "./component/admin-panel/admin-panel.compone
     MatToolbarModule,
     MatListModule,
     MatGridListModule,
-
+    GoogleChartsModule,
     MatStepperModule,
     MatTabsModule,
     MatExpansionModule,
@@ -100,7 +101,7 @@ import { AdminPanelComponent } from "./component/admin-panel/admin-panel.compone
       fromUserdashboard.reducers
     ),
   ],
-  providers: [authInterceptorProviders, TestseriesService, DatePipe],
+  providers: [authInterceptorProviders, TestseriesService, DatePipe,ScriptLoaderService ],
   entryComponents: [DialogComponent],
 })
 export class UserdashboardModule {}

@@ -44,6 +44,10 @@
   background-size: cover;
 }
 
+.mat-tab-body-content {
+  height: 100%;
+  overflow: hidden !important;
+}
 .timedetails {
   border-radius: 10px;
   color: white;

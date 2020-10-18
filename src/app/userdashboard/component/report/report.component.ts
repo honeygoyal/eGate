@@ -12,25 +12,67 @@ declare let Email: any;
   encapsulation:ViewEncapsulation.None
 })
 export class ReportComponent implements OnInit {
+
+  title = 'Your Test Performance';
+  type='PieChart';
+  data:any[];
+
+ columnNames = ['Answer_Status', 'percentage'];
+ options = {
+  colors: ['green', 'red', '#ef873b'], 
+  pieHole:0.5
+};
+width = 425;
+   height = 300;
+  hist_title = 'Test Analysis';
+  hist_type='ColumnChart';
+  hist_data:any[]=[];
+
+ hist_columnNames = ['Question Number', 'Time(sec)'];
+ hist_options = {
+};
+hist_width = 800;
+   hist_height = 400;
   test_id:string
   user:any;
   constructor(private http:HttpClient,private route: ActivatedRoute,private sanitizer: DomSanitizer) { }
   questionanalysis:any;
   userrankdata:any;
+  testanalyticsdata:any;
+  histogramdata:any[]=[];
   ngOnInit(): void {
+   
     this.route.params.subscribe((params: Params) => {
       this.test_id = params["test_id"];
     });
     this.user=JSON.parse(localStorage.getItem("user"))
+    this.http.get("http://localhost:8080/reportOverall/getOverallReportByUserId?user_id="+this.user.user.id+"&course_id="+this.test_id).subscribe((data)=>{
+      console.log(data)
+      this.testanalyticsdata=data;
+      this.data=[["Correct",this.testanalyticsdata.correct],["Incorrect",this.testanalyticsdata.inCorrect],["Unattempt",this.testanalyticsdata.unAttempt]]
+
+    })
     this.http.get("http://localhost:8080/reportOverall/getTopRank?course_id="+this.test_id).subscribe((data)=>{
       console.log(data)
       this.userrankdata=data;
     })
+    
     this.http.get("http://localhost:8080/reportDetail/getQuestionAnalysis?user_id="+this.user.user.id+"&course_id="+this.test_id).subscribe((data)=>{
-      
+      let i=1;
       this.questionanalysis=data;
+      this.questionanalysis.forEach(element => {  
+       
+        this.hist_data.push([i,element.yourTime/1000])
+        i++;
+      });
+     
+      console.log("his",this.hist_data)
+
       console.log("Question Analysis",this.questionanalysis);
+     
     })
+    
+    
   }
  filename:any;
  filepath:any;

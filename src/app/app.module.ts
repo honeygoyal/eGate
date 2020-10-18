@@ -35,6 +35,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatButtonModule } from "@angular/material/button";
 import { MatPseudoCheckboxModule } from "@angular/material/core";
 
+import { GoogleChartsModule } from 'angular-google-charts';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./header/header.component";
@@ -75,6 +76,7 @@ import { CountdownModule } from "ngx-countdown";
     Ng4LoadingSpinnerModule,
     BrowserModule,
     ReactiveFormsModule,
+    GoogleChartsModule,
     FormsModule,
     AppRoutingModule,
     MatCheckboxModule,

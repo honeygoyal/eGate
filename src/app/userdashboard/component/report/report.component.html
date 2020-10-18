@@ -1,6 +1,108 @@
 <div id="contentcontainer">
   <mat-tab-group id="parent-tab" mat-align-tabs="start">
-    <mat-tab label="TEST ANALYTICS">PERFORMANCE ANALYSIS</mat-tab>
+    <mat-tab id="performance" label="TEST ANALYTICS">
+      <div
+        style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 1rem 0rem;
+          height: 350px;
+        "
+      >
+        <mat-card
+          style="
+            margin-right: 2rem;
+            box-shadow: 0 0 20px 1px #07c4fb !important;
+            border-radius: 20px;
+            margin: 1rem 1rem;
+            width: 43%;
+            height: auto;
+            padding: 6.5rem 2rem;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <p style="margin-bottom: 1rem; color: green">
+                Correct&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                {{ testanalyticsdata.correct }}
+              </p>
+              <p style="margin-bottom: 1rem; color: red">
+                Incorrect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                {{ testanalyticsdata.inCorrect }}
+              </p>
+              <p style="color: #ed7d31">
+                Unattempted&nbsp;&nbsp;: {{ testanalyticsdata.unAttempt }}
+              </p>
+            </div>
+            <hr />
+            <div>
+              <p style="margin-bottom: 1rem; color: black">
+                Total Marks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
+                {{ testanalyticsdata.totalMarks }}
+              </p>
+              <p style="margin-bottom: 1rem; color: black">
+                Marks Secured&nbsp;&nbsp; :
+                {{ testanalyticsdata.marksSecured | number: ".1-2" }}
+              </p>
+              <p style="margin-bottom: 1rem; color: black">
+                Rank&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
+                {{ testanalyticsdata.rank }}
+              </p>
+            </div>
+          </div>
+        </mat-card>
+
+        <mat-card
+          style="
+            box-shadow: 0 0 20px 1px #07c4fb !important;
+            border-radius: 20px;
+          "
+        >
+          <google-chart
+            #chart
+            [title]="title"
+            [type]="type"
+            [data]="data"
+            [columns]="columnNames"
+            [options]="options"
+            [width]="width"
+            [height]="height"
+          >
+          </google-chart>
+        </mat-card>
+      </div>
+
+      <mat-card
+        style="
+          box-shadow: 0 0 20px 1px #07c4fb !important;
+          border-radius: 20px;
+          width: 90%;
+          margin: 2rem 4rem;
+        "
+      >
+        <div style="width: 100%">
+          <google-chart
+            #chart
+            [title]="hist_title"
+            [type]="hist_type"
+            [data]="hist_data"
+            [columns]="hist_columnNames"
+            [options]="hist_options"
+            [width]="hist_width"
+            [height]="hist_height"
+          >
+          </google-chart>
+        </div>
+      </mat-card>
+    </mat-tab>
     <mat-tab label="SOLUTIONS">
       <mat-card
         *ngFor="let questiondata of questionanalysis; let i = index"
