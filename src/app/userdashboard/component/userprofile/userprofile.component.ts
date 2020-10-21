@@ -29,9 +29,23 @@ export class UserprofileComponent implements OnInit {
       this.examref = [...data.user.coursesOffered];
       //console.log(data);
     });
+    let user=JSON.parse(localStorage.getItem("user"))
+    if(user!==null && user!==""){
+    let token=user["token"];
+     let jwtData = token.split('.')[1]
+        let  decodedJwtJsonData = window.atob(jwtData)
+         let decodedJwtData = JSON.parse(decodedJwtJsonData)
+         if(decodedJwtData!==null && decodedJwtData!==""){
+           if(decodedJwtData["role"][0]!==null && decodedJwtData["role"][0]!==""){
+         this.isAdmin = decodedJwtData["role"][0].authority
+           }
+         }
+        
+    }
 
-    // console.log(this.user$["actionsObserver"]["_value"]["user"]["user"]);
   }
+
+  isAdmin:string;
   logout() {
     this.store.dispatch(logout());
   }
@@ -63,4 +77,7 @@ export class UserprofileComponent implements OnInit {
   demo(content: string) {
     this.selectedItem = "DEMO";
   }
+
+  
+ 
 }

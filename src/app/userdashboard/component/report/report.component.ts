@@ -74,41 +74,26 @@ hist_width = 800;
     
     
   }
- filename:any;
- filepath:any;
   onSubmit(f: NgForm){
-    // this.filepath=f.value.attachments;
-  //  this.filename=this.filepath.replace(/^.*[\\\/]/, '')
-    this.filename=(<HTMLInputElement>document.getElementById("file-id")).files[0].name;
-   this.filepath=(<HTMLInputElement>document.getElementById("file-id")).files[0];
-    console.log("filename",this.filename);
-    console.log("filepath",this.filepath);
+    
+   
     Email.send({
       Host: "smtpout.asia.secureserver.net",
       Username: "support@egatetutor.in",
       Password: "egatetutor_2019",
       To: "support@egatetutor.in,himanshup6201@gmail.com",
-      From: "support@egatetutor.in",
+      From: "ssupport@egatetutor.in",
       Subject: "Mail sent from: " + this.user.emailId,
       Body: `
       <b>Message:</b>  ${f.value.message}<br />  `,
-      Attachments: [ 
-        { 
-          name: this.filename, 
-          // path:"https://networkprogramming.files.wordpress.com/2017/11/smtpjs.png",  
-          // path:"C:/Users/himan/OneDrive/Desktop/smtpjs.png",  
-          path:"file:///C:/Users/himan/OneDrive/Desktop/smtpjs.png",  
-          // name : "smtpjs.png",
-  	    	// path:"https://networkprogramming.files.wordpress.com/2017/11/smtpjs.png"
-        }] 
+     
     }).then((message) => {
       Swal.fire("Message Sent!");
       f.resetForm();
     });
   }
-  handleUpload(e){
-    this.filepath=e.target.value;
-  }
+  
+
   
   transform(imageString: string) {
     var base64Image = "data:image/png;base64," + imageString;

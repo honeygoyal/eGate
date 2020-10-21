@@ -213,16 +213,10 @@
                   </mat-form-field>
 
                   <div style="display: flex; justify-content: space-between">
-                    <input
-                      (change)="handleUpload($event)"
-                      ngModel
-                      type="file"
-                      name="attachments"
-                      id="file-id"
-                    />
                     <button
                       [disabled]="!f.valid"
                       style="
+                        color: black;
                         background: #07c4fb;
                         padding: 0.5rem 1rem;
                         border-radius: 5px;

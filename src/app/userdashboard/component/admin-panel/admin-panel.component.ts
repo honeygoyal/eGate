@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-
+import Swal from "sweetalert2";
 @Component({
   selector: "app-admin-panel",
   templateUrl: "./admin-panel.component.html",
@@ -34,7 +34,6 @@ export class AdminPanelComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       examId: ["", Validators.required],
       courseId: ["", Validators.required],
-      file: ["", Validators.required],
     });
 
     this.http
@@ -57,11 +56,26 @@ export class AdminPanelComponent implements OnInit {
           headers: { skip: "true" },
         }
       )
-      .subscribe();
+      .subscribe(data=>{
+        console.log(data)
+        this.firstFormGroup.reset({
+          courseId:'',
+          title:'',
+          description:'',
+          examId:'',
+          totalMarks:'',
+          totalQuestion:'',
+          duration:'',
+          startDate:'',
+          endDate:'',
+        });
+        Swal.fire("Test Created!");
+      });
   }
 
   onExamCodeSelect() {
     console.log(this.examCode);
+    if(this.examCode!== ""){
     this.http
       .get("http://localhost:8080/coursesDetail/getCourseIdListForAdmin", {
         params: { exam_code: this.examCode["examId"] },
@@ -69,40 +83,30 @@ export class AdminPanelComponent implements OnInit {
       .subscribe((data) => {
         this.testList = data;
       });
-  }
-  srcResult: string;
-  onFileSelected() {
-    const inputNode: any = document.querySelector("#file");
-
-    if (typeof FileReader !== "undefined") {
-      const reader = new FileReader();
-
-      reader.onload = (e: any) => {
-        this.srcResult = e.target.result;
-      };
-
-      reader.readAsArrayBuffer(inputNode.files[0]);
     }
   }
-
+  srcResult: string;
+  onFileSelected(event) {
+   const file =event.target.files[0];
+   this.userFile=file;
+   
+  }
+  public userFile :any=File;
   onSubmitfile() {
-    console.log(this.secondFormGroup.value);
+    // console.log(this.secondFormGroup.value);
     let server_url =
       "http://localhost:8080/questionLayout/upload?courseId=" +
       this.secondFormGroup.value.courseId;
     const formData = new FormData();
-    formData.append("file", this.secondFormGroup.value.file);
+    formData.append("file", this.userFile);
     this.http
       .post(server_url, formData, {
-        headers: {
-          "Content-Type":
-            "multipart/form-data;boundary=njdsandiadnsaidsadmpoamdafsdnofs",
-          "Content-Disposition": "form-data",
-          Accept: "application/json, text/plain",
-        },
+        headers: { skip: "true" },
       })
       .subscribe((data) => {
-        console.log(data);
+        this.secondFormGroup.reset();
+        Swal.fire("Question Uploaded for Test!");
       });
   }
+
 }
