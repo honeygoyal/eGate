@@ -117,3 +117,114 @@
     </mat-step>
   </mat-horizontal-stepper>
 </mat-card>
+
+<mat-card style="margin-left: 3rem; margin-top: 2rem; text-align: center">
+  <div
+    style="
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      text-align: center;
+    "
+  >
+    <h2 style="text-align: center">Unverified User</h2>
+  </div>
+  <div
+    *ngFor="let user of unverifiedUsers"
+    style="
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    "
+  >
+    <p>{{ user.name }}</p>
+    <p>{{ user.emailId }}</p>
+    <img
+      *ngIf="user.photo !== ''"
+      [src]="transform(user.photo)"
+      width="100px"
+      height="100px"
+      alt=""
+    />
+    <img
+      *ngIf="user.photo === ''"
+      src="./../../../../assets/not-found1.jpg"
+      width="100px"
+      height="100px"
+      alt=""
+    />
+
+    <img
+      *ngIf="user.signature !== ''"
+      [src]="transform(user.signature)"
+      width="100px"
+      height="100px"
+      alt=""
+    />
+    <img
+      *ngIf="user.signature === ''"
+      src="./../../../../assets/not-found1.jpg"
+      width="100px"
+      height="100px"
+      alt=""
+    />
+    <img
+      *ngIf="user.govtId !== ''"
+      [src]="transform(user.govtId)"
+      width="100px"
+      height="100px"
+      alt=""
+    />
+    <img
+      *ngIf="user.govtId === ''"
+      src="./../../../../assets/not-found1.jpg"
+      width="100px"
+      height="100px"
+      alt=""
+    />
+    <form
+      #f="ngForm"
+      style="display: flex; flex-direction: column; align-items: center"
+    >
+      <textarea
+        placeholder="Comment"
+        name="comment"
+        id="comment"
+        cols="20"
+        rows="2"
+        ngModel
+      ></textarea>
+      <div
+        style="
+          margin-top: 1rem;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        "
+      >
+        <button
+          style="margin-right: 0.5rem"
+          type="submit"
+          mat-mini-fab
+          color="primary"
+          aria-label="Example icon button with a menu icon"
+          (click)="VerificationAction(true, user.id, f)"
+        >
+          <mat-icon>check</mat-icon>
+        </button>
+        <button
+          style="margin-left: 0.5rem"
+          type="submit"
+          mat-mini-fab
+          color="primary"
+          aria-label="Example icon button with a menu icon"
+          (click)="VerificationAction(false, user.id, f)"
+        >
+          <mat-icon>clear</mat-icon>
+        </button>
+      </div>
+    </form>
+  </div>
+</mat-card>

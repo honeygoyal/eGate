@@ -20,6 +20,9 @@ import { StoreModule } from "@ngrx/store";
 import * as fromAuth from "./reducers";
 import { AuthGuard } from "./auth.guard";
 import { AuthEffects } from "./auth.effects";
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+import { MatSelectModule } from "@angular/material/select";
 @NgModule({
   declarations: [
     SignupComponent,
@@ -29,7 +32,9 @@ import { AuthEffects } from "./auth.effects";
   ],
   imports: [
     CommonModule,
+    MatSelectModule,
     MatProgressSpinnerModule,
+    MatFormFieldModule,
     FileUploadModule,
     HttpClientModule,
     ReactiveFormsModule,

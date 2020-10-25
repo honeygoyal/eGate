@@ -3,7 +3,7 @@
     <nav id="main-nav">
       <!-- <img class="bgimage" src="./../../assets/susa.png" alt="" /> -->
       <a
-        style="text-decoration: none;"
+        style="text-decoration: none"
         routerLinkActive="current1"
         href=""
         routerLink=""
@@ -25,7 +25,7 @@
         </li>
         <li>
           <a
-            style="text-transform: none;"
+            style="text-transform: none"
             routerLinkActive="current"
             routerLink="/examdetails/ipate"
             href="#"
@@ -47,29 +47,40 @@
 
       
         </li> -->
-        <li style="padding-left: 0rem;">
+        <li style="padding-left: 0rem">
           <div style="width: 33%; float: left">
-           <a style="cursor: pointer;margin-left: 12px;"
+            <a
+              style="cursor: pointer; margin-left: 12px"
               routerLink="/userdashboard/profile"
-              href="">
-              <span *ngIf="isLoggedIn$ | async"
-                    class="material-icons"
-                    style="color: rgba(7, 196, 251, 1);">
-                <img src= "{{profilePhoto}}" 
-                    style="width: 2rem; height: 2rem; border-radius: 50%;"
-                    alt=""/>
-              </span>   
-            </a> 
+              href=""
+            >
+              <span
+                *ngIf="isLoggedIn$ | async"
+                class="material-icons"
+                style="color: rgba(7, 196, 251, 1)"
+              >
+                <img
+                  *ngIf="profilePhoto !== ''"
+                  [src]="transform(profilePhoto)"
+                  style="width: 4rem; height: 4rem; border-radius: 50%"
+                  alt=""
+                />
+                <img
+                  *ngIf="profilePhoto === ''"
+                  style="width: 2rem; height: 2rem; border-radius: 50%"
+                  alt=""
+                />
+              </span>
+            </a>
             <a *ngIf="isLoggedOut$ | async" routerLink="/login">Login</a>
-            <button style="border-color: #07C4FB" *ngIf="isLoggedIn$ | async"><a (click)="logout()" routerLink="/login">Logout</a></button> 
-          </div>               
+            <button
+              style="border-color: #07c4fb; margin-left: 1rem"
+              *ngIf="isLoggedIn$ | async"
+            >
+              <a (click)="logout()" routerLink="/login">Logout</a>
+            </button>
+          </div>
         </li>
-
-        <!-- <li>
-          <button (click)="logsoon()" class="link-button" href="#">
-            Login
-          </button>
-        </li> -->
       </ul>
     </nav>
     <div id="image">

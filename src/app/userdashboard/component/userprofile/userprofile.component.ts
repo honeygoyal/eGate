@@ -17,7 +17,7 @@ export class UserprofileComponent implements OnInit {
     private route: ActivatedRoute
   ) {}
   name: string;
-  branch: string;
+  branches: string[]=[];
   examref: any[];
   selectedItem: string;
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class UserprofileComponent implements OnInit {
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
       //console.log(data);
       this.name = data.user.name;
-      this.branch = data.user.discipline;
+      this.branches = (data.user.discipline).split(',');
       this.examref = [...data.user.coursesOffered];
       //console.log(data);
     });

@@ -78,13 +78,19 @@
             </table>
             <table class="example-full-width" cellspacing="0">
               <tr>
-                <td>
+                <td style="padding-top: 0.3rem">
+                  <label
+                    style="color: white; margin-left: 1rem"
+                    for="selectyear"
+                    >Select Year</label
+                  ><br />
                   <select
                     formControlName="targetYear"
                     class="signup-select"
                     aria-placeholder="Select Target Year"
+                    name="selectyear"
                   >
-                    <option hidden selected disabled value="">
+                    <option selected disabled value="">
                       -- Select Target Year --
                     </option>
                     <option value="2020">2020</option>
@@ -92,13 +98,32 @@
                     <option value="2022">2022</option>
                   </select>
                 </td>
-                <td>
-                  <input
+                <td style="padding-top: 1rem">
+                  <!-- <input
                     formControlName="discipline"
                     class="signup-input"
                     placeholder="  Engineering Discipline"
                     type="text"
-                  />
+                  /> -->
+
+                  <label
+                    style="color: white; margin-left: 1rem; margin-top: 2rem"
+                    for="selectbranch"
+                    >Select Branch</label
+                  ><br />
+                  <mat-form-field style="width: 15rem; margin-left: 0.5rem">
+                    <mat-select
+                      formControlName="discipline"
+                      [(value)]="selectedToppings"
+                      multiple
+                    >
+                      <mat-option
+                        *ngFor="let topping of toppingList"
+                        [value]="topping"
+                        >{{ topping }}</mat-option
+                      >
+                    </mat-select>
+                  </mat-form-field>
                 </td>
               </tr>
             </table>

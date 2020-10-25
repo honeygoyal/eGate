@@ -6,6 +6,7 @@ import { AppState } from "../reducers";
 import { map } from "rxjs/operators";
 import { isLoggedIn, isLoggedOut } from "../auth/auth.selectors";
 import { logout } from "../auth/auth.actions";
+import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -14,7 +15,7 @@ import { logout } from "../auth/auth.actions";
 export class HeaderComponent implements OnInit {
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private sanitizer: DomSanitizer,) {}
   profilePhoto: string;
   ngOnInit() {
     this.isLoggedIn$ = this.store.pipe(select(isLoggedIn));
@@ -34,5 +35,10 @@ export class HeaderComponent implements OnInit {
   }
   logout() {
     this.store.dispatch(logout());
+  }
+
+  transform(imageString: string) {
+    var base64Image = "data:image/png;base64," + imageString;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(base64Image);
   }
 }

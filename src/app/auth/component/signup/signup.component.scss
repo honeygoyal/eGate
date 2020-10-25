@@ -34,7 +34,7 @@
   font-size: 1.1rem;
 }
 .signup-select {
-  width: 16rem;
+  width: 15rem;
   height: 2.8rem;
   margin: 0.5rem;
   padding: 0.2rem 0.5rem;
@@ -42,6 +42,7 @@
   border-radius: 10px;
   outline: none;
   font-size: 1.1rem;
+  margin-top: 0rem;
   option {
     font-size: 1.2rem;
   }
@@ -308,4 +309,13 @@ textarea.ng-invalid.ng-touched {
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
 .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
   background-color: #07c4fb;
+}
+
+//
+
+.mat-form-field-appearance-legacy .mat-form-field-infix {
+  background: white;
+  border-radius: 8px;
+  padding: 0rem 0rem 0.8rem 0rem;
+  margin: 0;
 }

@@ -1,19 +1,20 @@
 <div class="container">
-  <p style="font-size: 1.3rem; margin-bottom: 2rem; font-weight: bold;">
+  <p style="font-size: 1.3rem; margin-bottom: 2rem; font-weight: bold">
     ACCOUNT OVERVIEW
   </p>
   <i class="fa fa-user" aria-hidden="true"></i>
   <span class="subheadings">&nbsp;&nbsp;PERSONAL INFORMATION</span>
-  <mat-card class="card-design" style="margin: 1rem 0rem;">
+  <mat-card class="card-design" style="margin: 1rem 0rem">
     <pre class="panel-text">Name        :     {{ user.user.name }}</pre>
-    <pre class="panel-text">Mobile       :     {{ user.user.mobileNumber }}</pre>
+    <pre class="panel-text">
+Mobile       :     {{ user.user.mobileNumber }}</pre
+    >
     <pre class="panel-text">Address    :     {{ user.user.address }}</pre>
-    <pre class="panel-text">Course      :     {{ user.user.qualification }}</pre>
   </mat-card>
 
-  <i class="fa fa-lock" style="color: rgb(78, 48, 214);" aria-hidden="true"></i>
+  <i class="fa fa-lock" style="color: rgb(78, 48, 214)" aria-hidden="true"></i>
   <span>&nbsp;&nbsp;SECURITY</span>
-  <mat-card class="card-design" style="margin: 1rem 0rem;">
+  <mat-card class="card-design" style="margin: 1rem 0rem">
     <pre class="panel-text">Email          :     {{ user.user.emailId }}</pre>
     <button
       mat-button
@@ -33,13 +34,17 @@
 
   <i
     class="fa fa-user-plus"
-    style="color: rgb(122, 122, 76);"
+    style="color: rgb(122, 122, 76)"
     aria-hidden="true"
   ></i>
   <span>&nbsp;&nbsp;ENROLLMENT INFORMATION</span>
-  <mat-card class="card-design" style="margin: 1rem 0rem;">
+  <mat-card
+    *ngFor="let branch of branches"
+    class="card-design"
+    style="margin: 1rem 0rem"
+  >
     <div
-      style="display: flex; align-items: center; justify-content: flex-start;"
+      style="display: flex; align-items: center; justify-content: flex-start"
     >
       <pre class="panel-text">Courses      :</pre>
       <mat-chip-list aria-label="Fish selection">
@@ -51,100 +56,107 @@
         <mat-chip color="accent" selected>CIL ONLINE TEST SERIES</mat-chip>
       </mat-chip-list>
     </div>
-    <pre class="panel-text">Stream        :     {{ user.user.discipline }}</pre>
+    <pre class="panel-text">Stream        :     {{ branch }}</pre>
   </mat-card>
 
-  <i style="color: rgb(48, 84, 151);" class="fa fa-folder"></i>
+  <i style="color: rgb(48, 84, 151)" class="fa fa-folder"></i>
   <span>&nbsp;&nbsp;Profile</span>
-  <mat-card
-    class="card-design"
-    style="
-      margin: 1rem 0rem;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-    "
-  >
-    <div id="profileimage" style="border-radius: 10px; margin-right: 2rem;">
-      <img
-        style="width: 10rem; height: auto;"
-        src="./../../../../assets/Group11.png"
-      />
-    </div>
-    <div
-      id="uploadcont"
-      style="
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      "
-    >
-      <button
-        style="
-          border: #00f5a2;
-          background: #00f5a2;
-          cursor: pointer;
-          padding: 0.5rem;
-          color: white;
-          font-weight: bold;
-          border-radius: 10px;
-          width: 10rem;
-          cursor: pointer;
-        "
-      >
-        Choose File
-      </button>
-      <button
-        style="
-          border: #00f5a2;
-          background: #00f5a2;
-          cursor: pointer;
-          padding: 0.5rem;
-          color: white;
-          font-weight: bold;
-          border-radius: 10px;
-          width: 10rem;
-          margin-top: 1rem;
-        "
-      >
-        UploadID
-      </button>
-      <button
-        style="
-          border: #00f5a2;
-          background: #00f5a2;
-          cursor: pointer;
-          padding: 0.5rem;
-          color: white;
-          font-weight: bold;
-          border-radius: 10px;
-          width: 10rem;
-          margin-top: 1rem;
-        "
-      >
-        Submit
-      </button>
-    </div>
-  </mat-card>
-  <!-- <div class="panel panel-default">
-    <div class="panel-body">
-      <div class="content">
-        <div class="right-content">
-          <form>
-            <label for="profilePic" class="btn btn-primary">Choose File</label>
-            <input id="profilePic" type="file" name="inputPic" hidden="true" />
-            <label for="idPic" class="btn btn-primary">Upload Id</label>
-            <input id="idPic" type="file" name="inputId" hidden="true" />
-            <button type="submit" class="btn btn-primary submit-pics">
-              Submit
-            </button>
-          </form>
+  <mat-card class="card-design" style="margin: 1rem 0rem; padding: 0rem">
+    <div class="prsnl-div" style="padding: 23px 0px 0px">
+      <div class="lft_prt">
+        <div class="rot_div">Photograph<sup style="color: #ac1a27">*</sup></div>
+        <div class="phtgrph" id="samplePhoto">
+          Photograph<br />Passport Size<br />3.5x4.5cm<br />Size:200KB
         </div>
-        <div class="left-content">
-          <img src="../../../assets/images/profile_pic_sample.png" />
+        <div class="browse">
+          <div class="outer-input-main new-int">
+            <label id="photo_text">No file selected</label>
+            <input
+              class="custom-file-input"
+              type="file"
+              id="photo"
+              name="photo"
+              (change)="readURL($event, 1)"
+              value=""
+            />
+            <div id="error1_text" class="custom-file-label" for="customFile">
+              Upload Photo
+            </div>
+          </div>
         </div>
       </div>
+      <div class="lft_prt" style="border-right: none">
+        <div class="rot_div">Signature<sup style="color: #ac1a27">*</sup></div>
+        <div class="phtgrph" id="sampleSign">Signature<br />Size:200KB</div>
+        <div class="browse">
+          <div class="outer-input-main new-int">
+            <label id="sign_text">No file selected</label>
+            <input
+              class="custom-file-input"
+              type="file"
+              id="sign"
+              name="sign"
+              (change)="readURL($event, 0)"
+              value=""
+            />
+            <div id="error2_text" class="custom-file-label" for="customFile">
+              Upload Signature
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="new-error_msg" id="iErr" style="display: none">
+        Please enter correct Email Id
+      </div>
+      <div class="lft_prt" style="margin: 7px 0px 0px">
+        <div class="upload_proof">
+          Please Upload ID Proof<sup style="color: #ac1a27">*</sup>
+        </div>
+        <div class="outer-input-main new-int" style="margin: 0px">
+          <input
+            class="custom-file-input"
+            type="file"
+            name="idcard"
+            id="idcard"
+            style="width: 165px"
+            (change)="readURL($event, 2)"
+          />
+          <label id="id_proof" style="margin-top: 10px">No file selected</label>
+          <div id="error3_text" class="custom-file-label" for="customFile">
+            Upload ID Proof
+          </div>
+        </div>
+      </div>
+      <div
+        class="lft_prt"
+        id="collegeId"
+        style="margin: 0px !important; display: none"
+      >
+        <div class="upload_proof">
+          Upload College ID<sup style="color: #ac1a27">*</sup>
+        </div>
+        <input
+          type="file"
+          name="Col_idcard"
+          id="Col_idcard"
+          style="width: 165px"
+        />
+        <br />
+      </div>
     </div>
-  </div> -->
+    <button
+      (click)="Submitdocs()"
+      style="
+        color: white;
+        background-color: #85e2fd;
+        margin: auto;
+        margin: 0rem 0rem 2rem 0rem;
+        margin-left: 88%;
+      "
+      mat-raised-button
+      color="primary"
+    >
+      Submit
+    </button>
+  </mat-card>
 </div>

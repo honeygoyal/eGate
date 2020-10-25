@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
+import { DomSanitizer } from '@angular/platform-browser';
 import Swal from "sweetalert2";
 @Component({
   selector: "app-admin-panel",
@@ -10,6 +11,8 @@ import Swal from "sweetalert2";
 export class AdminPanelComponent implements OnInit {
   isLinear = false;
   testList: any;
+  
+  unverifiedUsers:any;
   examCode: any = {
     examId: "",
   };
@@ -17,8 +20,8 @@ export class AdminPanelComponent implements OnInit {
   secondFormGroup: FormGroup;
   exams_code: any;
   exams_code_array: any[] = [];
-  constructor(private _formBuilder: FormBuilder, private http: HttpClient) {}
-
+  constructor(private _formBuilder: FormBuilder, private http: HttpClient, private sanitizer: DomSanitizer) {}
+  user:any=JSON.parse(localStorage.getItem("user"));
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       courseId: ["", Validators.required],
@@ -45,6 +48,14 @@ export class AdminPanelComponent implements OnInit {
           this.exams_code_array.push(exam["examId"]);
         }
       });
+    this.http.get("http://localhost:8080/users/findAllUnVerifiedUser?userId="+this.user.user.id).subscribe(data=>{
+      this.unverifiedUsers=data;
+      console.log(this.unverifiedUsers)
+    })
+  }
+  transform(imageString: string) {
+    var base64Image = "data:image/png;base64," + imageString;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(base64Image);
   }
   onSubmit() {
     console.log(this.firstFormGroup);
@@ -91,6 +102,7 @@ export class AdminPanelComponent implements OnInit {
    this.userFile=file;
    
   }
+
   public userFile :any=File;
   onSubmitfile() {
     // console.log(this.secondFormGroup.value);
@@ -107,6 +119,15 @@ export class AdminPanelComponent implements OnInit {
         this.secondFormGroup.reset();
         Swal.fire("Question Uploaded for Test!");
       });
+  }
+  comment:any;
+  VerificationAction(action,id,form:NgForm){
+    console.log(form)
+    console.log(action)
+    console.log(id)
+    this.http.post("http://localhost:8080/users/verification?userId="+id+"&isVerified="+action+"&comment="+form.value.comment,{}).subscribe(data=>{
+      location.href=location.href;
+    })
   }
 
 }
