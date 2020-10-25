@@ -75,7 +75,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   sectionnotAnsweredCount:string= "notAnsweredCount";
   sectionmarkedForReviewCount:string = "markedForReviewCount";
   sectionmarkedForReviewWithAnswerCount:string= "markedForReviewWithAnswerCount";
-  sectionnotvisitedCount:string = "notvisitedCount";
+  sectionnotvisitedCount:string = "notVisitedCount";
 
   sect:string;
   startingTime = new Date().getTime();
@@ -90,6 +90,9 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   IsDChecked:boolean;
   finalCheckedValue:boolean=false;
   totalOptionsChecked:string="";
+  examStatus="";
+  initializeCounts:boolean=false;
+  localStorageNATKey:string="natActiveValue";
   //constructorftransform
   constructor(
     private quesService: QuestionsService,
@@ -133,11 +136,11 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       this.email = data.user.emailId;
       this.name = data.user.name;
       this.userId = data.user.id;
-
+      this.examStatus=localStorage.getItem("examStatus");
       this.quesService
-        .getQuestionsForTestSeries(this.test_code)
+        .getQuestionsForTestSeries(this.test_code,this.userId)
         .subscribe((data) => {
-          this.question = data;
+          this.question = data;   
         });
     });
   }
@@ -300,9 +303,10 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           answerSubmitted: t === undefined ? null : t,
           questionStatus: r === undefined ? "NO_ANS" : r,
         },
-        true
+        true,false
       );
     }
+
     this.selectedTabCurrent = event.tab.textLabel;
     this.sect = event.tab.textLabel;
     this.duration = [...this.question[this.sect]][0]["courseId"]["duration"];
@@ -314,6 +318,11 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     this.totalquestions = [...this.question[this.sect]][0]["courseId"][
       "totalQuestion"
     ];
+    
+    if(this.localStorageNATKey === "natActiveValue"){
+      this.localStorageNATKey=this.localStorageNATKey+this.test_title.replace(" ","");
+      localStorage.setItem(this.localStorageNATKey,"");
+    }
 
     [...this.question[this.sect]][0][this.sectionansweredCount] =
       [...this.question[this.sect]][0][this.sectionansweredCount] === undefined
@@ -361,10 +370,6 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     this.notVisitedCount = [...this.question[this.sect]][0][
       this.sectionnotvisitedCount
     ];
-
-    // [...this.question].forEach((value: any, key: any) => {
-    //   console.log(key, value);
-    // });
  
     this.calculateTotalCount();
 
@@ -390,10 +395,12 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
            this.IsBChecked=false;
            this.IsCChecked=false;
            this.IsDChecked=false;
-           let checkBoxOptions=element.answerSubmitted.replace("(","").replace(")","").split(',');
-           checkBoxOptions.forEach(checkedOption => {
-            this.assignMSQOptionsChecked(checkedOption);
-           });
+           if(element.answerSubmitted !== null){
+            let checkBoxOptions=element.answerSubmitted.split('(').join("").split(')').join("").split(',');
+            checkBoxOptions.forEach(checkedOption => {
+              this.assignMSQOptionsChecked(checkedOption);
+            });
+           }
           }else{
             this.currentOption = element.answerSubmitted;
           }
@@ -402,6 +409,96 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         missedOutOnCurrentOption = true;
       }
     });
+
+    if(!assignedCurrentOption && this.examStatus === "PENDING" && !this.initializeCounts){
+     
+      if(this.questiontoShow.answerSubmitted !== null){
+        this.assignPreviouslySubmittedAnswer(this.questiontoShow.answerSubmitted);
+      }
+
+      Object.keys(this.question).forEach(key => {
+        let sectionQuestions=[...this.question[key]];
+        let sectionLength=sectionQuestions.length;
+        sectionQuestions[0].notVisitedCount=sectionQuestions[0].notVisitedCount === undefined
+              ? sectionLength:sectionQuestions[0].notVisitedCount;
+              
+        sectionQuestions.forEach(examQuestion => {
+        if(examQuestion.questionStatus !== null){
+          this.pushToArray(
+            this.answerDataofUser,
+            {
+              questionId: examQuestion.id,
+              timetaken: this.end - this.start,
+              answerSubmitted: examQuestion.answerSubmitted,
+              questionStatus: examQuestion.questionStatus,
+            },
+            false,true
+          );  
+          
+          switch (examQuestion.questionStatus) {
+            case "ANS":
+              sectionQuestions[0].answeredCount=sectionQuestions[0].answeredCount === undefined
+             ? 1
+             :sectionQuestions[0].answeredCount+1;
+             this.answeredCount = sectionQuestions[0].answeredCount;
+             this.totalAnsweredCount=this.totalAnsweredCount+1;
+             if(sectionQuestions[0].notVisitedCount-1 >= 0){
+              sectionQuestions[0].notVisitedCount=sectionQuestions[0].notVisitedCount-1;
+              this.notVisitedCount= sectionQuestions[0].notVisitedCount;
+              if(this.totalNotVisitedCount-1 >= 0){
+                this.totalNotVisitedCount=this.totalNotVisitedCount-1;
+              } 
+             }
+             break;
+            case "NO_ANS":
+              sectionQuestions[0].notAnsweredCount=sectionQuestions[0].notAnsweredCount === undefined
+              ? 1
+              :sectionQuestions[0].notAnsweredCount+1;
+              this.notAnsweredCount = sectionQuestions[0].notAnsweredCount;
+              this.totalNotAnsweredCount=this.totalNotAnsweredCount+1;
+              if(sectionQuestions[0].notVisitedCount-1 >= 0){
+                sectionQuestions[0].notVisitedCount=sectionQuestions[0].notVisitedCount-1;
+                this.notVisitedCount= sectionQuestions[0].notVisitedCount;
+                if(this.totalNotVisitedCount-1 >= 0){
+                  this.totalNotVisitedCount=this.totalNotVisitedCount-1;
+                 } 
+              }
+              break;
+            case "MARK_ANS":
+              sectionQuestions[0].markedForReviewWithAnswerCount=sectionQuestions[0].markedForReviewWithAnswerCount === undefined
+              ? 1
+              :sectionQuestions[0].markedForReviewWithAnswerCount+1;
+              this.markedForReviewWithAnswerCount = sectionQuestions[0].markedForReviewWithAnswerCount;
+              this.totalMarkedForReviewWithAnswerCount=this.totalMarkedForReviewWithAnswerCount+1;
+              if(sectionQuestions[0].notVisitedCount-1 >= 0){
+                sectionQuestions[0].notVisitedCount=sectionQuestions[0].notVisitedCount-1;
+                this.notVisitedCount= sectionQuestions[0].notVisitedCount;
+                if(this.totalNotVisitedCount-1 >= 0){
+                  this.totalNotVisitedCount=this.totalNotVisitedCount-1;
+                 } 
+              }
+              break;
+            case "MARK_NOANS":
+              sectionQuestions[0].markedForReviewCount=sectionQuestions[0].markedForReviewCount === undefined
+              ? 1
+              :sectionQuestions[0].markedForReviewCount+1;
+              this.markedForReviewCount = sectionQuestions[0].markedForReviewCount;
+              this.totalMarkedForReviewCount=this.totalMarkedForReviewCount+1;
+              if(sectionQuestions[0].notVisitedCount-1 >= 0){
+                sectionQuestions[0].notVisitedCount=sectionQuestions[0].notVisitedCount-1;
+                this.notVisitedCount= sectionQuestions[0].notVisitedCount;
+                if(this.totalNotVisitedCount-1 >= 0){
+                  this.totalNotVisitedCount=this.totalNotVisitedCount-1;
+                 } 
+              }
+              break;
+          }
+        }
+        });
+      });  
+
+      this.initializeCounts=true;
+    }
 
     if (!assignedCurrentOption && missedOutOnCurrentOption) {
       if(form !== undefined){
@@ -415,13 +512,35 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   questiontodisplayincrement(form: NgForm, quesId: number, quesType: string) {
     this.end = new Date().getTime();
     let submittedTextValue="natNotSelected";
-    this.natInput= localStorage.getItem("natActiveValue");
+    if(localStorage.getItem("natActiveValue") !== ""){
+      this.natInput= localStorage.getItem("natActiveValue");
+    }
+    else if(localStorage.getItem(this.localStorageNATKey) !== ""){
+      this.natInput= localStorage.getItem(this.localStorageNATKey);
+    }
+
+    else if(localStorage.getItem("natActiveValue") === "" && localStorage.getItem(this.localStorageNATKey) === ""){
+      this.natInput= "";
+    }
+    
     if(quesType === "NAT"){
         submittedTextValue = this.natInput ;
     }
     if(quesType === "MCQ" || quesType === "NAT"){
       this.finalCheckedValue = true;
     }
+    
+    if(quesType === "MSQ"){
+      if(this.totalOptionsChecked === ""){
+        this.answerDataofUser.forEach((element, index) => {
+          if (element.questionId === this.questiontoShow.id) {
+             this.finalCheckedValue = true;
+             this.totalOptionsChecked=element.answerSubmitted;
+          }
+        });
+      }
+    }
+
     if (
       form.value.optionSelected === "" ||
       form.value.optionSelected === null || submittedTextValue === "" || this.finalCheckedValue === false
@@ -429,7 +548,12 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
 
       let selectedValue=form.value.optionSelected;
       this.finalCheckedValue=false;
-      if(quesType === "NAT" || quesType === "MSQ"){
+      if(quesType === "NAT"){
+        selectedValue = null ;
+      }
+
+      if(quesType === "MSQ"){
+        this.totalOptionsChecked="";
         selectedValue = null ;
       }
 
@@ -441,7 +565,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           answerSubmitted: selectedValue,
           timetaken: this.end - this.start,
         },
-        false
+        false,false
       );
 
       this.savetheanswer(
@@ -460,12 +584,30 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       if(quesType === "NAT"){
         selectedValue = submittedTextValue ;
         this.finalCheckedValue=false;
+        localStorage.setItem(this.localStorageNATKey,selectedValue);
+        localStorage.setItem("natActiveValue","");
       }
 
       if(quesType === "MSQ"){
-        let listOfCheckedValues="("+this.totalOptionsChecked.substring(0, this.totalOptionsChecked.length - 1)+")";
+        
+        let listOfCheckedValues="(";
+        if(this.IsAChecked){
+          listOfCheckedValues=listOfCheckedValues+"A,";
+        }
+        if(this.IsBChecked){
+          listOfCheckedValues=listOfCheckedValues+"B,";
+        }
+        if(this.IsCChecked){
+          listOfCheckedValues=listOfCheckedValues+"C,";
+        }
+        if(this.IsDChecked){
+          listOfCheckedValues=listOfCheckedValues+"D,";
+        }
+       
+        listOfCheckedValues=listOfCheckedValues.substring(0, listOfCheckedValues.length - 1)+")";
         selectedValue = listOfCheckedValues ;
         this.finalCheckedValue=false;
+        this.totalOptionsChecked="";
       }
 
 
@@ -477,7 +619,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           answerSubmitted: selectedValue,
           timetaken: this.end - this.start,
         },
-        false
+        false,false
       );
 
       this.savetheanswer(
@@ -508,12 +650,17 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
            this.IsBChecked=false;
            this.IsCChecked=false;
            this.IsDChecked=false;
-           let checkBoxOptions=element.answerSubmitted.replace("(","").replace(")","").split(',');
-           checkBoxOptions.forEach(checkedOption => {
-            this.assignMSQOptionsChecked(checkedOption);
-           });
+           if(element.answerSubmitted !== null){
+            let checkBoxOptions=element.answerSubmitted.split('(').join("").split(')').join("").split(',');
+            checkBoxOptions.forEach(checkedOption => {
+              this.assignMSQOptionsChecked(checkedOption);
+            });
+           }
           }else{
             this.currentOption = element.answerSubmitted;
+            if(this.questiontoShow.questionType === "NAT"){
+              localStorage.setItem(this.localStorageNATKey,this.currentOption);
+            }
           }
         assignedCurrentOption = true;
       } else {
@@ -525,23 +672,52 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       form.reset();
     }
 
+ 
     this.start = new Date().getTime();
     this.count++;
 
     this.calculateTotalCount();
+
+    if(!assignedCurrentOption && this.examStatus === "PENDING"){
+      if(this.questiontoShow.answerSubmitted !== null){
+        this.assignPreviouslySubmittedAnswer(this.questiontoShow.answerSubmitted);
+      }
+    }
   }
 
 
   markforreviewfun(form: NgForm, quesId: number, quesType: string) {
     this.end = new Date().getTime();
     let submittedTextValue="natNotSelected";
-    this.natInput= localStorage.getItem("natActiveValue");
+    if(localStorage.getItem("natActiveValue") !== ""){
+      this.natInput= localStorage.getItem("natActiveValue");
+    }
+    else if(localStorage.getItem(this.localStorageNATKey) !== ""){
+      this.natInput= localStorage.getItem(this.localStorageNATKey);
+    }
+
+    else if(localStorage.getItem("natActiveValue") === "" && localStorage.getItem(this.localStorageNATKey) === ""){
+      this.natInput= "";
+    }
     if(quesType === "NAT"){
         submittedTextValue = this.natInput ;
     }
     if(quesType === "MCQ" || quesType === "NAT"){
       this.finalCheckedValue = true;
     }
+
+    if(quesType === "MSQ"){
+      if(this.totalOptionsChecked === ""){
+        this.answerDataofUser.forEach((element, index) => {
+          if (element.questionId === this.questiontoShow.id) {
+             this.finalCheckedValue = true;
+             this.totalOptionsChecked=element.answerSubmitted;
+          }
+        });
+      }
+    }
+    
+
     if (
       form.value.optionSelected === "" ||
       form.value.optionSelected === null || submittedTextValue === "" || this.finalCheckedValue === false
@@ -549,7 +725,12 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
 
       let selectedValue=form.value.optionSelected;
       this.finalCheckedValue=false;
-      if(quesType === "NAT" || quesType === "MSQ"){
+      if(quesType === "NAT"){
+        selectedValue = null ;
+      }
+
+      if(quesType === "MSQ"){
+        this.totalOptionsChecked="";
         selectedValue = null ;
       }
 
@@ -561,7 +742,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           answerSubmitted: selectedValue,
           timetaken: this.end - this.start,
         },
-        false
+        false,false
       );
 
       this.savetheanswer(
@@ -581,12 +762,28 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       if(quesType === "NAT"){
         selectedValue = submittedTextValue ;
         this.finalCheckedValue = false;
+        localStorage.setItem(this.localStorageNATKey,selectedValue);
+        localStorage.setItem("natActiveValue","");
       }
 
       if(quesType === "MSQ"){
-        let listOfCheckedValues="("+this.totalOptionsChecked.substring(0, this.totalOptionsChecked.length - 1)+")";
+        let listOfCheckedValues="(";
+        if(this.IsAChecked){
+          listOfCheckedValues=listOfCheckedValues+"A,";
+        }
+        if(this.IsBChecked){
+          listOfCheckedValues=listOfCheckedValues+"B,";
+        }
+        if(this.IsCChecked){
+          listOfCheckedValues=listOfCheckedValues+"C,";
+        }
+        if(this.IsDChecked){
+          listOfCheckedValues=listOfCheckedValues+"D,";
+        }
+        listOfCheckedValues=listOfCheckedValues.substring(0, listOfCheckedValues.length - 1)+")";
         selectedValue = listOfCheckedValues ;
         this.finalCheckedValue=false;
+        this.totalOptionsChecked="";
       }
 
       this.pushToArray(
@@ -597,7 +794,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           answerSubmitted: selectedValue,
           timetaken: this.end - this.start,
         },
-        false
+        false,false
       );
 
       this.savetheanswer(
@@ -627,12 +824,17 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
            this.IsBChecked=false;
            this.IsCChecked=false;
            this.IsDChecked=false;
-           let checkBoxOptions=element.answerSubmitted.replace("(","").replace(")","").split(',');
-           checkBoxOptions.forEach(checkedOption => {
-            this.assignMSQOptionsChecked(checkedOption);
-           });
+           if(element.answerSubmitted !== null){
+            let checkBoxOptions=element.answerSubmitted.split('(').join("").split(')').join("").split(',');
+            checkBoxOptions.forEach(checkedOption => {
+              this.assignMSQOptionsChecked(checkedOption);
+            });
+           }
           }else{
             this.currentOption = element.answerSubmitted;
+            if(this.questiontoShow.questionType === "NAT"){
+              localStorage.setItem(this.localStorageNATKey,this.currentOption);
+            }
           }
         assignedCurrentOption = true;
       } else {
@@ -647,6 +849,11 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     this.count++;
     this.start = new Date().getTime();
     this.calculateTotalCount();
+    if(!assignedCurrentOption && this.examStatus === "PENDING"){
+      if(this.questiontoShow.answerSubmitted !== null){
+        this.assignPreviouslySubmittedAnswer(this.questiontoShow.answerSubmitted);
+      }
+    }
   }
 
   timesUp(event) {
@@ -682,30 +889,41 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         answerSubmitted: form.value.optionSelected,
         timetaken: "4",
       },
-      false
+      false,false
     );
 
     this.calculateTotalCount();
   }
 
-  // pushToArray(arr, obj) {
-  //   var existingIds = arr.map((obj) => obj.question_id);
+  assignPreviouslySubmittedAnswer(alreadySubmittedAnswer:any){
+    switch(this.questiontoShow.questionType){
+      case "MCQ":
+        this.currentOption=alreadySubmittedAnswer;
+        break;
+      case "MSQ":
+       this.IsAChecked=false;
+       this.IsBChecked=false;
+       this.IsCChecked=false;
+       this.IsDChecked=false;
+       let checkBoxOptions=alreadySubmittedAnswer.split('(').join("").split(')').join("").split(',');
+       checkBoxOptions.forEach(checkedOption => {
+        this.assignMSQOptionsChecked(checkedOption);
+       });
+       break;
+      case "NAT":
+       this.currentOption=alreadySubmittedAnswer;
+       localStorage.setItem(this.localStorageNATKey,this.currentOption);
+       break;  
+     }
+  }
 
-  //   if (!existingIds.includes(obj.question_id)) {
-  //     arr.push(obj);
-  //   } else {
-  //     arr.forEach((element, index) => {
-  //       if (element.question_id === obj.question_id) {
-  //         arr[index] = obj;
-  //       }
-  //     });
-  //   }
-  // }
-
-  pushToArray(arr, obj,checkIfTabChanged) {
+  pushToArray(arr, obj,checkIfTabChanged,setInitialCountWhileResumed) {
     var existingIds = arr.map((obj) => obj.questionId);
 
-    if (!existingIds.includes(obj.questionId)) {
+    if(setInitialCountWhileResumed){
+      arr.push(obj);
+    }
+    else if (!existingIds.includes(obj.questionId)) {
       arr.push(obj);
 
       if (this.notVisitedCount !== 0) {
@@ -795,7 +1013,6 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   }
 
   sidebuttonforquestion(position: number, prevquestion: any, quesType: string) {
-    
     this.questiontoShow = {
       ...this.questionGroup[position - 1],
     };
@@ -819,10 +1036,11 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           answerSubmitted: t === undefined ? null : t,
           questionStatus: r === undefined ? "NO_ANS" : r,
         },
-        true
+        true,false
       );
     }
 
+    let assignedCurrentOption=false;
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
         if(this.questiontoShow.questionType === "MSQ"){
@@ -830,18 +1048,26 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
          this.IsBChecked=false;
          this.IsCChecked=false;
          this.IsDChecked=false;
-         let checkBoxOptions=element.answerSubmitted.replace("(","").replace(")","").split(',');
-         checkBoxOptions.forEach(checkedOption => {
-          this.assignMSQOptionsChecked(checkedOption);
-         });
+         if(element.answerSubmitted !== null){
+          let checkBoxOptions=element.answerSubmitted.split('(').join("").split(')').join("").split(',');
+          checkBoxOptions.forEach(checkedOption => {
+            this.assignMSQOptionsChecked(checkedOption);
+          });
+         }
         }else{
           this.currentOption = element.answerSubmitted;
         }
+        assignedCurrentOption=true;
       }
     });
     this.count = position;
     this.start = new Date().getTime();
     this.calculateTotalCount();
+    if(!assignedCurrentOption && this.examStatus === "PENDING"){
+      if(this.questiontoShow.answerSubmitted !== null){
+        this.assignPreviouslySubmittedAnswer(this.questiontoShow.answerSubmitted);
+      }
+    }
   }
 
   @ViewChild("tabGroup", { static: true })
@@ -918,7 +1144,6 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     });
   }
 
-
   submittheanswer(exam_over: boolean) {
     if (exam_over) {
       //console.log("Exam is over");
@@ -945,18 +1170,3 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     }
   }
 }
-
-// Swal.fire({
-//   title: "Are you sure?",
-//   text: "You want to End the Exam?",
-//   icon: "warning",
-//   showCancelButton: true,
-//   confirmButtonColor: "#3085d6",
-//   cancelButtonColor: "#d33",
-//   confirmButtonText: "Yes, Save it!",
-// }).then((result) => {
-//   if (result.value) {
-//     Swal.fire("Saved!", "Exam Over", "success");
-//   }
-//   window.close();
-// });

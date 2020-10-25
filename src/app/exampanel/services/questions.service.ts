@@ -10,10 +10,10 @@ import { SavedAnswerModel } from "../model/Savedanswer.model";
 export class QuestionsService {
   constructor(private http: HttpClient) {}
 
-  getQuestionsForTestSeries(id: any): Observable<any> {
+  getQuestionsForTestSeries(id: any,userId:any): Observable<any> {
     //console.log("getQuestionsForTestSeries:"+id);
     return this.http.get("http://localhost:8080/questionLayout/getQuestions", {
-      params: { courseId: id },
+      params: { courseId: id,userId: userId },
     });
   }
 

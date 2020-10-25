@@ -39,6 +39,7 @@ export class TestseriesComponent implements OnInit {
         .subscribe((data) => {
           this.exams = [...data];
           this.filterexams();
+         
           //console.log("exams: "+this.exams);
         });
     });
@@ -92,6 +93,8 @@ export class TestseriesComponent implements OnInit {
       (screen.height - 120) +
       ",statusbar=0,toolbar=0";
     localStorage.setItem("exam", JSON.stringify(exam));
+    localStorage.setItem("examStatus",exam.status);
+    //localStorage.setItem("timeelapsed",exam.);
     myWindow = window.open("/exampanel/", "windowOpenTab", params);
     if (window.focus) {
       myWindow.focus();
