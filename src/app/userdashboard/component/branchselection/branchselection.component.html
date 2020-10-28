@@ -1,0 +1,52 @@
+<h2 style="text-align: center; margin-bottom: 1rem; color: #07c4fb">
+  Select the branch to launch courses
+</h2>
+<mat-card
+  *ngFor="let branch of userDiscipline"
+  style="
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    background-color: #fafafc;
+
+    border: 1px solid #969696;
+  "
+>
+  <div style="display: flex; align-items: center">
+    <div mat-card-avatar class="example-header-image">
+      <svg style="margin-top: -0.6rem" height="100" width="100">
+        <circle
+          style="border: 1px solid #8b8b8b"
+          cx="30"
+          cy="30"
+          r="30"
+          fill="#a6a6a6"
+        />
+
+        <text style="color: white" x="30%" y="35" text-anchor="middle">
+          {{ branch | slice: 0:2 | uppercase }}
+        </text>
+      </svg>
+    </div>
+    <div style="margin-left: 2.5rem">
+      <div style="font-size: 1.5rem">
+        {{ BranchFullName[branch] }}
+      </div>
+      <p style="color: #07c4fb">GATE | iPATE | PSU</p>
+    </div>
+  </div>
+  <button
+    (click)="onbranchSelection(branch)"
+    style="
+      background-color: #07c4fb;
+      color: white;
+      border-radius: 20px;
+      margin-right: 1rem;
+    "
+    mat-button
+    color="primary"
+  >
+    Launch
+  </button>
+</mat-card>

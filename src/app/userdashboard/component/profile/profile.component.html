@@ -48,12 +48,12 @@ Mobile       :     {{ user.user.mobileNumber }}</pre
     >
       <pre class="panel-text">Courses      :</pre>
       <mat-chip-list aria-label="Fish selection">
-        <mat-chip>GATE ONLINE TEST SERIES</mat-chip>
-        <mat-chip>GATE VIDEO LECTURES</mat-chip>
-        <mat-chip color="primary" selected>GATE e-STUDY MATERIAL</mat-chip>
-        <mat-chip color="accent" selected>iPATE VIDEO LECTURES</mat-chip>
-        <mat-chip color="accent" selected>iPATE QUESTION BANK</mat-chip>
-        <mat-chip color="accent" selected>CIL ONLINE TEST SERIES</mat-chip>
+        <mat-chip color="primary" selected>DEMO TEST SERIES</mat-chip>
+        <span *ngFor="let course of user.user.coursesOffered">
+          <mat-chip selected *ngIf="branch === course.branch" color="accent">
+            {{ course.examNameService }}
+          </mat-chip></span
+        >
       </mat-chip-list>
     </div>
     <pre class="panel-text">Stream        :     {{ branch }}</pre>
@@ -152,6 +152,7 @@ Mobile       :     {{ user.user.mobileNumber }}</pre
         margin: auto;
         margin: 0rem 0rem 2rem 0rem;
         margin-left: 88%;
+        z-index: 2;
       "
       mat-raised-button
       color="primary"

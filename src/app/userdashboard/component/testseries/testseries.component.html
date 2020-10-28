@@ -2,6 +2,50 @@
   <mat-tab-group>
     <mat-tab label="ALL">
       <mat-card *ngFor="let exam of exams" class="example-card">
+        <div
+          *ngIf="exam.status === 'INACTIVE'"
+          style="
+            top: 0px;
+            left: 0px;
+            position: absolute;
+            background: white;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+            z-index: 1;
+            border-radius: 20px;
+          "
+        ></div>
+        <div
+          *ngIf="exam.status === 'INACTIVE'"
+          style="
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            top: 60%;
+            left: 87%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            opacity: 1;
+          "
+        >
+          <a href="#">
+            <img
+              src="./../../../../assets/lock.jpg"
+              width="50px"
+              height="50px"
+              alt=""
+              style="margin-left: 2rem"
+          /></a>
+          <!-- <button
+            class="btnactioncard"
+            *ngIf="exam.status === 'INACTIVE'"
+            style="background: red !important"
+          >
+            Buy Now
+          </button> -->
+        </div>
+
         <mat-card-header>
           <div mat-card-avatar class="example-header-image">
             <svg height="100" width="100">
@@ -94,6 +138,7 @@
           >
             Continue
           </button>
+
           <button
             (click)="reportshow(exam)"
             class="btnactioncard"
@@ -104,7 +149,7 @@
         </mat-card-content>
       </mat-card>
     </mat-tab>
-    <mat-tab label="INPROGRESS">
+    <mat-tab *ngIf="exams[0].status !== 'INACTIVE'" label="INPROGRESS">
       <mat-card *ngFor="let exam of examsinprogress" class="example-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image">
@@ -156,7 +201,7 @@
         </mat-card-content>
       </mat-card>
     </mat-tab>
-    <mat-tab click label="COMPLETED">
+    <mat-tab *ngIf="exams[0].status !== 'INACTIVE'" click label="COMPLETED">
       <mat-card *ngFor="let exam of examscompleted" class="example-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image">

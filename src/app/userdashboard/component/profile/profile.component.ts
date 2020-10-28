@@ -9,6 +9,11 @@ import * as $ from 'jquery'
 import { HttpClient } from '@angular/common/http';
 import { DomSanitizer } from '@angular/platform-browser';
 import Swal from "sweetalert2";
+import { BranchselectionComponent } from '../branchselection/branchselection.component';
+import { ActivatedRoute, Params } from '@angular/router';
+import { BranchOptedService } from '../../service/branch-opted.service';
+
+
 @Component({
   selector: "app-profile",
   templateUrl: "./profile.component.html",
@@ -16,18 +21,36 @@ import Swal from "sweetalert2";
 })
 export class ProfileComponent implements OnInit {
   user: any;
-  constructor(private store: Store<AppState>, private dialog: MatDialog,private http:HttpClient, private sanitizer: DomSanitizer) {}
+  popupEnabled:any;
+  constructor(private store: Store<AppState>,private branchOptedService:BranchOptedService, private route: ActivatedRoute, private dialog: MatDialog,private http:HttpClient, private sanitizer: DomSanitizer) {}
   branches:any[]=[];
+  branchOpted:any;
   ngOnInit(): void {
-    // this.user$ = this.store.pipe(select(user));
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
       this.user = data;
         this.branches=(this.user.user.discipline).split(',');
     });
-
-    // console.log(this.user$["actionsObserver"]["_value"]["user"]["user"]);
+    this.branchOpted=this.branchOptedService.getBranch()
+    if(this.branchOpted===undefined){
+      this.branchOpted=this.branches[0];
+      this.branchOptedService.branchSelected(this.branches[0])
+    }
+    
+    this.route.params.subscribe((params: Params) => {
+      this.popupEnabled = params["popupenable"];
+    });
+    if(this.popupEnabled==="true"){
+    const dialogRef = this.dialog.open(BranchselectionComponent,{
+      width:'55%',
+      disableClose:true
+    });
+ 
+    dialogRef.afterClosed().subscribe((result) => {
+    this.branchOptedService.branchSelected((`${result}`))
+     this.branchOpted=(`${result}`)
+    });
   }
-
+  }
   oldpassword: string;
   newpassword: string;
   openDialog() {
