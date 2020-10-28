@@ -7,6 +7,18 @@
             cursor: pointer;
             outline: none;
             border: 1px solid rgba(255, 153, 0, 1);
+            margin-top: 50px;
+          "
+          class="btn btn-primary"
+          (click)="selectBranchDialogOpen()"
+        >
+          Select Branch
+        </button>
+        <button
+          style="
+            cursor: pointer;
+            outline: none;
+            border: 1px solid rgba(255, 153, 0, 1);
           "
           routerLink="/userdashboard/demoseries"
           class="btn btn-primary"
@@ -44,7 +56,7 @@
           <!-- <li><a href="#">Complete Course</a></li> -->
           <li>
             <a
-              (click)="testseries('GATE')"
+              (click)="testseries('GATE-OTS')"
               [ngClass]="{ sideSelect: selectedItem == 'GATE-OTS' }"
               >Online Test Series</a
             >

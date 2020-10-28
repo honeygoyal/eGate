@@ -40,6 +40,7 @@ import { ReportComponent } from "./component/report/report.component";
 import { AdminPanelComponent } from "./component/admin-panel/admin-panel.component";
 import { GoogleChartsModule } from 'angular-google-charts';
 import { ScriptLoaderService } from 'angular-google-charts';
+import { BranchselectionComponent } from './component/branchselection/branchselection.component';
 @NgModule({
   declarations: [
     UserprofileComponent,
@@ -50,6 +51,7 @@ import { ScriptLoaderService } from 'angular-google-charts';
     BuypackageComponent,
     ReportComponent,
     AdminPanelComponent,
+    BranchselectionComponent,
   ],
   imports: [
     CommonModule,
@@ -87,7 +89,8 @@ import { ScriptLoaderService } from 'angular-google-charts';
         path: "",
         component: UserprofileComponent,
         children: [
-          { path: "profile", component: ProfileComponent },
+          {path:"brachselection",component:BranchselectionComponent},
+          { path: "profile/:popupenable", component: ProfileComponent },
           { path: "testseries/:subject", component: TestseriesComponent },
           { path: "report/:test_id", component: ReportComponent },
           { path: "demoseries", component: DemoseriesComponent },
@@ -102,6 +105,6 @@ import { ScriptLoaderService } from 'angular-google-charts';
     ),
   ],
   providers: [authInterceptorProviders, TestseriesService, DatePipe,ScriptLoaderService ],
-  entryComponents: [DialogComponent],
+  entryComponents: [DialogComponent,BranchselectionComponent],
 })
 export class UserdashboardModule {}

@@ -63,6 +63,7 @@ export class SignupComponent implements OnInit {
     };
     this.authService.saveUserProfile(this.signUpData).subscribe(
       (response) => {
+        
         // swal.fire("Registration Successfull");
         this.signupForm.reset();
         
@@ -73,5 +74,5 @@ export class SignupComponent implements OnInit {
     );
   }
   
-  toppingList: string[] = ['CSE', 'ME', 'PI', 'CH', 'MT', 'CE','MA','AE','XE'];
+  toppingList: string[] = ['CSE', 'ME', 'PI', 'CH', 'MT', 'CE','MA','AE','XE','EE','ECE','IN'];
 }
