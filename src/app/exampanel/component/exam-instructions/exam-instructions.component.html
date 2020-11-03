@@ -283,8 +283,19 @@
         margin: auto;
       "
     >
-      <img
+      <!-- <img
         src="./../../../../assets/profilr.jpg"
+        style="width: 8rem; height: 8rem; border-radius: 50%"
+        alt=""
+      /> -->
+      <img
+        *ngIf="profilePhoto !== ''"
+        [src]="transform(profilePhoto)"
+        style="width: 8rem; height: 8rem; border-radius: 50%"
+        alt=""
+      />
+      <img
+        *ngIf="profilePhoto === ''"
         style="width: 8rem; height: 8rem; border-radius: 50%"
         alt=""
       />

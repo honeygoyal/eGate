@@ -112,11 +112,7 @@
                     >Select Branch</label
                   ><br />
                   <mat-form-field style="width: 15rem; margin-left: 0.5rem">
-                    <mat-select
-                      formControlName="discipline"
-                      [(value)]="selectedToppings"
-                      multiple
-                    >
+                    <mat-select formControlName="discipline" multiple>
                       <mat-option
                         *ngFor="let topping of toppingList"
                         [value]="topping"

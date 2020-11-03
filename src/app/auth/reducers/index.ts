@@ -6,6 +6,8 @@ import {
   MetaReducer,
   createReducer,
   on,
+  Action,
+  State,
 } from "@ngrx/store";
 import { AuthActions } from "../action-types";
 
@@ -18,7 +20,7 @@ export const initialAuthState: AuthState = {
   user: undefined,
 };
 
-export const authReducer = createReducer(
+const authReducer = createReducer(
   initialAuthState,
   on(AuthActions.login, (state, action) => {
     return {
@@ -32,3 +34,6 @@ export const authReducer = createReducer(
     };
   })
 );
+export function reducer(state, action) {
+  return authReducer(state, action);
+}

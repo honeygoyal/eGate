@@ -1,15 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class BranchOptedService {
-  branchOpted:any;
-  constructor() { }
-  branchSelected(branch){
-    this.branchOpted=branch;
+  branchOpted: any;
+  constructor() {}
+  branchSelected(branch) {
+    this.branchOpted = branch;
   }
-  getBranch(){
+  getBranch() {
     return this.branchOpted;
   }
 }

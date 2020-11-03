@@ -13,28 +13,24 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { ValidateEqualModule } from "ng-validate-equal";
 import { LoaderService } from "./service/loader.service";
 import { LoaderInterceptor } from "./interceptors/LoaderInterceptor";
-import { LoaderComponent } from "../shared/loader/loader.component";
 import { EffectsModule } from "@ngrx/effects";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { StoreModule } from "@ngrx/store";
 import * as fromAuth from "./reducers";
 import { AuthGuard } from "./auth.guard";
 import { AuthEffects } from "./auth.effects";
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 import { MatSelectModule } from "@angular/material/select";
+import { SharedModule } from "../shared/shared.module";
 @NgModule({
-  declarations: [
-    SignupComponent,
-    LoginComponent,
-    ProgressComponent,
-    LoaderComponent,
-  ],
+  declarations: [SignupComponent, LoginComponent, ProgressComponent],
   imports: [
     CommonModule,
     MatSelectModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
+    SharedModule,
     FileUploadModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -50,7 +46,7 @@ import { MatSelectModule } from "@angular/material/select";
         component: SignupComponent,
       },
     ]),
-    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.authReducer),
+    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
     EffectsModule.forFeature([AuthEffects]),
   ],
 })

@@ -5,14 +5,14 @@ import { AppState } from "src/app/reducers";
 import { map } from "rxjs/operators";
 import { MatDialog } from "@angular/material/dialog";
 import { DialogComponent } from "./dialog/dialog.component";
-import * as $ from 'jquery' 
-import { HttpClient } from '@angular/common/http';
-import { DomSanitizer } from '@angular/platform-browser';
+import * as $ from "jquery";
+import { HttpClient } from "@angular/common/http";
+import { DomSanitizer } from "@angular/platform-browser";
 import Swal from "sweetalert2";
-import { BranchselectionComponent } from '../branchselection/branchselection.component';
-import { ActivatedRoute, Params } from '@angular/router';
-import { BranchOptedService } from '../../service/branch-opted.service';
-
+import { BranchselectionComponent } from "../branchselection/branchselection.component";
+import { ActivatedRoute, Params, Router } from "@angular/router";
+import { BranchOptedService } from "../../service/branch-opted.service";
+import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-profile",
@@ -21,35 +21,53 @@ import { BranchOptedService } from '../../service/branch-opted.service';
 })
 export class ProfileComponent implements OnInit {
   user: any;
-  popupEnabled:any;
-  constructor(private store: Store<AppState>,private branchOptedService:BranchOptedService, private route: ActivatedRoute, private dialog: MatDialog,private http:HttpClient, private sanitizer: DomSanitizer) {}
-  branches:any[]=[];
-  branchOpted:any;
+  popupEnabled: any;
+  constructor(
+    private store: Store<AppState>,
+    private router: Router,
+    private branchOptedService: BranchOptedService,
+    private route: ActivatedRoute,
+    private dialog: MatDialog,
+    private http: HttpClient,
+    private sanitizer: DomSanitizer
+  ) {}
+  branches: any[] = [];
+  branchOpted: any;
   ngOnInit(): void {
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
       this.user = data;
-        this.branches=(this.user.user.discipline).split(',');
+      this.branches = this.user.user.discipline.split(",");
     });
-    this.branchOpted=this.branchOptedService.getBranch()
-    if(this.branchOpted===undefined){
-      this.branchOpted=this.branches[0];
-      this.branchOptedService.branchSelected(this.branches[0])
+    this.branchOpted = this.branchOptedService.getBranch();
+    if (this.branchOpted === undefined) {
+      // this.branchOpted=this.branches[0];
+      // this.branchOptedService.branchSelected(this.branches[0])
+      const dialogRef = this.dialog.open(BranchselectionComponent, {
+        width: "55%",
+        disableClose: true,
+      });
+
+      dialogRef.afterClosed().subscribe((result) => {
+        this.branchOptedService.branchSelected(`${result}`);
+        this.branchOpted = `${result}`;
+        this.router.navigateByUrl("userdashboard/profile/false");
+      });
     }
-    
+
     this.route.params.subscribe((params: Params) => {
       this.popupEnabled = params["popupenable"];
     });
-    if(this.popupEnabled==="true"){
-    const dialogRef = this.dialog.open(BranchselectionComponent,{
-      width:'55%',
-      disableClose:true
-    });
- 
-    dialogRef.afterClosed().subscribe((result) => {
-    this.branchOptedService.branchSelected((`${result}`))
-     this.branchOpted=(`${result}`)
-    });
-  }
+    if (this.popupEnabled === "true") {
+      const dialogRef = this.dialog.open(BranchselectionComponent, {
+        width: "55%",
+        disableClose: true,
+      });
+
+      dialogRef.afterClosed().subscribe((result) => {
+        this.branchOptedService.branchSelected(`${result}`);
+        this.branchOpted = `${result}`;
+      });
+    }
   }
   oldpassword: string;
   newpassword: string;
@@ -60,171 +78,168 @@ export class ProfileComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
-  
- 
-  public photoFile :any=File;
-  public signFile :any=File;
-  
-  public IdFile :any=File;
-   readURL(input,val)
-  {
-      console.log(input.target.files[0])
-     
-      console.log(input)
-      if (input.target.files && input.target.files[0])
-      {
-        
-        switch (val) {
-          case 1:
-            this.photoFile=input.target.files[0];
-            break;
-          case 0:
-            this.signFile=input.target.files[0];
-            break;
-          case 2:
-            this.IdFile=input.target.files[0];
-             break;
-          default:
-            break;
-        }
-          var defaultImg="Photograph<br>Passport Size<br><br>3.5x4.5cm<br>Size:200KB";
-          var reader = new FileReader();
-          reader.readAsDataURL(input.target.files[0]);
-        
-          reader.onload = function (e)
-          {
-            
-            var str1="<img src='' width='110px' height='100'/>";
-              if(val==1){
-                $('#samplePhoto').html(str1);
-                 var value=$('#photo').val();
-                 $('#photo_text').html("File Selected");
-                  $('#error1_text').removeClass('error_txtbx');
-                  
-             }
-             if(val==0){
-                 var value=$('#sign').val();
-                 $('#sampleSign').html(str1);
-                 $('#sign_text').html("File Selected");
-                  $('#error2_text').removeClass('error_txtbx');
-                    
-             }
-             if(val==2){
-                 var value=$('#idcard').val();
-                $('#id_proof').html("File Selected");
-              $('#error3_text').removeClass('error_txtbx');
-              }
-              var ext =value.split('.').pop().toLowerCase();
-               var extcount =value.split('.');
-                  if($.inArray(ext, ['jpg','jpeg','png','pdf']) == -1 || extcount.length>2) {
-                      $('#iErr').html ( value+ ' is invalid File!');
-                      $('#iErr').show();
-                      $('#iErr').fadeOut(5000);
-                      $("#sign").focus();
-                      $('#sign').addClass('error_txtbx');
-                      if(val==1){
-                          $('#photo_text').html("No file Selected")
-                           $('#samplePhoto').html(defaultImg);  
-                      }
-                       if(val==0){
-                            $('#sign_text').html("No file Selected")
-                           $('#sampleSign').html(defaultImg);  
-                      }
-                      if(val==2){
-                            $('#id_proof').html("No file Selected")
-                          // $('#sampleSign').html(defaultImg);  
-                      }
-                      return false;
-                  }                          
-              if(input.target.files[0].size>200000 && val==1){
-                  $('#iErr').html("The file must be less than 200kb so please upload another Photo.");
-                  $('#iErr').show();
-                  $('#iErr').fadeOut(5000);
-                  $("#photo").focus();
-                  $("#photo").val('');
-                    $('#samplePhoto').html(defaultImg);  
-                       $('#photo_text').html("No file Selected")
-                  return false;
-              }
-              else if(input.target.files[0].size>200000 && val==0){
-                  $('#iErr').html("The file must be less than 200kb so please upload another signature.");
-                  $('#iErr').show();
-                  $('#iErr').fadeOut(5000);
-                  $("#sign").focus();
-                  $("#sign").val('');
-                   $('#sampleSign').html(defaultImg);  
-                     $('#sign_text').html("No file Selected")
-                  return false;
-              }
-                else if(input.target.files[0].size>200000 && (val=="" || val==2)){
-                  $('#iErr').html("The file must be less than 200kb so please upload another  Id proof.");
-                 // $('#id_proof').html("No file Selected")
-                  $('#iErr').show();
-                  $('#iErr').fadeOut(5000);
-                  $("#idcard").focus();
-                  $("#idcard").val('');
-                   $('#id_proof').html("No file Selected")
-                  return false;
-              }
-              else{
-                 
-                  //  $("#error1_text").val('');          
-                  var str="<img [src]='transform("+e.target+")'  width='110px' height='90'/>";
-                  // var str="<img [src]='transform("+input.target.value+")' width='110px' height='90'/>";
-                  console.log(str)
-                  if(val==1)
-                      $('#samplePhoto').html(str);
-                  if(val==0)
-                      $('#sampleSign').html(str);
-              }
-          };
-         
+
+  public photoFile: any = File;
+  public signFile: any = File;
+
+  public IdFile: any = File;
+  readURL(input, val) {
+    console.log(input.target.files[0]);
+
+    console.log(input);
+    if (input.target.files && input.target.files[0]) {
+      switch (val) {
+        case 1:
+          this.photoFile = input.target.files[0];
+          break;
+        case 0:
+          this.signFile = input.target.files[0];
+          break;
+        case 2:
+          this.IdFile = input.target.files[0];
+          break;
+        default:
+          break;
       }
-      
-  }
-    transform(imageString: string) {
-      var base64Image =  imageString;
-      return this.sanitizer.bypassSecurityTrustResourceUrl(base64Image);
+      var defaultImg =
+        "Photograph<br>Passport Size<br><br>3.5x4.5cm<br>Size:200KB";
+      var reader = new FileReader();
+      reader.readAsDataURL(input.target.files[0]);
+
+      reader.onload = function (e) {
+        var str1 = "<img src='' width='110px' height='100'/>";
+        if (val == 1) {
+          $("#samplePhoto").html(str1);
+          var value = $("#photo").val();
+          $("#photo_text").html("File Selected");
+          $("#error1_text").removeClass("error_txtbx");
+        }
+        if (val == 0) {
+          var value = $("#sign").val();
+          $("#sampleSign").html(str1);
+          $("#sign_text").html("File Selected");
+          $("#error2_text").removeClass("error_txtbx");
+        }
+        if (val == 2) {
+          var value = $("#idcard").val();
+          $("#id_proof").html("File Selected");
+          $("#error3_text").removeClass("error_txtbx");
+        }
+        var ext = value.split(".").pop().toLowerCase();
+        var extcount = value.split(".");
+        if (
+          $.inArray(ext, ["jpg", "jpeg", "png", "pdf"]) == -1 ||
+          extcount.length > 2
+        ) {
+          $("#iErr").html(value + " is invalid File!");
+          $("#iErr").show();
+          $("#iErr").fadeOut(5000);
+          $("#sign").focus();
+          $("#sign").addClass("error_txtbx");
+          if (val == 1) {
+            $("#photo_text").html("No file Selected");
+            $("#samplePhoto").html(defaultImg);
+          }
+          if (val == 0) {
+            $("#sign_text").html("No file Selected");
+            $("#sampleSign").html(defaultImg);
+          }
+          if (val == 2) {
+            $("#id_proof").html("No file Selected");
+            // $('#sampleSign').html(defaultImg);
+          }
+          return false;
+        }
+        if (input.target.files[0].size > 200000 && val == 1) {
+          $("#iErr").html(
+            "The file must be less than 200kb so please upload another Photo."
+          );
+          $("#iErr").show();
+          $("#iErr").fadeOut(5000);
+          $("#photo").focus();
+          $("#photo").val("");
+          $("#samplePhoto").html(defaultImg);
+          $("#photo_text").html("No file Selected");
+          return false;
+        } else if (input.target.files[0].size > 200000 && val == 0) {
+          $("#iErr").html(
+            "The file must be less than 200kb so please upload another signature."
+          );
+          $("#iErr").show();
+          $("#iErr").fadeOut(5000);
+          $("#sign").focus();
+          $("#sign").val("");
+          $("#sampleSign").html(defaultImg);
+          $("#sign_text").html("No file Selected");
+          return false;
+        } else if (
+          input.target.files[0].size > 200000 &&
+          (val == "" || val == 2)
+        ) {
+          $("#iErr").html(
+            "The file must be less than 200kb so please upload another  Id proof."
+          );
+          // $('#id_proof').html("No file Selected")
+          $("#iErr").show();
+          $("#iErr").fadeOut(5000);
+          $("#idcard").focus();
+          $("#idcard").val("");
+          $("#id_proof").html("No file Selected");
+          return false;
+        } else {
+          //  $("#error1_text").val('');
+          var str =
+            "<img [src]='transform(" +
+            e.target +
+            ")'  width='110px' height='90'/>";
+          // var str="<img [src]='transform("+input.target.value+")' width='110px' height='90'/>";
+          console.log(str);
+          if (val == 1) $("#samplePhoto").html(str);
+          if (val == 0) $("#sampleSign").html(str);
+        }
+      };
     }
+  }
+  transform(imageString: string) {
+    var base64Image = imageString;
+    return this.sanitizer.bypassSecurityTrustResourceUrl(base64Image);
+  }
 
-  Submitdocs(){
-    if(this.photoFile.length!==undefined ){
-      $('#iErr').html("Please Upload Profile Photo");
+  Submitdocs() {
+    if (this.photoFile.length !== undefined) {
+      $("#iErr").html("Please Upload Profile Photo");
       // $('#id_proof').html("No file Selected")
-       $('#iErr').show();
-       $('#iErr').fadeOut(5000);
-       $("#idcard").focus();
-       $("#idcard").val('');
-      
-    }else if(this.signFile.length!==undefined ){
-
-      $('#iErr').html("Please Upload Signature Photo");
+      $("#iErr").show();
+      $("#iErr").fadeOut(5000);
+      $("#idcard").focus();
+      $("#idcard").val("");
+    } else if (this.signFile.length !== undefined) {
+      $("#iErr").html("Please Upload Signature Photo");
       // $('#id_proof').html("No file Selected")
-       $('#iErr').show();
-       $('#iErr').fadeOut(5000);
-       $("#idcard").focus();
-       $("#idcard").val('');
-    }else if(this.IdFile.length!==undefined)
-    {
-      $('#iErr').html("Please Upload ID Proof Photo");
+      $("#iErr").show();
+      $("#iErr").fadeOut(5000);
+      $("#idcard").focus();
+      $("#idcard").val("");
+    } else if (this.IdFile.length !== undefined) {
+      $("#iErr").html("Please Upload ID Proof Photo");
       // $('#id_proof').html("No file Selected")
-       $('#iErr').show();
-       $('#iErr').fadeOut(5000);
-       $("#idcard").focus();
-       $("#idcard").val('');
-    }else{
+      $("#iErr").show();
+      $("#iErr").fadeOut(5000);
+      $("#idcard").focus();
+      $("#idcard").val("");
+    } else {
       const formData = new FormData();
       formData.append("profileFile", this.photoFile);
       formData.append("signatureFile", this.signFile);
       formData.append("govtIdFile", this.IdFile);
-      this.http.post("http://localhost:8080/users/uploadProfileData?userId="+this.user.user["id"], formData, {
-        headers: { skip: "true" },
-      }).subscribe(data=>{
-          console.log(data)
+      this.http
+        .post(environment.uploadProfileData + this.user.user["id"], formData, {
+          headers: { skip: "true" },
+        })
+        .subscribe((data) => {
+          console.log(data);
           Swal.fire("Document Uploaded Successfully");
-      })
-    
-
+        });
     }
   }
 }

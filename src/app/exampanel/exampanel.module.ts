@@ -15,7 +15,6 @@ import { MatExpansionModule } from "@angular/material/expansion";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatIconModule } from "@angular/material/icon";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatSelectModule } from "@angular/material/select";
 
@@ -37,7 +36,7 @@ import { DialogComponent } from "./component/exampanelscreen/dialog/dialog.compo
 import { MatDialogModule } from "@angular/material/dialog";
 import { InstructionDialogComponent } from "./component/exampanelscreen/instruction-dialog/instruction-dialog.component";
 import { ExamInstructionsComponent } from "./component/exam-instructions/exam-instructions.component";
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCheckboxModule } from "@angular/material/checkbox";
 // function countdownConfigFactory(): CountdownGlobalConfig {
 //   return { locale: 'mm:ss' };
 // }
@@ -80,7 +79,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatButtonToggleModule,
     MatChipsModule,
     MatIconModule,
-    MatProgressSpinnerModule,
     MatProgressBarModule,
     MatSelectModule,
     RouterModule.forChild([

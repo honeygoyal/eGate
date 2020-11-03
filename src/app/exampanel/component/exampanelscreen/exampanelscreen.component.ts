@@ -59,40 +59,41 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   submit_button_status: boolean = true;
   courseId: number;
   userId: number;
-  notVisitedCount:number;
-  markedForReviewCount:number=0;
-  markedForReviewWithAnswerCount:number=0;
-  answeredCount:number=0;
-  notAnsweredCount:number=1;
+  notVisitedCount: number;
+  markedForReviewCount: number = 0;
+  markedForReviewWithAnswerCount: number = 0;
+  answeredCount: number = 0;
+  notAnsweredCount: number = 1;
 
-  totalNotVisitedCount:number;
-  totalMarkedForReviewCount:number;
-  totalMarkedForReviewWithAnswerCount:number;
-  totalAnsweredCount:number;
-  totalNotAnsweredCount:number;
+  totalNotVisitedCount: number;
+  totalMarkedForReviewCount: number;
+  totalMarkedForReviewWithAnswerCount: number;
+  totalAnsweredCount: number;
+  totalNotAnsweredCount: number;
 
-  sectionansweredCount:string = "answeredCount";
-  sectionnotAnsweredCount:string= "notAnsweredCount";
-  sectionmarkedForReviewCount:string = "markedForReviewCount";
-  sectionmarkedForReviewWithAnswerCount:string= "markedForReviewWithAnswerCount";
-  sectionnotvisitedCount:string = "notVisitedCount";
+  sectionansweredCount: string = "answeredCount";
+  sectionnotAnsweredCount: string = "notAnsweredCount";
+  sectionmarkedForReviewCount: string = "markedForReviewCount";
+  sectionmarkedForReviewWithAnswerCount: string =
+    "markedForReviewWithAnswerCount";
+  sectionnotvisitedCount: string = "notVisitedCount";
 
-  sect:string;
+  sect: string;
   startingTime = new Date().getTime();
   //constructor
   totalquestions: string;
   totalmarks: string;
   testname: string;
-  natInput: string = '';
-  IsAChecked:boolean;
-  IsBChecked:boolean;
-  IsCChecked:boolean;
-  IsDChecked:boolean;
-  finalCheckedValue:boolean=false;
-  totalOptionsChecked:string="";
-  examStatus="";
-  initializeCounts:boolean=false;
-  localStorageNATKey:string="natActiveValue";
+  natInput: string = "";
+  IsAChecked: boolean;
+  IsBChecked: boolean;
+  IsCChecked: boolean;
+  IsDChecked: boolean;
+  finalCheckedValue: boolean = false;
+  totalOptionsChecked: string = "";
+  examStatus = "";
+  initializeCounts: boolean = false;
+  localStorageNATKey: string = "natActiveValue";
   //constructorftransform
   constructor(
     private quesService: QuestionsService,
@@ -126,7 +127,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       },
     });
   }
-
+  profilePhoto: any;
   //ngOninit
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -136,11 +137,12 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       this.email = data.user.emailId;
       this.name = data.user.name;
       this.userId = data.user.id;
-      this.examStatus=localStorage.getItem("examStatus");
+      this.profilePhoto = data.user.photo;
+      this.examStatus = localStorage.getItem("examStatus");
       this.quesService
-        .getQuestionsForTestSeries(this.test_code,this.userId)
+        .getQuestionsForTestSeries(this.test_code, this.userId)
         .subscribe((data) => {
-          this.question = data;   
+          this.question = data;
         });
     });
   }
@@ -159,44 +161,48 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     // Do something
   }
 
-  assignMSQOptionsChecked(answerSubmitted:string){
+  assignMSQOptionsChecked(answerSubmitted: string) {
     switch (answerSubmitted) {
       case "A":
-        this.IsAChecked=true;
+        this.IsAChecked = true;
         break;
       case "B":
-        this.IsBChecked=true;
+        this.IsBChecked = true;
         break;
       case "C":
-        this.IsCChecked=true;
+        this.IsCChecked = true;
         break;
       case "D":
-        this.IsDChecked=true;
+        this.IsDChecked = true;
         break;
     }
   }
 
-  onMSQChange($event,passedOption){
+  onMSQChange($event, passedOption) {
     switch (passedOption) {
       case "A":
-        this.IsAChecked=$event.checked;
-        this.finalCheckedValue=true;
-        this.totalOptionsChecked=this.totalOptionsChecked+passedOption+",";
+        this.IsAChecked = $event.checked;
+        this.finalCheckedValue = true;
+        this.totalOptionsChecked =
+          this.totalOptionsChecked + passedOption + ",";
         break;
       case "B":
-        this.IsBChecked=$event.checked;
-        this.finalCheckedValue=true;
-        this.totalOptionsChecked=this.totalOptionsChecked+passedOption+",";
+        this.IsBChecked = $event.checked;
+        this.finalCheckedValue = true;
+        this.totalOptionsChecked =
+          this.totalOptionsChecked + passedOption + ",";
         break;
       case "C":
-        this.IsCChecked=$event.checked;
-        this.finalCheckedValue=true;
-        this.totalOptionsChecked=this.totalOptionsChecked+passedOption+",";
+        this.IsCChecked = $event.checked;
+        this.finalCheckedValue = true;
+        this.totalOptionsChecked =
+          this.totalOptionsChecked + passedOption + ",";
         break;
       case "D":
-        this.IsDChecked=$event.checked;
-        this.finalCheckedValue=true;
-        this.totalOptionsChecked=this.totalOptionsChecked+passedOption+",";
+        this.IsDChecked = $event.checked;
+        this.finalCheckedValue = true;
+        this.totalOptionsChecked =
+          this.totalOptionsChecked + passedOption + ",";
         break;
     }
   }
@@ -281,7 +287,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectedTab(event: MatTabChangeEvent, prevquestion: any, form: NgForm) {
+  selectedTab(event: MatTabChangeEvent, prevquestion: any) {
     this.count = 1;
     var t: string;
     var r: string;
@@ -303,7 +309,8 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           answerSubmitted: t === undefined ? null : t,
           questionStatus: r === undefined ? "NO_ANS" : r,
         },
-        true,false
+        true,
+        false
       );
     }
 
@@ -318,10 +325,11 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     this.totalquestions = [...this.question[this.sect]][0]["courseId"][
       "totalQuestion"
     ];
-    
-    if(this.localStorageNATKey === "natActiveValue"){
-      this.localStorageNATKey=this.localStorageNATKey+this.test_title.replace(" ","");
-      localStorage.setItem(this.localStorageNATKey,"");
+
+    if (this.localStorageNATKey === "natActiveValue") {
+      this.localStorageNATKey =
+        this.localStorageNATKey + this.test_title.replace(" ", "");
+      localStorage.setItem(this.localStorageNATKey, "");
     }
 
     [...this.question[this.sect]][0][this.sectionansweredCount] =
@@ -370,7 +378,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     this.notVisitedCount = [...this.question[this.sect]][0][
       this.sectionnotvisitedCount
     ];
- 
+
     this.calculateTotalCount();
 
     if (this.timer === 1) {
@@ -390,152 +398,178 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     let missedOutOnCurrentOption = false;
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
-          if(this.questiontoShow.questionType === "MSQ"){
-           this.IsAChecked=false;
-           this.IsBChecked=false;
-           this.IsCChecked=false;
-           this.IsDChecked=false;
-           if(element.answerSubmitted !== null){
-            let checkBoxOptions=element.answerSubmitted.split('(').join("").split(')').join("").split(',');
-            checkBoxOptions.forEach(checkedOption => {
+        if (this.questiontoShow.questionType === "MSQ") {
+          this.IsAChecked = false;
+          this.IsBChecked = false;
+          this.IsCChecked = false;
+          this.IsDChecked = false;
+          if (element.answerSubmitted !== null) {
+            let checkBoxOptions = element.answerSubmitted
+              .split("(")
+              .join("")
+              .split(")")
+              .join("")
+              .split(",");
+            checkBoxOptions.forEach((checkedOption) => {
               this.assignMSQOptionsChecked(checkedOption);
             });
-           }
-          }else{
-            this.currentOption = element.answerSubmitted;
           }
+        } else {
+          this.currentOption = element.answerSubmitted;
+        }
         assignedCurrentOption = true;
       } else {
         missedOutOnCurrentOption = true;
       }
     });
 
-    if(!assignedCurrentOption && this.examStatus === "PENDING" && !this.initializeCounts){
-     
-      if(this.questiontoShow.answerSubmitted !== null){
-        this.assignPreviouslySubmittedAnswer(this.questiontoShow.answerSubmitted);
+    if (
+      !assignedCurrentOption &&
+      this.examStatus === "PENDING" &&
+      !this.initializeCounts
+    ) {
+      if (this.questiontoShow.answerSubmitted !== null) {
+        this.assignPreviouslySubmittedAnswer(
+          this.questiontoShow.answerSubmitted
+        );
       }
 
-      Object.keys(this.question).forEach(key => {
-        let sectionQuestions=[...this.question[key]];
-        let sectionLength=sectionQuestions.length;
-        sectionQuestions[0].notVisitedCount=sectionQuestions[0].notVisitedCount === undefined
-              ? sectionLength:sectionQuestions[0].notVisitedCount;
-              
-        sectionQuestions.forEach(examQuestion => {
-        if(examQuestion.questionStatus !== null){
-          this.pushToArray(
-            this.answerDataofUser,
-            {
-              questionId: examQuestion.id,
-              timetaken: this.end - this.start,
-              answerSubmitted: examQuestion.answerSubmitted,
-              questionStatus: examQuestion.questionStatus,
-            },
-            false,true
-          );  
-          
-          switch (examQuestion.questionStatus) {
-            case "ANS":
-              sectionQuestions[0].answeredCount=sectionQuestions[0].answeredCount === undefined
-             ? 1
-             :sectionQuestions[0].answeredCount+1;
-             this.answeredCount = sectionQuestions[0].answeredCount;
-             this.totalAnsweredCount=this.totalAnsweredCount+1;
-             if(sectionQuestions[0].notVisitedCount-1 >= 0){
-              sectionQuestions[0].notVisitedCount=sectionQuestions[0].notVisitedCount-1;
-              this.notVisitedCount= sectionQuestions[0].notVisitedCount;
-              if(this.totalNotVisitedCount-1 >= 0){
-                this.totalNotVisitedCount=this.totalNotVisitedCount-1;
-              } 
-             }
-             break;
-            case "NO_ANS":
-              sectionQuestions[0].notAnsweredCount=sectionQuestions[0].notAnsweredCount === undefined
-              ? 1
-              :sectionQuestions[0].notAnsweredCount+1;
-              this.notAnsweredCount = sectionQuestions[0].notAnsweredCount;
-              this.totalNotAnsweredCount=this.totalNotAnsweredCount+1;
-              if(sectionQuestions[0].notVisitedCount-1 >= 0){
-                sectionQuestions[0].notVisitedCount=sectionQuestions[0].notVisitedCount-1;
-                this.notVisitedCount= sectionQuestions[0].notVisitedCount;
-                if(this.totalNotVisitedCount-1 >= 0){
-                  this.totalNotVisitedCount=this.totalNotVisitedCount-1;
-                 } 
-              }
-              break;
-            case "MARK_ANS":
-              sectionQuestions[0].markedForReviewWithAnswerCount=sectionQuestions[0].markedForReviewWithAnswerCount === undefined
-              ? 1
-              :sectionQuestions[0].markedForReviewWithAnswerCount+1;
-              this.markedForReviewWithAnswerCount = sectionQuestions[0].markedForReviewWithAnswerCount;
-              this.totalMarkedForReviewWithAnswerCount=this.totalMarkedForReviewWithAnswerCount+1;
-              if(sectionQuestions[0].notVisitedCount-1 >= 0){
-                sectionQuestions[0].notVisitedCount=sectionQuestions[0].notVisitedCount-1;
-                this.notVisitedCount= sectionQuestions[0].notVisitedCount;
-                if(this.totalNotVisitedCount-1 >= 0){
-                  this.totalNotVisitedCount=this.totalNotVisitedCount-1;
-                 } 
-              }
-              break;
-            case "MARK_NOANS":
-              sectionQuestions[0].markedForReviewCount=sectionQuestions[0].markedForReviewCount === undefined
-              ? 1
-              :sectionQuestions[0].markedForReviewCount+1;
-              this.markedForReviewCount = sectionQuestions[0].markedForReviewCount;
-              this.totalMarkedForReviewCount=this.totalMarkedForReviewCount+1;
-              if(sectionQuestions[0].notVisitedCount-1 >= 0){
-                sectionQuestions[0].notVisitedCount=sectionQuestions[0].notVisitedCount-1;
-                this.notVisitedCount= sectionQuestions[0].notVisitedCount;
-                if(this.totalNotVisitedCount-1 >= 0){
-                  this.totalNotVisitedCount=this.totalNotVisitedCount-1;
-                 } 
-              }
-              break;
+      Object.keys(this.question).forEach((key) => {
+        let sectionQuestions = [...this.question[key]];
+        let sectionLength = sectionQuestions.length;
+        sectionQuestions[0].notVisitedCount =
+          sectionQuestions[0].notVisitedCount === undefined
+            ? sectionLength
+            : sectionQuestions[0].notVisitedCount;
+
+        sectionQuestions.forEach((examQuestion) => {
+          if (examQuestion.questionStatus !== null) {
+            this.pushToArray(
+              this.answerDataofUser,
+              {
+                questionId: examQuestion.id,
+                timetaken: this.end - this.start,
+                answerSubmitted: examQuestion.answerSubmitted,
+                questionStatus: examQuestion.questionStatus,
+              },
+              false,
+              true
+            );
+
+            switch (examQuestion.questionStatus) {
+              case "ANS":
+                sectionQuestions[0].answeredCount =
+                  sectionQuestions[0].answeredCount === undefined
+                    ? 1
+                    : sectionQuestions[0].answeredCount + 1;
+                this.answeredCount = sectionQuestions[0].answeredCount;
+                this.totalAnsweredCount = this.totalAnsweredCount + 1;
+                if (sectionQuestions[0].notVisitedCount - 1 >= 0) {
+                  sectionQuestions[0].notVisitedCount =
+                    sectionQuestions[0].notVisitedCount - 1;
+                  this.notVisitedCount = sectionQuestions[0].notVisitedCount;
+                  if (this.totalNotVisitedCount - 1 >= 0) {
+                    this.totalNotVisitedCount = this.totalNotVisitedCount - 1;
+                  }
+                }
+                break;
+              case "NO_ANS":
+                sectionQuestions[0].notAnsweredCount =
+                  sectionQuestions[0].notAnsweredCount === undefined
+                    ? 1
+                    : sectionQuestions[0].notAnsweredCount + 1;
+                this.notAnsweredCount = sectionQuestions[0].notAnsweredCount;
+                this.totalNotAnsweredCount = this.totalNotAnsweredCount + 1;
+                if (sectionQuestions[0].notVisitedCount - 1 >= 0) {
+                  sectionQuestions[0].notVisitedCount =
+                    sectionQuestions[0].notVisitedCount - 1;
+                  this.notVisitedCount = sectionQuestions[0].notVisitedCount;
+                  if (this.totalNotVisitedCount - 1 >= 0) {
+                    this.totalNotVisitedCount = this.totalNotVisitedCount - 1;
+                  }
+                }
+                break;
+              case "MARK_ANS":
+                sectionQuestions[0].markedForReviewWithAnswerCount =
+                  sectionQuestions[0].markedForReviewWithAnswerCount ===
+                  undefined
+                    ? 1
+                    : sectionQuestions[0].markedForReviewWithAnswerCount + 1;
+                this.markedForReviewWithAnswerCount =
+                  sectionQuestions[0].markedForReviewWithAnswerCount;
+                this.totalMarkedForReviewWithAnswerCount =
+                  this.totalMarkedForReviewWithAnswerCount + 1;
+                if (sectionQuestions[0].notVisitedCount - 1 >= 0) {
+                  sectionQuestions[0].notVisitedCount =
+                    sectionQuestions[0].notVisitedCount - 1;
+                  this.notVisitedCount = sectionQuestions[0].notVisitedCount;
+                  if (this.totalNotVisitedCount - 1 >= 0) {
+                    this.totalNotVisitedCount = this.totalNotVisitedCount - 1;
+                  }
+                }
+                break;
+              case "MARK_NOANS":
+                sectionQuestions[0].markedForReviewCount =
+                  sectionQuestions[0].markedForReviewCount === undefined
+                    ? 1
+                    : sectionQuestions[0].markedForReviewCount + 1;
+                this.markedForReviewCount =
+                  sectionQuestions[0].markedForReviewCount;
+                this.totalMarkedForReviewCount =
+                  this.totalMarkedForReviewCount + 1;
+                if (sectionQuestions[0].notVisitedCount - 1 >= 0) {
+                  sectionQuestions[0].notVisitedCount =
+                    sectionQuestions[0].notVisitedCount - 1;
+                  this.notVisitedCount = sectionQuestions[0].notVisitedCount;
+                  if (this.totalNotVisitedCount - 1 >= 0) {
+                    this.totalNotVisitedCount = this.totalNotVisitedCount - 1;
+                  }
+                }
+                break;
+            }
           }
-        }
         });
-      });  
+      });
 
-      this.initializeCounts=true;
+      this.initializeCounts = true;
     }
 
-    if (!assignedCurrentOption && missedOutOnCurrentOption) {
-      if(form !== undefined){
-        form.reset();
-      }
-    }
+    // if (!assignedCurrentOption && missedOutOnCurrentOption) {
+    //   if (form !== undefined) {
+    //     form.reset();
+    //   }
+    // }
   }
   start: any;
   end: any;
 
   questiontodisplayincrement(form: NgForm, quesId: number, quesType: string) {
     this.end = new Date().getTime();
-    let submittedTextValue="natNotSelected";
-    if(localStorage.getItem("natActiveValue") !== ""){
-      this.natInput= localStorage.getItem("natActiveValue");
-    }
-    else if(localStorage.getItem(this.localStorageNATKey) !== ""){
-      this.natInput= localStorage.getItem(this.localStorageNATKey);
+    let submittedTextValue = "natNotSelected";
+    if (localStorage.getItem("natActiveValue") !== "") {
+      this.natInput = localStorage.getItem("natActiveValue");
+    } else if (localStorage.getItem(this.localStorageNATKey) !== "") {
+      this.natInput = localStorage.getItem(this.localStorageNATKey);
+    } else if (
+      localStorage.getItem("natActiveValue") === "" &&
+      localStorage.getItem(this.localStorageNATKey) === ""
+    ) {
+      this.natInput = "";
     }
 
-    else if(localStorage.getItem("natActiveValue") === "" && localStorage.getItem(this.localStorageNATKey) === ""){
-      this.natInput= "";
+    if (quesType === "NAT") {
+      submittedTextValue = this.natInput;
     }
-    
-    if(quesType === "NAT"){
-        submittedTextValue = this.natInput ;
-    }
-    if(quesType === "MCQ" || quesType === "NAT"){
+    if (quesType === "MCQ" || quesType === "NAT") {
       this.finalCheckedValue = true;
     }
-    
-    if(quesType === "MSQ"){
-      if(this.totalOptionsChecked === ""){
+
+    if (quesType === "MSQ") {
+      if (this.totalOptionsChecked === "") {
         this.answerDataofUser.forEach((element, index) => {
           if (element.questionId === this.questiontoShow.id) {
-             this.finalCheckedValue = true;
-             this.totalOptionsChecked=element.answerSubmitted;
+            this.finalCheckedValue = true;
+            this.totalOptionsChecked = element.answerSubmitted;
           }
         });
       }
@@ -543,18 +577,19 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
 
     if (
       form.value.optionSelected === "" ||
-      form.value.optionSelected === null || submittedTextValue === "" || this.finalCheckedValue === false
+      form.value.optionSelected === null ||
+      submittedTextValue === "" ||
+      this.finalCheckedValue === false
     ) {
-
-      let selectedValue=form.value.optionSelected;
-      this.finalCheckedValue=false;
-      if(quesType === "NAT"){
-        selectedValue = null ;
+      let selectedValue = form.value.optionSelected;
+      this.finalCheckedValue = false;
+      if (quesType === "NAT") {
+        selectedValue = null;
       }
 
-      if(quesType === "MSQ"){
-        this.totalOptionsChecked="";
-        selectedValue = null ;
+      if (quesType === "MSQ") {
+        this.totalOptionsChecked = "";
+        selectedValue = null;
       }
 
       this.pushToArray(
@@ -565,7 +600,8 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           answerSubmitted: selectedValue,
           timetaken: this.end - this.start,
         },
-        false,false
+        false,
+        false
       );
 
       this.savetheanswer(
@@ -575,41 +611,41 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         this.end - this.start
       );
     } else {
-      let selectedValue=form.value.optionSelected;
+      let selectedValue = form.value.optionSelected;
 
-      if(quesType === "MCQ"){
-        this.finalCheckedValue=false;
+      if (quesType === "MCQ") {
+        this.finalCheckedValue = false;
       }
 
-      if(quesType === "NAT"){
-        selectedValue = submittedTextValue ;
-        this.finalCheckedValue=false;
-        localStorage.setItem(this.localStorageNATKey,selectedValue);
-        localStorage.setItem("natActiveValue","");
+      if (quesType === "NAT") {
+        selectedValue = submittedTextValue;
+        this.finalCheckedValue = false;
+        localStorage.setItem(this.localStorageNATKey, selectedValue);
+        localStorage.setItem("natActiveValue", "");
       }
 
-      if(quesType === "MSQ"){
-        
-        let listOfCheckedValues="(";
-        if(this.IsAChecked){
-          listOfCheckedValues=listOfCheckedValues+"A,";
+      if (quesType === "MSQ") {
+        let listOfCheckedValues = "(";
+        if (this.IsAChecked) {
+          listOfCheckedValues = listOfCheckedValues + "A,";
         }
-        if(this.IsBChecked){
-          listOfCheckedValues=listOfCheckedValues+"B,";
+        if (this.IsBChecked) {
+          listOfCheckedValues = listOfCheckedValues + "B,";
         }
-        if(this.IsCChecked){
-          listOfCheckedValues=listOfCheckedValues+"C,";
+        if (this.IsCChecked) {
+          listOfCheckedValues = listOfCheckedValues + "C,";
         }
-        if(this.IsDChecked){
-          listOfCheckedValues=listOfCheckedValues+"D,";
+        if (this.IsDChecked) {
+          listOfCheckedValues = listOfCheckedValues + "D,";
         }
-       
-        listOfCheckedValues=listOfCheckedValues.substring(0, listOfCheckedValues.length - 1)+")";
-        selectedValue = listOfCheckedValues ;
-        this.finalCheckedValue=false;
-        this.totalOptionsChecked="";
-      }
 
+        listOfCheckedValues =
+          listOfCheckedValues.substring(0, listOfCheckedValues.length - 1) +
+          ")";
+        selectedValue = listOfCheckedValues;
+        this.finalCheckedValue = false;
+        this.totalOptionsChecked = "";
+      }
 
       this.pushToArray(
         this.answerDataofUser,
@@ -619,15 +655,11 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           answerSubmitted: selectedValue,
           timetaken: this.end - this.start,
         },
-        false,false
+        false,
+        false
       );
 
-      this.savetheanswer(
-        selectedValue,
-        quesId,
-        "ANS",
-        this.end - this.start
-      );
+      this.savetheanswer(selectedValue, quesId, "ANS", this.end - this.start);
     }
 
     if (this.count === this.questionGroup.length) {
@@ -645,23 +677,28 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     let missedOutOnCurrentOption = false;
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
-          if(this.questiontoShow.questionType === "MSQ"){
-           this.IsAChecked=false;
-           this.IsBChecked=false;
-           this.IsCChecked=false;
-           this.IsDChecked=false;
-           if(element.answerSubmitted !== null){
-            let checkBoxOptions=element.answerSubmitted.split('(').join("").split(')').join("").split(',');
-            checkBoxOptions.forEach(checkedOption => {
+        if (this.questiontoShow.questionType === "MSQ") {
+          this.IsAChecked = false;
+          this.IsBChecked = false;
+          this.IsCChecked = false;
+          this.IsDChecked = false;
+          if (element.answerSubmitted !== null) {
+            let checkBoxOptions = element.answerSubmitted
+              .split("(")
+              .join("")
+              .split(")")
+              .join("")
+              .split(",");
+            checkBoxOptions.forEach((checkedOption) => {
               this.assignMSQOptionsChecked(checkedOption);
             });
-           }
-          }else{
-            this.currentOption = element.answerSubmitted;
-            if(this.questiontoShow.questionType === "NAT"){
-              localStorage.setItem(this.localStorageNATKey,this.currentOption);
-            }
           }
+        } else {
+          this.currentOption = element.answerSubmitted;
+          if (this.questiontoShow.questionType === "NAT") {
+            localStorage.setItem(this.localStorageNATKey, this.currentOption);
+          }
+        }
         assignedCurrentOption = true;
       } else {
         missedOutOnCurrentOption = true;
@@ -672,66 +709,66 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       form.reset();
     }
 
- 
     this.start = new Date().getTime();
     this.count++;
 
     this.calculateTotalCount();
 
-    if(!assignedCurrentOption && this.examStatus === "PENDING"){
-      if(this.questiontoShow.answerSubmitted !== null){
-        this.assignPreviouslySubmittedAnswer(this.questiontoShow.answerSubmitted);
+    if (!assignedCurrentOption && this.examStatus === "PENDING") {
+      if (this.questiontoShow.answerSubmitted !== null) {
+        this.assignPreviouslySubmittedAnswer(
+          this.questiontoShow.answerSubmitted
+        );
       }
     }
   }
 
-
   markforreviewfun(form: NgForm, quesId: number, quesType: string) {
     this.end = new Date().getTime();
-    let submittedTextValue="natNotSelected";
-    if(localStorage.getItem("natActiveValue") !== ""){
-      this.natInput= localStorage.getItem("natActiveValue");
+    let submittedTextValue = "natNotSelected";
+    if (localStorage.getItem("natActiveValue") !== "") {
+      this.natInput = localStorage.getItem("natActiveValue");
+    } else if (localStorage.getItem(this.localStorageNATKey) !== "") {
+      this.natInput = localStorage.getItem(this.localStorageNATKey);
+    } else if (
+      localStorage.getItem("natActiveValue") === "" &&
+      localStorage.getItem(this.localStorageNATKey) === ""
+    ) {
+      this.natInput = "";
     }
-    else if(localStorage.getItem(this.localStorageNATKey) !== ""){
-      this.natInput= localStorage.getItem(this.localStorageNATKey);
+    if (quesType === "NAT") {
+      submittedTextValue = this.natInput;
     }
-
-    else if(localStorage.getItem("natActiveValue") === "" && localStorage.getItem(this.localStorageNATKey) === ""){
-      this.natInput= "";
-    }
-    if(quesType === "NAT"){
-        submittedTextValue = this.natInput ;
-    }
-    if(quesType === "MCQ" || quesType === "NAT"){
+    if (quesType === "MCQ" || quesType === "NAT") {
       this.finalCheckedValue = true;
     }
 
-    if(quesType === "MSQ"){
-      if(this.totalOptionsChecked === ""){
+    if (quesType === "MSQ") {
+      if (this.totalOptionsChecked === "") {
         this.answerDataofUser.forEach((element, index) => {
           if (element.questionId === this.questiontoShow.id) {
-             this.finalCheckedValue = true;
-             this.totalOptionsChecked=element.answerSubmitted;
+            this.finalCheckedValue = true;
+            this.totalOptionsChecked = element.answerSubmitted;
           }
         });
       }
     }
-    
 
     if (
       form.value.optionSelected === "" ||
-      form.value.optionSelected === null || submittedTextValue === "" || this.finalCheckedValue === false
+      form.value.optionSelected === null ||
+      submittedTextValue === "" ||
+      this.finalCheckedValue === false
     ) {
-
-      let selectedValue=form.value.optionSelected;
-      this.finalCheckedValue=false;
-      if(quesType === "NAT"){
-        selectedValue = null ;
+      let selectedValue = form.value.optionSelected;
+      this.finalCheckedValue = false;
+      if (quesType === "NAT") {
+        selectedValue = null;
       }
 
-      if(quesType === "MSQ"){
-        this.totalOptionsChecked="";
-        selectedValue = null ;
+      if (quesType === "MSQ") {
+        this.totalOptionsChecked = "";
+        selectedValue = null;
       }
 
       this.pushToArray(
@@ -742,7 +779,8 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           answerSubmitted: selectedValue,
           timetaken: this.end - this.start,
         },
-        false,false
+        false,
+        false
       );
 
       this.savetheanswer(
@@ -752,38 +790,39 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         this.end - this.start
       );
     } else {
+      let selectedValue = form.value.optionSelected;
 
-      let selectedValue=form.value.optionSelected;
-
-      if(quesType === "MCQ"){
-        this.finalCheckedValue=false;
-      }
-
-      if(quesType === "NAT"){
-        selectedValue = submittedTextValue ;
+      if (quesType === "MCQ") {
         this.finalCheckedValue = false;
-        localStorage.setItem(this.localStorageNATKey,selectedValue);
-        localStorage.setItem("natActiveValue","");
       }
 
-      if(quesType === "MSQ"){
-        let listOfCheckedValues="(";
-        if(this.IsAChecked){
-          listOfCheckedValues=listOfCheckedValues+"A,";
+      if (quesType === "NAT") {
+        selectedValue = submittedTextValue;
+        this.finalCheckedValue = false;
+        localStorage.setItem(this.localStorageNATKey, selectedValue);
+        localStorage.setItem("natActiveValue", "");
+      }
+
+      if (quesType === "MSQ") {
+        let listOfCheckedValues = "(";
+        if (this.IsAChecked) {
+          listOfCheckedValues = listOfCheckedValues + "A,";
         }
-        if(this.IsBChecked){
-          listOfCheckedValues=listOfCheckedValues+"B,";
+        if (this.IsBChecked) {
+          listOfCheckedValues = listOfCheckedValues + "B,";
         }
-        if(this.IsCChecked){
-          listOfCheckedValues=listOfCheckedValues+"C,";
+        if (this.IsCChecked) {
+          listOfCheckedValues = listOfCheckedValues + "C,";
         }
-        if(this.IsDChecked){
-          listOfCheckedValues=listOfCheckedValues+"D,";
+        if (this.IsDChecked) {
+          listOfCheckedValues = listOfCheckedValues + "D,";
         }
-        listOfCheckedValues=listOfCheckedValues.substring(0, listOfCheckedValues.length - 1)+")";
-        selectedValue = listOfCheckedValues ;
-        this.finalCheckedValue=false;
-        this.totalOptionsChecked="";
+        listOfCheckedValues =
+          listOfCheckedValues.substring(0, listOfCheckedValues.length - 1) +
+          ")";
+        selectedValue = listOfCheckedValues;
+        this.finalCheckedValue = false;
+        this.totalOptionsChecked = "";
       }
 
       this.pushToArray(
@@ -794,7 +833,8 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           answerSubmitted: selectedValue,
           timetaken: this.end - this.start,
         },
-        false,false
+        false,
+        false
       );
 
       this.savetheanswer(
@@ -819,23 +859,28 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     let missedOutOnCurrentOption = false;
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
-          if(this.questiontoShow.questionType === "MSQ"){
-           this.IsAChecked=false;
-           this.IsBChecked=false;
-           this.IsCChecked=false;
-           this.IsDChecked=false;
-           if(element.answerSubmitted !== null){
-            let checkBoxOptions=element.answerSubmitted.split('(').join("").split(')').join("").split(',');
-            checkBoxOptions.forEach(checkedOption => {
+        if (this.questiontoShow.questionType === "MSQ") {
+          this.IsAChecked = false;
+          this.IsBChecked = false;
+          this.IsCChecked = false;
+          this.IsDChecked = false;
+          if (element.answerSubmitted !== null) {
+            let checkBoxOptions = element.answerSubmitted
+              .split("(")
+              .join("")
+              .split(")")
+              .join("")
+              .split(",");
+            checkBoxOptions.forEach((checkedOption) => {
               this.assignMSQOptionsChecked(checkedOption);
             });
-           }
-          }else{
-            this.currentOption = element.answerSubmitted;
-            if(this.questiontoShow.questionType === "NAT"){
-              localStorage.setItem(this.localStorageNATKey,this.currentOption);
-            }
           }
+        } else {
+          this.currentOption = element.answerSubmitted;
+          if (this.questiontoShow.questionType === "NAT") {
+            localStorage.setItem(this.localStorageNATKey, this.currentOption);
+          }
+        }
         assignedCurrentOption = true;
       } else {
         missedOutOnCurrentOption = true;
@@ -849,9 +894,11 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     this.count++;
     this.start = new Date().getTime();
     this.calculateTotalCount();
-    if(!assignedCurrentOption && this.examStatus === "PENDING"){
-      if(this.questiontoShow.answerSubmitted !== null){
-        this.assignPreviouslySubmittedAnswer(this.questiontoShow.answerSubmitted);
+    if (!assignedCurrentOption && this.examStatus === "PENDING") {
+      if (this.questiontoShow.answerSubmitted !== null) {
+        this.assignPreviouslySubmittedAnswer(
+          this.questiontoShow.answerSubmitted
+        );
       }
     }
   }
@@ -866,21 +913,21 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     }
   }
 
-  clearResponse(form: NgForm, quesId: number, quesType:string) {
-    if(quesType === "NAT"){
-      this.currentOption="";
+  clearResponse(form: NgForm, quesId: number, quesType: string) {
+    if (quesType === "NAT") {
+      this.currentOption = "";
     }
 
-    if(quesType === "MSQ"){
-      this.IsAChecked=false;
-      this.IsBChecked=false;
-      this.IsCChecked=false;
-      this.IsDChecked=false;
-      this.finalCheckedValue=false;
+    if (quesType === "MSQ") {
+      this.IsAChecked = false;
+      this.IsBChecked = false;
+      this.IsCChecked = false;
+      this.IsDChecked = false;
+      this.finalCheckedValue = false;
     }
-   
+
     form.reset();
-    localStorage.setItem("natActiveValue","");
+    localStorage.setItem("natActiveValue", "");
     this.pushToArray(
       this.answerDataofUser,
       {
@@ -889,41 +936,46 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         answerSubmitted: form.value.optionSelected,
         timetaken: "4",
       },
-      false,false
+      false,
+      false
     );
 
     this.calculateTotalCount();
   }
 
-  assignPreviouslySubmittedAnswer(alreadySubmittedAnswer:any){
-    switch(this.questiontoShow.questionType){
+  assignPreviouslySubmittedAnswer(alreadySubmittedAnswer: any) {
+    switch (this.questiontoShow.questionType) {
       case "MCQ":
-        this.currentOption=alreadySubmittedAnswer;
+        this.currentOption = alreadySubmittedAnswer;
         break;
       case "MSQ":
-       this.IsAChecked=false;
-       this.IsBChecked=false;
-       this.IsCChecked=false;
-       this.IsDChecked=false;
-       let checkBoxOptions=alreadySubmittedAnswer.split('(').join("").split(')').join("").split(',');
-       checkBoxOptions.forEach(checkedOption => {
-        this.assignMSQOptionsChecked(checkedOption);
-       });
-       break;
+        this.IsAChecked = false;
+        this.IsBChecked = false;
+        this.IsCChecked = false;
+        this.IsDChecked = false;
+        let checkBoxOptions = alreadySubmittedAnswer
+          .split("(")
+          .join("")
+          .split(")")
+          .join("")
+          .split(",");
+        checkBoxOptions.forEach((checkedOption) => {
+          this.assignMSQOptionsChecked(checkedOption);
+        });
+        break;
       case "NAT":
-       this.currentOption=alreadySubmittedAnswer;
-       localStorage.setItem(this.localStorageNATKey,this.currentOption);
-       break;  
-     }
+        this.currentOption = alreadySubmittedAnswer;
+        localStorage.setItem(this.localStorageNATKey, this.currentOption);
+        break;
+    }
   }
 
-  pushToArray(arr, obj,checkIfTabChanged,setInitialCountWhileResumed) {
+  pushToArray(arr, obj, checkIfTabChanged, setInitialCountWhileResumed) {
     var existingIds = arr.map((obj) => obj.questionId);
 
-    if(setInitialCountWhileResumed){
+    if (setInitialCountWhileResumed) {
       arr.push(obj);
-    }
-    else if (!existingIds.includes(obj.questionId)) {
+    } else if (!existingIds.includes(obj.questionId)) {
       arr.push(obj);
 
       if (this.notVisitedCount !== 0) {
@@ -1036,36 +1088,44 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           answerSubmitted: t === undefined ? null : t,
           questionStatus: r === undefined ? "NO_ANS" : r,
         },
-        true,false
+        true,
+        false
       );
     }
 
-    let assignedCurrentOption=false;
+    let assignedCurrentOption = false;
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
-        if(this.questiontoShow.questionType === "MSQ"){
-         this.IsAChecked=false;
-         this.IsBChecked=false;
-         this.IsCChecked=false;
-         this.IsDChecked=false;
-         if(element.answerSubmitted !== null){
-          let checkBoxOptions=element.answerSubmitted.split('(').join("").split(')').join("").split(',');
-          checkBoxOptions.forEach(checkedOption => {
-            this.assignMSQOptionsChecked(checkedOption);
-          });
-         }
-        }else{
+        if (this.questiontoShow.questionType === "MSQ") {
+          this.IsAChecked = false;
+          this.IsBChecked = false;
+          this.IsCChecked = false;
+          this.IsDChecked = false;
+          if (element.answerSubmitted !== null) {
+            let checkBoxOptions = element.answerSubmitted
+              .split("(")
+              .join("")
+              .split(")")
+              .join("")
+              .split(",");
+            checkBoxOptions.forEach((checkedOption) => {
+              this.assignMSQOptionsChecked(checkedOption);
+            });
+          }
+        } else {
           this.currentOption = element.answerSubmitted;
         }
-        assignedCurrentOption=true;
+        assignedCurrentOption = true;
       }
     });
     this.count = position;
     this.start = new Date().getTime();
     this.calculateTotalCount();
-    if(!assignedCurrentOption && this.examStatus === "PENDING"){
-      if(this.questiontoShow.answerSubmitted !== null){
-        this.assignPreviouslySubmittedAnswer(this.questiontoShow.answerSubmitted);
+    if (!assignedCurrentOption && this.examStatus === "PENDING") {
+      if (this.questiontoShow.answerSubmitted !== null) {
+        this.assignPreviouslySubmittedAnswer(
+          this.questiontoShow.answerSubmitted
+        );
       }
     }
   }
@@ -1125,48 +1185,76 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       );
   }
 
-  calculateTotalCount()
-  {
-    this.totalNotVisitedCount=0;
-    this.totalMarkedForReviewCount=0;
-    this.totalMarkedForReviewWithAnswerCount=0;
-    this.totalAnsweredCount=0;
-    this.totalNotAnsweredCount=0;
+  calculateTotalCount() {
+    this.totalNotVisitedCount = 0;
+    this.totalMarkedForReviewCount = 0;
+    this.totalMarkedForReviewWithAnswerCount = 0;
+    this.totalAnsweredCount = 0;
+    this.totalNotAnsweredCount = 0;
 
-    Object.keys(this.question).forEach(key => {
-      let questionKey=[...this.question[key]][0];
-    
-      this.totalAnsweredCount = questionKey[this.sectionansweredCount] !== undefined ? this.totalAnsweredCount + questionKey[this.sectionansweredCount]:this.totalAnsweredCount;
-      this.totalNotAnsweredCount = questionKey[this.sectionnotAnsweredCount] !== undefined ? this.totalNotAnsweredCount + questionKey[this.sectionnotAnsweredCount]:this.totalNotAnsweredCount;
-      this.totalMarkedForReviewCount = questionKey[this.sectionmarkedForReviewCount] !== undefined ? this.totalMarkedForReviewCount + questionKey[this.sectionmarkedForReviewCount]:this.totalMarkedForReviewCount;
-      this.totalMarkedForReviewWithAnswerCount = questionKey[this.sectionmarkedForReviewWithAnswerCount] !== undefined ? this.totalMarkedForReviewWithAnswerCount + questionKey[this.sectionmarkedForReviewWithAnswerCount]:this.totalMarkedForReviewWithAnswerCount;
-      this.totalNotVisitedCount = questionKey[this.sectionnotvisitedCount] !== undefined ? this.totalNotVisitedCount + questionKey[this.sectionnotvisitedCount]:this.totalNotVisitedCount;
+    Object.keys(this.question).forEach((key) => {
+      let questionKey = [...this.question[key]][0];
+
+      this.totalAnsweredCount =
+        questionKey[this.sectionansweredCount] !== undefined
+          ? this.totalAnsweredCount + questionKey[this.sectionansweredCount]
+          : this.totalAnsweredCount;
+      this.totalNotAnsweredCount =
+        questionKey[this.sectionnotAnsweredCount] !== undefined
+          ? this.totalNotAnsweredCount +
+            questionKey[this.sectionnotAnsweredCount]
+          : this.totalNotAnsweredCount;
+      this.totalMarkedForReviewCount =
+        questionKey[this.sectionmarkedForReviewCount] !== undefined
+          ? this.totalMarkedForReviewCount +
+            questionKey[this.sectionmarkedForReviewCount]
+          : this.totalMarkedForReviewCount;
+      this.totalMarkedForReviewWithAnswerCount =
+        questionKey[this.sectionmarkedForReviewWithAnswerCount] !== undefined
+          ? this.totalMarkedForReviewWithAnswerCount +
+            questionKey[this.sectionmarkedForReviewWithAnswerCount]
+          : this.totalMarkedForReviewWithAnswerCount;
+      this.totalNotVisitedCount =
+        questionKey[this.sectionnotvisitedCount] !== undefined
+          ? this.totalNotVisitedCount + questionKey[this.sectionnotvisitedCount]
+          : this.totalNotVisitedCount;
     });
   }
 
   submittheanswer(exam_over: boolean) {
-    if (exam_over) {
-      //console.log("Exam is over");
-      let endingTime = new Date().getTime();
-      let totalTimeTaken = endingTime - this.startingTime;
-      this.quesService
-        .postSubmittedAnswer({
-          courseId: +this.courseId,
-          status: "COMPLETED",
-          totalTime: totalTimeTaken.toString(),
-          userId: +this.userId,
-        })
-        .subscribe(
-          (data) => {
-            window.close();
-            window.opener.location.reload();
-          },
-          (err) => {
-            console.log(err);
-            window.close();
-            window.opener.location.reload();
-          }
-        );
-    }
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You want to end the Exam!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        if (exam_over) {
+          let endingTime = new Date().getTime();
+          let totalTimeTaken = endingTime - this.startingTime;
+          this.quesService
+            .postSubmittedAnswer({
+              courseId: +this.courseId,
+              status: "COMPLETED",
+              totalTime: totalTimeTaken.toString(),
+              userId: +this.userId,
+            })
+            .subscribe(
+              (data) => {
+                window.close();
+                window.opener.location.reload();
+              },
+              (err) => {
+                console.log(err);
+                window.close();
+                window.opener.location.reload();
+              }
+            );
+        }
+      }
+    });
   }
 }

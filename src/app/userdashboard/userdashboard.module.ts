@@ -29,7 +29,6 @@ import { MatExpansionModule } from "@angular/material/expansion";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatIconModule } from "@angular/material/icon";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatSelectModule } from "@angular/material/select";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -38,9 +37,9 @@ import { authInterceptorProviders } from "./interceptors/AuthInterceptor";
 import { TestseriesService } from "./service/testseries.service";
 import { ReportComponent } from "./component/report/report.component";
 import { AdminPanelComponent } from "./component/admin-panel/admin-panel.component";
-import { GoogleChartsModule } from 'angular-google-charts';
-import { ScriptLoaderService } from 'angular-google-charts';
-import { BranchselectionComponent } from './component/branchselection/branchselection.component';
+import { GoogleChartsModule } from "angular-google-charts";
+import { ScriptLoaderService } from "angular-google-charts";
+import { BranchselectionComponent } from "./component/branchselection/branchselection.component";
 @NgModule({
   declarations: [
     UserprofileComponent,
@@ -80,7 +79,6 @@ import { BranchselectionComponent } from './component/branchselection/branchsele
     MatButtonToggleModule,
     MatChipsModule,
     MatIconModule,
-    MatProgressSpinnerModule,
     MatProgressBarModule,
     MatSelectModule,
 
@@ -89,7 +87,7 @@ import { BranchselectionComponent } from './component/branchselection/branchsele
         path: "",
         component: UserprofileComponent,
         children: [
-          {path:"brachselection",component:BranchselectionComponent},
+          { path: "brachselection", component: BranchselectionComponent },
           { path: "profile/:popupenable", component: ProfileComponent },
           { path: "testseries/:subject", component: TestseriesComponent },
           { path: "report/:test_id", component: ReportComponent },
@@ -104,7 +102,12 @@ import { BranchselectionComponent } from './component/branchselection/branchsele
       fromUserdashboard.reducers
     ),
   ],
-  providers: [authInterceptorProviders, TestseriesService, DatePipe,ScriptLoaderService ],
-  entryComponents: [DialogComponent,BranchselectionComponent],
+  providers: [
+    authInterceptorProviders,
+    TestseriesService,
+    DatePipe,
+    ScriptLoaderService,
+  ],
+  entryComponents: [DialogComponent, BranchselectionComponent],
 })
 export class UserdashboardModule {}

@@ -17,47 +17,37 @@
           align-items: flex-start;
         "
       >
-
-      <div class="examCountClass">
-        <mat-chip-list aria-label="Fish selection">
-          <mat-chip style="background: rgb(68, 67, 67); color: white"
-            ><b>{{ test_title }} </b>&nbsp;&nbsp;<mat-icon
-              >info</mat-icon>
+        <div class="examCountClass">
+          <mat-chip-list aria-label="Fish selection">
+            <mat-chip style="background: rgb(68, 67, 67); color: white"
+              ><b>{{ test_title }} </b>&nbsp;&nbsp;<mat-icon>info</mat-icon>
             </mat-chip>
-        </mat-chip-list>
-      </div>
+          </mat-chip-list>
+        </div>
 
         <div class="exam_information_div">
           <div class="notation_type_description diff_type_notation_area_inner">
             <div class="notation_typeDiv" title="Answered">
-              <span class="answered">{{totalAnsweredCount}}</span
-              ><span
-                class="type_title secAnswered"
-                style="text-align: left"
+              <span class="answered">{{ totalAnsweredCount }}</span
+              ><span class="type_title secAnswered" style="text-align: left"
                 >Answered</span
               >
             </div>
             <div class="notation_typeDiv" title="Not Answered">
-              <span class="not_answered">{{totalNotAnsweredCount}}</span
-              ><span
-                class="type_title secNotAnswered"
-                style="text-align: left"
+              <span class="not_answered">{{ totalNotAnsweredCount }}</span
+              ><span class="type_title secNotAnswered" style="text-align: left"
                 >Not Answered</span
               >
             </div>
             <div class="notation_typeDiv" title="Not Visited">
-              <span class="not_visited">{{totalNotVisitedCount}}</span
-              ><span
-                class="type_title secNotAttempted"
-                style="text-align: left"
+              <span class="not_visited">{{ totalNotVisitedCount }}</span
+              ><span class="type_title secNotAttempted" style="text-align: left"
                 >Not Visited</span
               >
             </div>
             <div class="notation_typeDiv" title="Marked for Review">
-              <span class="review">{{totalMarkedForReviewCount}}</span
-              ><span
-                class="type_title secMarkReview"
-                style="text-align: left"
+              <span class="review">{{ totalMarkedForReviewCount }}</span
+              ><span class="type_title secMarkReview" style="text-align: left"
                 >Marked for Review</span
               >
             </div>
@@ -66,12 +56,14 @@
               id=""
               title="Answered &amp; Marked for Review (will be considered for evaluation)"
             >
-              <span class="review_answered">{{totalMarkedForReviewWithAnswerCount}}</span
+              <span class="review_answered">{{
+                totalMarkedForReviewWithAnswerCount
+              }}</span
               ><span
                 class="type_title secMarkedAndAnswered"
                 style="text-align: left"
-                >Answered &amp; Marked for Review (will be considered
-                for evaluation)
+                >Answered &amp; Marked for Review (will be considered for
+                evaluation)
               </span>
             </div>
           </div>
@@ -115,16 +107,16 @@
           style="z-index: 1"
           (wheel)="scrollTabs($event)"
           #tabGroup
-          (selectedTabChange)="selectedTab($event, questiontoShow, f)"
+          (selectedTabChange)="selectedTab($event, questiontoShow)"
         >
           <mat-tab [label]="tab.key" *ngFor="let tab of question | keyvalue"
             ><ng-template mat-tab-label>
-              {{ tab.key }}          
+              {{ tab.key }}
             </ng-template>
           </mat-tab>
         </mat-tab-group>
       </div>
-     
+
       <div *ngIf="questiontoShow !== undefined">
         <div
           id="head1"
@@ -162,7 +154,13 @@
             </a>
             <form
               #f="ngForm"
-              (ngSubmit)="questiontodisplayincrement(f, questiontoShow.id,questiontoShow.questionType)"
+              (ngSubmit)="
+                questiontodisplayincrement(
+                  f,
+                  questiontoShow.id,
+                  questiontoShow.questionType
+                )
+              "
             >
               <div
                 id="radioButtonGroup"
@@ -199,7 +197,7 @@
                   id="answer"
                   autocomplete="off"
                   class="keyboardInput answer"
-                  value="{{currentOption}}"
+                  value="{{ currentOption }}"
                   readonly
                 />
                 <div id="vKeyboard" class="vKeyboard">
@@ -257,22 +255,40 @@
               </div>
 
               <div
-              id="radioButtonGroup"
-              *ngIf="questiontoShow.questionType === 'MSQ'"
+                id="radioButtonGroup"
+                *ngIf="questiontoShow.questionType === 'MSQ'"
               >
-             <div           
+                <div
                   style="
                     display: flex;
                     flex-direction: column;
                     margin-top: 0.5rem;
                   "
-              >
-                <mat-checkbox style="margin-top: 0rem" value="A" [(checked)]="IsAChecked" (change)="onMSQChange($event,'A')">A</mat-checkbox>
-                <mat-checkbox [(checked)]="IsBChecked" (change)="onMSQChange($event,'B')">B</mat-checkbox>
-                <mat-checkbox [(checked)]="IsCChecked" (change)="onMSQChange($event,'C')">C</mat-checkbox>
-                <mat-checkbox [(checked)]="IsDChecked" (change)="onMSQChange($event,'D')">D</mat-checkbox>
+                >
+                  <mat-checkbox
+                    style="margin-top: 0rem"
+                    value="A"
+                    [(checked)]="IsAChecked"
+                    (change)="onMSQChange($event, 'A')"
+                    >A</mat-checkbox
+                  >
+                  <mat-checkbox
+                    [(checked)]="IsBChecked"
+                    (change)="onMSQChange($event, 'B')"
+                    >B</mat-checkbox
+                  >
+                  <mat-checkbox
+                    [(checked)]="IsCChecked"
+                    (change)="onMSQChange($event, 'C')"
+                    >C</mat-checkbox
+                  >
+                  <mat-checkbox
+                    [(checked)]="IsDChecked"
+                    (change)="onMSQChange($event, 'D')"
+                    >D</mat-checkbox
+                  >
+                </div>
               </div>
-            </div>
               <div
                 id="actnbtn"
                 style="
@@ -291,7 +307,13 @@
                   "
                 >
                   <a
-                    (click)="markforreviewfun(f, questiontoShow.id,questiontoShow.questionType)"
+                    (click)="
+                      markforreviewfun(
+                        f,
+                        questiontoShow.id,
+                        questiontoShow.questionType
+                      )
+                    "
                     style="
                       text-decoration: none;
                       color: black;
@@ -306,7 +328,13 @@
                     Mark for Review & Next
                   </a>
                   <a
-                    (click)="clearResponse(f, questiontoShow.id,questiontoShow.questionType)"
+                    (click)="
+                      clearResponse(
+                        f,
+                        questiontoShow.id,
+                        questiontoShow.questionType
+                      )
+                    "
                     style="
                       text-decoration: none;
                       color: black;
@@ -398,8 +426,22 @@
             align-items: center;
           "
         >
+          <!-- <img src="./../../../../assets/profilr.jpg" alt="" /> -->
           <img
-            src="./../../../../assets/profilr.jpg"
+            *ngIf="profilePhoto !== ''"
+            [src]="transform(profilePhoto)"
+            style="
+              width: 6rem;
+              height: 6rem;
+              border-radius: 50%;
+              margin-right: 10%;
+              border: 3px solid white;
+              margin-bottom: 0.5rem;
+            "
+            alt=""
+          />
+          <img
+            *ngIf="profilePhoto === ''"
             style="
               width: 6rem;
               height: 6rem;
@@ -504,7 +546,13 @@
           <div class="grid-container question_area">
             <a
               *ngFor="let group of questionGroup; let i = index"
-              (click)="sidebuttonforquestion(i + 1, questiontoShow,questiontoShow.questionType)"
+              (click)="
+                sidebuttonforquestion(
+                  i + 1,
+                  questiontoShow,
+                  questiontoShow.questionType
+                )
+              "
               ><div [ngStyle]="getStyles(group)" class="grid-item">
                 {{ i + 1 }}
               </div></a

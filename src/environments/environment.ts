@@ -4,8 +4,29 @@
 
 export const environment = {
   production: false,
-  uploadEndPoint: "http://localhost:8080/upload",
-  sendMailEndPoint: "http://localhost:3000/sendMail",
+  saveUserProfile: "http://localhost:8080/users/register",
+  authenticate: "http://localhost:8080/users/authenticate",
+  getQuestionsForTestSeries:
+    "http://localhost:8080/questionLayout/getQuestions",
+  postSavedAnswer: "http://localhost:8080/reportDetail/saveReportQuestionWise",
+  postSubmittedAnswer: "http://localhost:8080/reportOverall/saveOverallReport",
+  getAllCoursesOffered:
+    "http://localhost:8080/coursesOffered/getAllCoursesOffered",
+  findAllUnVerifiedUser:
+    "http://localhost:8080/users/findAllUnVerifiedUser?userId=",
+  createTest: "http://localhost:8080/coursesDetail/createTest",
+  getCourseIdListForAdmin:
+    "http://localhost:8080/coursesDetail/getCourseIdListForAdmin",
+  questionLayoutUpload: "http://localhost:8080/questionLayout/upload?courseId=",
+  userVerification: "http://localhost:8080/users/verification?userId=",
+  uploadProfileData: "http://localhost:8080/users/uploadProfileData?userId=",
+  getOverallReportByUserId:
+    "http://localhost:8080/reportOverall/getOverallReportByUserId?user_id=",
+  getTopRank: "http://localhost:8080/reportOverall/getTopRank?course_id=",
+  getQuestionAnalysis:
+    "http://localhost:8080/reportDetail/getQuestionAnalysis?user_id=",
+  getCoursesDescriptionByExamCode:
+    "http://localhost:8080/coursesDetail/getCoursesDescriptionByExamCode",
 };
 
 /*

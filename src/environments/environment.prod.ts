@@ -1,3 +1,35 @@
 export const environment = {
-  production: true
+  production: true,
+  saveUserProfile:
+    "http://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/users/register",
+  authenticate:
+    "http://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/users/authenticate",
+  getQuestionsForTestSeries:
+    "http://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/questionLayout/getQuestions",
+  postSavedAnswer:
+    "http://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/reportDetail/saveReportQuestionWise",
+  postSubmittedAnswer:
+    "http://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/reportOverall/saveOverallReport",
+  getAllCoursesOffered:
+    "http://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/coursesOffered/getAllCoursesOffered",
+  findAllUnVerifiedUser:
+    "http://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/users/findAllUnVerifiedUser?userId=",
+  createTest:
+    "http://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/coursesDetail/createTest",
+  getCourseIdListForAdmin:
+    "http://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/coursesDetail/getCourseIdListForAdmin",
+  questionLayoutUpload:
+    "http://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/questionLayout/upload?courseId=",
+  userVerification:
+    "http://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/users/verification?userId=",
+  uploadProfileData:
+    "http://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/users/uploadProfileData?userId=",
+  getOverallReportByUserId:
+    "http://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/reportOverall/getOverallReportByUserId?user_id=",
+  getTopRank:
+    "http://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/reportOverall/getTopRank?course_id=",
+  getQuestionAnalysis:
+    "http://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/reportDetail/getQuestionAnalysis?user_id=",
+  getCoursesDescriptionByExamCode:
+    "http://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/coursesDetail/getCoursesDescriptionByExamCode",
 };

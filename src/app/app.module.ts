@@ -24,7 +24,6 @@ import { MatExpansionModule } from "@angular/material/expansion";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatIconModule } from "@angular/material/icon";
-import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatTooltipModule } from "@angular/material/tooltip";
@@ -35,7 +34,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatButtonModule } from "@angular/material/button";
 import { MatPseudoCheckboxModule } from "@angular/material/core";
 
-import { GoogleChartsModule } from 'angular-google-charts';
+import { GoogleChartsModule } from "angular-google-charts";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { HeaderComponent } from "./header/header.component";
@@ -105,7 +104,6 @@ import { CountdownModule } from "ngx-countdown";
     MatButtonToggleModule,
     MatChipsModule,
     MatIconModule,
-    MatProgressSpinnerModule,
     MatProgressBarModule,
     MatDialogModule,
     MatTooltipModule,
