@@ -11,7 +11,7 @@ export class AuthService {
 
   saveUserProfile(userData: SignUpForm): Observable<any> {
     return this.http.post(environment.saveUserProfile, userData, {
-      headers: { skip: "true" },
+      headers: { skip: "true", rejectUnauthorized: "false" },
     });
   }
 
