@@ -1,35 +1,32 @@
 export const environment = {
   production: true,
-  saveUserProfile:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/users/register",
-  authenticate:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/users/authenticate",
+  saveUserProfile: "https://dry-forest-73283.herokuapp.com/users/register",
+  authenticate: "https://dry-forest-73283.herokuapp.com/users/authenticate",
   getQuestionsForTestSeries:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/questionLayout/getQuestions",
+    "https://dry-forest-73283.herokuapp.com/questionLayout/getQuestions",
   postSavedAnswer:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/reportDetail/saveReportQuestionWise",
+    "https://dry-forest-73283.herokuapp.com/reportDetail/saveReportQuestionWise",
   postSubmittedAnswer:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/reportOverall/saveOverallReport",
+    "https://dry-forest-73283.herokuapp.com/reportOverall/saveOverallReport",
   getAllCoursesOffered:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/coursesOffered/getAllCoursesOffered",
+    "https://dry-forest-73283.herokuapp.com/coursesOffered/getAllCoursesOffered",
   findAllUnVerifiedUser:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/users/findAllUnVerifiedUser?userId=",
-  createTest:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/coursesDetail/createTest",
+    "https://dry-forest-73283.herokuapp.com/users/findAllUnVerifiedUser?userId=",
+  createTest: "https://dry-forest-73283.herokuapp.com/coursesDetail/createTest",
   getCourseIdListForAdmin:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/coursesDetail/getCourseIdListForAdmin",
+    "https://dry-forest-73283.herokuapp.com/coursesDetail/getCourseIdListForAdmin",
   questionLayoutUpload:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/questionLayout/upload?courseId=",
+    "https://dry-forest-73283.herokuapp.com/questionLayout/upload?courseId=",
   userVerification:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/users/verification?userId=",
+    "https://dry-forest-73283.herokuapp.com/users/verification?userId=",
   uploadProfileData:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/users/uploadProfileData?userId=",
+    "https://dry-forest-73283.herokuapp.com/users/uploadProfileData?userId=",
   getOverallReportByUserId:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/reportOverall/getOverallReportByUserId?user_id=",
+    "https://dry-forest-73283.herokuapp.com/reportOverall/getOverallReportByUserId?user_id=",
   getTopRank:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/reportOverall/getTopRank?course_id=",
+    "https://dry-forest-73283.herokuapp.com/reportOverall/getTopRank?course_id=",
   getQuestionAnalysis:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/reportDetail/getQuestionAnalysis?user_id=",
+    "https://dry-forest-73283.herokuapp.com/reportDetail/getQuestionAnalysis?user_id=",
   getCoursesDescriptionByExamCode:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/coursesDetail/getCoursesDescriptionByExamCode",
+    "https://dry-forest-73283.herokuapp.com/coursesDetail/getCoursesDescriptionByExamCode",
 };
