@@ -14,7 +14,7 @@
         >
           Branch:{{ branchOpted }}
         </button>
-        <button
+        <!-- <button
           style="
             cursor: pointer;
             outline: none;
@@ -25,7 +25,7 @@
           (click)="demo('DEMO')"
         >
           Demo
-        </button>
+        </button> -->
         <button
           *ngIf="isAdmin === 'ADMIN'"
           style="
@@ -45,15 +45,24 @@
     <div class="side-content">
       <div class="left-content">
         <p>&nbsp;</p>
+        <p>&nbsp;</p>
         <p>G</p>
         <P>A</P>
         <p>T</p>
         <p>E</p>
         <p>&nbsp;</p>
+        <p>&nbsp;</p>
       </div>
       <div class="right-content">
         <ul id="icon-list" style="list-style-type: none">
-          <!-- <li><a href="#">Complete Course</a></li> -->
+          <li>
+            <a
+              routerLink="/userdashboard/demoseries"
+              (click)="demo('DEMO')"
+              href="#"
+              >Demo</a
+            >
+          </li>
           <li>
             <a
               (click)="testseries('GATE-OTS')"
@@ -68,17 +77,22 @@
         </ul>
       </div>
     </div>
+    <div style="clear: both"></div>
     <div class="side-content">
       <div class="left-content">
+        <p>&nbsp;</p>
         <p>i</p>
         <P>P</P>
         <p>A</p>
         <p>T</p>
         <p>E</p>
+        <p>&nbsp;</p>
       </div>
       <div class="right-content">
         <ul id="icon-list" style="list-style-type: none">
-          <!-- <li><a href="#">Complete Course</a></li> -->
+          <li>
+            <a (click)="downloadSoon()" href="#">Demo</a>
+          </li>
           <li><a (click)="downloadSoon()" href="#">Online Test Series</a></li>
           <li><a (click)="downloadSoon()" href="#">Video Lectures</a></li>
           <li><a (click)="downloadSoon()" href="#">Question Bank</a></li>
@@ -86,9 +100,12 @@
         </ul>
       </div>
     </div>
+
+    <div style="clear: both"></div>
     <div class="side-content">
       <div class="left-content">
         <p style="margin-top: 0.5rem">&nbsp;</p>
+        <p>&nbsp;</p>
         <p>&nbsp;</p>
         <p>P</p>
         <P>S</P>
@@ -98,6 +115,9 @@
       </div>
       <div class="right-content">
         <ul id="icon-list" style="list-style-type: none">
+          <li>
+            <a (click)="downloadSoon()" href="#">Demo</a>
+          </li>
           <li><a (click)="downloadSoon()" href="#">ISRO Test Series</a></li>
           <li><a (click)="downloadSoon()" href="#">BARC Test Series</a></li>
           <li><a (click)="downloadSoon()" href="#">SAIL Test Series</a></li>
@@ -111,7 +131,7 @@
     </div>
   </div>
   <!--  </div> -->
-  <div class="right-container" style="width: 75%">
+  <div class="right-container" style="width: 75%; z-index: 0">
     <router-outlet></router-outlet>
   </div>
 

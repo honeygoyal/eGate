@@ -20,7 +20,7 @@ export class DemoseriesComponent implements OnInit {
     return this.colors[Math.floor(Math.random() * this.colors.length)];
   }
   ngOnInit(): void {
-    this.http.get;
+    // this.http.get
   }
 
   exams: any[] = [];

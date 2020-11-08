@@ -35,8 +35,10 @@ export class ProfileComponent implements OnInit {
   branchOpted: any;
   ngOnInit(): void {
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
-      this.user = data;
-      this.branches = this.user.user.discipline.split(",");
+      if (data !== undefined) {
+        this.user = data;
+        this.branches = this.user.user.discipline.split(",");
+      }
     });
     this.branchOpted = this.branchOptedService.getBranch();
     if (this.branchOpted === undefined) {

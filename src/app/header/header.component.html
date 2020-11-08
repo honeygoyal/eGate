@@ -1,7 +1,6 @@
 <header id="header-home">
   <div class="container">
-    <nav id="main-nav">
-      <!-- <img class="bgimage" src="./../../assets/susa.png" alt="" /> -->
+    <nav id="navbar">
       <a
         style="text-decoration: none"
         routerLinkActive="current1"
@@ -21,32 +20,38 @@
           >
         </li>
         <li>
-          <a routerLinkActive="current" routerLink="/examdetails/gate">GATE</a>
-        </li>
-        <li>
-          <a
-            style="text-transform: none"
-            routerLinkActive="current"
-            routerLink="/examdetails/ipate"
-            href="#"
-            >iPATE</a
-          >
-        </li>
-        <li>
-          <a routerLinkActive="current" routerLink="/examdetails/bhel" href="#"
-            >PSU</a
-          >
-        </li>
-        <li>
-          <a href="#" (click)="downloadSoon()">Download</a>
-        </li>
-        <!-- login redirect -->
-        <!-- <li style="padding-right: 1rem;">
-          <a *ngIf="isLoggedOut$ | async" routerLink="/login">Login</a>
-          <a (click)="logout()" *ngIf="isLoggedIn$ | async" routerLink="/login">Logout</a>
+          <span style="font-weight: 600">Exams&nbsp;&nbsp;</span>
+          <i class="fas fa-angle-down"></i>
+          <ul>
+            <li>
+              <a routerLink="/examdetails/gate">GATE</a>
+            </li>
 
-      
-        </li> -->
+            <li>
+              <a routerLink="/examdetails/ipate" href="#">iPATE</a>
+            </li>
+            <li>
+              <a routerLink="/examdetails/bhel" href="#">PSU</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <span style="font-weight: 600">Downloads&nbsp;&nbsp;</span>
+          <i class="fas fa-angle-down"></i>
+          <ul>
+            <li>
+              <a routerLink="/examdetails/gate">GATE</a>
+            </li>
+
+            <li>
+              <a routerLink="/examdetails/ipate" href="#">iPATE</a>
+            </li>
+            <li>
+              <a routerLink="/examdetails/bhel" href="#">PSU</a>
+            </li>
+          </ul>
+        </li>
+
         <li style="padding-left: 0rem">
           <div style="width: 33%; float: left">
             <a
@@ -66,8 +71,9 @@
                   alt=""
                 />
                 <img
+                  src="./../../assets/download.jpg"
                   *ngIf="profilePhoto === ''"
-                  style="width: 2rem; height: 2rem; border-radius: 50%"
+                  style="width: 4rem; height: 4rem; border-radius: 50%"
                   alt=""
                 />
               </span>
@@ -83,8 +89,5 @@
         </li>
       </ul>
     </nav>
-    <div id="image">
-      <img class="headerimage" alt="" />
-    </div>
   </div>
 </header>

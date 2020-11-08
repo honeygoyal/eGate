@@ -1,10 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { TestseriesService } from "../../service/testseries.service";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/reducers";
 import { map, filter } from "rxjs/operators";
 import { DatePipe } from "@angular/common";
+import { MatPaginator } from "@angular/material/paginator";
 
 export var myWindow;
 export var examsExport;
@@ -33,14 +34,12 @@ export class TestseriesComponent implements OnInit {
       this.exam_code = params["subject"];
     });
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
-      this.email = data.user.emailId;
+      if (data !== undefined) this.email = data.user.emailId;
       this.testseries
         .getTestSeries(this.exam_code, this.email)
         .subscribe((data) => {
           this.exams = [...data];
           this.filterexams();
-         
-          //console.log("exams: "+this.exams);
         });
     });
   }
@@ -93,7 +92,7 @@ export class TestseriesComponent implements OnInit {
       (screen.height - 120) +
       ",statusbar=0,toolbar=0";
     localStorage.setItem("exam", JSON.stringify(exam));
-    localStorage.setItem("examStatus",exam.status);
+    localStorage.setItem("examStatus", exam.status);
     //localStorage.setItem("timeelapsed",exam.);
     myWindow = window.open("/exampanel/", "windowOpenTab", params);
     if (window.focus) {
@@ -101,8 +100,14 @@ export class TestseriesComponent implements OnInit {
     }
     return false;
   }
-
+  // examspage: any;
+  // onPageChange($event) {
+  //   this.examspage = this.exams.slice(
+  //     $event.pageIndex * $event.pageSize,
+  //     $event.pageIndex * $event.pageSize + $event.pageSize
+  //   );
+  // }
   reportshow(exam: any) {
-    this.router.navigateByUrl("/userdashboard/report/"+exam.id);
+    this.router.navigateByUrl("/userdashboard/report/" + exam.id);
   }
 }

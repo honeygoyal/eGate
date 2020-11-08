@@ -6,7 +6,7 @@ import { AppState } from "../reducers";
 import { map } from "rxjs/operators";
 import { isLoggedIn, isLoggedOut } from "../auth/auth.selectors";
 import { logout } from "../auth/auth.actions";
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer } from "@angular/platform-browser";
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -15,14 +15,18 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class HeaderComponent implements OnInit {
   isLoggedIn$: Observable<boolean>;
   isLoggedOut$: Observable<boolean>;
-  constructor(private store: Store<AppState>, private sanitizer: DomSanitizer,) {}
+  constructor(
+    private store: Store<AppState>,
+    private sanitizer: DomSanitizer
+  ) {}
   profilePhoto: string;
   ngOnInit() {
     this.isLoggedIn$ = this.store.pipe(select(isLoggedIn));
     this.isLoggedOut$ = this.store.pipe(map(isLoggedOut));
+
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
       //console.log(data);
-      this.profilePhoto = data.user.photo;
+      if (data !== undefined) this.profilePhoto = data.user.photo;
     });
   }
   logsoon() {

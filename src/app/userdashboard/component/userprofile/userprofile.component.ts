@@ -31,9 +31,11 @@ export class UserprofileComponent implements OnInit {
     // this.user$ = this.store.pipe(select(user));
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
       //console.log(data);
-      this.name = data.user.name;
-      this.branches = data.user.discipline.split(",");
-      this.examref = [...data.user.coursesOffered];
+      if (data !== undefined) {
+        this.name = data.user.name;
+        this.branches = data.user.discipline.split(",");
+        this.examref = [...data.user.coursesOffered];
+      }
       //console.log(data);
     });
     let user = JSON.parse(localStorage.getItem("user"));
