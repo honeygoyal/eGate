@@ -10,9 +10,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   saveUserProfile(userData: SignUpForm): Observable<any> {
-    return this.http.post(environment.saveUserProfile, userData, {
-      headers: { skip: "true" },
-    });
+    return this.http.post(environment.saveUserProfile, userData, {});
   }
 
   login(userData: LoginFormModal): Observable<any> {
