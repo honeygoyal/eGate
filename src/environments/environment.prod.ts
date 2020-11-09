@@ -32,4 +32,8 @@ export const environment = {
     "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/reportDetail/getQuestionAnalysis?user_id=",
   getCoursesDescriptionByExamCode:
     "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/coursesDetail/getCoursesDescriptionByExamCode",
+  createOrder:
+  "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/payment/createOrder",
+  verifiedPayment:
+  "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/payment/verifiedPayment",
 };
