@@ -1,5 +1,5 @@
 <div class="container">
-  <div style="padding: 2rem;" id="content">
+  <div style="padding: 2rem" id="content">
     <div id="header-exam">
       <div class="left-content">
         <p
@@ -14,8 +14,8 @@
           "
           *ngIf="subjectSelected === 'gate'"
         >
-          Conducting Institute <br />
-          <span style="color: #07c4fb;">IIT Bombay</span>
+          Organising Institute <br />
+          <span style="color: #07c4fb">IIT Bombay</span>
         </p>
         <p
           style="
@@ -30,7 +30,7 @@
           *ngIf="subjectSelected === 'ipate'"
         >
           Conducting Organization <br />
-          <span style="color: #07c4fb;">CII</span>
+          <span style="color: #07c4fb">CII</span>
         </p>
 
         <p
@@ -51,7 +51,7 @@
           "
         >
           Conducting Institute <br />
-          <span style="color: #07c4fb;">{{ subjectSelected | uppercase }}</span>
+          <span style="color: #07c4fb">{{ subjectSelected | uppercase }}</span>
         </p>
         <p
           style="
@@ -66,7 +66,7 @@
           *ngIf="subjectSelected === 'sail'"
         >
           SAIL Conducting Institute <br />
-          <span style="color: #07c4fb;">Through GATE 2019</span>
+          <span style="color: #07c4fb">Through GATE 2019</span>
         </p>
         <p
           style="
@@ -81,7 +81,7 @@
           *ngIf="subjectSelected === 'rinl'"
         >
           RINL Conducting Institute <br />
-          <span style="color: #07c4fb;">Vizag Steel</span>
+          <span style="color: #07c4fb">Vizag Steel</span>
         </p>
       </div>
       <div class="right-content">
@@ -89,7 +89,7 @@
           <a
             href="http://gate.iitd.ac.in/"
             target="_blank"
-            style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+            style="text-decoration: none; color: rgba(255, 255, 255, 1)"
             >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
           >
         </button>
@@ -97,7 +97,7 @@
           <a
             href="http://ipate.in/"
             target="_blank"
-            style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+            style="text-decoration: none; color: rgba(255, 255, 255, 1)"
             >iPATE OFFICIAL WEBSITE</a
           >
         </button>
@@ -116,42 +116,42 @@
             *ngIf="subjectSelected === 'rinl'"
             href="https://www.vizagsteel.com/index.asp"
             target="_blank"
-            style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+            style="text-decoration: none; color: rgba(255, 255, 255, 1)"
             >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
           >
           <a
             *ngIf="subjectSelected === 'bhel'"
             href="http://www.bhel.com/index.php/"
             target="_blank"
-            style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+            style="text-decoration: none; color: rgba(255, 255, 255, 1)"
             >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
           >
           <a
             *ngIf="subjectSelected === 'cil'"
             href="https://www.coalindia.in/index.html"
             target="_blank"
-            style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+            style="text-decoration: none; color: rgba(255, 255, 255, 1)"
             >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
           >
           <a
             *ngIf="subjectSelected === 'sail'"
             href="https://www.sail.co.in/"
             target="_blank"
-            style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+            style="text-decoration: none; color: rgba(255, 255, 255, 1)"
             >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
           >
           <a
             *ngIf="subjectSelected === 'isro'"
             href="https://www.isro.gov.in/"
             target="_blank"
-            style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+            style="text-decoration: none; color: rgba(255, 255, 255, 1)"
             >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
           >
           <a
             *ngIf="subjectSelected === 'barc'"
             href="http://www.barc.gov.in/"
             target="_blank"
-            style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+            style="text-decoration: none; color: rgba(255, 255, 255, 1)"
             >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
           >
         </button>
@@ -183,13 +183,11 @@
             ><h3 *ngIf="subjectSelected != 'ipate'">
               {{ subjectSelected | uppercase }} 2021
             </h3>
-            <h3 *ngIf="subjectSelected == 'ipate'">
-              iPATE 2021
-            </h3>
+            <h3 *ngIf="subjectSelected == 'ipate'">iPATE 2021</h3>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div
-          style="overflow: auto; padding: 0rem 2rem;"
+          style="overflow: auto; padding: 0rem 2rem"
           *ngIf="subjectSelected === 'gate'"
         >
           <p>
@@ -205,7 +203,7 @@
             Qualifying in GATE is a mandatory requirement for seeking admission
             and/or financial assistance to:
           </p>
-          <ul style="list-style: disc; list-style-position: outside;">
+          <ul style="list-style: disc; list-style-position: outside">
             <li>
               <p>
                 Master’s programs and direct Doctoral programs in
@@ -245,7 +243,7 @@
           </p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'ipate'"
         >
           <p>
@@ -284,7 +282,7 @@
           </p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'cil'"
         >
           <h2>
@@ -300,7 +298,7 @@
           </p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'sail'"
         >
           <h2>
@@ -544,7 +542,7 @@
           <p>&nbsp;</p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'bhel'"
         >
           <h2>
@@ -850,7 +848,7 @@
           <p>&nbsp;</p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'rinl'"
         >
           <h2>
@@ -1007,7 +1005,7 @@
           </p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'isro'"
         >
           <h2>ISRO SC EXAM</h2>
@@ -1027,7 +1025,7 @@
           </p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'barc'"
         >
           <p>
@@ -1045,7 +1043,7 @@
             candidates ambitious of pursuing a rewarding career in Nuclear
             Science, Engineering and Technology and
           </p>
-          <ul style="list-style: disc; margin-left: 0.5rem;">
+          <ul style="list-style: disc; margin-left: 0.5rem">
             <li>
               who would relish challenges in frontier areas of Science &amp;
               Technology,
@@ -1096,12 +1094,10 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div *ngIf="subjectSelected === 'gate'">
-          <p>
-            Not Announced Yet
-          </p>
+          <p>Not Announced Yet</p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'ipate'"
         >
           <h2>Examination Duration</h2>
@@ -1150,8 +1146,8 @@
                   Section I:Cognitive Abilities<br />
                   20 Questions carrying 20 marks
                 </th>
-                <td style="padding: 2rem;">
-                  <ul style="list-style: disc;">
+                <td style="padding: 2rem">
+                  <ul style="list-style: disc">
                     <li>Quanititative Aptitude</li>
                     <li>Analytical Reasoning</li>
                     <li>Data Interpretation</li>
@@ -1164,8 +1160,8 @@
                   Section II:Professional Abilities<br />
                   20 Questions carrying 20 marks
                 </th>
-                <td style="padding: 2rem;">
-                  <ul style="list-style: disc;">
+                <td style="padding: 2rem">
+                  <ul style="list-style: disc">
                     <li>Project Management</li>
                     <li>Finance and Accounts</li>
                     <li>Legal Contracts and Arbitration</li>
@@ -1181,8 +1177,8 @@
                   Section III(A):Technical Abilities<br />
                   10 Questions carrying 10 marks
                 </th>
-                <td style="padding: 2rem;">
-                  <ul style="list-style: disc;">
+                <td style="padding: 2rem">
+                  <ul style="list-style: disc">
                     <li>Physics and Chemistry(10+2 level)</li>
                   </ul>
                 </td>
@@ -1192,8 +1188,8 @@
                   Section III(B):Technical Abilities<br />
                   50 Questions carrying 50 marks
                 </th>
-                <td style="padding: 2rem;">
-                  <ul style="list-style: disc;">
+                <td style="padding: 2rem">
+                  <ul style="list-style: disc">
                     <li>Engineering Discipline-wise Subjects</li>
                   </ul>
                 </td>
@@ -1202,7 +1198,7 @@
           </table>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'cil'"
         >
           <p>
@@ -1366,7 +1362,7 @@
           </p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'sail'"
         >
           <p>
@@ -1375,7 +1371,7 @@
           </p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'bhel'"
         >
           <table>
@@ -1445,7 +1441,7 @@
           </p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'rinl'"
         >
           <table>
@@ -1511,7 +1507,7 @@
           <p>&nbsp;</p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'isro'"
         >
           <p>
@@ -1539,7 +1535,7 @@
           </ul>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'barc'"
         >
           <p>
@@ -1629,15 +1625,13 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'gate'"
         >
-          <p>
-            Not Announced Yet
-          </p>
+          <p>Not Announced Yet</p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'ipate'"
         >
           <table class="table table-striped">
@@ -1647,14 +1641,14 @@
                 <th scope="col"></th>
               </tr> -->
             </thead>
-            <tbody style="text-align: left;">
+            <tbody style="text-align: left">
               <tr>
                 <th scope="row">
-                  <h2 style="color: black; font-size: 1.2rem;">
+                  <h2 style="color: black; font-size: 1.2rem">
                     Online Registration
                   </h2>
 
-                  <p style="color: #5e5e63; font-style: normal;">
+                  <p style="color: #5e5e63; font-style: normal">
                     Last date extended due to Novel Coronavirus (COVID 19)
                   </p>
                 </th>
@@ -1662,10 +1656,10 @@
               </tr>
               <tr>
                 <th scope="row">
-                  <h2 style="color: black; font-size: 1.2rem;">
+                  <h2 style="color: black; font-size: 1.2rem">
                     Online Preparation
                   </h2>
-                  <p style="color: #5e5e63;">
+                  <p style="color: #5e5e63">
                     Strength & Weakness Analysis, Learning & Upskilling
                     facilities for enrolled candidates till the Exam
                   </p>
@@ -1674,10 +1668,10 @@
               </tr>
               <tr>
                 <th scope="row">
-                  <h2 style="color: black; font-size: 1.2rem;">
+                  <h2 style="color: black; font-size: 1.2rem">
                     Online Admit Card Generation
                   </h2>
-                  <p style="color: #5e5e63;">
+                  <p style="color: #5e5e63">
                     Details of Candidate with respective Exam Center and
                     Scheduled date & time slot of Exam to be downloaded
                   </p>
@@ -1686,10 +1680,10 @@
               </tr>
               <tr>
                 <th scope="row">
-                  <h2 style="color: black; font-size: 1.2rem;">
+                  <h2 style="color: black; font-size: 1.2rem">
                     CII iPATE 2020 - Online Examination
                   </h2>
-                  <p style="color: #5e5e63;">
+                  <p style="color: #5e5e63">
                     3 Hrs. Online Examination on any scheduled date and time
                     slot as per Admit card
                   </p>
@@ -1698,10 +1692,10 @@
               </tr>
               <tr>
                 <th scope="row">
-                  <h2 style="color: black; font-size: 1.2rem;">
+                  <h2 style="color: black; font-size: 1.2rem">
                     Online Certification of CII - iPATE
                   </h2>
-                  <p style="color: #5e5e63;">
+                  <p style="color: #5e5e63">
                     Availability of Scorecard & Certificate to be downloaded
                   </p>
                 </th>
@@ -1709,10 +1703,10 @@
               </tr>
               <tr>
                 <th scope="row">
-                  <h2 style="color: black; font-size: 1.2rem;">
+                  <h2 style="color: black; font-size: 1.2rem">
                     Online Job Board of CII - iPATE
                   </h2>
-                  <p style="color: #5e5e63;">
+                  <p style="color: #5e5e63">
                     Access to Job Board to apply suitable opportunities from CII
                     member companies
                   </p>
@@ -1723,7 +1717,7 @@
           </table>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'cil'"
         >
           <table>
@@ -1769,7 +1763,7 @@
           </table>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'sail'"
         >
           <table>
@@ -1804,7 +1798,7 @@
           </table>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'bhel'"
         >
           <table>
@@ -1855,7 +1849,7 @@
           </table>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'rinl'"
         >
           <table>
@@ -1898,13 +1892,13 @@
           </table>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'isro'"
         >
           <p>Soon to be Updated</p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'barc'"
         >
           <p>
@@ -2057,7 +2051,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div
-          style="overflow: auto; padding: 0rem 2rem;"
+          style="overflow: auto; padding: 0rem 2rem"
           *ngIf="subjectSelected === 'gate'"
         >
           <table class="table table-striped">
@@ -2172,7 +2166,7 @@
             Some of these Professional Societies / Institutions, which conduct
             examination in various fields of engineering, are as follows:
           </h3>
-          <ul style="list-style: disc; list-style-position: outside;">
+          <ul style="list-style: disc; list-style-position: outside">
             <li>The Institution of Engineers (India) (IE)</li>
             <li>The Institution of Civil Engineers (ICE)</li>
             <li>
@@ -2195,10 +2189,10 @@
           </p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'ipate'"
         >
-          <ul style="list-style: disc;">
+          <ul style="list-style: disc">
             <li>B.E./B.Tech(4 years course after 10+2)</li>
             <li>
               B.E./B.Tech(3 years course after B.Sc/Diploma in
@@ -2223,7 +2217,7 @@
           </ul>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'cil'"
         >
           <table>
@@ -2478,7 +2472,7 @@
           </table>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'sail'"
         >
           <table class="table table-striped">
@@ -2509,7 +2503,7 @@
           </table>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'bhel'"
         >
           <table class="table table-striped">
@@ -2540,7 +2534,7 @@
           </table>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'rinl'"
         >
           <table class="table table-striped">
@@ -2571,7 +2565,7 @@
           </table>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'isro'"
         >
           <p>
@@ -2581,7 +2575,7 @@
           </p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'barc'"
         >
           <p><strong>Eligible disciplines</strong></p>
@@ -2602,7 +2596,7 @@
             Candidates possessing any of the degrees from below are not eligible
             to apply for BARC exam.
           </p>
-          <ul style="list-style: disc; margin-left: 0.5rem;">
+          <ul style="list-style: disc; margin-left: 0.5rem">
             <li>
               Automobile, Automotive, Aerospace, Industrial Production,
               Reliable, Ceramics, Architecture, Geology, Mining, Bio-Medical
@@ -2704,7 +2698,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'gate'"
         >
           <!-- <button class="btn" *ngIf="subjectSelected === 'gate'">
@@ -2718,13 +2712,13 @@
           <p>NA</p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'ipate'"
         >
           <p>NA</p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'cil'"
         >
           <table class="table table-striped">
@@ -2856,7 +2850,7 @@
           </table>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'sail'"
         >
           <table width="0">
@@ -2911,7 +2905,7 @@
           </table>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'bhel'"
         >
           <h2>Cut Off Marks - Category Wise (As given by BHEL Authorities)</h2>
@@ -3024,7 +3018,7 @@
           <p>
             <strong><u>Age Relaxation:</u></strong>
           </p>
-          <ul style="list-style: disc;">
+          <ul style="list-style: disc">
             <li>
               Upper age limit is relaxable for candidates belonging to SC / ST
               &ndash; 5 years; OBC (Non Creamy Layer) &ndash; 3 years.
@@ -3049,7 +3043,7 @@
           </p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'rinl'"
         >
           <table width="0">
@@ -3110,7 +3104,7 @@
           </table>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'isro'"
         >
           <p>ISRO CUTOFF 2020</p>
@@ -3355,7 +3349,7 @@
           </table>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'barc'"
         >
           <p><strong>2020</strong></p>
@@ -3577,39 +3571,39 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'gate'"
         >
           <button class="btn" *ngIf="subjectSelected === 'gate'">
             <a
               href="http://gate.iitd.ac.in/syllabi.php"
               target="_blank"
-              style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+              style="text-decoration: none; color: rgba(255, 255, 255, 1)"
               >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
             >
           </button>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'ipate'"
         >
           <button class="btn" *ngIf="subjectSelected === 'ipate'">
             <a
               href="https://www.ipate.in/syllabus/"
               target="_blank"
-              style="text-decoration: none; color: rgba(255, 255, 255, 1);"
+              style="text-decoration: none; color: rgba(255, 255, 255, 1)"
               >{{ subjectSelected | uppercase }} OFFICIAL WEBSITE</a
             >
           </button>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'cil'"
         >
           <p>No particular syllabus mentioned in the Official Notification</p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'sail'"
         >
           <p>
@@ -3618,19 +3612,19 @@
           </p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'bhel'"
         >
           <p>No particular syllabus mentioned in the Official Notification</p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'rinl'"
         >
           <p>No particular syllabus mentioned in the Official Notification</p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'isro'"
         >
           <p>
@@ -3640,12 +3634,10 @@
           </p>
         </div>
         <div
-          style="overflow: auto; padding: 2rem;"
+          style="overflow: auto; padding: 2rem"
           *ngIf="subjectSelected === 'barc'"
         >
-          <p>
-            No particular syllabus mentioned in the Official Notification
-          </p>
+          <p>No particular syllabus mentioned in the Official Notification</p>
         </div>
       </mat-expansion-panel>
     </mat-accordion>

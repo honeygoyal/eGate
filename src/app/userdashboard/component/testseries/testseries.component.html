@@ -148,8 +148,14 @@
           </button>
         </mat-card-content>
       </mat-card>
+      <!-- <mat-paginator
+        (page)="onPageChange($event)"
+        [length]="exams.length"
+        [pageSize]="5"
+      >
+      </mat-paginator> -->
     </mat-tab>
-    <mat-tab *ngIf="exams[0].status !== 'INACTIVE'" label="INPROGRESS">
+    <mat-tab *ngIf="exams[0]?.status !== 'INACTIVE'" label="INPROGRESS">
       <mat-card *ngFor="let exam of examsinprogress" class="example-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image">
@@ -201,7 +207,7 @@
         </mat-card-content>
       </mat-card>
     </mat-tab>
-    <mat-tab *ngIf="exams[0].status !== 'INACTIVE'" click label="COMPLETED">
+    <mat-tab *ngIf="exams[0]?.status !== 'INACTIVE'" click label="COMPLETED">
       <mat-card *ngFor="let exam of examscompleted" class="example-card">
         <mat-card-header>
           <div mat-card-avatar class="example-header-image">

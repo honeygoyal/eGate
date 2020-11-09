@@ -43,29 +43,32 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.signupForm.value);
-
-    this.signUpData = {
-      name: this.signupForm.value.name,
-      emailId: this.signupForm.value.emailId,
-      confirmemail: this.signupForm.value.confirmemail,
-      mobileNumber: this.signupForm.value.mobileNumber,
-      university: this.signupForm.value.university,
-      discipline: this.signupForm.value.discipline.join(","),
-      qualification: this.signupForm.value.qualification,
-      targetYear: this.signupForm.value.targetYear,
-      address: this.signupForm.value.address,
-      checkterm: this.signupForm.value.checkterm,
-    };
-    this.authService.saveUserProfile(this.signUpData).subscribe(
-      (response) => {
-        // swal.fire("Registration Successfull");
-        this.signupForm.reset();
-      },
-      (err) => {
-        swal.fire(err.error.message);
-      }
-    );
+    if (this.signupForm.value.checkterm === false) {
+      swal.fire("Please accept Terms & Conditions");
+    } else {
+      this.signUpData = {
+        name: this.signupForm.value.name,
+        emailId: this.signupForm.value.emailId,
+        confirmemail: this.signupForm.value.confirmemail,
+        mobileNumber: this.signupForm.value.mobileNumber,
+        university: this.signupForm.value.university,
+        discipline: this.signupForm.value.discipline.join(","),
+        qualification: this.signupForm.value.qualification,
+        targetYear: this.signupForm.value.targetYear,
+        address: this.signupForm.value.address,
+        checkterm: this.signupForm.value.checkterm,
+      };
+      this.authService.saveUserProfile(this.signUpData).subscribe(
+        (response) => {
+          swal.fire("Registration Successfull");
+          this.signupForm.reset();
+        },
+        (err) => {
+          if (err.error.message !== undefined) swal.fire(err.error.message);
+          else swal.fire("Something went wrong");
+        }
+      );
+    }
   }
 
   toppingList: string[] = [

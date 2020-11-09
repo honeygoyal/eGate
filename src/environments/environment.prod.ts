@@ -1,39 +1,40 @@
 export const environment = {
+  //https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/
   production: true,
   saveUserProfile:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/users/register",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/register",
   authenticate:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/users/authenticate",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/authenticate",
   getQuestionsForTestSeries:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/questionLayout/getQuestions",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/questionLayout/getQuestions",
   postSavedAnswer:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/reportDetail/saveReportQuestionWise",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/reportDetail/saveReportQuestionWise",
   postSubmittedAnswer:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/reportOverall/saveOverallReport",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/reportOverall/saveOverallReport",
   getAllCoursesOffered:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/coursesOffered/getAllCoursesOffered",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/coursesOffered/getAllCoursesOffered",
   findAllUnVerifiedUser:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/users/findAllUnVerifiedUser?userId=",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/findAllUnVerifiedUser?userId=",
   createTest:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/coursesDetail/createTest",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/coursesDetail/createTest",
   getCourseIdListForAdmin:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/coursesDetail/getCourseIdListForAdmin",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/coursesDetail/getCourseIdListForAdmin",
   questionLayoutUpload:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/questionLayout/upload?courseId=",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/questionLayout/upload?courseId=",
   userVerification:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/users/verification?userId=",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/verification?userId=",
   uploadProfileData:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/users/uploadProfileData?userId=",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/uploadProfileData?userId=",
   getOverallReportByUserId:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/reportOverall/getOverallReportByUserId?user_id=",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/reportOverall/getOverallReportByUserId?user_id=",
   getTopRank:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/reportOverall/getTopRank?course_id=",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/reportOverall/getTopRank?course_id=",
   getQuestionAnalysis:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/reportDetail/getQuestionAnalysis?user_id=",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/reportDetail/getQuestionAnalysis?user_id=",
   getCoursesDescriptionByExamCode:
-    "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/coursesDetail/getCoursesDescriptionByExamCode",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/coursesDetail/getCoursesDescriptionByExamCode",
   createOrder:
-  "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/payment/createOrder",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/payment/createOrder",
   verifiedPayment:
-  "https://ec2-15-206-94-151.ap-south-1.compute.amazonaws.com:8080/payment/verifiedPayment",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/payment/verifiedPayment",
 };

@@ -40,6 +40,7 @@ import { AdminPanelComponent } from "./component/admin-panel/admin-panel.compone
 import { GoogleChartsModule } from "angular-google-charts";
 import { ScriptLoaderService } from "angular-google-charts";
 import { BranchselectionComponent } from "./component/branchselection/branchselection.component";
+import { MatPaginatorModule } from "@angular/material/paginator";
 @NgModule({
   declarations: [
     UserprofileComponent,
@@ -79,6 +80,7 @@ import { BranchselectionComponent } from "./component/branchselection/branchsele
     MatButtonToggleModule,
     MatChipsModule,
     MatIconModule,
+    MatPaginatorModule,
     MatProgressBarModule,
     MatSelectModule,
 

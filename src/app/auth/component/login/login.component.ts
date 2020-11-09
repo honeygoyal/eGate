@@ -7,8 +7,8 @@ import { Router } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/reducers";
 import { login } from "../../auth.actions";
-import { noop } from "rxjs";
 
+import swal from "sweetalert2";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -39,12 +39,17 @@ export class LoginComponent implements OnInit {
       .pipe(
         tap((user) => {
           this.store.dispatch(login({ user }));
-
-          location.href="/userdashboard/profile/true";
         })
       )
-      .subscribe(data=>{
-        
-      });
+      .subscribe(
+        (data) => {
+          this.router.navigateByUrl("userdashboard/profile/true");
+        },
+        (err) => {
+          if (err.error.message !== undefined)
+            swal.fire("Please check your Credentials");
+          else swal.fire("Something went wrong");
+        }
+      );
   }
 }
