@@ -521,35 +521,34 @@
                 contentSelected === 'gate' && content === 'complete course'
               "
             >
-              <span style="color: #07c4fb;">(</span>7999/-<sup>*</sup
+              <span style="color: #07c4fb;">(</span><span id="CP">7999</span>/-<sup>*</sup
               ><span style="color: #07c4fb;">)</span>
             </h1>
             <h1
               *ngIf="contentSelected === 'gate' && content === 'video lectures'"
             >
-              <span style="color: #07c4fb;">(</span>3999/-<sup>*</sup
+              <span style="color: #07c4fb;">(</span><span id="VL">3999</span>/-<sup>*</sup
               ><span style="color: #07c4fb;">)</span>
             </h1>
-            <h1
+            <h1 style="color: #07c4fb;"
               *ngIf="
                 contentSelected === 'gate' && content === 'online test series'
               "
             >
-              <span style="color: #07c4fb;">(</span>1299/-<sup>*</sup
-              ><span style="color: #07c4fb;">)</span>
+              <span>(<span id="OTS">1299</span>/-<sup>*</sup>)</span>
             </h1>
             <h1
               *ngIf="
                 contentSelected === 'gate' && content === 'e-study material'
               "
             >
-              <span style="color: #07c4fb;">(</span>2999/-<sup>*</sup
+              <span  style="color: #07c4fb;">(</span><span id="ESM">2999</span>/-<sup>*</sup
               ><span style="color: #07c4fb;">)</span>
             </h1>
             <h1
               *ngIf="contentSelected === 'gate' && content === 'question bank'"
             >
-              <span style="color: #07c4fb;">(</span>1999/-<sup>*</sup
+              <span style="color: #07c4fb;">(</span><span id="QB">1999</span>/-<sup>*</sup
               ><span style="color: #07c4fb;">)</span>
             </h1>
             <h1
@@ -557,7 +556,7 @@
                 contentSelected === 'ipate' && content === 'complete course'
               "
             >
-              <span style="color: #07c4fb;">(</span>8999/-<sup>*</sup
+              <span style="color: #07c4fb;">(</span><span id="CP">8999</span>/-<sup>*</sup
               ><span style="color: #07c4fb;">)</span>
             </h1>
             <h1
@@ -565,7 +564,7 @@
                 contentSelected === 'ipate' && content === 'video lectures'
               "
             >
-              <span style="color: #07c4fb;">(</span>4999/-<sup>*</sup
+              <span style="color: #07c4fb;">(</span><span id="VL">4999</span>/-<sup>*</sup
               ><span style="color: #07c4fb;">)</span>
             </h1>
             <h1
@@ -573,13 +572,13 @@
                 contentSelected === 'ipate' && content === 'online test series'
               "
             >
-              <span style="color: #07c4fb;">(</span>1699/-<sup>*</sup
+              <span style="color: #07c4fb;">(</span><span id="OTS">1699</span>/-<sup>*</sup
               ><span style="color: #07c4fb;">)</span>
             </h1>
             <h1
               *ngIf="contentSelected === 'ipate' && content === 'question bank'"
             >
-              <span style="color: #07c4fb;">(</span>1999/-<sup>*</sup
+              <span style="color: #07c4fb;">(</span><span id="QB">1999</span>/-<sup>*</sup
               ><span style="color: #07c4fb;">)</span>
             </h1>
             <h1
@@ -587,11 +586,11 @@
                 contentSelected === 'ipate' && content === 'e-study material'
               "
             >
-              <span style="color: #07c4fb;">(</span>2999/-<sup>*</sup
+              <span style="color: #07c4fb;">(</span><span id="ESM">2999</span>/-<sup>*</sup
               ><span style="color: #07c4fb;">)</span>
             </h1>
             <h1 *ngIf="contentSelected === 'psu'">
-              <span style="color: #07c4fb;">(</span>599/-<sup>*</sup
+              <span style="color: #07c4fb;">(</span><span id="PSU">599</span>/-<sup>*</sup
               ><span style="color: #07c4fb;">)</span>
             </h1>
             <h6 style="color: #07c4fb; margin-left: 5rem;">
@@ -602,6 +601,5 @@
         </div>
       </mat-card>
     </div>
-    <!-- <button id="pay">BUY NOW</button> -->
   </div>
 </div>

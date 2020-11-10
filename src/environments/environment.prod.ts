@@ -33,4 +33,8 @@ export const environment = {
     "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/reportDetail/getQuestionAnalysis?user_id=",
   getCoursesDescriptionByExamCode:
     "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/coursesDetail/getCoursesDescriptionByExamCode",
+  createOrder:
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/payment/createOrder",
+  verifiedPayment:
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/payment/verifiedPayment",
 };

@@ -9,6 +9,7 @@ import { MatPaginator } from "@angular/material/paginator";
 
 export var myWindow;
 export var examsExport;
+
 @Component({
   selector: "app-testseries",
   templateUrl: "./testseries.component.html",
@@ -21,6 +22,8 @@ export class TestseriesComponent implements OnInit {
   examsinprogress: any[] = [];
   examscompleted: any[] = [];
   currentDateAsString = this.datepipe.transform(new Date(), "yyyy-MM-dd");
+  onlineTestSeriesLink:string="/courses";
+
   constructor(
     private route: ActivatedRoute,
     private testseries: TestseriesService,

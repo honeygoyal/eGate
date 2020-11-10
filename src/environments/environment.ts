@@ -27,6 +27,10 @@ export const environment = {
     "http://localhost:8080/reportDetail/getQuestionAnalysis?user_id=",
   getCoursesDescriptionByExamCode:
     "http://localhost:8080/coursesDetail/getCoursesDescriptionByExamCode",
+  createOrder:
+  "http://localhost:8080/payment/createOrder",
+  verifiedPayment:
+  "http://localhost:8080/payment/verifiedPayment",
 };
 
 /*
