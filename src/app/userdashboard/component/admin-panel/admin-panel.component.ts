@@ -89,7 +89,7 @@ export class AdminPanelComponent implements OnInit {
   }
   onExamCodeSelect() {
     console.log(this.examCode);
-    if (this.examCode !== "") {
+    if (this.examCode["examId"] !== "") {
       this.http
         .get(environment.getCourseIdListForAdmin, {
           params: { exam_code: this.examCode["examId"] },
