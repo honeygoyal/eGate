@@ -22,7 +22,7 @@ export class TestseriesComponent implements OnInit {
   examsinprogress: any[] = [];
   examscompleted: any[] = [];
   currentDateAsString = this.datepipe.transform(new Date(), "yyyy-MM-dd");
-  onlineTestSeriesLink:string="/courses";
+  onlineTestSeriesLink: string = "/courses";
 
   constructor(
     private route: ActivatedRoute,
@@ -41,7 +41,7 @@ export class TestseriesComponent implements OnInit {
       this.testseries
         .getTestSeries(this.exam_code, this.email)
         .subscribe((data) => {
-          this.exams = data;
+          this.exams = [...data];
           this.filterexams();
         });
     });
