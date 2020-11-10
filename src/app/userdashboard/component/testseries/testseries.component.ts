@@ -38,7 +38,7 @@ export class TestseriesComponent implements OnInit {
       this.testseries
         .getTestSeries(this.exam_code, this.email)
         .subscribe((data) => {
-          this.exams = [...data];
+          this.exams = data;
           this.filterexams();
         });
     });

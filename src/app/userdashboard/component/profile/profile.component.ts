@@ -235,9 +235,7 @@ export class ProfileComponent implements OnInit {
       formData.append("signatureFile", this.signFile);
       formData.append("govtIdFile", this.IdFile);
       this.http
-        .post(environment.uploadProfileData + this.user.user["id"], formData, {
-          headers: { skip: "true" },
-        })
+        .post(environment.uploadProfileData + this.user.user["id"], formData)
         .subscribe((data) => {
           console.log(data);
           Swal.fire("Document Uploaded Successfully");
