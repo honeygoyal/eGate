@@ -428,7 +428,7 @@
         >
           <!-- <img src="./../../../../assets/profilr.jpg" alt="" /> -->
           <img
-            *ngIf="profilePhoto !== ''"
+            *ngIf="profilePhoto !== null"
             [src]="transform(profilePhoto)"
             style="
               width: 6rem;
