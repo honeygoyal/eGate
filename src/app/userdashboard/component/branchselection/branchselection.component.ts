@@ -10,7 +10,7 @@ import { MatDialogRef } from "@angular/material/dialog";
 export class BranchselectionComponent implements OnInit {
   BranchFullName: any = {
     CE: "Civil Engineering",
-    CSE: "Computer Science Engineering",
+    CS: "Computer Science Engineering",
     ME: "Mechanical Engineering ",
     AE: "Aerospace Engineering",
     CH: "Chemical Engineering",

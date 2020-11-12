@@ -72,7 +72,7 @@ export class SignupComponent implements OnInit {
   }
 
   toppingList: string[] = [
-    "CSE",
+    "CS",
     "ME",
     "PI",
     "CH",
