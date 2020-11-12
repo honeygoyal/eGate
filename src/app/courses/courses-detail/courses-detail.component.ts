@@ -140,8 +140,6 @@ export class CoursesDetailComponent implements OnInit {
     switch (branchName) {
       case "CE":
         return "Civil Engineering";
-      case "CSE":
-        return "Computer Science Engineering";
       case "CS":
         return "Computer Science Engineering";
       case "ME":
