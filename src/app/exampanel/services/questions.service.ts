@@ -1,14 +1,12 @@
-import { Injectable } from "@angular/core";
+import { Injectable, SkipSelf } from "@angular/core";
 import { Observable } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { AnswerSubmitModel } from "../model/Submitanswer.model";
 import { SavedAnswerModel } from "../model/Savedanswer.model";
 import { environment } from "./../../../environments/environment";
-@Injectable({
-  providedIn: "root",
-})
+@Injectable()
 export class QuestionsService {
-  constructor(private http: HttpClient) {}
+  constructor( private http: HttpClient) {}
 
   getQuestionsForTestSeries(id: any, userId: any): Observable<any> {
     return this.http.get(environment.getQuestionsForTestSeries, {

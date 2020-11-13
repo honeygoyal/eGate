@@ -5,7 +5,6 @@ import { CoursesComponent } from "./courses/courses.component";
 import { CoursesDetailComponent } from "./courses/courses-detail/courses-detail.component";
 import { ExamDetailsComponent } from "./exam-details/exam-details.component";
 import { AboutComponent } from "./about/about.component";
-import { UserdashboardModule } from "./userdashboard/userdashboard.module";
 import { AuthGuard } from "./auth/auth.guard";
 const routes: Routes = [
   { path: "", component: BodyComponent },

@@ -49,6 +49,21 @@ export class ReportComponent implements OnInit {
     });
     this.user = JSON.parse(localStorage.getItem("user"));
     this.http
+    .get(
+      environment.getQuestionAnalysis +
+        this.user.user.id +
+        "&course_id=" +
+        this.test_id
+    )
+    .subscribe((data) => {
+      let i = 1;
+      this.questionanalysis = data;
+      this.questionanalysis.forEach((element) => {
+        this.hist_data.push([i, element.yourTime / 1000]);
+        i++;
+      });
+    });
+    this.http
       .get(
         environment.getOverallReportByUserId +
           this.user.user.id +
@@ -63,31 +78,14 @@ export class ReportComponent implements OnInit {
           ["Incorrect", this.testanalyticsdata.inCorrect],
           ["Unattempt", this.testanalyticsdata.unAttempt],
         ];
+       
       });
     this.http.get(environment.getTopRank + this.test_id).subscribe((data) => {
       console.log(data);
       this.userrankdata = data;
     });
 
-    this.http
-      .get(
-        environment.getQuestionAnalysis +
-          this.user.user.id +
-          "&course_id=" +
-          this.test_id
-      )
-      .subscribe((data) => {
-        let i = 1;
-        this.questionanalysis = data;
-        this.questionanalysis.forEach((element) => {
-          this.hist_data.push([i, element.yourTime / 1000]);
-          i++;
-        });
-
-        console.log("his", this.hist_data);
-
-        console.log("Question Analysis", this.questionanalysis);
-      });
+   
   }
   onSubmit(f: NgForm) {
     Email.send({

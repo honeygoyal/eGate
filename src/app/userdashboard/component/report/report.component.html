@@ -1,3 +1,4 @@
+<app-loader></app-loader>
 <div id="contentcontainer">
   <mat-tab-group id="parent-tab" mat-align-tabs="start">
     <mat-tab id="performance" label="TEST ANALYTICS">
@@ -31,30 +32,30 @@
             <div>
               <p style="margin-bottom: 1rem; color: green">
                 Correct&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-                {{ testanalyticsdata.correct }}
+                {{ testanalyticsdata?.correct }}
               </p>
               <p style="margin-bottom: 1rem; color: red">
                 Incorrect&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-                {{ testanalyticsdata.inCorrect }}
+                {{ testanalyticsdata?.inCorrect }}
               </p>
               <p style="color: #ed7d31">
-                Unattempted&nbsp;&nbsp;: {{ testanalyticsdata.unAttempt }}
+                Unattempted&nbsp;&nbsp;: {{ testanalyticsdata?.unAttempt }}
               </p>
             </div>
             <hr />
             <div>
               <p style="margin-bottom: 1rem; color: black">
                 Total Marks&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
-                {{ testanalyticsdata.totalMarks }}
+                {{ testanalyticsdata?.totalMarks }}
               </p>
               <p style="margin-bottom: 1rem; color: black">
                 Marks Secured&nbsp;&nbsp; :
-                {{ testanalyticsdata.marksSecured | number: ".1-2" }}
+                {{ testanalyticsdata?.marksSecured | number: ".1-2" }}
               </p>
               <p style="margin-bottom: 1rem; color: black">
                 Rank&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
-                {{ testanalyticsdata.rank }}
+                {{ testanalyticsdata?.rank }}
               </p>
             </div>
           </div>
@@ -230,7 +231,7 @@
             </mat-tab>
             <mat-tab label="VIDEO SOLUTION">
               <div style="padding: 1rem">
-                <a
+                <a target="_blank"
                   style="
                     color: black;
                     background: #07c4fb;
@@ -298,9 +299,27 @@
              
               alt=""
             /> -->
+            <!-- <img
+            *ngIf="profilePhoto !== null"
+            [src]="transform(profilePhoto)"
+            style="width: 4rem; height: 4rem; border-radius: 50%"
+            alt=""
+          />
+          <img
+            src="./../../assets/download.jpg"
+            *ngIf="profilePhoto === '' || profilePhoto === null"
+            style="width: 4rem; height: 4rem; border-radius: 50%"
+            alt=""
+          /> -->
             <img
-              *ngIf="profilePhoto !== ''"
-              [src]="transform(user.photo)"
+              *ngIf="user.photo === null || user.photo ===undefined"
+             src="./../../../../assets/download.jpg"
+              style="width: 6rem; height: 6rem; border-radius: 50%"
+              alt=""
+            />
+            <img
+             
+            [src]="transform(user.photo)"
               style="width: 6rem; height: 6rem; border-radius: 50%"
               alt=""
             />

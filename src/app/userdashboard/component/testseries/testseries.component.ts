@@ -38,6 +38,7 @@ export class TestseriesComponent implements OnInit {
     });
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
       if (data !== undefined) this.email = data.user.emailId;
+      
       this.testseries
         .getTestSeries(this.exam_code, this.email)
         .subscribe((data) => {
@@ -113,4 +114,5 @@ export class TestseriesComponent implements OnInit {
   reportshow(exam: any) {
     this.router.navigateByUrl("/userdashboard/report/" + exam.id);
   }
+  loading:boolean;
 }

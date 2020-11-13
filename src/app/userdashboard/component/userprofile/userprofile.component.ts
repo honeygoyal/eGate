@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Router, ActivatedRoute, Params } from "@angular/router";
 import { Store } from "@ngrx/store";
 import { AppState } from "src/app/reducers";
 import { map } from "rxjs/operators";
@@ -28,15 +28,13 @@ export class UserprofileComponent implements OnInit {
   examref: any[];
   selectedItem: string;
   ngOnInit(): void {
-    // this.user$ = this.store.pipe(select(user));
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
-      //console.log(data);
+  
       if (data !== undefined) {
         this.name = data.user.name;
         this.branches = data.user.discipline.split(",");
         this.examref = [...data.user.coursesOffered];
       }
-      //console.log(data);
     });
     let user = JSON.parse(localStorage.getItem("user"));
     if (user !== null && user !== "") {
@@ -53,8 +51,37 @@ export class UserprofileComponent implements OnInit {
         }
       }
     }
-  }
+    if (this.branchOpted === undefined) {
+      const dialogRef = this.dialog.open(BranchselectionComponent, {
+        width: "55%",
+        disableClose: true,
+      });
 
+      dialogRef.afterClosed().subscribe((result) => {
+        this.branchOptedService.branchSelected(`${result}`);
+        console.log(`${result}`);
+        this.branchOpted = `${result}`;
+        this.router.navigateByUrl("userdashboard/profile/false");
+      });
+    }
+
+    this.route.params.subscribe((params: Params) => {
+      this.popupEnabled = params["popupenable"];
+    });
+    if (this.popupEnabled === "true") {
+      const dialogRef = this.dialog.open(BranchselectionComponent, {
+        width: "55%",
+        disableClose: true,
+      });
+
+      dialogRef.afterClosed().subscribe((result) => {
+        this.branchOptedService.branchSelected(`${result}`);
+        this.branchOpted = `${result}`;
+        console.log(`${result}`)
+      });
+    }
+  }
+popupEnabled:string;
   isAdmin: string;
   logout() {
     this.store.dispatch(logout());
@@ -69,24 +96,7 @@ export class UserprofileComponent implements OnInit {
   testseries(content: string) {
     this.branchOpted = this.branchOptedService.getBranch();
     this.selectedItem = this.branchOpted + "-" + content;
-    //console.log(content);
-    // var testseriesurl: string;
-    // var show: boolean = false;
-    // //console.log(this.examref);
-    // for (let exam of this.examref) {
-    //   if (exam.examNameService === "GATE ONLINE TEST SERIES") {
-    //     show = true;
-    //     let courseOfferedId=exam.id;
-    //     testseriesurl =
-    //   "/userdashboard/testseries/" + exam.id;
-    //     break;
-    //   }
-    // }
-    // if (show) {
-    //   this.router.navigateByUrl(testseriesurl);
-    // } else {
-    //   this.router.navigateByUrl("/userdashboard/buypackage");
-    // }
+   
     var testseriesurl: string;
     testseriesurl = "/userdashboard/testseries/" + this.selectedItem;
     this.router.navigateByUrl(testseriesurl);
@@ -105,6 +115,7 @@ export class UserprofileComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result) => {
       this.branchOptedService.branchSelected(`${result}`);
+      console.log(`${result}`);
       this.branchOpted = `${result}`;
       this.router.navigateByUrl("userdashboard/profile/false");
     });
