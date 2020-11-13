@@ -1,5 +1,7 @@
+import { DomPortalHost } from '@angular/cdk/portal';
 import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
+import { noop } from '@angular/compiler/src/render3/view/util';
+import { ApplicationRef, Component, ComponentFactoryResolver, Injector, OnInit } from "@angular/core";
 import { ActivatedRoute, Params } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
@@ -14,7 +16,7 @@ export var myWindow;
 })
 export class DemoseriesComponent implements OnInit {
   constructor(private http: HttpClient,
-    private route: ActivatedRoute,private store: Store<AppState>,) {}
+    private route: ActivatedRoute,private store: Store<AppState>) {}
   colors: any[] = [
     "#ff0000",
     "#00ff00",
@@ -30,7 +32,9 @@ export class DemoseriesComponent implements OnInit {
   email:string;
   content:string;
   demoExam:string;
+ 
   ngOnInit(): void {
+    
     let user = JSON.parse(localStorage.getItem("user"));
     this.email=user.user.emailId;
     this.route.params.subscribe((params: Params) => {
@@ -43,6 +47,7 @@ export class DemoseriesComponent implements OnInit {
       this.exams = data;
     })
   }
+  
   startaction(id: string, exam: any) {
     var params =
       "scrollbars=0,resizable=1,fullscreen=1,menubar=0,width=" +
@@ -52,8 +57,8 @@ export class DemoseriesComponent implements OnInit {
       ",statusbar=0,toolbar=0";
     localStorage.setItem("exam", JSON.stringify(exam));
     localStorage.setItem("examStatus", exam.status);
-    //localStorage.setItem("timeelapsed",exam.);
-    myWindow = window.open("/exampanel/", "windowOpenTab", params);
+    
+    myWindow = window.open("#/exampanel/", "windowOpenTab", params);
     if (window.focus) {
       myWindow.focus();
     }

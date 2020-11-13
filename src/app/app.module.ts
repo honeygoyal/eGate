@@ -57,6 +57,7 @@ import { environment } from "../environments/environment";
 import { EffectsModule } from "@ngrx/effects";
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { authInterceptorProviders } from "./exampanel/interceptor/AuthInterceptor";
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,7 +119,7 @@ import { authInterceptorProviders } from "./exampanel/interceptor/AuthIntercepto
     }),
     EffectsModule.forRoot([]),
   ],
-  providers: [authInterceptorProviders,],
+  providers: [authInterceptorProviders,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
