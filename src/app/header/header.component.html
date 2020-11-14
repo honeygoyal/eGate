@@ -65,14 +65,14 @@
                 style="color: rgba(7, 196, 251, 1)"
               >
                 <img
-                  *ngIf="profilePhoto !== ''"
+                  *ngIf="profilePhoto !== null"
                   [src]="transform(profilePhoto)"
                   style="width: 4rem; height: 4rem; border-radius: 50%"
                   alt=""
                 />
                 <img
                   src="./../../assets/download.jpg"
-                  *ngIf="profilePhoto === ''"
+                  *ngIf="profilePhoto === '' || profilePhoto === null"
                   style="width: 4rem; height: 4rem; border-radius: 50%"
                   alt=""
                 />

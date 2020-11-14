@@ -40,36 +40,7 @@ export class ProfileComponent implements OnInit {
         this.branches = this.user.user.discipline.split(",");
       }
     });
-    this.branchOpted = this.branchOptedService.getBranch();
-    if (this.branchOpted === undefined) {
-      // this.branchOpted=this.branches[0];
-      // this.branchOptedService.branchSelected(this.branches[0])
-      const dialogRef = this.dialog.open(BranchselectionComponent, {
-        width: "55%",
-        disableClose: true,
-      });
-
-      dialogRef.afterClosed().subscribe((result) => {
-        this.branchOptedService.branchSelected(`${result}`);
-        this.branchOpted = `${result}`;
-        this.router.navigateByUrl("userdashboard/profile/false");
-      });
-    }
-
-    this.route.params.subscribe((params: Params) => {
-      this.popupEnabled = params["popupenable"];
-    });
-    if (this.popupEnabled === "true") {
-      const dialogRef = this.dialog.open(BranchselectionComponent, {
-        width: "55%",
-        disableClose: true,
-      });
-
-      dialogRef.afterClosed().subscribe((result) => {
-        this.branchOptedService.branchSelected(`${result}`);
-        this.branchOpted = `${result}`;
-      });
-    }
+   
   }
   oldpassword: string;
   newpassword: string;
@@ -235,9 +206,7 @@ export class ProfileComponent implements OnInit {
       formData.append("signatureFile", this.signFile);
       formData.append("govtIdFile", this.IdFile);
       this.http
-        .post(environment.uploadProfileData + this.user.user["id"], formData, {
-          headers: { skip: "true" },
-        })
+        .post(environment.uploadProfileData + this.user.user["id"], formData)
         .subscribe((data) => {
           console.log(data);
           Swal.fire("Document Uploaded Successfully");

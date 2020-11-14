@@ -24,7 +24,7 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSliderModule } from "@angular/material/slider";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { BlockCopyPasteDirective } from "./directives/block-copy-paste.directive";
 import { DragDropModule } from "@angular/cdk/drag-drop";
@@ -37,13 +37,17 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { InstructionDialogComponent } from "./component/exampanelscreen/instruction-dialog/instruction-dialog.component";
 import { ExamInstructionsComponent } from "./component/exam-instructions/exam-instructions.component";
 import { MatCheckboxModule } from "@angular/material/checkbox";
-// function countdownConfigFactory(): CountdownGlobalConfig {
-//   return { locale: 'mm:ss' };
-// }
+import { LoaderExampanel } from './services/loaderexampanel';
+import { LoaderInterceptorExam } from './interceptor/LoaderExamInterceptor';
+import { LoaderComponent } from './component/loader/loader.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { QuestionsService } from './services/questions.service';
+
 
 @NgModule({
   declarations: [
     ExampanelscreenComponent,
+    LoaderComponent,
     BlockCopyPasteDirective,
     CalculatorComponent,
     TimerComponentComponent,
@@ -55,6 +59,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     CountdownModule,
     CommonModule,
     DragDropModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     MatCardModule,
@@ -65,7 +70,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     MatRadioModule,
     MatCheckboxModule,
     MatSliderModule,
-    HttpClientModule,
+    MatProgressSpinnerModule,
     MatSlideToggleModule,
     MatMenuModule,
     MatSidenavModule,
@@ -89,7 +94,14 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
       },
     ]),
   ],
-  providers: [authInterceptorProviders, { provide: CountdownGlobalConfig }],
+  providers: [ QuestionsService,LoaderExampanel,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptorExam,
+      multi: true,
+    },authInterceptorProviders, { provide: CountdownGlobalConfig }, ],
   entryComponents: [DialogComponent, InstructionDialogComponent],
 })
-export class ExampanelModule {}
+export class ExampanelModule {
+ 
+}

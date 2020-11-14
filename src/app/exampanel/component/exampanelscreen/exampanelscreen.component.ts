@@ -25,9 +25,7 @@ import { MatDialog, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { DialogComponent } from "./dialog/dialog.component";
 import { InstructionDialogComponent } from "./instruction-dialog/instruction-dialog.component";
 
-export interface DialogData {
-  animal: "panda" | "unicorn" | "lion";
-}
+
 @Component({
   selector: "app-exampanelscreen",
   templateUrl: "./exampanelscreen.component.html",

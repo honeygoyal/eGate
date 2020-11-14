@@ -64,10 +64,9 @@ export class AdminPanelComponent implements OnInit {
   }
   onSubmit() {
     console.log(this.firstFormGroup);
+    const token = this.getToken();
     this.http
-      .post(environment.createTest, this.firstFormGroup.value, {
-        headers: { skip: "true" },
-      })
+      .post(environment.createTest, this.firstFormGroup.value)
       .subscribe((data) => {
         console.log(data);
         this.firstFormGroup.reset({
@@ -84,10 +83,13 @@ export class AdminPanelComponent implements OnInit {
         Swal.fire("Test Created!");
       });
   }
-
+  getToken(): string {
+    var ret = JSON.parse(localStorage.getItem("user"));
+    return ret.token;
+  }
   onExamCodeSelect() {
     console.log(this.examCode);
-    if (this.examCode !== "") {
+    if (this.examCode["examId"] !== "") {
       this.http
         .get(environment.getCourseIdListForAdmin, {
           params: { exam_code: this.examCode["examId"] },
@@ -110,14 +112,11 @@ export class AdminPanelComponent implements OnInit {
       environment.questionLayoutUpload + this.secondFormGroup.value.courseId;
     const formData = new FormData();
     formData.append("file", this.userFile);
-    this.http
-      .post(server_url, formData, {
-        headers: { skip: "true" },
-      })
-      .subscribe((data) => {
-        this.secondFormGroup.reset();
-        Swal.fire("Question Uploaded for Test!");
-      });
+    const token = this.getToken();
+    this.http.post(server_url, formData).subscribe((data) => {
+      this.secondFormGroup.reset();
+      Swal.fire("Question Uploaded for Test!");
+    });
   }
   comment: any;
   VerificationAction(action, id, form: NgForm) {

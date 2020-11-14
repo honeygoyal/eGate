@@ -1,3 +1,4 @@
+<app-loader></app-loader>
 <div style="overflow-y: hidden">
   <div id="logoimage">
     <img src="./../../../../assets/logocrop.jpg" alt="" id="logo" />
@@ -289,14 +290,14 @@
         alt=""
       /> -->
       <img
-        *ngIf="profilePhoto !== ''"
+        *ngIf="profilePhoto !== null"
         [src]="transform(profilePhoto)"
         style="width: 8rem; height: 8rem; border-radius: 50%"
         alt=""
       />
       <img
         src="./../../../../assets/download.jpg"
-        *ngIf="profilePhoto === ''"
+        *ngIf="profilePhoto === '' || profilePhoto === null"
         style="width: 8rem; height: 8rem; border-radius: 50%"
         alt=""
       />

@@ -22,7 +22,7 @@ export class TestseriesComponent implements OnInit {
   examsinprogress: any[] = [];
   examscompleted: any[] = [];
   currentDateAsString = this.datepipe.transform(new Date(), "yyyy-MM-dd");
-  onlineTestSeriesLink:string="/courses";
+  onlineTestSeriesLink: string = "/courses";
 
   constructor(
     private route: ActivatedRoute,
@@ -38,6 +38,7 @@ export class TestseriesComponent implements OnInit {
     });
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
       if (data !== undefined) this.email = data.user.emailId;
+      
       this.testseries
         .getTestSeries(this.exam_code, this.email)
         .subscribe((data) => {
@@ -86,7 +87,6 @@ export class TestseriesComponent implements OnInit {
       }
     }
   }
-
   startaction(id: string, exam: any) {
     var params =
       "scrollbars=0,resizable=1,fullscreen=1,menubar=0,width=" +
@@ -96,21 +96,15 @@ export class TestseriesComponent implements OnInit {
       ",statusbar=0,toolbar=0";
     localStorage.setItem("exam", JSON.stringify(exam));
     localStorage.setItem("examStatus", exam.status);
-    //localStorage.setItem("timeelapsed",exam.);
-    myWindow = window.open("/exampanel/", "windowOpenTab", params);
+    myWindow = window.open("#/exampanel/", "windowOpenTab", params);
     if (window.focus) {
       myWindow.focus();
     }
     return false;
   }
-  // examspage: any;
-  // onPageChange($event) {
-  //   this.examspage = this.exams.slice(
-  //     $event.pageIndex * $event.pageSize,
-  //     $event.pageIndex * $event.pageSize + $event.pageSize
-  //   );
-  // }
+  
   reportshow(exam: any) {
     this.router.navigateByUrl("/userdashboard/report/" + exam.id);
   }
+  loading:boolean;
 }

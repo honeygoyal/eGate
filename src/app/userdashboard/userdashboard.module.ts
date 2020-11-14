@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { ModuleWithProviders, NgModule } from "@angular/core";
 import { CommonModule, DatePipe } from "@angular/common";
 import { UserprofileComponent } from "./component/userprofile/userprofile.component";
 import { RouterModule } from "@angular/router";
@@ -16,7 +16,7 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSliderModule } from "@angular/material/slider";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -41,6 +41,11 @@ import { GoogleChartsModule } from "angular-google-charts";
 import { ScriptLoaderService } from "angular-google-charts";
 import { BranchselectionComponent } from "./component/branchselection/branchselection.component";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { LoaderServicereport } from './service/loaderreport.service';
+import { LoaderuserdashboardInterceptor } from './interceptors/LoaderuserdashboardInterceptor';
+import { LoaderComponent } from './component/loader/loader.component';
+
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 @NgModule({
   declarations: [
     UserprofileComponent,
@@ -52,6 +57,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     ReportComponent,
     AdminPanelComponent,
     BranchselectionComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -64,7 +70,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     MatDialogModule,
     MatAutocompleteModule,
     MatDatepickerModule,
-    MatRadioModule,
+    MatRadioModule,MatProgressSpinnerModule,
     MatSliderModule,
     HttpClientModule,
     MatSlideToggleModule,
@@ -93,7 +99,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
           { path: "profile/:popupenable", component: ProfileComponent },
           { path: "testseries/:subject", component: TestseriesComponent },
           { path: "report/:test_id", component: ReportComponent },
-          { path: "demoseries", component: DemoseriesComponent },
+          { path: "demoseries/:exam", component: DemoseriesComponent },
           { path: "buypackage", component: BuypackageComponent },
           { path: "adminPanel", component: AdminPanelComponent },
         ],
@@ -109,7 +115,15 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     TestseriesService,
     DatePipe,
     ScriptLoaderService,
+    LoaderServicereport,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderuserdashboardInterceptor,
+      multi: true,
+    },
   ],
   entryComponents: [DialogComponent, BranchselectionComponent],
 })
-export class UserdashboardModule {}
+export class UserdashboardModule {
+
+}
