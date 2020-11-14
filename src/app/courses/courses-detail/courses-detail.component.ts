@@ -93,17 +93,18 @@ export class CoursesDetailComponent implements OnInit {
           examType=this.getExamType(this.content,true);
           this.discipline.forEach(branch => {
             checkBoxValue=document.getElementById(branch);
-            if(checkBoxValue.checked === true){
-              let constructedExamId:string=branch.toUpperCase()+"-"+this.contentSelected.toUpperCase()+"-"+examType;
-               this.selectedCheckBoxValues.push(constructedExamId);
-               this.amount=this.amount+this.initialCourseAmount;
+            if(checkBoxValue !== null){
+              if(checkBoxValue.checked === true){
+                let constructedExamId:string=branch.toUpperCase()+"-"+this.contentSelected.toUpperCase()+"-"+examType;
+                 this.selectedCheckBoxValues.push(constructedExamId);
+                 this.amount=this.amount+this.initialCourseAmount;
+              }
             }
           });
           this.amount=this.amount*100;
          }
       }).then((result) => {
-    
-        if(result.isConfirmed){
+        if(this.amount > 0 && result.isConfirmed){
           this.paymentService
           .postSubmittedOrder({
             amount: this.amount,
@@ -125,7 +126,11 @@ export class CoursesDetailComponent implements OnInit {
           );
         }
         else{
-          console.log("Cancelled the order");
+          if(this.amount <= 0 && result.isConfirmed){
+            console.log("None of the branches shown in the dialog were selected");
+          } else{
+            console.log("Cancelled the order");
+          }
         }
       })
     }
