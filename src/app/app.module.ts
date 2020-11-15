@@ -58,6 +58,8 @@ import { EffectsModule } from "@ngrx/effects";
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { authInterceptorProviders } from "./exampanel/interceptor/AuthInterceptor";
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { DownloadComponent } from './download/download.component';
+import { DownloadService } from './download/downloadservice';
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +70,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     CoursesDetailComponent,
     ExamDetailsComponent,
     AboutComponent,
+    DownloadComponent,
   ],
   imports: [
     AuthModule.forRoot(),
@@ -86,7 +89,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     MatInputModule,
     MatDialogModule,
     MatAutocompleteModule,
-
+    MatSelectModule,
     MatDatepickerModule,
     MatRadioModule,
     MatSliderModule,
@@ -119,7 +122,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     }),
     EffectsModule.forRoot([]),
   ],
-  providers: [authInterceptorProviders,{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [DownloadService,authInterceptorProviders,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

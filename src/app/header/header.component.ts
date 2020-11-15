@@ -7,6 +7,8 @@ import { map } from "rxjs/operators";
 import { isLoggedIn, isLoggedOut } from "../auth/auth.selectors";
 import { logout } from "../auth/auth.actions";
 import { DomSanitizer } from "@angular/platform-browser";
+import { Router } from '@angular/router';
+import { DownloadService } from '../download/downloadservice';
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -17,7 +19,7 @@ export class HeaderComponent implements OnInit {
   isLoggedOut$: Observable<boolean>;
   constructor(
     private store: Store<AppState>,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,private router: Router,private downloadSer:DownloadService
   ) {}
   profilePhoto: string;
   ngOnInit() {
@@ -32,6 +34,11 @@ export class HeaderComponent implements OnInit {
   logsoon() {
     event.preventDefault();
     Swal.fire("Registration will start soon!");
+  }
+  loc:String
+  examDownload(exam){
+    this.router.navigateByUrl("/download/"+exam)
+    this.downloadSer.AClicked(exam)
   }
   downloadSoon() {
     event.preventDefault();

@@ -6,6 +6,7 @@ import { CoursesDetailComponent } from "./courses/courses-detail/courses-detail.
 import { ExamDetailsComponent } from "./exam-details/exam-details.component";
 import { AboutComponent } from "./about/about.component";
 import { AuthGuard } from "./auth/auth.guard";
+import { DownloadComponent } from './download/download.component';
 const routes: Routes = [
   { path: "", component: BodyComponent },
   { path: "home", component: BodyComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: "courses/:subject/:content", component: CoursesDetailComponent },
   { path: "examdetails/:subject", component: ExamDetailsComponent },
   { path: "about", component: AboutComponent },
+  {path:"download/:exam",component:DownloadComponent},
   {
     path: "userdashboard",
     loadChildren: () =>

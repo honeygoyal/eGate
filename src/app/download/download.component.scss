@@ -1,0 +1,18 @@
+.mat-tab-label {
+    min-width: 25px !important;
+    padding: 0px 5px;
+    margin-right: 5rem;
+    color: white;
+    font-size: 1.2rem;
+  }
+  
+  .mat-tab-header {
+    background-color: #333;
+  }
+  .mat-tab-label.mat-tab-label-active {
+    min-width: 25px !important;
+    padding: 0px 5px;
+    margin-right: 5rem;
+    color: #07c4fb;
+  }
+  

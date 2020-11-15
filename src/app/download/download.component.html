@@ -1,0 +1,91 @@
+
+<div id="downloadsection">
+    <div id="downloadsection-head">
+      <h1 style="color: #07c4fb; text-align: center;">DOWNLOAD</h1>
+    </div>
+    
+<div>
+    <div style="margin: auto;display: flex;flex-direction: row;align-items: center;justify-content: space-evenly;margin-top: 5rem;">
+        <mat-form-field appearance="fill">
+            <mat-label>Select Topic</mat-label>
+            <mat-select>
+              <mat-option  *ngFor="let topic of topics" [value]="topic.value">
+                {{topic.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Select Branch</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let food of foods" [value]="food.value">
+                {{food.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    </div>
+    <!-- <div style="display: flex;align-items: center;justify-content: center;margin-top: 5rem;">
+        <button mat-raised-button color="primary">Submit</button>
+    </div> -->
+    
+    
+      
+</div>
+         
+          <div
+            id="headtable"
+            style="
+              margin: 1rem 10rem;
+              color: black;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            "
+          >
+            <h3>YEAR</h3>
+            <div style="text-align: center;">
+              <h3 style="text-align: center;">QUESTION PAPER</h3>
+            </div>
+            <div style="text-align: center;">
+              <h3 style="text-align: center;">SOLUTIONS</h3>
+            </div>
+          </div>
+          <div
+            id="contenttable"
+            style="
+              text-align: center;
+              margin: 1rem 10rem;
+              color: black;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            "
+          >
+            <h3>2020</h3>
+            <h2>
+              <a
+                style="
+                  color: white;
+                  background: #07c4fb;
+                  padding: 0.2rem 1rem;
+                  border-radius: 10px;
+                "
+                href=""
+                >QUESTION PAPER</a
+              >
+            </h2>
+            <h2>
+              <a
+                style="
+                  color: white;
+                  background: #07c4fb;
+                  padding: 0.2rem 1rem;
+                  border-radius: 10px;
+                "
+                href=""
+                >SOLUTIONS</a
+              >
+            </h2>
+          </div>
+       
+  </div>
+  
