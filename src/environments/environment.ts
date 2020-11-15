@@ -31,6 +31,8 @@ export const environment = {
   "http://localhost:8080/payment/createOrder",
   verifiedPayment:
   "http://localhost:8080/payment/verifiedPayment",
+  getAllBooks:"http://localhost:8080/books/getAllBooks",
+  getAllBanners:"http://localhost:8080/banner/getAllBanner"
 };
 
 /*

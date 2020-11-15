@@ -58,6 +58,8 @@ import { EffectsModule } from "@ngrx/effects";
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { authInterceptorProviders } from "./exampanel/interceptor/AuthInterceptor";
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { NgImageSliderModule } from 'ng-image-slider';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,6 +120,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([]),
+    NgImageSliderModule,
   ],
   providers: [authInterceptorProviders,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],
