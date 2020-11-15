@@ -37,4 +37,6 @@ export const environment = {
     "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/payment/createOrder",
   verifiedPayment:
     "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/payment/verifiedPayment",
+  getAllBooks:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/books/getAllBooks",
+  getAllBanners:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/banner/getAllBanner"
 };

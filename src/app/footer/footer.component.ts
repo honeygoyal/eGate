@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import "./../../assets/smtp.js";
+import "./../../assets/chat.js";
 import { NgForm } from "@angular/forms";
 import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import Swal from "sweetalert2";

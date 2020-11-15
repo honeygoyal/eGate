@@ -60,6 +60,8 @@ import { authInterceptorProviders } from "./exampanel/interceptor/AuthIntercepto
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DownloadComponent } from './download/download.component';
 import { DownloadService } from './download/downloadservice';
+import { NgImageSliderModule } from 'ng-image-slider';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -121,6 +123,7 @@ import { DownloadService } from './download/downloadservice';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot([]),
+    NgImageSliderModule,
   ],
   providers: [DownloadService,authInterceptorProviders,{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent],

@@ -1,47 +1,8 @@
 <div class="container">
-  <!-- <div id="body">
-    <div id="body-content">
-      <div class="hi">
-        <h2>
-          Welcome to <span style="color: #07c4fb;">e</span>GATE<span
-            style="color: #07c4fb;"
-            >Tutor</span
-          >...!
-        </h2>
-        <h4>
-          ...tutoring by grads from IIT's/IISc
-        </h4>
-      </div>
-      <h2 class="kkr">
-        GATE&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;iPATE&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;PSU&nbsp;&nbsp;&nbsp;
-      </h2>
-      <div id="body-content-action">
-       
-
-        <a (click)="regtoopen()" class="bluebutton" href="#">Register Here</a>
-        <h3 style="margin-right: 1rem; margin-left: 2rem;">
-          Explore <br />
-          Courses
-        </h3>
-        <a
-          href=""
-          style="color: #333; text-decoration: none; margin-top: 1rem;"
-          routerLink="/courses"
-        >
-          <i class="fas right-arrow fa-arrow-right fa-2x"></i
-        ></a>
-      </div>
-    </div>
-    <div id="body-image">
-      <img src="./../../assets/Group11.png" alt="" id="showcase-image" />
-    </div>
-  </div>
-  <br /> -->
-
   <div id="body">
     <div id="body-content">
       <div id="body-content-text">
-        <img src="./../../assets/Group506.png" alt="" />
+        <img src="./../../assets/HomePage_WelcomeImage.png" alt="" />
         <div id="body-content-text-action">
           <a routerLink="/signup" class="bluebutton" href="#">Register Here</a>
 
@@ -66,25 +27,31 @@
         <img src="./../../assets/Group521.png" alt="" id="showcase-image" />
       </div>
     </div>
-    <img class="bgimage" src="./../../assets/Group43.png" alt="" />
   </div>
-
-  <!-- <div id="social-logo" style="text-align: center; margin: 2rem;">
-    <a target="_blank" href="https://www.facebook.com/egate.tutor.18"
-      ><i class="fab social-icon fa-facebook-square fa-2x"></i
-    ></a>
-    <a href="#"><i class="fab social-icon fa-telegram fa-2x"></i></a>
-    <a target="_blank" href="https://www.instagram.com/egatetutor/"
-      ><i class="fab social-icon fa-instagram fa-2x"></i
-    ></a>
-    <a target="_blank" href="https://www.youtube.com/egatetutor"
-      ><i class="fab social-icon fa-youtube fa-2x"></i
-    ></a>
-  </div> -->
-  <h1 style="text-align: center; margin-bottom: 2.5rem;">
-    Our Courses
-  </h1>
-  <div id="course">
+  <div id="sliderContainer" style="margin-top: -2.5rem;">
+    <ng-image-slider #nav
+    [images]="bannerImagesObject"
+    [infinite]="true"
+    [autoSlide]="1"
+    [imageSize]="{width: '100%', height: '60%'}"
+    [animationSpeed]=4
+    [autoSlide]="{interval: 2, stopOnHover: false}"
+    slideImage="1"></ng-image-slider>
+  </div>
+  <div id="playStoreContainer" class="frame">
+     <div class="bookInformation">
+        <span class="bookText">BUY OUR BOOKS NOW ON</span>&nbsp;&nbsp;<a><img src="./../../assets/google-play-book-icon.png" alt="" id="googlePlay-image" /></a>
+     </div>
+  </div>
+  <div id="bookSliderContainer" style="margin-top: 3rem;">
+    <ng-image-slider #bij
+    [images]="bookImagesObject"
+    [infinite]="true"
+    [manageImageRatio]="true"
+    [imageSize]="{width: '20%', height: '50%',space: 3}"
+    ></ng-image-slider>
+  </div>
+  <!-- <div id="course">
     <div class="course-card" id="course-gate">
       <h2 style="text-align: center;">GATE</h2>
       <ul>
@@ -228,8 +195,7 @@
         </li>
       </ul>
     </div>
-  </div>
+  </div> -->
 
-  <br /><br /><br />
+  <br /><br />
 </div>
-<!-- <img class="bgimage2" src="./../../assets/Group44.png" alt="" /> -->
