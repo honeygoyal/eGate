@@ -259,7 +259,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       if (element.questionId === group.id) {
         let finalPosition = this.finalPosition(element.questionStatus);
         myStyles = {
-          background: "url('questions-sprite.png') no-repeat",
+          background: "url('./../../../../assets/questions-sprite.png') no-repeat",
           color: "white",
           "background-position": finalPosition,
           padding: "8px",

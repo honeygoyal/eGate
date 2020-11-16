@@ -15,7 +15,9 @@ export class BodyComponent implements OnInit {
   constructor( private http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get(environment.getAllBanners).subscribe((bannerData) => {
+    this.http.get(environment.getAllBanners, {
+      headers: { skip: "true" },
+    }).subscribe((bannerData) => {
      Object.keys(bannerData).forEach((key) => {
       let bannerImages = bannerData[key];
       let bannerImage:any={
@@ -26,12 +28,11 @@ export class BodyComponent implements OnInit {
       this.bannerImagesObject.push(bannerImage);
      });
      
-    },
-    (err) => {
-      console.log("getting banner images has failed"+err);
-    });
+    })
 
-    this.http.get(environment.getAllBooks).subscribe((booksData) => {
+    this.http.get(environment.getAllBooks, {
+      headers: { skip: "true" },
+    }).subscribe((booksData) => {
       Object.keys(booksData).forEach((key) => {
         let bookImages = booksData[key];
         let bookImage:any={
@@ -42,10 +43,7 @@ export class BodyComponent implements OnInit {
      
         this.bookImagesObject.push(bookImage);
        });
-    },
-    (err) => {
-      console.log("getting book images has failed"+err);
-    });
+    })
   }
 
   soonUpdateMessage() {
