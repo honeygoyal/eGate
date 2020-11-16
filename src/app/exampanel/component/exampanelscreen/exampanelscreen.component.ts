@@ -249,7 +249,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
 
   getStyles(group: any): any {
     let myStyles = {
-      background: "url('questions-sprite.png') no-repeat",
+      background: "url('./../../../../assets/questions-sprite.png') no-repeat",
       color: "black",
       "background-position": "-157px -4px",
       padding: "8px",
