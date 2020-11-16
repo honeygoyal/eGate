@@ -47,14 +47,15 @@
       display: flex;
       flex-direction: row;
       order: 3;
+      margin-right: 5rem;
     }
 
     .social .fab {
       margin-right: 1rem;
       border: 2px #07c4fb solid;
       border-radius: 50%;
-      height: 20px;
-      width: 20px;
+      height: 40px;
+      width: 40px;
       line-height: 20px;
       text-align: center;
       padding: 0.5rem;
