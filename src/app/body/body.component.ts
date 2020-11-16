@@ -38,14 +38,18 @@ export class BodyComponent implements OnInit {
         let bookImage:any={
           image: bookImages.imageUrl,
           thumbImage: bookImages.imageUrl,
-          imageClick:bookImages.googlePlayUrl
+          url:bookImages.googlePlayUrl
         }
      
         this.bookImagesObject.push(bookImage);
        });
     })
   }
-
+  clickbookfunc(e:Event){
+    // location.href=
+    // this.bookImagesObject[+e].googlePlayUrl
+    console.log(this.bookImagesObject[+e].url);
+  }
   soonUpdateMessage() {
     event.preventDefault();
     Swal.fire("Content soon to be updated!");
