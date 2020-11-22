@@ -1,28 +1,31 @@
 
-<div id="downloadsection">
-    <div id="downloadsection-head">
-      <h1 style="color: #07c4fb; text-align: center;">DOWNLOAD</h1>
+<div   id="downloadsection">
+    <div  style="background-color: #07c4fb;margin-top: 2rem;"  id="downloadsection-head">
+      <h2 style="color: white; text-align: center;">DOWNLOAD</h2>
     </div>
-    
 <div>
-    <div style="margin: auto;display: flex;flex-direction: row;align-items: center;justify-content: space-evenly;margin-top: 5rem;">
-        <mat-form-field appearance="fill">
+  <form #f="ngForm" (ngSubmit)="submitDownload(f)">
+    <div style="margin:0rem 10rem;display: flex;flex-direction: row;align-items: flex-start;justify-content: space-evenly;margin-top: 5rem;">
+        <mat-form-field style="width: 25%;">
             <mat-label>Select Topic</mat-label>
-            <mat-select>
-              <mat-option  *ngFor="let topic of topics" [value]="topic.value">
-                {{topic.viewValue}}
+            <mat-select  ngModel required name="topic"  (ngModelChange)="onSelectSubsection($event)">
+              <mat-option  *ngFor="let topic of topics" [value]="topic.id">
+                {{topic.name}}
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <mat-form-field appearance="fill">
+          <mat-form-field style="width: 25%;">
             <mat-label>Select Branch</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let food of foods" [value]="food.value">
-                {{food.viewValue}}
+            <mat-select ngModel required name="branch">
+              <mat-option *ngFor="let br of branch" [value]="br.id">
+                {{br.name}}
               </mat-option>
             </mat-select>
-          </mat-form-field>
+          </mat-form-field>   
+          <button style="background-color: gray;" type="submit" mat-raised-button color="primary" >GO</button><br>   
+              
     </div>
+  </form>
     <!-- <div style="display: flex;align-items: center;justify-content: center;margin-top: 5rem;">
         <button mat-raised-button color="primary">Submit</button>
     </div> -->
@@ -30,26 +33,7 @@
     
       
 </div>
-         
-          <div
-            id="headtable"
-            style="
-              margin: 1rem 10rem;
-              color: black;
-              display: flex;
-              align-items: center;
-              justify-content: space-between;
-            "
-          >
-            <h3>YEAR</h3>
-            <div style="text-align: center;">
-              <h3 style="text-align: center;">QUESTION PAPER</h3>
-            </div>
-            <div style="text-align: center;">
-              <h3 style="text-align: center;">SOLUTIONS</h3>
-            </div>
-          </div>
-          <div
+          <mat-card
             id="contenttable"
             style="
               text-align: center;
@@ -58,34 +42,34 @@
               display: flex;
               align-items: center;
               justify-content: space-between;
-            "
+            " *ngFor="let data of pageData"
           >
-            <h3>2020</h3>
-            <h2>
+            <h3>{{data.topic}}</h3>
+            <h4>
               <a
                 style="
                   color: white;
                   background: #07c4fb;
-                  padding: 0.2rem 1rem;
+                  padding: 0.4rem 1rem;
                   border-radius: 10px;
                 "
-                href=""
-                >QUESTION PAPER</a
+                href="{{data.url1}}"
+                >{{data.label1}}</a
               >
-            </h2>
-            <h2>
+            </h4>
+            <h4>
               <a
                 style="
                   color: white;
                   background: #07c4fb;
-                  padding: 0.2rem 1rem;
+                  padding: 0.4rem 1rem;
                   border-radius: 10px;
                 "
-                href=""
-                >SOLUTIONS</a
+                href="{{data.url2}}"
+                >{{data.label2}}</a
               >
-            </h2>
-          </div>
+            </h4>
+          </mat-card>
        
   </div>
-  
+  <div style="height: 25vh;"></div>

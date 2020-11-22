@@ -296,7 +296,6 @@ mat-checkbox {
   color: #262626;
   // line-height: 15px;
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
   font-size: 1em;
 }
 .diff_type_notation_area_inner span.answered {
@@ -456,8 +455,8 @@ mat-checkbox {
   position: absolute;
   display: none;
   margin-left: -333px;
-  
-  .notation_typeDiv{
+
+  .notation_typeDiv {
     float: left;
     width: 96%;
     margin-top: 10px;
@@ -465,7 +464,7 @@ mat-checkbox {
   }
 }
 
-.examCountClass:hover + .exam_information_div{
+.examCountClass:hover + .exam_information_div {
   display: block;
   margin-left: 10rem;
   width: 320px;

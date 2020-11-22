@@ -1,4 +1,6 @@
 <mat-card style="margin-left: 3rem">
+  
+  <button mat-raised-button color="primary" style="text-align: center;">Test Upload Admin</button><br>
   <mat-horizontal-stepper [linear]="isLinear" #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup" (ngSubmit)="onSubmit()">
@@ -19,8 +21,6 @@
         </mat-form-field>
         <br />
         <mat-form-field>
-          <!-- <mat-label>Exam Code</mat-label>
-          <input matInput formControlName="Exam_Code" required /> -->
           <mat-label>Exam Code</mat-label>
           <mat-select formControlName="examId" required>
             <mat-option *ngFor="let exam of exams_code" [value]="exam">
@@ -116,6 +116,78 @@
       </form>
     </mat-step>
   </mat-horizontal-stepper>
+</mat-card>
+
+<mat-card style="margin-left: 3rem; margin-top: 2rem;text-align: center;">
+  <button mat-raised-button color="primary" >Download Page Admin</button><br>
+  <form style="text-align: left;margin-left: 9rem;" #f="ngForm" (ngSubmit)="submitDownload(f)" >
+  <mat-form-field style="width: 30%;margin-right: 20%;" appearance="fill">
+    <mat-label>Exam</mat-label>
+    <mat-select [(ngModel)]="selectedExam.id" (ngModelChange)="onSelectExam($event)"  required name="exam">
+      <mat-option  *ngFor="let exam of exams" value={{exam.id}}>
+        {{exam.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field  style="width: 30%;" appearance="fill">
+    <mat-label>Select Subsection</mat-label>
+    <mat-select ngModel  (ngModelChange)="onSelectSubsection($event)" required name="subsection">
+      <mat-option *ngFor="let subsection of subsections" value={{subsection.id}}>
+        {{subsection.name}}
+      </mat-option> 
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <mat-form-field  style="width: 30%;margin-right: 20%;" appearance="fill">
+    <mat-label>Select Department</mat-label>
+    <mat-select ngModel required name="branch" >
+      <mat-option *ngFor="let branche of branches" value={{branche.id}}>
+        {{branche.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+<mat-form-field  style="width: 30%;" class="example-full-width">
+  <mat-label>Topic</mat-label>
+  <input ngModel required name="topic"  matInput >
+</mat-form-field>
+<br>
+<mat-form-field appearance="fill">
+  <mat-label>Select</mat-label>
+  <mat-select ngModel required name="label1">
+    <mat-option value="STUDY MATERIAL">STUDY MATERIAL</mat-option>
+    <mat-option value="QUESTION PAPERS">QUESTION PAPERS</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<label for="">Upload File1&nbsp;&nbsp;&nbsp;&nbsp;</label>
+<input  style="width: 30%;"
+          (change)="onFile1Selected($event)"
+         
+          #fileInput
+          type="file"
+          id="file"
+        />
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Select</mat-label>
+          <mat-select ngModel required name="label2">
+            <mat-option value="PRACTICE QUESTIONS">PRACTICE QUESTIONS</mat-option>
+            <mat-option value="SOLUTIONS">SOLUTIONS</mat-option>
+          </mat-select>
+        </mat-form-field>
+      
+        
+<label for="">Upload File2 &nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <input  style="width: 30%;"
+                  (change)="onFile2Selected($event)"
+                  #fileInput
+                  type="file"
+                  id="file"
+                /> <br>
+                <button style="float: right;" type="submit" mat-raised-button color="primary" >Submit</button><br>   
+              </form>
 </mat-card>
 
 <mat-card style="margin-left: 3rem; margin-top: 2rem; text-align: center">
