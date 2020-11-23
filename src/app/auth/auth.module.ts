@@ -5,7 +5,7 @@ import { SignupComponent } from "./component/signup/signup.component";
 import { RouterModule } from "@angular/router";
 import { FileUploadModule } from "ng2-file-upload";
 import { ProgressComponent } from "./component/signup/progress/progress.component";
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { LoginComponent } from "./component/login/login.component";
 import { AuthService } from "./service/auth.service";
@@ -23,8 +23,13 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 
 import { MatSelectModule } from "@angular/material/select";
 import { SharedModule } from "../shared/shared.module";
+import { DialogComponent } from './component/login/dialog/dialog.component';
+
+import { MatDialog, MatDialogModule } from "@angular/material/dialog";
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
-  declarations: [SignupComponent, LoginComponent, ProgressComponent],
+  declarations: [SignupComponent, LoginComponent, ProgressComponent,DialogComponent],
   imports: [
     CommonModule,
     MatSelectModule,
@@ -34,8 +39,14 @@ import { SharedModule } from "../shared/shared.module";
     FileUploadModule,
     HttpClientModule,
     ReactiveFormsModule,
+    MatDialogModule,
     MatCheckboxModule,
     ValidateEqualModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    FormsModule,
+    HttpClientModule,
     RouterModule.forChild([
       {
         path: "login",
@@ -49,6 +60,7 @@ import { SharedModule } from "../shared/shared.module";
     StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
     EffectsModule.forFeature([AuthEffects]),
   ],
+  entryComponents: [DialogComponent]
 })
 export class AuthModule {
   static forRoot(): ModuleWithProviders {

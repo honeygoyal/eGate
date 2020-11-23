@@ -34,7 +34,8 @@ export const environment = {
   getAllBooks:"http://localhost:8080/books/getAllBooks",
   getAllBanners:"http://localhost:8080/banner/getAllBanner",
   createDownloadAdmin:"http://localhost:8080/download/uploadMaterial?label1=",
-  getDownloadData:"http://localhost:8080/download/getDownloadByExamAndTopicAndBranch?exam="
+  getDownloadData:"http://localhost:8080/download/getDownloadByExamAndTopicAndBranch?exam=",
+  forgotpassword:"http://localhost:8080/users/forgotPassword?emailId=",
 };
 
 /*

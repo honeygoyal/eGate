@@ -41,5 +41,6 @@ export const environment = {
   getAllBanners:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/banner/getAllBanner",
   
   createDownloadAdmin:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/download/uploadMaterial?label1=",
-  getDownloadData:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/download/getDownloadByExamAndTopicAndBranch?exam="
+  getDownloadData:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/download/getDownloadByExamAndTopicAndBranch?exam=",
+  forgotpassword:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/forgotPassword?emailId=",
 };
