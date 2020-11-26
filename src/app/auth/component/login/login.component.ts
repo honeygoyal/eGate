@@ -9,6 +9,8 @@ import { AppState } from "src/app/reducers";
 import { login } from "../../auth.actions";
 
 import swal from "sweetalert2";
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from './dialog/dialog.component';
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -19,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private dialog: MatDialog,
   ) {}
   LoginData: LoginFormModal;
   ngOnInit() {
@@ -27,6 +30,10 @@ export class LoginComponent implements OnInit {
       username: new FormControl(null),
       password: new FormControl(null),
     });
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogComponent);
   }
 
   onSubmit() {

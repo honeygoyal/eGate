@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Change Password</h1>
+<div style="margin: 0rem 1rem; height: 8rem;" mat-dialog-content>
+  <form #f="ngForm" (ngSubmit)="submitForgot(f)">
+    <mat-form-field style="width: 20rem;">
+      <mat-label>Registered EmailId</mat-label>
+      <input type="email" ngModel required name="email"  matInput />
+    </mat-form-field>
+      <button type="submit" style="background: gray;" type="submit" mat-button>
+        Submit
+      </button>
+  </form>
+</div>
