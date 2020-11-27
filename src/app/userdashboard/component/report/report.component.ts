@@ -92,8 +92,8 @@ export class ReportComponent implements OnInit {
       Host: "smtpout.asia.secureserver.net",
       Username: "support@egatetutor.in",
       Password: "egatetutor_2019",
-      To: "support@egatetutor.in,himanshup6201@gmail.com",
-      From: "ssupport@egatetutor.in",
+      To: "support@egatetutor.in",
+      From: "support@egatetutor.in",
       Subject: "Mail sent from: " + this.user.emailId,
       Body: `
       <b>Message:</b>  ${f.value.message}<br />  `,
