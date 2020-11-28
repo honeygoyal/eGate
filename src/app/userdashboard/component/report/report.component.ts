@@ -3,6 +3,7 @@ import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { DomSanitizer } from "@angular/platform-browser";
 import { ActivatedRoute, Params } from "@angular/router";
+import { forkJoin } from 'rxjs';
 import { environment } from "src/environments/environment";
 import Swal from "sweetalert2";
 declare let Email: any;
@@ -27,7 +28,7 @@ export class ReportComponent implements OnInit {
   hist_title = "Test Analysis";
   hist_type = "ColumnChart";
   hist_data: any[] = [];
-
+show:boolean=false;
   hist_columnNames = ["Question Number", "Time(sec)"];
   hist_options = {};
   hist_width = 800;
@@ -48,21 +49,7 @@ export class ReportComponent implements OnInit {
       this.test_id = params["test_id"];
     });
     this.user = JSON.parse(localStorage.getItem("user"));
-    this.http
-    .get(
-      environment.getQuestionAnalysis +
-        this.user.user.id +
-        "&course_id=" +
-        this.test_id
-    )
-    .subscribe((data) => {
-      let i = 1;
-      this.questionanalysis = data;
-      this.questionanalysis.forEach((element) => {
-        this.hist_data.push([i, element.yourTime / 1000]);
-        i++;
-      });
-    });
+  
     this.http
       .get(
         environment.getOverallReportByUserId +
@@ -84,7 +71,21 @@ export class ReportComponent implements OnInit {
       console.log(data);
       this.userrankdata = data;
     });
-
+  this.http
+    .get(
+      environment.getQuestionAnalysis +
+        this.user.user.id +
+        "&course_id=" +
+        this.test_id
+    )
+    .subscribe((data) => {
+      let i = 1;
+      this.questionanalysis = data;
+      this.questionanalysis.forEach((element) => {
+        this.hist_data.push([i, element.yourTime / 1000]);
+        i++;
+      });
+    });
    
   }
   onSubmit(f: NgForm) {
@@ -93,7 +94,7 @@ export class ReportComponent implements OnInit {
       Username: "support@egatetutor.in",
       Password: "egatetutor_2019",
       To: "support@egatetutor.in,himanshup6201@gmail.com",
-      From: "ssupport@egatetutor.in",
+      From: "support@egatetutor.in",
       Subject: "Mail sent from: " + this.user.emailId,
       Body: `
       <b>Message:</b>  ${f.value.message}<br />  `,

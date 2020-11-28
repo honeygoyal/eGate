@@ -131,7 +131,7 @@
         <div id="twomatgroup" style="background: white">
           <mat-tab-group>
             <mat-tab label="SOLUTION">
-              <div
+              <div *ngIf="show"
                 style="
                   height: 100%;
                   width: 100%;
@@ -195,7 +195,7 @@
               </div>
             </mat-tab>
             <mat-tab label="CHALLENGE">
-              <div style="height: 25vh; padding: 1rem">
+              <div *ngIf="show" style="height: 25vh; padding: 1rem">
                 <form
                   action=""
                   class="example-form"
@@ -229,7 +229,7 @@
                 </form>
               </div>
             </mat-tab>
-            <mat-tab label="VIDEO SOLUTION">
+            <mat-tab *ngIf="show" label="VIDEO SOLUTION">
               <div style="padding: 1rem">
                 <a target="_blank"
                   style="
@@ -244,7 +244,7 @@
               </div>
             </mat-tab>
             <mat-tab label="QUESTION ANALYSIS">
-              <div
+              <div *ngIf="show"
                 style="
                   height: 25vh;
                   padding: 1rem;
