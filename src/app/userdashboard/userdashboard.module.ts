@@ -44,6 +44,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { LoaderServicereport } from './service/loaderreport.service';
 import { LoaderuserdashboardInterceptor } from './interceptors/LoaderuserdashboardInterceptor';
 import { LoaderComponent } from './component/loader/loader.component';
+import {NgxPaginationModule} from 'ngx-pagination'; 
 
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 @NgModule({
@@ -89,7 +90,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatPaginatorModule,
     MatProgressBarModule,
     MatSelectModule,
-
+    NgxPaginationModule,
     RouterModule.forChild([
       {
         path: "",

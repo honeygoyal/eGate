@@ -7,57 +7,11 @@
   <span class="subheadings">&nbsp;&nbsp;PERSONAL INFORMATION</span>
   <mat-card class="card-design" style="margin: 1rem 0rem">
     <pre class="panel-text">Name        :     {{ user.user.name }}</pre>
+    <pre class="panel-text">Email         :     {{ user.user.emailId }}</pre>
     <pre class="panel-text">
 Mobile       :     {{ user.user.mobileNumber }}</pre
     >
     <pre class="panel-text">Address    :     {{ user.user.address }}</pre>
-  </mat-card>
-
-  <i class="fa fa-lock" style="color: rgb(78, 48, 214)" aria-hidden="true"></i>
-  <span>&nbsp;&nbsp;SECURITY</span>
-  <mat-card class="card-design" style="margin: 1rem 0rem">
-    <pre class="panel-text">Email          :     {{ user.user.emailId }}</pre>
-    <button
-      mat-button
-      (click)="openDialog()"
-      style="
-        border: #00f5a2;
-        background: #00f5a2;
-        cursor: pointer;
-        color: white;
-        font-weight: bold;
-        border-radius: 10px;
-      "
-    >
-      Change Password
-    </button>
-  </mat-card>
-
-  <i
-    class="fa fa-user-plus"
-    style="color: rgb(122, 122, 76)"
-    aria-hidden="true"
-  ></i>
-  <span>&nbsp;&nbsp;ENROLLMENT INFORMATION</span>
-  <mat-card
-    *ngFor="let branch of branches"
-    class="card-design"
-    style="margin: 1rem 0rem"
-  >
-    <div
-      style="display: flex; align-items: center; justify-content: flex-start"
-    >
-      <pre class="panel-text">Courses      :</pre>
-      <mat-chip-list aria-label="Fish selection">
-        <mat-chip color="primary" selected>DEMO TEST SERIES</mat-chip>
-        <span *ngFor="let course of user.user.coursesOffered">
-          <mat-chip selected *ngIf="branch === course.branch" color="accent">
-            {{ course.examNameService }}
-          </mat-chip></span
-        >
-      </mat-chip-list>
-    </div>
-    <pre class="panel-text">Stream        :     {{ branch }}</pre>
   </mat-card>
 
   <i style="color: rgb(48, 84, 151)" class="fa fa-folder"></i>
@@ -160,5 +114,32 @@ Mobile       :     {{ user.user.mobileNumber }}</pre
     >
       Submit
     </button>
+  </mat-card>
+
+  <i
+    class="fa fa-user-plus"
+    style="color: rgb(122, 122, 76)"
+    aria-hidden="true"
+  ></i>
+  <span>&nbsp;&nbsp;ENROLLMENT INFORMATION</span>
+  <mat-card
+    *ngFor="let branch of branches"
+    class="card-design"
+    style="margin: 1rem 0rem"
+  >
+    <pre class="panel-text">Stream        :     {{ branch }}</pre>
+    <div
+    style="display: flex; align-items: center; justify-content: flex-start"
+    >
+    <pre class="panel-text">Courses      :</pre>
+    <mat-chip-list aria-label="Fish selection">
+      <mat-chip color="primary" selected>DEMO TEST SERIES</mat-chip>
+      <span *ngFor="let course of user.user.coursesOffered">
+        <mat-chip selected *ngIf="branch === course.branch" color="accent">
+          {{ course.examNameService }}
+        </mat-chip></span
+      >
+    </mat-chip-list>
+   </div>
   </mat-card>
 </div>

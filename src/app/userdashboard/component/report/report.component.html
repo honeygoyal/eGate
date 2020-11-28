@@ -106,7 +106,7 @@
     </mat-tab>
     <mat-tab label="SOLUTIONS">
       <mat-card
-        *ngFor="let questiondata of questionanalysis; let i = index"
+        *ngFor="let questiondata of questionanalysis | paginate: { itemsPerPage: 10, currentPage: p } ; let i = index"
         style="
           width: 90%;
           margin: 1rem;
@@ -118,9 +118,10 @@
         "
       >
         <div style="margin-left: 2rem">
-          <h4 style="color: red; margin-bottom: 1.5rem">
-            Question No. {{ i + 1 }}
-          </h4>
+          <div style="margin-bottom: 1.5rem">
+            <span style="font-weight: 700;">Question:</span><span style="color: red;font-weight: 700;"> {{ questiondata.question.questionLabel }}</span> 
+            <span style="margin-left: 36rem;font-weight: 700;">Section:<span style="color: red;"> {{questiondata.question.section}}</span></span>
+          </div>
 
           <img
             [src]="transform(questiondata.question.question)"
@@ -142,10 +143,11 @@
                 <div style="display: flex; justify-content: space-between">
                   <a
                     style="
-                      color: white;
-                      background: #07c4fb;
+                     
+                      background: white;
                       padding: 0.5rem;
                       border-radius: 5px;
+                      font-weight: 700;
                     "
                     >Correct Answer:
                     <span style="color: green; font-size: large"
@@ -154,11 +156,12 @@
                   </a>
                   <a
                     style="
-                      color: white;
-                      background: #07c4fb;
+                      
+                      background:white;
                       padding: 0.5rem;
                       border-radius: 5px;
                       margin-right: 2rem;
+                      font-weight: 700;
                     "
                     >Your Answer:
                     <span
@@ -289,6 +292,7 @@
           </mat-tab-group>
         </div>
       </mat-card>
+      <div  *ngIf="questionanalysis !== undefined" class="paginationControl"><pagination-controls (pageChange)="p = $event"></pagination-controls></div>
     </mat-tab>
     <mat-tab label="RANKER BOARD">
       <div style="display: grid; grid-template-columns: repeat(3, 1fr)">

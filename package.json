@@ -38,6 +38,7 @@
     "ngx-countdown-2": "^1.0.3",
     "ngx-mat-select-search": "^3.1.0",
     "ngx-material-file-input": "^2.1.1",
+    "ngx-pagination": "^5.0.0",
     "ngx-timer": "^1.0.6",
     "rxjs": "~6.4.0",
     "sweetalert": "^2.1.2",
