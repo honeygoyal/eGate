@@ -44,6 +44,10 @@ show:boolean=false;
   userrankdata: any;
   testanalyticsdata: any;
   histogramdata: any[] = [];
+  
+  changeshow(i:number){
+    this.show=true;
+  }
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.test_id = params["test_id"];
