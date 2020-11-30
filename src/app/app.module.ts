@@ -64,6 +64,7 @@ import { NgImageSliderModule } from 'ng-image-slider';
 
 @NgModule({
   declarations: [
+
     AppComponent,
     HeaderComponent,
     BodyComponent,
@@ -77,6 +78,7 @@ import { NgImageSliderModule } from 'ng-image-slider';
   imports: [
     AuthModule.forRoot(),
     ValidateEqualModule,
+    MatExpansionModule,
     Ng4LoadingSpinnerModule,
     BrowserModule,
     ReactiveFormsModule,

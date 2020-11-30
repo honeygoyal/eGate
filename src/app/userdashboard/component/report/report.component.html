@@ -130,9 +130,19 @@
           />
         </div>
         <div id="twomatgroup" style="background: white">
-          <mat-tab-group (selectedTabChange)="changeshow(i)">
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title style="display: flex;align-items: center;justify-content: space-between;">
+                  <!-- <p style="color: red;">See More...</p>
+                  <mat-icon style="float: right;">add</mat-icon>
+                  <mat-icon style="float: right;">minus</mat-icon> -->
+
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+          <mat-tab-group>
             <mat-tab label="SOLUTION">
-              <div *ngIf="show"
+              <div 
                 style="
                   height: 100%;
                   width: 100%;
@@ -198,7 +208,7 @@
               </div>
             </mat-tab>
             <mat-tab label="CHALLENGE">
-              <div *ngIf="show" style="height: 25vh; padding: 1rem">
+              <div  style="height: 25vh; padding: 1rem">
                 <form
                   action=""
                   class="example-form"
@@ -233,8 +243,9 @@
               </div>
             </mat-tab>
             <mat-tab    label="VIDEO SOLUTION">
-              <div *ngIf="show" style="padding: 1rem">
-                <a target="_blank"
+              <div  style="padding: 1rem">
+                <p *ngIf="questiondata.question.videoLink===''">No Video Solution Available</p>
+                <a *ngIf="questiondata.question.videoLink!==''" target="_blank"
                   style="
                     color: black;
                     background: #07c4fb;
@@ -247,7 +258,7 @@
               </div>
             </mat-tab>
             <mat-tab  label="QUESTION ANALYSIS">
-              <div *ngIf="show"
+              <div 
                 style="
                   height: 25vh;
                   padding: 1rem;
@@ -290,7 +301,10 @@
               </div>
             </mat-tab>
           </mat-tab-group>
+        </mat-expansion-panel>
+      </mat-accordion>
         </div>
+   
       </mat-card>
       <div  *ngIf="questionanalysis !== undefined" class="paginationControl"><pagination-controls (pageChange)="p = $event"></pagination-controls></div>
     </mat-tab>

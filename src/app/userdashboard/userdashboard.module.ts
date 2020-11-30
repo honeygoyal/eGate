@@ -25,7 +25,6 @@ import { MatListModule } from "@angular/material/list";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatTabsModule } from "@angular/material/tabs";
-import { MatExpansionModule } from "@angular/material/expansion";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatIconModule } from "@angular/material/icon";
@@ -45,7 +44,7 @@ import { LoaderServicereport } from './service/loaderreport.service';
 import { LoaderuserdashboardInterceptor } from './interceptors/LoaderuserdashboardInterceptor';
 import { LoaderComponent } from './component/loader/loader.component';
 import {NgxPaginationModule} from 'ngx-pagination'; 
-
+import {MatExpansionModule} from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 @NgModule({
   declarations: [
@@ -91,6 +90,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatProgressBarModule,
     MatSelectModule,
     NgxPaginationModule,
+    MatExpansionModule,
     RouterModule.forChild([
       {
         path: "",

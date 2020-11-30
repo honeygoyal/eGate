@@ -28,7 +28,6 @@ export class ReportComponent implements OnInit {
   hist_title = "Test Analysis";
   hist_type = "ColumnChart";
   hist_data: any[] = [];
-show:boolean=false;
   hist_columnNames = ["Question Number", "Time(sec)"];
   hist_options = {};
   hist_width = 800;
@@ -45,9 +44,7 @@ show:boolean=false;
   testanalyticsdata: any;
   histogramdata: any[] = [];
   
-  changeshow(i:number){
-    this.show=true;
-  }
+ 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.test_id = params["test_id"];
