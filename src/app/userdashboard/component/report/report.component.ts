@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { MatTabChangeEvent } from '@angular/material/tabs';
 import { DomSanitizer } from "@angular/platform-browser";
 import { ActivatedRoute, Params } from "@angular/router";
 import { forkJoin } from 'rxjs';
@@ -27,7 +28,7 @@ export class ReportComponent implements OnInit {
   height = 300;
   hist_title = "Test Analysis";
   hist_type = "ColumnChart";
-  hist_data: any[] = [];
+  hist_data: any[]=[];
   hist_columnNames = ["Question Number", "Time(sec)"];
   hist_options = {};
   hist_width = 800;
@@ -42,8 +43,31 @@ export class ReportComponent implements OnInit {
   questionanalysis: any;
   userrankdata: any;
   testanalyticsdata: any;
+  load:number=1;
   histogramdata: any[] = [];
-  
+  tabselected(e:MatTabChangeEvent){
+    if(e.index===1 && this.load===1){
+      this.load=this.load-1;
+      this.http
+      .get(
+        environment.getQuestionAnalysis +
+          this.user.user.id +
+          "&course_id=" +
+          this.test_id
+      )
+      .subscribe((data) => {
+        let i:number = 1;
+        this.questionanalysis = data;
+        // this.questionanalysis.forEach((element) => {
+        //   this.histogramdata.push([+i,parseFloat(element.yourTime)/1000])
+        //   i++;
+        // });
+       
+        // this.hist_data=this.histogramdata;
+        // console.log("Hi",this.hist_data);
+      });
+    }
+  }
  
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -51,40 +75,34 @@ export class ReportComponent implements OnInit {
     });
     this.user = JSON.parse(localStorage.getItem("user"));
   
+  
+
     this.http
-      .get(
-        environment.getOverallReportByUserId +
-          this.user.user.id +
-          "&course_id=" +
-          this.test_id
-      )
-      .subscribe((data) => {
-        console.log(data);
-        this.testanalyticsdata = data;
-        this.data = [
-          ["Correct", this.testanalyticsdata.correct],
-          ["Incorrect", this.testanalyticsdata.inCorrect],
-          ["Unattempt", this.testanalyticsdata.unAttempt],
-        ];
-       
-      });
-    this.http.get(environment.getTopRank + this.test_id).subscribe((data) => {
-      console.log(data);
-      this.userrankdata = data;
-    });
-  this.http
     .get(
-      environment.getQuestionAnalysis +
+      environment.getOverallReportByUserId +
         this.user.user.id +
         "&course_id=" +
         this.test_id
     )
     .subscribe((data) => {
-      let i = 1;
-      this.questionanalysis = data;
-      this.questionanalysis.forEach((element) => {
-        this.hist_data.push([i, element.yourTime / 1000]);
-        i++;
+      console.log(data);
+      this.testanalyticsdata = data;
+      this.data = [
+        ["Correct", this.testanalyticsdata.correct],
+        ["Incorrect", this.testanalyticsdata.inCorrect],
+        ["Unattempt", this.testanalyticsdata.unAttempt],
+      ];
+      const keys=Object.keys(this.testanalyticsdata.questionToTimeTaken)
+      keys.forEach((key, index) => {
+        this.histogramdata.push([parseInt(`${key}`),parseFloat(`${this.testanalyticsdata.questionToTimeTaken[key]/1000}`)])
+    });
+    this.hist_data=this.histogramdata
+    console.log(this.histogramdata)
+   
+      
+      this.http.get(environment.getTopRank + this.test_id).subscribe((data) => {
+        console.log(data);
+        this.userrankdata = data;
       });
     });
    

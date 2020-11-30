@@ -1,6 +1,6 @@
 <app-loader></app-loader>
 <div id="contentcontainer">
-  <mat-tab-group id="parent-tab" mat-align-tabs="start">
+  <mat-tab-group (selectedTabChange)="tabselected($event)" id="parent-tab" mat-align-tabs="start">
     <mat-tab id="performance" label="TEST ANALYTICS">
       <div
         style="
@@ -87,9 +87,11 @@
           border-radius: 20px;
           width: 90%;
           margin: 2rem 4rem;
+          display: flex;
+          justify-content: center;
         "
       >
-        <div style="width: 100%">
+        <div style="width: 100%;">
           <google-chart
             #chart
             [title]="hist_title"
@@ -134,9 +136,7 @@
             <mat-expansion-panel>
               <mat-expansion-panel-header>
                 <mat-panel-title style="display: flex;align-items: center;justify-content: space-between;">
-                  <!-- <p style="color: red;">See More...</p>
-                  <mat-icon style="float: right;">add</mat-icon>
-                  <mat-icon style="float: right;">minus</mat-icon> -->
+                 
 
                 </mat-panel-title>
               </mat-expansion-panel-header>
