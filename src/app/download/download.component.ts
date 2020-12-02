@@ -17,6 +17,7 @@ export class DownloadComponent implements OnInit ,OnDestroy{
   branch:any[]=[];
   topics:any[]=[];
   pageData:any;
+  selectedDownloadExamOption:string="DOWNLOAD";
   constructor(private route: ActivatedRoute,private downloadService:DownloadService,private selectService: SelectServiceService,private http:HttpClient) { 
   }
  
@@ -33,6 +34,7 @@ export class DownloadComponent implements OnInit ,OnDestroy{
     })
      this.route.params.subscribe((params: Params) => {
         this.exam = params["exam"];
+        this.selectedDownloadExamOption=this.getCorrespondingDownloadName(this.exam);
         this.onSelectExam(this.exam)
       });
    
@@ -40,6 +42,29 @@ export class DownloadComponent implements OnInit ,OnDestroy{
 
   onSelectExam(Examid:any){
     this.topics = this.selectService.getSubsection().filter(item => item.Examid == Examid);
+  }
+
+  getCorrespondingDownloadName(exam:string):string{
+    switch (exam) {
+      case "1":
+        return "GATE";
+      case "2":
+        return "iPATE";
+      case "3":
+        return "ESE";
+      case "4":
+        return "IIT-JAM";
+      case "5":
+        return "ISRO";
+      case "6":
+        return "TIFR";
+      case "7":
+        return "JEST";
+      case "8":
+        return "BARC";
+      default:
+        return "DOWNLOAD";
+    }
   }
 
   onSelectSubsection(Subsectionid:number){

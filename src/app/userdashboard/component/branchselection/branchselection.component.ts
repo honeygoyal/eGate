@@ -27,7 +27,14 @@ export class BranchselectionComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<BranchselectionComponent>) {}
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem("user"));
-    this.userDiscipline = this.user.user.discipline.split(",");
+    if(this.user.user.discipline.indexOf(',') > -1){
+      this.userDiscipline = this.user.user.discipline.split(",");
+    }else{
+      this.userDiscipline = this.user.user.discipline;
+    }
+    if(this.userDiscipline === undefined){
+      this.dialogRef.close();
+    }
   }
 
   onbranchSelection(branch) {

@@ -1,48 +1,46 @@
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
 export const environment = {
+  //https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/
   production: false,
-  saveUserProfile: "http://localhost:8080/users/register",
-  authenticate: "http://localhost:8080/users/authenticate",
+  saveUserProfile:
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/register",
+  authenticate:
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/authenticate",
   getQuestionsForTestSeries:
-    "http://localhost:8080/questionLayout/getQuestions",
-  postSavedAnswer: "http://localhost:8080/reportDetail/saveReportQuestionWise",
-  postSubmittedAnswer: "http://localhost:8080/reportOverall/saveOverallReport",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/questionLayout/getQuestions",
+  postSavedAnswer:
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/reportDetail/saveReportQuestionWise",
+  postSubmittedAnswer:
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/reportOverall/saveOverallReport",
   getAllCoursesOffered:
-    "http://localhost:8080/coursesOffered/getAllCoursesOffered",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/coursesOffered/getAllCoursesOffered",
   findAllUnVerifiedUser:
-    "http://localhost:8080/users/findAllUnVerifiedUser?userId=",
-  createTest: "http://localhost:8080/coursesDetail/createTest",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/findAllUnVerifiedUser?userId=",
+  createTest:
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/coursesDetail/createTest",
   getCourseIdListForAdmin:
-    "http://localhost:8080/coursesDetail/getCourseIdListForAdmin",
-  questionLayoutUpload: "http://localhost:8080/questionLayout/upload?courseId=",
-  userVerification: "http://localhost:8080/users/verification?userId=",
-  uploadProfileData: "http://localhost:8080/users/uploadProfileData?userId=",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/coursesDetail/getCourseIdListForAdmin",
+  questionLayoutUpload:
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/questionLayout/upload?courseId=",
+  userVerification:
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/verification?userId=",
+  uploadProfileData:
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/uploadProfileData?userId=",
   getOverallReportByUserId:
-    "http://localhost:8080/reportOverall/getOverallReportByUserId?user_id=",
-  getTopRank: "http://localhost:8080/reportOverall/getTopRank?course_id=",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/reportOverall/getOverallReportByUserId?user_id=",
+  getTopRank:
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/reportOverall/getTopRank?course_id=",
   getQuestionAnalysis:
-    "http://localhost:8080/reportDetail/getQuestionAnalysis?user_id=",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/reportDetail/getQuestionAnalysis?user_id=",
   getCoursesDescriptionByExamCode:
-    "http://localhost:8080/coursesDetail/getCoursesDescriptionByExamCode",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/coursesDetail/getCoursesDescriptionByExamCode",
   createOrder:
-  "http://localhost:8080/payment/createOrder",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/payment/createOrder",
   verifiedPayment:
-  "http://localhost:8080/payment/verifiedPayment",
-  getAllBooks:"http://localhost:8080/books/getAllBooks",
-  getAllBanners:"http://localhost:8080/banner/getAllBanner",
-  createDownloadAdmin:"http://localhost:8080/download/uploadMaterial?label1=",
-  getDownloadData:"http://localhost:8080/download/getDownloadByExamAndTopicAndBranch?exam=",
-  forgotpassword:"http://localhost:8080/users/forgotPassword?emailId=",
+    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/payment/verifiedPayment",
+  getAllBooks:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/books/getAllBooks",
+  getAllBanners:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/banner/getAllBanner",
+  
+  createDownloadAdmin:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/download/uploadMaterial?label1=",
+  getDownloadData:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/download/getDownloadByExamAndTopicAndBranch?exam=",
+  forgotpassword:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/forgotPassword?emailId=",
 };
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.

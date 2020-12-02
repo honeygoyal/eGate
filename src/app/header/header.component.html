@@ -19,7 +19,7 @@
             >About Us</a
           >
         </li>
-        <li>
+        <li class="exams">
           <span style="font-weight: 600">Exams&nbsp;&nbsp;</span>
           <i class="fas fa-angle-down"></i>
           <ul>
@@ -69,7 +69,7 @@
         </li>
 
         <li style="padding-left: 0rem">
-          <div style="width: 33%;float: right;margin-left: 191px;">
+          <div style="width: 33%;float: right;margin-left: 120px;">
             <a
               style="cursor: pointer; margin-left: -62px"
               routerLink="/userdashboard/profile/false"
@@ -96,7 +96,7 @@
             </a>
             <a *ngIf="isLoggedOut$ | async" routerLink="/login">Login</a>
             <button
-              style="border-color: #07c4fb;margin-left: -4rem;padding: 3px;"
+              style="border-color: #07c4fb;margin-left: -4rem;padding: 2.8px;"
               *ngIf="isLoggedIn$ | async"
             >
               <a (click)="logout()" routerLink="/login">Logout</a>

@@ -28,6 +28,19 @@
           Demo
         </button> -->
         <button
+          *ngIf="addressLocation !== '/userdashboard/profile'"
+          style="
+            cursor: pointer;
+            margin-top: 0.5rem;
+            outline: none;
+            border: 1px solid rgba(255, 153, 0, 1);
+          "
+          routerLink="/userdashboard/profile/false"
+          class="btn btn-primary"
+        >
+          My Profile
+        </button>
+        <button
           *ngIf="isAdmin === 'ADMIN'"
           style="
             cursor: pointer;

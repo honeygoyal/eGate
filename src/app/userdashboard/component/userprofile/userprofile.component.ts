@@ -27,6 +27,8 @@ export class UserprofileComponent implements OnInit {
   branches: string[] = [];
   examref: any[];
   selectedItem: string;
+  addressLocation:string=location.href;
+
   ngOnInit(): void {
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
   
@@ -51,7 +53,12 @@ export class UserprofileComponent implements OnInit {
         }
       }
     }
-    if (this.branchOpted === undefined) {
+
+
+    this.branchOpted = localStorage.getItem("branchOpted");
+    this.branchOptedService.branchSelected(`${this.branchOpted}`);
+    
+    if ( this.addressLocation.indexOf("/userdashboard/profile/true") > -1 ) { 
       const dialogRef = this.dialog.open(BranchselectionComponent, {
         width: "55%",
         disableClose: true,
@@ -60,6 +67,7 @@ export class UserprofileComponent implements OnInit {
       dialogRef.afterClosed().subscribe((result) => {
         this.branchOptedService.branchSelected(`${result}`);
         console.log(`${result}`);
+        localStorage.setItem("branchOpted", `${result}`);
         this.branchOpted = `${result}`;
         this.router.navigateByUrl("userdashboard/profile/false");
       });
@@ -77,11 +85,12 @@ export class UserprofileComponent implements OnInit {
       dialogRef.afterClosed().subscribe((result) => {
         this.branchOptedService.branchSelected(`${result}`);
         this.branchOpted = `${result}`;
+        localStorage.setItem("branchOpted", `${result}`);
         console.log(`${result}`)
       });
     }
   }
-popupEnabled:string;
+  popupEnabled:string;
   isAdmin: string;
   logout() {
     this.store.dispatch(logout());
@@ -117,6 +126,7 @@ popupEnabled:string;
       this.branchOptedService.branchSelected(`${result}`);
       console.log(`${result}`);
       this.branchOpted = `${result}`;
+      localStorage.setItem("branchOpted", `${result}`);
       this.router.navigateByUrl("userdashboard/profile/false");
     });
   }
