@@ -33,15 +33,21 @@ export class ProfileComponent implements OnInit {
   ) {}
   branches: any[] = [];
   branchOpted: any;
+  isVerified:boolean;
+  profilePhoto: string;
+  signature:string;
   ngOnInit(): void {
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
       if (data !== undefined) {
         this.user = data;
         this.branches = this.user.user.discipline.split(",");
+        this.isVerified=this.user.user.verified;
+        this.profilePhoto = this.user.user.photo;
+        this.signature=this.user.user.signature;
       }
     });
-   
   }
+
   oldpassword: string;
   newpassword: string;
   openDialog() {
@@ -146,11 +152,11 @@ export class ProfileComponent implements OnInit {
           $("#sign_text").html("No file Selected");
           return false;
         } else if (
-          input.target.files[0].size > 200000 &&
+          input.target.files[0].size > 500000 &&
           (val == "" || val == 2)
         ) {
           $("#iErr").html(
-            "The file must be less than 200kb so please upload another  Id proof."
+            "The file must be less than 500kb so please upload another  Id proof."
           );
           // $('#id_proof').html("No file Selected")
           $("#iErr").show();
@@ -162,9 +168,9 @@ export class ProfileComponent implements OnInit {
         } else {
           //  $("#error1_text").val('');
           var str =
-            "<img [src]='transform(" +
-            e.target +
-            ")'  width='110px' height='90'/>";
+            "<img src='" +
+            e.target.result +
+            "'  width='130px' height='90px'/>";
           // var str="<img [src]='transform("+input.target.value+")' width='110px' height='90'/>";
           console.log(str);
           if (val == 1) $("#samplePhoto").html(str);
@@ -173,8 +179,9 @@ export class ProfileComponent implements OnInit {
       };
     }
   }
+
   transform(imageString: string) {
-    var base64Image = imageString;
+    var base64Image = "data:image/png;base64,"+imageString;
     return this.sanitizer.bypassSecurityTrustResourceUrl(base64Image);
   }
 

@@ -28,6 +28,7 @@ export class UserprofileComponent implements OnInit {
   examref: any[];
   selectedItem: string;
   addressLocation:string=location.href;
+  isVerified:boolean;
 
   ngOnInit(): void {
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
@@ -36,6 +37,7 @@ export class UserprofileComponent implements OnInit {
         this.name = data.user.name;
         this.branches = data.user.discipline.split(",");
         this.examref = [...data.user.coursesOffered];
+        this.isVerified=data.user.verified;
       }
     });
     let user = JSON.parse(localStorage.getItem("user"));
@@ -70,6 +72,13 @@ export class UserprofileComponent implements OnInit {
         localStorage.setItem("branchOpted", `${result}`);
         this.branchOpted = `${result}`;
         this.router.navigateByUrl("userdashboard/profile/false");
+        if ( location.href.indexOf("/userdashboard/profile/") > -1 ) { 
+          if(this.isVerified){
+            Swal.fire("Your documents have been verified. Now you can proceed to the courses registered.");
+          }else{
+            Swal.fire("Please upload your photograph, signature and valid Id proof in the profile section to verify the user and get access to the courses.");
+          }
+        }
       });
     }
 

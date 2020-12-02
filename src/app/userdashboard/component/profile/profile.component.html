@@ -6,10 +6,10 @@
   <i class="fa fa-user" aria-hidden="true"></i>
   <span class="subheadings">&nbsp;&nbsp;PERSONAL INFORMATION</span>
   <mat-card class="card-design" style="margin: 1rem 0rem">
-    <pre class="panel-text">Name        :     {{ user.user.name }}</pre>
-    <pre class="panel-text">Email         :     {{ user.user.emailId }}</pre>
-    <pre class="panel-text">Mobile       :     {{ user.user.mobileNumber }}</pre>
-    <pre class="panel-text">Address    :     {{ user.user.address }}</pre>
+    <p class="panel-text">Name<span class="panelSpanText">&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp; {{ user.user.name }}</span></p>
+    <p class="panel-text">Email<span class="panelSpanText">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp; {{ user.user.emailId }}</span></p>
+    <p class="panel-text">Mobile<span class="panelSpanText">&nbsp;&nbsp;&nbsp;:&nbsp; {{ user.user.mobileNumber }}</span></p>
+    <p class="panel-text">Address<span class="panelSpanText">:&nbsp; {{ user.user.address }}</span></p>
   </mat-card>
 
   <i style="color: rgb(48, 84, 151)" class="fa fa-folder"></i>
@@ -19,9 +19,15 @@
       <div class="lft_prt">
         <div class="rot_div">Photograph<sup style="color: #ac1a27">*</sup></div>
         <div class="phtgrph" id="samplePhoto">
-          Photograph<br />Passport Size<br />3.5x4.5cm<br />Size:200KB
+          <span *ngIf="profilePhoto === null">Photograph<br />Passport Size<br />3.5x4.5cm<br />Size:200KB</span>
+          <img
+          *ngIf="profilePhoto !== null"
+          [src]="transform(profilePhoto)"
+          style="height: 109px;width: 132px;margin-top: -11px;margin-left:-1px;"
+          alt="photo"
+         />
         </div>
-        <div class="browse">
+        <div *ngIf="isVerified === false" class="browse">
           <div class="outer-input-main new-int">
             <label id="photo_text">No file selected</label>
             <input
@@ -40,8 +46,16 @@
       </div>
       <div class="lft_prt" style="border-right: none">
         <div class="rot_div">Signature<sup style="color: #ac1a27">*</sup></div>
-        <div class="phtgrph" id="sampleSign">Signature<br />Size:200KB</div>
-        <div class="browse">
+        <div class="phtgrph" id="sampleSign">
+          <span *ngIf="signature === null">Signature<br />Size:200KB</span>
+          <img
+          *ngIf="signature !== null"
+          [src]="transform(signature)"
+          style="height: 109px;width: 132px;margin-top: -11px;margin-left:-1px;"
+          alt="signature"
+         />
+        </div>
+        <div  *ngIf="isVerified === false" class="browse">
           <div class="outer-input-main new-int">
             <label id="sign_text">No file selected</label>
             <input
@@ -61,7 +75,7 @@
       <div class="new-error_msg" id="iErr" style="display: none">
         Please enter correct Email Id
       </div>
-      <div class="lft_prt" style="margin: 7px 0px 0px">
+      <div class="lft_prt" style="margin: 7px 0px 0px"  *ngIf="isVerified === false">
         <div class="upload_proof">
           Please Upload ID Proof<sup style="color: #ac1a27">*</sup>
         </div>
@@ -97,11 +111,11 @@
         <br />
       </div>
     </div>
-    <button
+    <button  *ngIf="isVerified === false"
       (click)="Submitdocs()"
       style="
         color: white;
-        background-color: #85e2fd;
+        background-color: green;
         margin: auto;
         margin: 0rem 0rem 2rem 0rem;
         margin-left: 88%;
