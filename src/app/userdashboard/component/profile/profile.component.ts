@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit {
   isVerified:boolean;
   profilePhoto: string;
   signature:string;
+ 
   ngOnInit(): void {
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
       if (data !== undefined) {
@@ -167,14 +168,13 @@ export class ProfileComponent implements OnInit {
           return false;
         } else {
           //  $("#error1_text").val('');
-          var str =
-            "<img src='" +
-            e.target.result +
-            "'  width='130px' height='90px'/>";
+          let str:string =
+            "<img src='" + e.target["result"] +"'  width='130px' height='90px'/>";
           // var str="<img [src]='transform("+input.target.value+")' width='110px' height='90'/>";
           console.log(str);
           if (val == 1) $("#samplePhoto").html(str);
           if (val == 0) $("#sampleSign").html(str);
+
         }
       };
     }
