@@ -1,6 +1,6 @@
 <app-loader></app-loader>
 <div id="contentcontainer">
-  <mat-tab-group id="parent-tab" mat-align-tabs="start">
+  <mat-tab-group (selectedTabChange)="tabselected($event)" id="parent-tab" mat-align-tabs="start">
     <mat-tab id="performance" label="TEST ANALYTICS">
       <div
         style="
@@ -87,9 +87,11 @@
           border-radius: 20px;
           width: 90%;
           margin: 2rem 4rem;
+          display: flex;
+          justify-content: center;
         "
       >
-        <div style="width: 100%">
+        <div style="width: 100%;">
           <google-chart
             #chart
             [title]="hist_title"
@@ -104,7 +106,7 @@
         </div>
       </mat-card>
     </mat-tab>
-    <mat-tab label="SOLUTIONS">
+    <mat-tab  label="SOLUTIONS">
       <mat-card
         *ngFor="let questiondata of questionanalysis | paginate: { itemsPerPage: 10, currentPage: p } ; let i = index"
         style="
@@ -130,9 +132,17 @@
           />
         </div>
         <div id="twomatgroup" style="background: white">
+          <mat-accordion>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title style="display: flex;align-items: center;justify-content: space-between;">
+                 
+
+                </mat-panel-title>
+              </mat-expansion-panel-header>
           <mat-tab-group>
             <mat-tab label="SOLUTION">
-              <div
+              <div 
                 style="
                   height: 100%;
                   width: 100%;
@@ -198,7 +208,7 @@
               </div>
             </mat-tab>
             <mat-tab label="CHALLENGE">
-              <div style="height: 25vh; padding: 1rem">
+              <div  style="height: 25vh; padding: 1rem">
                 <form
                   action=""
                   class="example-form"
@@ -232,9 +242,10 @@
                 </form>
               </div>
             </mat-tab>
-            <mat-tab label="VIDEO SOLUTION">
-              <div style="padding: 1rem">
-                <a target="_blank"
+            <mat-tab    label="VIDEO SOLUTION">
+              <div  style="padding: 1rem">
+                <p *ngIf="questiondata.question.videoLink===''">No Video Solution Available</p>
+                <a *ngIf="questiondata.question.videoLink!==''" target="_blank"
                   style="
                     color: black;
                     background: #07c4fb;
@@ -246,8 +257,8 @@
                 >
               </div>
             </mat-tab>
-            <mat-tab label="QUESTION ANALYSIS">
-              <div
+            <mat-tab  label="QUESTION ANALYSIS">
+              <div 
                 style="
                   height: 25vh;
                   padding: 1rem;
@@ -290,7 +301,10 @@
               </div>
             </mat-tab>
           </mat-tab-group>
+        </mat-expansion-panel>
+      </mat-accordion>
         </div>
+   
       </mat-card>
       <div  *ngIf="questionanalysis !== undefined" class="paginationControl"><pagination-controls (pageChange)="p = $event"></pagination-controls></div>
     </mat-tab>
