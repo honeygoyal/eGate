@@ -312,31 +312,15 @@
       <div style="display: grid; grid-template-columns: repeat(3, 1fr)">
         <mat-card class="example-card" *ngFor="let user of userrankdata">
           <mat-card-content style="text-align: center; padding: 2rem 0rem">
-            <!-- <img
-              src="./../../../../assets/profilr.jpg"
-             
-              alt=""
-            /> -->
-            <!-- <img
-            *ngIf="profilePhoto !== null"
-            [src]="transform(profilePhoto)"
-            style="width: 4rem; height: 4rem; border-radius: 50%"
-            alt=""
-          />
-          <img
-            src="./../../assets/download.jpg"
-            *ngIf="profilePhoto === '' || profilePhoto === null"
-            style="width: 4rem; height: 4rem; border-radius: 50%"
-            alt=""
-          /> -->
+           
             <img
-              *ngIf="user.photo === null || user.photo ===undefined"
+              *ngIf="user.photo === null || user.photo ===undefined || user.photo === ''"
              src="./../../../../assets/download.jpg"
               style="width: 6rem; height: 6rem; border-radius: 50%"
               alt=""
             />
             <img
-             
+            *ngIf="user.photo !== null && user.photo !== undefined && user.photo !== ''"
             [src]="transform(user.photo)"
               style="width: 6rem; height: 6rem; border-radius: 50%"
               alt=""
