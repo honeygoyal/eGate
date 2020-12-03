@@ -18,7 +18,8 @@ export class ReportComponent implements OnInit {
   title = "Your Test Performance";
   type = "PieChart";
   data: any[];
-
+  p:number;
+ 
   columnNames = ["Answer_Status", "percentage"];
   options = {
     colors: ["green", "red", "#ef873b"],

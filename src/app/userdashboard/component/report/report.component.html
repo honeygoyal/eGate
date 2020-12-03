@@ -306,7 +306,7 @@
         </div>
    
       </mat-card>
-      <div  *ngIf="questionanalysis !== undefined" class="paginationControl"><pagination-controls (pageChange)="#p = $event"></pagination-controls></div>
+      <div  *ngIf="questionanalysis !== undefined" class="paginationControl"><pagination-controls (pageChange)="p=$event"></pagination-controls></div>
     </mat-tab>
     <mat-tab label="RANKER BOARD">
       <div style="display: grid; grid-template-columns: repeat(3, 1fr)">
