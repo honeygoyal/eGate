@@ -38,6 +38,7 @@ export class ExamInstructionsComponent implements OnInit {
     // this.urlexam="/exampanel/exam/"+this.exam.courseId;
     // this.router.navigateByUrl("/exampanel/exam/" + this.exam.courseId);
     location.href = location.href + "/exam/" + this.exam.courseId;
+    location.reload();
   }
   transform(imageString: string) {
     var base64Image = "data:image/png;base64," + imageString;
