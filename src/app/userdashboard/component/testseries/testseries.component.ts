@@ -46,6 +46,11 @@ export class TestseriesComponent implements OnInit {
           this.filterexams();
         });
     });
+
+    let indexChar="GATE-OTS";
+    if(location.href.toLowerCase().indexOf(indexChar.toLowerCase()) > -1){
+      this.onlineTestSeriesLink="/courses/gate/online test series";
+    }
   }
 
   filterexams() {

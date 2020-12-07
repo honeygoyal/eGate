@@ -223,6 +223,7 @@ export class CoursesDetailComponent implements OnInit {
       (data) => {
         console.log("Successfully verified the payment");
         Swal.fire("Payment suceeded!");
+        location.href=location.href.toLowerCase().replace("courses/gate/online%20test%20series","userdashboard/testseries/"+localStorage.getItem("branchOpted")+"-GATE-OTS");
       },
       (err) => {
         console.log("Payment has failed"+err);
