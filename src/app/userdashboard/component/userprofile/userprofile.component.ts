@@ -74,7 +74,7 @@ export class UserprofileComponent implements OnInit {
         this.router.navigateByUrl("userdashboard/profile/false");
         if ( location.href.indexOf("/userdashboard/profile/") > -1 ) { 
           if(this.isVerified){
-            Swal.fire("Your documents have been verified. Now you can proceed to the courses registered.");
+            console.log("Your documents have been verified. Now you can proceed to the courses registered.");
           }else{
             Swal.fire("Please upload your photograph, signature and valid Id proof in the profile section to verify the user and get access to the courses.");
           }
