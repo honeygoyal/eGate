@@ -139,4 +139,10 @@ export class ReportComponent implements OnInit {
         return "#00b050";
     }
   }
+
+  pageEvent(event:any){
+    this.p=event;
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
 }
