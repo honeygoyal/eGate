@@ -200,7 +200,7 @@
           <button
             (click)="startaction(exam.courseId, exam)"
             class="btnactioncard"
-            *ngIf="exam.status === 'PENDING'"
+            *ngIf="exam.status === 'PENDING' && exam.isExamActive === true"
             style="background: #6c63ff"
           >
             Continue
