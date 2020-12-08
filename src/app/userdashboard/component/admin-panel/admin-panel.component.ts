@@ -2,13 +2,14 @@ import { HttpClient } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
 import { DomSanitizer } from "@angular/platform-browser";
+import { getMaxListeners } from 'process';
 import Swal from "sweetalert2";
 import { SelectServiceService } from '../../service/select-service.service';
 import { environment } from "./../../../../environments/environment";
 import { Department } from './department.model';
 import { Exam } from './exam.model';
 import { Subsection } from './subsection.model';
-
+declare let Email: any;
 interface Food {
   value: string;
   viewValue: string;
@@ -196,10 +197,54 @@ Swal.fire('Something went wrong');
     });
   }
   comment: any;
-  VerificationAction(action, id, form: NgForm) {
-    console.log(form);
-    console.log(action);
-    console.log(id);
+  VerificationAction(action,email, id, form: NgForm) {
+    console.log(email);
+    if(action === true){
+    Email.send({
+      Host: "smtpout.asia.secureserver.net",
+      Username: "support@egatetutor.in",
+      Password: "egatetutor_2019",
+      To: email,
+      From: "support@egatetutor.in",
+      Subject: "Mail sent from: " + email,
+      Body: `
+      <p>
+      Dear User, <br>
+      Your credentials are verified. Now you can proceed to the registered course(s) </br></br>
+      For more information regarding GATE, iPATE, PSU prepration. Connect with us: </br>
+      Website: http://www.egatetutor.in/ </br>
+      Facebook: https://www.facebook.com/egate.tutor.18 </br>
+      Instagram: https://www.instagram.com/egatetutor/ </br></br>
+      eGATETutor </br>
+      Support Team eGATETutor
+      </p>  `,
+    }).then((message) => {
+     
+    });
+  }
+    if(action === false){
+    Email.send({
+      Host: "smtpout.asia.secureserver.net",
+      Username: "support@egatetutor.in",
+      Password: "egatetutor_2019",
+      To: email,
+      From: "support@egatetutor.in",
+      Subject: "Mail sent from: " + email,
+      Body: `
+      <p>
+      Dear User, <br>
+      One or more of your credentials are not according to the verification requirement(s). Please upload following the instructions given in the Profile section. </br></br>
+      For more information regarding GATE, iPATE, PSU prepration. Connect with us: </br>
+      Website: http://www.egatetutor.in/ </br>
+      Facebook: https://www.facebook.com/egate.tutor.18 </br>
+      Instagram: https://www.instagram.com/egatetutor/ </br></br>
+      eGATETutor </br>
+      Support Team eGATETutor
+      </p>`,
+    }).then((message) => {
+     
+    });
+  }
     this.http
       .post(
         environment.userVerification +

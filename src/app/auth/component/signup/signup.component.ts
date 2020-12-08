@@ -7,6 +7,7 @@ import { SignUpForm } from "../../model/signupform.model";
 import swal from "sweetalert2";
 import { catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: "app-signup",
@@ -21,7 +22,7 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   signUpData: SignUpForm;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,private router:ActivatedRoute,private route:Router) {}
 
   //ngOnit Method
   ngOnInit() {
@@ -60,6 +61,7 @@ export class SignupComponent implements OnInit {
       };
       this.authService.saveUserProfile(this.signUpData).subscribe(
         (response) => {
+          this.route.navigateByUrl("/login")
           swal.fire("Registration Successfull");
           this.signupForm.reset();
         },

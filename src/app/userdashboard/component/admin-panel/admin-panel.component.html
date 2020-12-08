@@ -282,7 +282,7 @@
           mat-mini-fab
           color="primary"
           aria-label="Example icon button with a menu icon"
-          (click)="VerificationAction(true, user.id, f)"
+          (click)="VerificationAction(true,user.emailId, user.id, f)"
         >
           <mat-icon>check</mat-icon>
         </button>
@@ -292,7 +292,7 @@
           mat-mini-fab
           color="primary"
           aria-label="Example icon button with a menu icon"
-          (click)="VerificationAction(false, user.id, f)"
+          (click)="VerificationAction(false,user.emailId, user.id, f)"
         >
           <mat-icon>clear</mat-icon>
         </button>
