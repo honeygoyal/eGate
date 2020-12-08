@@ -81,9 +81,10 @@ export class TestseriesComponent implements OnInit {
       }
       if (exam.status === "START") {
         let startDate = new Date(exam.startDate);
+        let endDate = new Date(exam.endDate);
         if (startDate > currentDate) {
           exam.isExamActive = false;
-        } else if (currentDate >= startDate) {
+        } else if (currentDate >= startDate && currentDate <= endDate ) {
           exam.isExamActive = true;
         }
       }
