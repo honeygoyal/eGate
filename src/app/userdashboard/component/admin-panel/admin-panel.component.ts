@@ -256,7 +256,7 @@ Swal.fire('Something went wrong');
         {}
       )
       .subscribe((data) => {
-        location.href = location.href;
+        location.reload();
       });
   }
 

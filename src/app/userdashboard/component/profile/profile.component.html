@@ -27,7 +27,7 @@
           alt="photo"
          />
         </div>
-        <div *ngIf="isVerified === false" class="browse">
+        <div *ngIf="isVerified === 'REJECTED' || isVerified === 'UNVERIFIED'" class="browse">
           <div class="outer-input-main new-int">
             <label id="photo_text">No file selected</label>
             <input
@@ -55,7 +55,7 @@
           alt="signature"
          />
         </div>
-        <div  *ngIf="isVerified === false" class="browse">
+        <div  *ngIf="isVerified === 'REJECTED' || isVerified === 'UNVERIFIED'" class="browse">
           <div class="outer-input-main new-int">
             <label id="sign_text">No file selected</label>
             <input
@@ -75,7 +75,7 @@
       <div class="new-error_msg" id="iErr" style="display: none">
         Please enter correct Email Id
       </div>
-      <div class="lft_prt" style="margin: 7px 0px 0px"  *ngIf="isVerified === false">
+      <div class="lft_prt" style="margin: 7px 0px 0px"  *ngIf="isVerified === 'REJECTED' || isVerified === 'UNVERIFIED'">
         <div class="upload_proof">
           Please Upload ID Proof<sup style="color: #ac1a27">*</sup>
         </div>
@@ -111,7 +111,7 @@
         <br />
       </div>
     </div>
-    <button  *ngIf="isVerified === false"
+    <button  *ngIf="isVerified === 'REJECTED' || isVerified === 'UNVERIFIED'"
       (click)="Submitdocs()"
       style="
         color: white;

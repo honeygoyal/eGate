@@ -28,7 +28,7 @@ export class UserprofileComponent implements OnInit {
   examref: any[];
   selectedItem: string;
   addressLocation:string=location.href;
-  isVerified:boolean;
+  isVerified:any;
 
   ngOnInit(): void {
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
@@ -37,7 +37,7 @@ export class UserprofileComponent implements OnInit {
         this.name = data.user.name;
         this.branches = data.user.discipline.split(",");
         this.examref = [...data.user.coursesOffered];
-        this.isVerified=data.user.verified;
+        this.isVerified=data.user.isVerified;
       }
     });
     let user = JSON.parse(localStorage.getItem("user"));
@@ -73,10 +73,12 @@ export class UserprofileComponent implements OnInit {
         this.branchOpted = `${result}`;
         this.router.navigateByUrl("userdashboard/profile/false");
         if ( location.href.indexOf("/userdashboard/profile/") > -1 ) { 
-          if(this.isVerified){
-            console.log("Your documents have been verified. Now you can proceed to the courses registered.");
-          }else{
-            Swal.fire("Please upload your photograph, signature and valid Id proof in the profile section to verify the user and get access to the courses.");
+          if(this.isVerified === "UNVERIFIED"){
+             Swal.fire("Please upload your photograph, signature and valid Id proof in the profile section to verify the user and get access to the courses.");
+          }else if(this.isVerified ==='PENDING'){
+            Swal.fire("Your Verification is still in progress. It will take 24 hours to get verified. For any queries contact helpdesk")
+          }else if(this.isVerified ==='REJECTED'){
+            Swal.fire("One or more of your credentials are not according to the verification requirement(s). Please upload following the instructions given in the Profile section.")
           }
         }
       });

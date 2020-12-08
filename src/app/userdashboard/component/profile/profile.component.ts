@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit {
   ) {}
   branches: any[] = [];
   branchOpted: any;
-  isVerified:boolean;
+  isVerified:any;
   profilePhoto: string;
   signature:string;
  
@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
       if (data !== undefined) {
         this.user = data;
         this.branches = this.user.user.discipline.split(",");
-        this.isVerified=this.user.user.verified;
+        this.isVerified=this.user.user.isVerified;
         this.profilePhoto = this.user.user.photo;
         this.signature=this.user.user.signature;
       }
@@ -216,6 +216,9 @@ export class ProfileComponent implements OnInit {
         .post(environment.uploadProfileData + this.user.user["id"], formData)
         .subscribe((data) => {
           console.log(data);
+          // this.isVerified='PENDING';
+          // this.profilePhoto = this.user.user.photo;
+          // this.signature=this.user.user.signature;
           Swal.fire("Document Uploaded Successfully");
         });
     }
