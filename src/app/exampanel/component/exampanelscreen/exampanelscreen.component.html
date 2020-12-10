@@ -1,4 +1,7 @@
-<app-loader></app-loader>
+<div *ngIf="loader" class="overlay">
+  <mat-spinner class="spinner"> </mat-spinner>
+</div>
+
 <div
   cdkDrop
   id="exam-container"

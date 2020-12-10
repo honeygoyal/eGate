@@ -35,6 +35,7 @@ import { InstructionDialogComponent } from "./instruction-dialog/instruction-dia
 export class ExampanelscreenComponent implements OnInit, OnDestroy {
   //variables
   calcstatus = false;
+  loader:boolean=false;
   count = 1;
   duration: string;
   status = "start";
@@ -137,10 +138,12 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       this.userId = data.user.id;
       this.profilePhoto = data.user.photo;
       this.examStatus = localStorage.getItem("examStatus");
+      this.loader=true;
       this.quesService
         .getQuestionsForTestSeries(this.test_code, this.userId)
         .subscribe((data) => {
           this.question = data;
+          this.loader=false;
         });
     });
   }
