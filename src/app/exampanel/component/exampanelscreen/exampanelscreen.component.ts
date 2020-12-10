@@ -210,24 +210,24 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     return this.sanitizer.bypassSecurityTrustResourceUrl(base64Image);
   }
 
-  // @HostListener("window:blur", ["$event"])
-  // onblur(event: any): void {
-  //   if (this.attempts !== 0) {
-  //     Swal.fire({
-  //       icon: "error",
-  //       title: "Window Changed Alert",
-  //       text: this.attempts + " attempts left",
-  //     });
-  //     this.attempts = this.attempts - 1;
-  //   } else {
-  //     Swal.fire({
-  //       icon: "error",
-  //       title: "Maximum attempt tried",
-  //       text: "You exam has ended",
-  //     });
-  //     window.close();
-  //   }
-  // }
+  @HostListener("window:blur", ["$event"])
+  onblur(event: any): void {
+    if (this.attempts !== 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Window Changed Alert",
+        text: this.attempts + " attempts left",
+      });
+      this.attempts = this.attempts - 1;
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Maximum attempt tried",
+        text: "You exam has ended",
+      });
+      window.close();
+    }
+  }
 
   @HostListener("window:unload", ["$event"])
   unloadHandler(event) {
@@ -1089,6 +1089,14 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         true,
         false
       );
+
+      this.savetheanswer(
+        t === undefined ? null : t,
+        prevquestion["id"],
+        r === undefined ? "NO_ANS" : r,
+        this.end - this.start
+      );
+
     }
 
     let assignedCurrentOption = false;
