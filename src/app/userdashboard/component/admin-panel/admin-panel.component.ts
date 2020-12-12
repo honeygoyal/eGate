@@ -206,16 +206,16 @@ Swal.fire('Something went wrong');
       Password: "egatetutor_2019",
       To: email,
       From: "support@egatetutor.in",
-      Subject: "Mail sent from: " + email,
+      Subject: "Verification mail from eGATE Tutor",
       Body: `
       <p>
       Dear User, <br>
-      Your credentials are verified. Now you can proceed to the registered course(s) </br></br>
-      For more information regarding GATE, iPATE, PSU prepration. Connect with us: </br>
-      Website: http://www.egatetutor.in/ </br>
-      Facebook: https://www.facebook.com/egate.tutor.18 </br>
-      Instagram: https://www.instagram.com/egatetutor/ </br></br>
-      eGATETutor </br>
+      Your credentials are verified. Now you can proceed to the registered course(s) <br/><br/>
+      For more information regarding GATE, iPATE, PSU prepration. Connect with us: <br/>
+      Website: http://www.egatetutor.in/ <br/>
+      Facebook: https://www.facebook.com/egate.tutor.18 <br/>
+      Instagram: https://www.instagram.com/egatetutor/ <br/><br/>
+      eGATETutor <br/>
       Support Team eGATETutor
       </p>  `,
     }).then((message) => {
@@ -229,16 +229,17 @@ Swal.fire('Something went wrong');
       Password: "egatetutor_2019",
       To: email,
       From: "support@egatetutor.in",
-      Subject: "Mail sent from: " + email,
+      Subject: "Verification mail from eGATE Tutor",
       Body: `
       <p>
       Dear User, <br>
-      One or more of your credentials are not according to the verification requirement(s). Please upload following the instructions given in the Profile section. </br></br>
-      For more information regarding GATE, iPATE, PSU prepration. Connect with us: </br>
-      Website: http://www.egatetutor.in/ </br>
-      Facebook: https://www.facebook.com/egate.tutor.18 </br>
-      Instagram: https://www.instagram.com/egatetutor/ </br></br>
-      eGATETutor </br>
+      One or more of your credentials are not according to the verification requirement(s).<br/> 
+      Please upload following the instructions given in the Profile section. <br/><br/>
+      For more information regarding GATE, iPATE, PSU prepration. Connect with us: <br/>
+      Website: http://www.egatetutor.in/ <br/>
+      Facebook: https://www.facebook.com/egate.tutor.18 <br/>
+      Instagram: https://www.instagram.com/egatetutor/ <br/><br/>
+      eGATETutor <br/>
       Support Team eGATETutor
       </p>`,
     }).then((message) => {
