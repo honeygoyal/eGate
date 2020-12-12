@@ -629,15 +629,19 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         let listOfCheckedValues = "(";
         if (this.IsAChecked) {
           listOfCheckedValues = listOfCheckedValues + "A,";
+          this.IsAChecked=false;
         }
         if (this.IsBChecked) {
           listOfCheckedValues = listOfCheckedValues + "B,";
+          this.IsBChecked=false;
         }
         if (this.IsCChecked) {
           listOfCheckedValues = listOfCheckedValues + "C,";
+          this.IsCChecked=false;
         }
         if (this.IsDChecked) {
           listOfCheckedValues = listOfCheckedValues + "D,";
+          this.IsDChecked = false;
         }
 
         listOfCheckedValues =
@@ -808,15 +812,19 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         let listOfCheckedValues = "(";
         if (this.IsAChecked) {
           listOfCheckedValues = listOfCheckedValues + "A,";
+          this.IsAChecked = false;
         }
         if (this.IsBChecked) {
           listOfCheckedValues = listOfCheckedValues + "B,";
+          this.IsBChecked = false;
         }
         if (this.IsCChecked) {
           listOfCheckedValues = listOfCheckedValues + "C,";
+          this.IsCChecked = false;
         }
         if (this.IsDChecked) {
           listOfCheckedValues = listOfCheckedValues + "D,";
+          this.IsDChecked = false;
         }
         listOfCheckedValues =
           listOfCheckedValues.substring(0, listOfCheckedValues.length - 1) +
