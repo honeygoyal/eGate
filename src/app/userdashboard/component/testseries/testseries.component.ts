@@ -56,6 +56,10 @@ export class TestseriesComponent implements OnInit {
   filterexams() {
     let currentDate = new Date(this.currentDateAsString);
     for (let exam of this.exams) {
+      let str = exam.title;
+      let matches = str.match(/\b(\w)/g);
+      let acronym = matches.join(''); 
+      exam.abTitle=acronym;
       if (exam.status === "PENDING") {
         let endDate = new Date(exam.endDate);
         let daysRemaining = "";
@@ -82,6 +86,7 @@ export class TestseriesComponent implements OnInit {
       if (exam.status === "START") {
         let startDate = new Date(exam.startDate);
         let endDate = new Date(exam.endDate);
+        
         if (startDate > currentDate) {
           exam.isExamActive = false;
         } else if (currentDate >= startDate && currentDate <= endDate ) {
@@ -89,6 +94,7 @@ export class TestseriesComponent implements OnInit {
         }
       }
       if (exam.status === "COMPLETED") {
+       
         this.examscompleted.push(exam);
       }
     }
