@@ -59,16 +59,30 @@ export class ReportComponent implements OnInit {
       .subscribe((data) => {
         let i:number = 1;
         this.questionanalysis = data;
-        // this.questionanalysis.forEach((element) => {
-        //   this.histogramdata.push([+i,parseFloat(element.yourTime)/1000])
-        //   i++;
-        // });
        
         // this.hist_data=this.histogramdata;
         // console.log("Hi",this.hist_data);
       });
     }
   }
+
+  convertTime(time:any):any{
+    console.log(time);
+    let res="";
+    if(time !== null){
+      let convertedTime:any = parseInt(time)/1000; 
+      let sec = parseInt(convertedTime)%60;
+      let min:any = parseInt(convertedTime)/60;
+     
+      if (min >= 1)
+        res = parseInt(min) + " min " + sec + " sec";
+      else
+        res = sec + " sec";  
+    }
+   
+    return res;
+  }
+
  
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -109,13 +123,14 @@ export class ReportComponent implements OnInit {
    
   }
   onSubmit(f: NgForm) {
+    let subject:string="Mail sent from: " + this.user.user.emailId;
     Email.send({
       Host: "smtpout.asia.secureserver.net",
       Username: "support@egatetutor.in",
       Password: "egatetutor_2019",
-      To: "support@egatetutor.in,himanshup6201@gmail.com",
+      To: "support@egatetutor.in,admn.egatetutor@gmail.com",
       From: "support@egatetutor.in",
-      Subject: "Mail sent from: " + this.user.emailId,
+      Subject: subject,
       Body: `
       <b>Message:</b>  ${f.value.message}<br />  `,
     }).then((message) => {

@@ -421,7 +421,11 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
             });
           }
         } else {
-          this.currentOption = element.answerSubmitted;
+          if(element.answerSubmitted !== "null" || element.answerSubmitted !== null ) {
+            this.currentOption = element.answerSubmitted;
+          }else{
+            this.currentOption = element.answerSubmitted;
+          }
         }
         assignedCurrentOption = true;
       } else {
@@ -590,7 +594,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       let selectedValue = form.value.optionSelected;
       this.finalCheckedValue = false;
       if (quesType === "NAT") {
-        selectedValue = null;
+        selectedValue = "";
       }
 
       if (quesType === "MSQ") {
@@ -634,15 +638,19 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         let listOfCheckedValues = "(";
         if (this.IsAChecked) {
           listOfCheckedValues = listOfCheckedValues + "A,";
+          this.IsAChecked=false;
         }
         if (this.IsBChecked) {
           listOfCheckedValues = listOfCheckedValues + "B,";
+          this.IsBChecked=false;
         }
         if (this.IsCChecked) {
           listOfCheckedValues = listOfCheckedValues + "C,";
+          this.IsCChecked=false;
         }
         if (this.IsDChecked) {
           listOfCheckedValues = listOfCheckedValues + "D,";
+          this.IsDChecked = false;
         }
 
         listOfCheckedValues =
@@ -700,7 +708,11 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
             });
           }
         } else {
-          this.currentOption = element.answerSubmitted;
+          if(element.answerSubmitted !== "null" || element.answerSubmitted !== null ) {
+            this.currentOption = element.answerSubmitted;
+          }else{
+            this.currentOption = element.answerSubmitted;
+          }
           if (this.questiontoShow.questionType === "NAT") {
             localStorage.setItem(this.localStorageNATKey, this.currentOption);
           }
@@ -769,7 +781,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       let selectedValue = form.value.optionSelected;
       this.finalCheckedValue = false;
       if (quesType === "NAT") {
-        selectedValue = null;
+        selectedValue = "";
       }
 
       if (quesType === "MSQ") {
@@ -813,15 +825,19 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         let listOfCheckedValues = "(";
         if (this.IsAChecked) {
           listOfCheckedValues = listOfCheckedValues + "A,";
+          this.IsAChecked = false;
         }
         if (this.IsBChecked) {
           listOfCheckedValues = listOfCheckedValues + "B,";
+          this.IsBChecked = false;
         }
         if (this.IsCChecked) {
           listOfCheckedValues = listOfCheckedValues + "C,";
+          this.IsCChecked = false;
         }
         if (this.IsDChecked) {
           listOfCheckedValues = listOfCheckedValues + "D,";
+          this.IsDChecked = false;
         }
         listOfCheckedValues =
           listOfCheckedValues.substring(0, listOfCheckedValues.length - 1) +
@@ -882,7 +898,13 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
             });
           }
         } else {
-          this.currentOption = element.answerSubmitted;
+
+          if(element.answerSubmitted !== "null"  || element.answerSubmitted !== null ) {
+            this.currentOption = element.answerSubmitted;
+          }else{
+            this.currentOption = element.answerSubmitted;
+          }
+          
           if (this.questiontoShow.questionType === "NAT") {
             localStorage.setItem(this.localStorageNATKey, this.currentOption);
           }
@@ -1127,7 +1149,11 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
             });
           }
         } else {
-          this.currentOption = element.answerSubmitted;
+          if(element.answerSubmitted !== "null"  || element.answerSubmitted !== null ) {
+            this.currentOption = element.answerSubmitted;
+          }else{
+            this.currentOption = element.answerSubmitted;
+          }
         }
         assignedCurrentOption = true;
       }
@@ -1141,6 +1167,12 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           this.questiontoShow.answerSubmitted
         );
       }
+    }else
+
+    if (this.questiontoShow.answerSubmitted !== "null" || this.questiontoShow.answerSubmitted !== null ) {
+      this.currentOption=this.questiontoShow.answerSubmitted;
+    }else{
+      this.currentOption=this.questiontoShow.answerSubmitted;
     }
   }
 

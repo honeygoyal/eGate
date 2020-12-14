@@ -280,9 +280,9 @@
                   }"
                   class="timedetails"
                 >
-                  <p>Time taken: {{ questiondata.yourTime }}</p>
-                  <p>Average time: {{ questiondata.averageTime }}</p>
-                  <p>Topper's Time : {{ questiondata.topperTime }}</p>
+                  <p>Time taken: {{ convertTime(questiondata.yourTime) }}</p>
+                  <p>Average time: {{ convertTime(questiondata.averageTime) }}</p>
+                  <p>Topper's Time : {{ convertTime(questiondata.topperTime) }}</p>
                 </div>
                 <div class="questiondetails">
                   <p>Total Attempts : {{ questiondata.totalAttempt }}</p>

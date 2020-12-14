@@ -78,7 +78,7 @@
                 stroke="black"
                 stroke-width="1px"
               >
-                {{ exam.title | slice: 0:2 | uppercase }}
+                {{ exam.abTitle | uppercase }}
               </text>
             </svg>
           </div>
@@ -91,6 +91,7 @@
           >
             <span>{{ exam.title }}</span>
           </mat-card-title>
+          <div class="examDescription">{{ exam.description }}</div> 
           <h5
             *ngIf="exam.status !== 'PENDING' && exam.status !== 'COMPLETED'"
             style="color: red; position: absolute; right: 5%"
@@ -169,11 +170,12 @@
                 stroke="black"
                 stroke-width="1px"
               >
-                {{ exam.title | slice: 0:2 | uppercase }}
+              {{ exam.abTitle | uppercase }}
               </text>
             </svg>
           </div>
-          <mat-card-title>{{ exam.title }}</mat-card-title>        
+          <mat-card-title>{{ exam.title }}</mat-card-title>  
+          <div class="examDescription">{{ exam.description }}</div>       
           <h5
             *ngIf="exam.status === 'PENDING'"
             style="color: red; position: absolute; right: 5%"
@@ -221,11 +223,12 @@
                 stroke="black"
                 stroke-width="1px"
               >
-                {{ exam.title | slice: 0:2 | uppercase }}
+              {{ exam.abTitle | uppercase }}
               </text>
             </svg>
           </div>
           <mat-card-title>{{ exam.title }}</mat-card-title>
+          <div class="examDescription">{{ exam.description }}</div> 
         </mat-card-header>
         <mat-card-content id="card-content">
           <div id="cont">
