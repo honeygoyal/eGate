@@ -194,7 +194,13 @@ Swal.fire('Something went wrong');
     this.http.post(server_url, formData).subscribe((data) => {
       this.secondFormGroup.reset();
       Swal.fire("Question Uploaded for Test!");
-    });
+     
+    },
+    (err)=>{
+      console.log("Hi",err)
+      Swal.fire("Something went wrong while uploading.")
+    }
+    );
   }
   comment: any;
   VerificationAction(action,email, id, form: NgForm) {

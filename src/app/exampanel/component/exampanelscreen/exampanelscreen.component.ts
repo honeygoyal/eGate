@@ -144,6 +144,11 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         .subscribe((data) => {
           this.question = data;
           this.loader=false;
+         
+        }, (err)=>{
+          // console.log("HI")
+          this.loader=false;
+          window.close();
         });
     });
   }

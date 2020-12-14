@@ -161,7 +161,7 @@
                     "
                     >Correct Answer:
                     <span style="color: green; font-size: large"
-                      >({{ questiondata.question.answer }})</span
+                      >{{ questiondata.question.answer }}</span
                     >
                   </a>
                   <a
@@ -180,10 +180,15 @@
                       >NOT ANSWERED</span
                     >
                     <span
-                      *ngIf="questiondata.yourAnswer !== ''"
-                      style="color: BLACK; font-size: large"
-                      >({{ questiondata.yourAnswer }})</span
-                    ></a
+                      *ngIf="questiondata.yourAnswer !== '' && questiondata.correct=== true"
+                      style="color: green; font-size: large"
+                      >{{ questiondata.yourAnswer }}</span
+                    >
+                    <span
+                    *ngIf="questiondata.yourAnswer !== '' && questiondata.correct=== false"
+                    style="color: red; font-size: large"
+                    >{{ questiondata.yourAnswer }}</span
+                  ></a
                   >
                 </div>
 
