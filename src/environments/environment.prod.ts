@@ -1,46 +1,46 @@
 export const environment = {
-  //https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/
+  //https://egatetutor.com/
   production: true,
   saveUserProfile:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/register",
+    "https://egatetutor.com/users/register",
   authenticate:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/authenticate",
+    "https://egatetutor.com/users/authenticate",
   getQuestionsForTestSeries:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/questionLayout/getQuestions",
+    "https://egatetutor.com/questionLayout/getQuestions",
   postSavedAnswer:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/reportDetail/saveReportQuestionWise",
+    "https://egatetutor.com/reportDetail/saveReportQuestionWise",
   postSubmittedAnswer:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/reportOverall/saveOverallReport",
+    "https://egatetutor.com/reportOverall/saveOverallReport",
   getAllCoursesOffered:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/coursesOffered/getAllCoursesOffered",
+    "https://egatetutor.com/coursesOffered/getAllCoursesOffered",
   findAllUnVerifiedUser:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/findAllUnVerifiedUser?userId=",
+    "https://egatetutor.com/users/findAllUnVerifiedUser?userId=",
   createTest:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/coursesDetail/createTest",
+    "https://egatetutor.com/coursesDetail/createTest",
   getCourseIdListForAdmin:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/coursesDetail/getCourseIdListForAdmin",
+    "https://egatetutor.com/coursesDetail/getCourseIdListForAdmin",
   questionLayoutUpload:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/questionLayout/upload?courseId=",
+    "https://egatetutor.com/questionLayout/upload?courseId=",
   userVerification:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/verification?userId=",
+    "https://egatetutor.com/users/verification?userId=",
   uploadProfileData:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/uploadProfileData?userId=",
+    "https://egatetutor.com/users/uploadProfileData?userId=",
   getOverallReportByUserId:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/reportOverall/getOverallReportByUserId?user_id=",
+    "https://egatetutor.com/reportOverall/getOverallReportByUserId?user_id=",
   getTopRank:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/reportOverall/getTopRank?course_id=",
+    "https://egatetutor.com/reportOverall/getTopRank?course_id=",
   getQuestionAnalysis:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/reportDetail/getQuestionAnalysis?user_id=",
+    "https://egatetutor.com/reportDetail/getQuestionAnalysis?user_id=",
   getCoursesDescriptionByExamCode:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/coursesDetail/getCoursesDescriptionByExamCode",
+    "https://egatetutor.com/coursesDetail/getCoursesDescriptionByExamCode",
   createOrder:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/payment/createOrder",
+    "https://egatetutor.com/payment/createOrder",
   verifiedPayment:
-    "https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/payment/verifiedPayment",
-  getAllBooks:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/books/getAllBooks",
-  getAllBanners:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/banner/getAllBanner",
+    "https://egatetutor.com/payment/verifiedPayment",
+  getAllBooks:"https://egatetutor.com/books/getAllBooks",
+  getAllBanners:"https://egatetutor.com/banner/getAllBanner",
   
-  createDownloadAdmin:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/download/uploadMaterial?label1=",
-  getDownloadData:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/download/getDownloadByExamAndTopicAndBranch?exam=",
-  forgotpassword:"https://egatetutorbalancer-1480320595.ap-south-1.elb.amazonaws.com/users/forgotPassword?emailId=",
+  createDownloadAdmin:"https://egatetutor.com/download/uploadMaterial?label1=",
+  getDownloadData:"https://egatetutor.com/download/getDownloadByExamAndTopicAndBranch?exam=",
+  forgotpassword:"https://egatetutor.com/users/forgotPassword?emailId=",
 };

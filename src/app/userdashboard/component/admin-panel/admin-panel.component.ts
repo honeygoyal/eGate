@@ -31,6 +31,7 @@ export class AdminPanelComponent implements OnInit {
     examId: "",
   };
   firstFormGroup: FormGroup;
+  // thirdFormGroup:FormGroup;
   secondFormGroup: FormGroup;
   exams_code: any;
   exams_code_array: any[] = [];
@@ -58,6 +59,9 @@ export class AdminPanelComponent implements OnInit {
       examId: ["", Validators.required],
       courseId: ["", Validators.required],
     });
+    // this.thirdFormGroup=this._formBuilder.group({
+      
+    // })
 
     this.http.get(environment.getAllCoursesOffered).subscribe((data) => {
       this.exams_code = data;
