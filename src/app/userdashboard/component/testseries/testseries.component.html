@@ -85,18 +85,21 @@
           <mat-card-title
             style="
               display: flex;
-              align-items: center;
+              align-items: left;
               justify-content: space-between;
+              flex-direction: column;
+              margin-left: 1rem;
             "
           >
             <span>{{ exam.title }}</span>
+            <span class="examDescription">{{exam.description}}</span>
           </mat-card-title>
-          <div class="examDescription">{{ exam.description }}</div> 
+          <!-- <div class="examDescription">{{ exam.description }}</div>  -->
           <h5
             *ngIf="exam.status !== 'PENDING' && exam.status !== 'COMPLETED'"
             style="color: red; position: absolute; right: 5%"
           >
-            Start date {{ exam.startDate }}
+            Start date: {{ exam.startDate  | date: 'dd/MM/yyyy' }}
           </h5>
           <h5
             *ngIf="exam.status === 'PENDING'"

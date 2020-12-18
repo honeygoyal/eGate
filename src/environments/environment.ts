@@ -4,38 +4,48 @@
 
 export const environment = {
   production: false,
-  saveUserProfile: "http://localhost:8080/users/register",
-  authenticate: "http://localhost:8080/users/authenticate",
+  saveUserProfile:
+    "https://egatetutor.com/users/register",
+  authenticate:
+    "https://egatetutor.com/users/authenticate",
   getQuestionsForTestSeries:
-    "http://localhost:8080/questionLayout/getQuestions",
-  postSavedAnswer: "http://localhost:8080/reportDetail/saveReportQuestionWise",
-  postSubmittedAnswer: "http://localhost:8080/reportOverall/saveOverallReport",
+    "https://egatetutor.com/questionLayout/getQuestions",
+  postSavedAnswer:
+    "https://egatetutor.com/reportDetail/saveReportQuestionWise",
+  postSubmittedAnswer:
+    "https://egatetutor.com/reportOverall/saveOverallReport",
   getAllCoursesOffered:
-    "http://localhost:8080/coursesOffered/getAllCoursesOffered",
+    "https://egatetutor.com/coursesOffered/getAllCoursesOffered",
   findAllUnVerifiedUser:
-    "http://localhost:8080/users/findAllUnVerifiedUser?userId=",
-  createTest: "http://localhost:8080/coursesDetail/createTest",
+    "https://egatetutor.com/users/findAllUnVerifiedUser?userId=",
+  createTest:
+    "https://egatetutor.com/coursesDetail/createTest",
   getCourseIdListForAdmin:
-    "http://localhost:8080/coursesDetail/getCourseIdListForAdmin",
-  questionLayoutUpload: "http://localhost:8080/questionLayout/upload?courseId=",
-  userVerification: "http://localhost:8080/users/verification?userId=",
-  uploadProfileData: "http://localhost:8080/users/uploadProfileData?userId=",
+    "https://egatetutor.com/coursesDetail/getCourseIdListForAdmin",
+  questionLayoutUpload:
+    "https://egatetutor.com/questionLayout/upload?courseId=",
+  userVerification:
+    "https://egatetutor.com/users/verification?userId=",
+  uploadProfileData:
+    "https://egatetutor.com/users/uploadProfileData?userId=",
   getOverallReportByUserId:
-    "http://localhost:8080/reportOverall/getOverallReportByUserId?user_id=",
-  getTopRank: "http://localhost:8080/reportOverall/getTopRank?course_id=",
+    "https://egatetutor.com/reportOverall/getOverallReportByUserId?user_id=",
+  getTopRank:
+    "https://egatetutor.com/reportOverall/getTopRank?course_id=",
   getQuestionAnalysis:
-    "http://localhost:8080/reportDetail/getQuestionAnalysis?user_id=",
+    "https://egatetutor.com/reportDetail/getQuestionAnalysis?user_id=",
   getCoursesDescriptionByExamCode:
-    "http://localhost:8080/coursesDetail/getCoursesDescriptionByExamCode",
+    "https://egatetutor.com/coursesDetail/getCoursesDescriptionByExamCode",
   createOrder:
-  "http://localhost:8080/payment/createOrder",
+    "https://egatetutor.com/payment/createOrder",
   verifiedPayment:
-  "http://localhost:8080/payment/verifiedPayment",
-  getAllBooks:"http://localhost:8080/books/getAllBooks",
-  getAllBanners:"http://localhost:8080/banner/getAllBanner",
-  createDownloadAdmin:"http://localhost:8080/download/uploadMaterial?label1=",
-  getDownloadData:"http://localhost:8080/download/getDownloadByExamAndTopicAndBranch?exam=",
-  forgotpassword:"http://localhost:8080/users/forgotPassword?emailId=",
+    "https://egatetutor.com/payment/verifiedPayment",
+  getAllBooks:"https://egatetutor.com/books/getAllBooks",
+  getAllBanners:"https://egatetutor.com/banner/getAllBanner",
+  
+  createDownloadAdmin:"https://egatetutor.com/download/uploadMaterial?label1=",
+  getDownloadData:"https://egatetutor.com/download/getDownloadByExamAndTopicAndBranch?exam=",
+  forgotpassword:"https://egatetutor.com/users/forgotPassword?emailId=",
 };
 
 /*
