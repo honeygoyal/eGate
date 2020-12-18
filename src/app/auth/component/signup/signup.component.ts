@@ -82,7 +82,6 @@ export class SignupComponent implements OnInit {
     "CE",
     "MA",
     "AE",
-    "XE",
     "EE",
     "ECE",
     "IN",

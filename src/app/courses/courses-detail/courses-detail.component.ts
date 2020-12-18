@@ -159,8 +159,6 @@ export class CoursesDetailComponent implements OnInit {
         return "Mathematics";
       case "MT":
         return "Metallurgical Engineering";
-      case "XE":
-        return "";
       case "EE":
         return "Electrical Engineering";
       case "ECE":
