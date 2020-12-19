@@ -218,24 +218,24 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     return this.sanitizer.bypassSecurityTrustResourceUrl(base64Image);
   }
 
-  @HostListener("window:blur", ["$event"])
-  onblur(event: any): void {
-    if (this.attempts !== 0) {
-      Swal.fire({
-        icon: "error",
-        title: "Window Changed Alert",
-        text: this.attempts + " attempts left",
-      });
-      this.attempts = this.attempts - 1;
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Maximum attempt tried",
-        text: "You exam has ended",
-      });
-      window.close();
-    }
-  }
+  // @HostListener("window:blur", ["$event"])
+  // onblur(event: any): void {
+  //   if (this.attempts !== 0) {
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Window Changed Alert",
+  //       text: this.attempts + " attempts left",
+  //     });
+  //     this.attempts = this.attempts - 1;
+  //   } else {
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Maximum attempt tried",
+  //       text: "You exam has ended",
+  //     });
+  //     window.close();
+  //   }
+  // }
 
   @HostListener("window:unload", ["$event"])
   unloadHandler(event) {
@@ -708,13 +708,24 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
             });
           }
         } else {
-          if(element.answerSubmitted !== "null" || element.answerSubmitted !== null ) {
-            this.currentOption = element.answerSubmitted;
-          }else{
-            this.currentOption = element.answerSubmitted;
+          let ansSub="";
+          if(element.answerSubmitted === "null"  || element.answerSubmitted === null){
+             ansSub="null";
           }
-          if (this.questiontoShow.questionType === "NAT") {
-            localStorage.setItem(this.localStorageNATKey, this.currentOption);
+          if(ansSub !== "null") {
+            if (this.questiontoShow.questionType === "NAT") {
+              localStorage.setItem(this.localStorageNATKey, element.answerSubmitted);
+              this.currentOption = element.answerSubmitted;
+            }else{
+              this.currentOption = element.answerSubmitted;
+            }
+          }else{
+            if (this.questiontoShow.questionType === "NAT") {
+              localStorage.setItem(this.localStorageNATKey, "");
+              this.currentOption = "";
+            }else{
+              this.currentOption = element.answerSubmitted;
+            }
           }
         }
         assignedCurrentOption = true;
@@ -899,14 +910,24 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           }
         } else {
 
-          if(element.answerSubmitted !== "null"  || element.answerSubmitted !== null ) {
-            this.currentOption = element.answerSubmitted;
-          }else{
-            this.currentOption = element.answerSubmitted;
+          let ansSub="";
+          if(element.answerSubmitted === "null"  || element.answerSubmitted === null){
+             ansSub="null";
           }
-          
-          if (this.questiontoShow.questionType === "NAT") {
-            localStorage.setItem(this.localStorageNATKey, this.currentOption);
+          if(ansSub !== "null") {
+            if (this.questiontoShow.questionType === "NAT") {
+              localStorage.setItem(this.localStorageNATKey, element.answerSubmitted);
+              this.currentOption = element.answerSubmitted;
+            }else{
+              this.currentOption = element.answerSubmitted;
+            }
+          }else{
+            if (this.questiontoShow.questionType === "NAT") {
+              localStorage.setItem(this.localStorageNATKey, "");
+              this.currentOption = "";
+            }else{
+              this.currentOption = element.answerSubmitted;
+            }
           }
         }
         assignedCurrentOption = true;
@@ -1149,10 +1170,24 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
             });
           }
         } else {
-          if(element.answerSubmitted !== "null"  || element.answerSubmitted !== null ) {
-            this.currentOption = element.answerSubmitted;
+          let ansSub="";
+          if(element.answerSubmitted === "null"  || element.answerSubmitted === null){
+             ansSub="null";
+          }
+          if(ansSub !== "null") {
+            if (this.questiontoShow.questionType === "NAT") {
+              localStorage.setItem(this.localStorageNATKey, element.answerSubmitted);
+              this.currentOption = element.answerSubmitted;
+            }else{
+              this.currentOption = element.answerSubmitted;
+            }
           }else{
-            this.currentOption = element.answerSubmitted;
+            if (this.questiontoShow.questionType === "NAT") {
+              localStorage.setItem(this.localStorageNATKey, "");
+              this.currentOption = "";
+            }else{
+              this.currentOption = element.answerSubmitted;
+            }
           }
         }
         assignedCurrentOption = true;
@@ -1167,13 +1202,8 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           this.questiontoShow.answerSubmitted
         );
       }
-    }else
-
-    if (this.questiontoShow.answerSubmitted !== "null" || this.questiontoShow.answerSubmitted !== null ) {
-      this.currentOption=this.questiontoShow.answerSubmitted;
-    }else{
-      this.currentOption=this.questiontoShow.answerSubmitted;
     }
+
   }
 
   @ViewChild("tabGroup", { static: true })

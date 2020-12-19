@@ -109,7 +109,7 @@ export class ReportComponent implements OnInit {
       ];
       const keys=Object.keys(this.testanalyticsdata.questionToTimeTaken)
       keys.forEach((key, index) => {
-        this.histogramdata.push([parseInt(`${key}`),parseFloat(`${this.testanalyticsdata.questionToTimeTaken[key]/1000}`)])
+        this.histogramdata.push([parseInt(`${key}`),parseInt(`${this.testanalyticsdata.questionToTimeTaken[key]/1000}`)])
     });
     this.hist_data=this.histogramdata
     console.log(this.histogramdata)
