@@ -42,7 +42,37 @@ if(e.keyCode == 44){
   copyToClipboard();
 }
 });
-
+$(document).ready(function() { 
+            $(document).keydown(function(event) { 
+  
+                // 86 is the keycode of v 
+                if (event.ctrlKey == true && (event.which == '86')) { 
+                    $("#d2").text('paste. not allowed!'); 
+                    event.preventDefault(); 
+                } 
+  
+                // 88 is the keycode of x 
+                if (event.ctrlKey == true && (event.which == '88')) { 
+                    $("#d2").text('cut. not allowed!'); 
+                    event.preventDefault(); 
+                } 
+  
+                // 67 is the keycode of c 
+                if (event.ctrlKey == true && (event.which == '67')) { 
+                    $("#d2").text('copy. not allowed!'); 
+                    event.preventDefault(); 
+                } 
+  
+                // Above all three can be combined into one, above is  
+                // executed separately for understanding purposes. 
+                /* if (event.ctrlKey==true && (event.which == '86'  
+                || event.which == '67' || event.which == '88')) { 
+                    alert('cut. copy. paste. not allowed!'); 
+                    event.preventDefault(); 
+                } */
+            }); 
+           
+        }); 
   </script>
   <style type="text/css" media="print">
     * { display: none; }
