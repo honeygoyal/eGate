@@ -177,8 +177,21 @@
               </text>
             </svg>
           </div>
-          <mat-card-title>{{ exam.title }}</mat-card-title>  
-          <div class="examDescription">{{ exam.description }}</div>       
+          <!-- <mat-card-title>{{ exam.title }}</mat-card-title>  
+          <div class="examDescription">{{ exam.description }}</div> 
+               -->
+               <mat-card-title
+               style="
+                 display: flex;
+                 align-items: left;
+                 justify-content: space-between;
+                 flex-direction: column;
+                 margin-left: 1rem;
+               "
+             >
+               <span>{{ exam.title }}</span>
+               <span class="examDescription">{{exam.description}}</span>
+             </mat-card-title>
           <h5
             *ngIf="exam.status === 'PENDING'"
             style="color: red; position: absolute; right: 5%"
@@ -230,8 +243,18 @@
               </text>
             </svg>
           </div>
-          <mat-card-title>{{ exam.title }}</mat-card-title>
-          <div class="examDescription">{{ exam.description }}</div> 
+          <mat-card-title
+          style="
+            display: flex;
+            align-items: left;
+            justify-content: space-between;
+            flex-direction: column;
+            margin-left: 1rem;
+          "
+        >
+          <span>{{ exam.title }}</span>
+          <span class="examDescription">{{exam.description}}</span>
+        </mat-card-title>
         </mat-card-header>
         <mat-card-content id="card-content">
           <div id="cont">
