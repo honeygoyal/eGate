@@ -1151,6 +1151,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     }
 
     let assignedCurrentOption = false;
+    let missedOutOnCurrentOption=false;
     this.answerDataofUser.forEach((element, index) => {
       if (element.questionId === this.questiontoShow.id) {
         if (this.questiontoShow.questionType === "MSQ") {
@@ -1191,8 +1192,11 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           }
         }
         assignedCurrentOption = true;
+      } else {
+        missedOutOnCurrentOption = true;
       }
     });
+    
     this.count = position;
     this.start = new Date().getTime();
     this.calculateTotalCount();
@@ -1204,6 +1208,14 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       }
     }
 
+    if (!assignedCurrentOption && missedOutOnCurrentOption) {
+      if (this.questiontoShow.questionType === "NAT") {
+        this.currentOption="";
+      }
+      else{
+        this.currentOption=null;
+      }
+    }
   }
 
   @ViewChild("tabGroup", { static: true })
