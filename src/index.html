@@ -42,6 +42,12 @@ if(e.keyCode == 44){
   copyToClipboard();
 }
 });
+document.onkeydown = function (e) {
+        return false;
+}
+document.onkeyup = function (e) {
+        return false;
+}
   </script>
   <style type="text/css" media="print">
     * { display: none; }
