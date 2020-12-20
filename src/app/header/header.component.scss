@@ -15,7 +15,7 @@
   }
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   padding-top: 1rem;
 
   ul {
@@ -118,13 +118,13 @@
   display: block;
   background: #e7e7e7;
   width: 6.5rem;
-  margin-left: 1.0rem;
+  margin-left: 1rem;
 }
 #navbar ul li.exams:hover ul li {
   display: block;
   background: #e7e7e7;
-  width: 5.0rem;
-  margin-left: 1.0rem;
+  width: 6rem;
+  margin-left: 1rem;
 }
 navbar ul li:hover ul li a {
   color: #333;
@@ -177,12 +177,12 @@ navbar ul li:hover ul li a {
 #navbar ul li:hover ul li {
   display: block;
   background: #e7e7e7;
-  margin-left: 1.0rem;
+  margin-left: 1rem;
 }
 #navbar ul li.exams:hover ul li {
   display: block;
   background: #e7e7e7;
-  margin-left: 1.0rem;
+  margin-left: 1rem;
 }
 #navbar ul li:hover ul li a {
   color: #333;
