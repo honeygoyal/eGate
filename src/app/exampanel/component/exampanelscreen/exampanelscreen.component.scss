@@ -496,7 +496,7 @@ mat-checkbox {
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(74, 74, 74, 0.8);
+  background-color: rgba(74, 74, 74, 0.5);
   z-index: 99999;
 }
 .spinner {
@@ -504,4 +504,65 @@ mat-checkbox {
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.box {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  /* background: red; */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+
+.box .b {
+  border-radius: 50%;
+  border-left: 4px solid;
+  border-right: 4px solid;
+  border-top: 4px solid transparent !important;
+  border-bottom: 4px solid transparent !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: rom 2s infinite;
+  /* background: blue; */
+}
+
+.box .b1 {
+  border-color: #1ec5f5;
+  width: 140px;
+  height: 140px;
+}
+.box .b2 {
+  border-color: #4b4b4b;
+  width: 120px;
+  height: 120px;
+  animation-delay: 0.2s;
+}
+.box .b3 {
+  border-color: #8c8c8c;
+  width: 100px;
+  height: 100px;
+  animation-delay: 0.4s;
+}
+.box .b4 {
+  border-color: #dadedf;
+  width: 80px;
+  height: 80px;
+  animation-delay: 0.6s;
+}
+
+@keyframes rom {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(-180deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
 }

@@ -26,12 +26,23 @@
             <li>
               <a routerLink="/examdetails/gate">GATE</a>
             </li>
-
+            <li>
+              <a (click)="downloadSoon()"  href="#">ESE</a>
+            </li>
+            <li>
+              <a  routerLink="/examdetails/bhel" href="#">PSU</a>
+            </li>
             <li>
               <a routerLink="/examdetails/ipate" href="#">iPATE</a>
             </li>
             <li>
-              <a routerLink="/examdetails/bhel" href="#">PSU</a>
+              <a (click)="downloadSoon()" href="#">IIT-JAM</a>
+            </li>
+            <li>
+              <a (click)="downloadSoon()" href="#">TIFR</a>
+            </li>
+            <li>
+              <a (click)="downloadSoon()" href="#">JEST</a>
             </li>
           </ul>
         </li>
@@ -96,10 +107,10 @@
             </a>
             <a *ngIf="isLoggedOut$ | async" routerLink="/login">Login</a>
             <button
-              style="border-color: #07c4fb;margin-left: -4rem;padding: 2.8px;"
+              style="border-color: #07c4fb;margin-left: -4rem;padding: 2px 5px;background-color: #07c4fb;border-radius: 5px;"
               *ngIf="isLoggedIn$ | async"
             >
-              <a (click)="logout()" routerLink="/login">Logout</a>
+              <a style="color: white;" (click)="logout()" routerLink="/login">Logout</a>
             </button>
           </div>
         </li>
