@@ -129,6 +129,10 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   profilePhoto: any;
   //ngOninit
   ngOnInit(): void {
+    window.onunload = refreshParent;
+    function refreshParent() {
+        window.opener.location.reload();
+    }
     this.route.params.subscribe((params: Params) => {
       this.test_code = params["test_id"];
     });
