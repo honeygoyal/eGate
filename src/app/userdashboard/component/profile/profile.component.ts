@@ -194,37 +194,37 @@ export class ProfileComponent implements OnInit {
   navigateToBranchLinks(branch:string){
     switch (branch) {
       case "CE":
-        window.open("https://www.youtube.com","_blank");
+        // window.open("https://www.youtube.com","_blank");
         break;
       case "CS":
-        window.open("https://www.youtube.com","_blank");
+        // window.open("https://www.youtube.com","_blank");
         break;
       case "ME":
-        window.open("https://www.youtube.com","_blank");
+        // window.open("https://www.youtube.com","_blank");
         break;
       case "AE":
-        window.open("https://www.youtube.com","_blank");
+        // window.open("https://www.youtube.com","_blank");
         break;
       case "CH":
-        window.open("https://www.youtube.com","_blank");
+        // window.open("https://www.youtube.com","_blank");
         break;
       case "PI":
-        window.open("https://www.youtube.com","_blank");
+        // window.open("https://www.youtube.com","_blank");
         break;
       case "MA":
-        window.open("https://www.youtube.com","_blank");
+        // window.open("https://www.youtube.com","_blank");
         break;
       case "MT":
-        window.open("https://www.youtube.com","_blank");
+        // window.open("https://www.youtube.com","_blank");
         break;
       case "EE":
-        window.open("https://www.youtube.com","_blank");
+        // window.open("https://www.youtube.com","_blank");
         break;
       case "ECE":
-        window.open("https://www.youtube.com","_blank");
+        // window.open("https://www.youtube.com","_blank");
         break;
       case "IN":
-        window.open("https://www.youtube.com","_blank");
+        // window.open("https://www.youtube.com","_blank");
         break;
       default:
         return "";
