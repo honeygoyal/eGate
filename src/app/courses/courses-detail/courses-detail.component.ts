@@ -46,93 +46,97 @@ export class CoursesDetailComponent implements OnInit {
   }
 
   paymentstart() {
-    event.preventDefault();
-    let constructHtml="";
-    let subscribedBranches="";
-    this.amount=0;
-    let examType=this.getExamType(this.content,false);
-    if(this.user.user.coursesOffered.length > 0){
-      this.user.user.coursesOffered.forEach(subscribedCourse => {
-        let constructedExamId:string=subscribedCourse.branch.toUpperCase()+"-"+this.contentSelected.toUpperCase()+"-"+examType;
-       if(constructedExamId === subscribedCourse.examId){
-         subscribedBranches=subscribedBranches+subscribedCourse.branch+";";
-       }
-      });
-    }
-    
-    let dialogTitle='&nbsp;&nbsp;Select branches';
-    this.discipline.forEach(branch => {
-      if(subscribedBranches.indexOf(branch) === -1){
-        let branchFullName=this.getExamFullName(branch);
-        constructHtml=constructHtml+'<input class="inputConstructHtml" type="checkbox" id="'+branch+'"/>&nbsp;&nbsp;'+ branchFullName +'<br/>';
-      }
-    });
-    
-    let outerHtml:string='<div style="line-height: inherit;text-align: left;margin-left: 90px;">'+constructHtml+'</div>';
-    if(constructHtml === ""){
-      dialogTitle='All the branches available to you have already been subscribed!!';
-      Swal.fire({
-        title: dialogTitle,
-        html: constructHtml,
-        showCancelButton: true,
-        showCloseButton: true
-      });
-    }
-    else{
-      Swal.fire({
-        title: dialogTitle,
-        html: outerHtml,
-        showCancelButton: true,
-        confirmButtonText: 'Confirm',
-        showCloseButton: true,
-        inputValidator: (result) => {
-          return !result && 'You need to select one of the branches'
-        },
-        preConfirm: () => {
-          let checkBoxValue:any;
-          examType=this.getExamType(this.content,true);
-          this.discipline.forEach(branch => {
-            checkBoxValue=document.getElementById(branch);
-            if(checkBoxValue !== null){
-              if(checkBoxValue.checked === true){
-                let constructedExamId:string=branch.toUpperCase()+"-"+this.contentSelected.toUpperCase()+"-"+examType;
-                 this.selectedCheckBoxValues.push(constructedExamId);
-                 this.amount=this.amount+this.initialCourseAmount;
-              }
-            }
-          });
-          this.amount=this.amount*100;
+    if(location.href.indexOf("gate/online%20test%20series") > -1){
+      event.preventDefault();
+      let constructHtml="";
+      let subscribedBranches="";
+      this.amount=0;
+      let examType=this.getExamType(this.content,false);
+      if(this.user.user.coursesOffered.length > 0){
+        this.user.user.coursesOffered.forEach(subscribedCourse => {
+          let constructedExamId:string=subscribedCourse.branch.toUpperCase()+"-"+this.contentSelected.toUpperCase()+"-"+examType;
+         if(constructedExamId === subscribedCourse.examId){
+           subscribedBranches=subscribedBranches+subscribedCourse.branch+";";
          }
-      }).then((result) => {
-        if(this.amount > 0 && result.isConfirmed){
-          this.paymentService
-          .postSubmittedOrder({
-            amount: this.amount,
-            currency: this.currency,
-            notes: this.notes,
-            receipt: this.receipt
-          })
-          .subscribe(
-            (data) => {
-              console.log("Successfully initiated the order");
-              this.razorPayOptions.order_id= data["orderId"];
-              this.razorPayOptions.currency= data["currency"];
-              this.razorPayOptions.amount= data["amount"];
-              this.buyRazorPay();
-            },
-            (err) => {
-              console.log(err);
-            }
-          );
+        });
+      }
+      
+      let dialogTitle='&nbsp;&nbsp;Select branches';
+      this.discipline.forEach(branch => {
+        if(subscribedBranches.indexOf(branch) === -1){
+          let branchFullName=this.getExamFullName(branch);
+          constructHtml=constructHtml+'<input class="inputConstructHtml" type="checkbox" id="'+branch+'"/>&nbsp;&nbsp;'+ branchFullName +'<br/>';
         }
-        else{
-          if(this.amount <= 0 && result.isConfirmed){
-            console.log("None of the branches shown in the dialog were selected");
-          } else{
-            console.log("Cancelled the order");
+      });
+      
+      let outerHtml:string='<div style="line-height: inherit;text-align: left;margin-left: 90px;">'+constructHtml+'</div>';
+      if(constructHtml === ""){
+        dialogTitle='All the branches available to you have already been subscribed!!';
+        Swal.fire({
+          title: dialogTitle,
+          html: constructHtml,
+          showCancelButton: true,
+          showCloseButton: true
+        });
+      }
+      else{
+        Swal.fire({
+          title: dialogTitle,
+          html: outerHtml,
+          showCancelButton: true,
+          confirmButtonText: 'Confirm',
+          showCloseButton: true,
+          inputValidator: (result) => {
+            return !result && 'You need to select one of the branches'
+          },
+          preConfirm: () => {
+            let checkBoxValue:any;
+            examType=this.getExamType(this.content,true);
+            this.discipline.forEach(branch => {
+              checkBoxValue=document.getElementById(branch);
+              if(checkBoxValue !== null){
+                if(checkBoxValue.checked === true){
+                  let constructedExamId:string=branch.toUpperCase()+"-"+this.contentSelected.toUpperCase()+"-"+examType;
+                   this.selectedCheckBoxValues.push(constructedExamId);
+                   this.amount=this.amount+this.initialCourseAmount;
+                }
+              }
+            });
+            this.amount=this.amount*100;
+           }
+        }).then((result) => {
+          if(this.amount > 0 && result.isConfirmed){
+            this.paymentService
+            .postSubmittedOrder({
+              amount: this.amount,
+              currency: this.currency,
+              notes: this.notes,
+              receipt: this.receipt
+            })
+            .subscribe(
+              (data) => {
+                console.log("Successfully initiated the order");
+                this.razorPayOptions.order_id= data["orderId"];
+                this.razorPayOptions.currency= data["currency"];
+                this.razorPayOptions.amount= data["amount"];
+                this.buyRazorPay();
+              },
+              (err) => {
+                console.log(err);
+              }
+            );
           }
-        }
-      })
+          else{
+            if(this.amount <= 0 && result.isConfirmed){
+              console.log("None of the branches shown in the dialog were selected");
+            } else{
+              console.log("Cancelled the order");
+            }
+          }
+        })
+      }
+    }else{
+      Swal.fire("Registration will start soon!");
     }
   }
 
