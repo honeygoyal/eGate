@@ -218,24 +218,24 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     return this.sanitizer.bypassSecurityTrustResourceUrl(base64Image);
   }
 
-  @HostListener("window:blur", ["$event"])
-  onblur(event: any): void {
-    if (this.attempts !== 0) {
-      Swal.fire({
-        icon: "error",
-        title: "Window Changed Alert",
-        text: this.attempts + " attempts left",
-      });
-      this.attempts = this.attempts - 1;
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Maximum attempt tried",
-        text: "You exam has ended",
-      });
-      window.close();
-    }
-  }
+  // @HostListener("window:blur", ["$event"])
+  // onblur(event: any): void {
+  //   if (this.attempts !== 0) {
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Window Changed Alert",
+  //       text: this.attempts + " attempts left",
+  //     });
+  //     this.attempts = this.attempts - 1;
+  //   } else {
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Maximum attempt tried",
+  //       text: "You exam has ended",
+  //     });
+  //     window.close();
+  //   }
+  // }
 
   @HostListener("window:unload", ["$event"])
   unloadHandler(event) {
@@ -555,28 +555,22 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
         });
       });
 
-      if (!assignedCurrentOption && missedOutOnCurrentOption) {
-        if (this.questiontoShow.questionType === "NAT") {
-          this.currentOption="";
-        }else if (this.questiontoShow.questionType === "MSQ") {
-          this.IsAChecked=false;
-          this.IsBChecked=false;
-          this.IsCChecked=false;
-          this.IsDChecked=false;
-        }
-        else{
-          this.currentOption=null;
-        }
-      }
-
       this.initializeCounts = true;
     }
 
-    // if (!assignedCurrentOption && missedOutOnCurrentOption) {
-    //   if (form !== undefined) {
-    //     form.reset();
-    //   }
-    // }
+    if (!assignedCurrentOption && missedOutOnCurrentOption) {
+      if (this.questiontoShow.questionType === "NAT") {
+        this.currentOption="";
+      }else if (this.questiontoShow.questionType === "MSQ") {
+        this.IsAChecked=false;
+        this.IsBChecked=false;
+        this.IsCChecked=false;
+        this.IsDChecked=false;
+      }
+      else{
+        this.currentOption=null;
+      }
+    }
   }
   start: any;
   end: any;
