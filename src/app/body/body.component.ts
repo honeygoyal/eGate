@@ -48,7 +48,7 @@ export class BodyComponent implements OnInit {
   clickbookfunc(e:Event){
     // location.href=
     // this.bookImagesObject[+e].googlePlayUrl
-    window.open(this.bookImagesObject[+e].googlePlayUrl, "_blank"); 
+    window.open(this.bookImagesObject[+e].url, "_blank"); 
     console.log(this.bookImagesObject[+e].url);
   }
   soonUpdateMessage() {
