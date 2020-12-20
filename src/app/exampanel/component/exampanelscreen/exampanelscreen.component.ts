@@ -387,13 +387,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
 
     this.calculateTotalCount();
 
-    if (this.timer === 1) {
-      this.countdownconfig = {
-        leftTime: +this.duration * 60,
-        format: "H:m:s",
-      };
-      this.timer = 0;
-    }
+  
     this.questionGroup = [...this.question[this.sect]];
     this.questiontoShow = {
       ...this.questionGroup[0],
@@ -556,6 +550,26 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       });
 
       this.initializeCounts = true;
+
+      if (this.timer === 1) {
+        let actualTime:any=this.questiontoShow.totalTimeTaken/1000;
+        let sec:any = parseInt(actualTime)%60;
+        let minsDone:any = parseInt(sec)/60;
+        let actualTimer:any=(+this.duration) - minsDone;
+        this.countdownconfig = {
+          leftTime: +actualTimer * 60,
+          format: "H:m:s",
+        };
+        this.timer = 0;
+      }
+    }else{
+      if (this.timer === 1) {
+        this.countdownconfig = {
+          leftTime: +this.duration * 60,
+          format: "H:m:s",
+        };
+        this.timer = 0;
+      }
     }
 
     if (!assignedCurrentOption && missedOutOnCurrentOption) {
