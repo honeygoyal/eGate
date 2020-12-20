@@ -185,6 +185,52 @@ export class ProfileComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(base64Image);
   }
 
+  openSchedule(branch:string,testSeries:string){
+    if(testSeries.indexOf("GATE") > -1){
+      this.navigateToBranchLinks(branch);
+    }
+  }
+
+  navigateToBranchLinks(branch:string){
+    switch (branch) {
+      case "CE":
+        window.open("https://www.youtube.com","_blank");
+        break;
+      case "CS":
+        window.open("https://www.youtube.com","_blank");
+        break;
+      case "ME":
+        window.open("https://www.youtube.com","_blank");
+        break;
+      case "AE":
+        window.open("https://www.youtube.com","_blank");
+        break;
+      case "CH":
+        window.open("https://www.youtube.com","_blank");
+        break;
+      case "PI":
+        window.open("https://www.youtube.com","_blank");
+        break;
+      case "MA":
+        window.open("https://www.youtube.com","_blank");
+        break;
+      case "MT":
+        window.open("https://www.youtube.com","_blank");
+        break;
+      case "EE":
+        window.open("https://www.youtube.com","_blank");
+        break;
+      case "ECE":
+        window.open("https://www.youtube.com","_blank");
+        break;
+      case "IN":
+        window.open("https://www.youtube.com","_blank");
+        break;
+      default:
+        return "";
+    }
+  }
+
   Submitdocs() {
     if (this.photoFile.length !== undefined) {
       $("#iErr").html("Please Upload Profile Photo");

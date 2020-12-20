@@ -148,7 +148,7 @@
       <mat-chip color="primary" routerLink="/userdashboard/demoseries/GATE" selected>DEMO</mat-chip>
       <span *ngFor="let course of user.user.coursesOffered">
         <mat-chip selected *ngIf="branch === course.branch" color="accent">
-          <span (click)="openSchedule(branch)">{{ course.examNameService }}</span>
+          <span (click)="openSchedule(branch,course.examNameService)">{{ course.examNameService }}</span>
         </mat-chip></span
       >
     </mat-chip-list>
