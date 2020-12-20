@@ -17,7 +17,7 @@
       cursor: pointer;
       margin: 0.5rem 0rem 0.5rem 0rem;
       width: 12rem;
-      height: 8rem;
+      height: 9rem;
       background: #fff;
       border-radius: 10px;
       padding: 0.1rem;
@@ -33,6 +33,29 @@
     // .course-card:hover img {
     //   background: black;
     // }
+  }
+
+  .courses-psu-cards {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    .course-card {
+      cursor: pointer;
+      margin: 0.5rem 0rem 0.5rem 0rem;
+      width: 12rem;
+      height: 8rem;
+      background: #fff;
+      border-radius: 10px;
+      padding: 0.1rem;
+      box-shadow: 0 0 20px 1px #07c4fb;
+      text-align: center;
+      padding-top: 1rem;
+      outline: none;
+      margin-right: 17%;
+    }
+    .course-card:hover {
+      background: #8fffd9;
+    }
   }
   .courses-cards-last {
     display: flex;
