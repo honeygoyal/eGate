@@ -17,7 +17,66 @@
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
     integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+  <script>document.addEventListener('contextmenu', event => event.preventDefault());
+    // document.addEventListener("keyup", function (e) {
+    //   if (e.keyCode == 44) {
+    //     e.preventDefault();
+    //     alert("Dont try to printscreen your account will be suspended");
+    //     // stopPrntScr();
+    //   }
+    // });
+    function copyToClipboard() {
 
+var aux = document.createElement("input");
+aux.setAttribute("value", "print screen disabled!");      
+document.body.appendChild(aux);
+aux.select();
+document.execCommand("copy");
+// Remove it from the body
+document.body.removeChild(aux);
+alert("Print screen disabled!");
+}
+
+$(window).keyup(function(e){
+if(e.keyCode == 44){
+  copyToClipboard();
+}
+});
+$(document).ready(function() { 
+            $(document).keydown(function(event) { 
+  
+                // 86 is the keycode of v 
+                if (event.ctrlKey == true && (event.which == '86')) { 
+                    $("#d2").text('paste. not allowed!'); 
+                    event.preventDefault(); 
+                } 
+  
+                // 88 is the keycode of x 
+                if (event.ctrlKey == true && (event.which == '88')) { 
+                    $("#d2").text('cut. not allowed!'); 
+                    event.preventDefault(); 
+                } 
+  
+                // 67 is the keycode of c 
+                if (event.ctrlKey == true && (event.which == '67')) { 
+                    $("#d2").text('copy. not allowed!'); 
+                    event.preventDefault(); 
+                } 
+  
+                // Above all three can be combined into one, above is  
+                // executed separately for understanding purposes. 
+                /* if (event.ctrlKey==true && (event.which == '86'  
+                || event.which == '67' || event.which == '88')) { 
+                    alert('cut. copy. paste. not allowed!'); 
+                    event.preventDefault(); 
+                } */
+            }); 
+           
+        }); 
+  </script>
+  <style type="text/css" media="print">
+    * { display: none; }
+</style>
   <script src="./assets/jquery-1.js"></script>
   <script src="./assets/jquery-ui.js"></script>
   <script src="./assets/oscZenoedited.js"></script>
