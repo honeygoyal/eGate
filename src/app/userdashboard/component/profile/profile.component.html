@@ -145,10 +145,10 @@
     >
     <pre class="panel-text">Courses      :</pre>
     <mat-chip-list aria-label="Fish selection">
-      <mat-chip color="primary" selected>DEMO TEST SERIES</mat-chip>
+      <mat-chip color="primary" routerLink="/userdashboard/demoseries/GATE" selected>DEMO</mat-chip>
       <span *ngFor="let course of user.user.coursesOffered">
         <mat-chip selected *ngIf="branch === course.branch" color="accent">
-          {{ course.examNameService }}
+          <span (click)="openSchedule(branch)">{{ course.examNameService }}</span>
         </mat-chip></span
       >
     </mat-chip-list>

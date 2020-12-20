@@ -15,18 +15,6 @@
         >
           Branch:{{ branchOpted }}
         </button>
-        <!-- <button
-          style="
-            cursor: pointer;
-            outline: none;
-            border: 1px solid rgba(255, 153, 0, 1);
-          "
-          routerLink="/userdashboard/demoseries"
-          class="btn btn-primary"
-          (click)="demo('DEMO')"
-        >
-          Demo
-        </button> -->
         <button
           *ngIf="addressLocation !== '/userdashboard/profile'"
           style="
@@ -53,6 +41,18 @@
         >
           Admin Panel
         </button>
+        <button
+          style="
+            cursor: pointer;
+            outline: none;
+            border: 1px solid rgba(255, 153, 0, 1);
+          "
+          routerLink="/userdashboard/demoseries/GATE"
+          class="btn btn-primary"
+          (click)="demo('DEMO')"
+        >
+          Demo
+        </button>
       </div>
     </div>
 
@@ -64,18 +64,9 @@
         <p>T</p>
         <p>E</p>
         <p>&nbsp;</p>
-        <p>&nbsp;</p>
       </div>
       <div class="right-content">
         <ul id="icon-list" style="list-style-type: none">
-          <li>
-            <a
-              routerLink="/userdashboard/demoseries/GATE"
-              (click)="demo('DEMO')"
-              href="#"
-              >Demo</a
-            >
-          </li>
           <li>
             <a
               (click)="testseries('GATE-OTS')"
@@ -99,13 +90,9 @@
         <p>S</p>
         <p>E</p>
         <p>&nbsp;</p>
-        <p>&nbsp;</p>
       </div>
       <div class="right-content">
         <ul id="icon-list" style="list-style-type: none">
-          <li>
-            <a (click)="downloadSoon()" href="#">Demo</a>
-          </li>
           <li><a (click)="downloadSoon()" href="#">Online Test Series</a></li>
           <li><a (click)="downloadSoon()" href="#">Video Lectures</a></li>
           <li><a (click)="downloadSoon()" href="#">Question Bank</a></li>
@@ -128,9 +115,6 @@
       </div>
       <div class="right-content">
         <ul id="icon-list" style="list-style-type: none">
-          <li>
-            <a (click)="downloadSoon()" href="#">Demo</a>
-          </li>
           <li><a (click)="downloadSoon()" href="#">Online Test Series</a></li>
           <li><a (click)="downloadSoon()" href="#">Video Lectures</a></li>
           <li><a (click)="downloadSoon()" href="#">Question Bank</a></li>
@@ -148,13 +132,9 @@
         <p>F</p>
         <p>R</p>
         <p>&nbsp;</p>
-        <p>&nbsp;</p>
       </div>
       <div class="right-content">
         <ul id="icon-list" style="list-style-type: none">
-          <li>
-            <a (click)="downloadSoon()" href="#">Demo</a>
-          </li>
           <li><a (click)="downloadSoon()" href="#">Online Test Series</a></li>
           <li><a (click)="downloadSoon()" href="#">Video Lectures</a></li>
           <li><a (click)="downloadSoon()" href="#">Question Bank</a></li>
@@ -176,9 +156,6 @@
       </div>
       <div class="right-content">
         <ul id="icon-list" style="list-style-type: none">
-          <li>
-            <a (click)="downloadSoon()" href="#">Demo</a>
-          </li>
           <li><a (click)="downloadSoon()" href="#">Online Test Series</a></li>
           <li><a (click)="downloadSoon()" href="#">Video Lectures</a></li>
           <li><a (click)="downloadSoon()" href="#">Question Bank</a></li>
@@ -194,15 +171,11 @@
         <p style="margin-top: 0.5rem">P</p>
         <P>S</P>
         <p style="margin-bottom: 0.5rem">U</p>
-        <p>&nbsp;</p>
       
      
       </div>
       <div class="right-content">
         <ul id="icon-list" style="list-style-type: none">
-          <li>
-            <a (click)="downloadSoon()" href="#">Demo</a>
-          </li>
           <li><a (click)="downloadSoon()" href="#">ISRO Test Series</a></li>
           <li><a (click)="downloadSoon()" href="#">BARC Test Series</a></li>
           <!-- <li><a (click)="downloadSoon()" href="#">SAIL Test Series</a></li>
@@ -224,13 +197,9 @@
         <p>S</p>
         <p>T</p>
         <p>&nbsp;</p>
-        <p>&nbsp;</p>
       </div>
       <div class="right-content">
         <ul id="icon-list" style="list-style-type: none">
-          <li>
-            <a (click)="downloadSoon()" href="#">Demo</a>
-          </li>
           <li><a (click)="downloadSoon()" href="#">Online Test Series</a></li>
           <li><a (click)="downloadSoon()" href="#">Video Lectures</a></li>
           <li><a (click)="downloadSoon()" href="#">Question Bank</a></li>

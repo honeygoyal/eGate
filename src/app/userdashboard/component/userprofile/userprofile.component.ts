@@ -127,6 +127,10 @@ export class UserprofileComponent implements OnInit {
     this.selectedItem = "DEMO";
   }
 
+  openSchedule(branch:string){
+    window.open("www.youtube.com","_blank");
+  }
+
   selectBranchDialogOpen() {
     const dialogRef = this.dialog.open(BranchselectionComponent, {
       width: "55%",
