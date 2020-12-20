@@ -4,13 +4,18 @@
 
 .example-card {
   max-width: 100%;
-  padding: 1rem 3rem;
+  padding: 1rem 1rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
   margin-left: 1rem;
   margin-right: 1rem;
   border-radius: 20px;
   box-shadow: 0 0 20px 1px #07c4fb;
+  transition: padding 0.5s;
+}
+
+.example-card:hover {
+  padding: 1.5rem 1.5rem;
 }
 // .example-card:after {
 //   content: "";
