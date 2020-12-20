@@ -1,199 +1,204 @@
-<mat-card style="margin-left: 3rem">
+<mat-tab-group style="margin-left: 3rem;overflow: hidden;">
+  <mat-tab style="overflow: hidden;" label="Create Test"> 
+    <mat-card style="margin-top: 1rem;overflow: hidden;">
   
-  <button mat-raised-button color="primary" style="text-align: center;">Test Upload Admin</button><br>
-  <mat-horizontal-stepper [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="firstFormGroup">
-      <form [formGroup]="firstFormGroup" (ngSubmit)="onSubmit()">
-        <ng-template matStepLabel>Create Test</ng-template>
-        <mat-form-field>
-          <mat-label>Test ID</mat-label>
-          <input matInput formControlName="courseId" required />
-        </mat-form-field>
-        <br />
-        <mat-form-field>
-          <mat-label>Title</mat-label>
-          <input matInput formControlName="title" required />
-        </mat-form-field>
-
-        <mat-form-field style="margin-left: 8rem">
-          <mat-label>Description</mat-label>
-          <input matInput formControlName="description" required />
-        </mat-form-field>
-        <br />
-        <mat-form-field>
-          <mat-label>Exam Code</mat-label>
-          <mat-select formControlName="examId" required>
-            <mat-option *ngFor="let exam of exams_code" [value]="exam">
-              {{ exam.examId }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <mat-form-field style="margin-left: 8rem">
-          <mat-label>Total Marks</mat-label>
-          <input type="number" matInput formControlName="totalMarks" required />
-        </mat-form-field>
-        <br />
-        <mat-form-field>
-          <mat-label>Number of Questions</mat-label>
-          <input
-            type="number"
-            matInput
-            formControlName="totalQuestion"
-            required
-          />
-        </mat-form-field>
-
-        <mat-form-field style="margin-left: 8rem">
-          <mat-label>Duration Of Test(min)</mat-label>
-          <input type="number" matInput formControlName="duration" required />
-        </mat-form-field>
-        <br />
-        <mat-form-field>
-          <mat-label>Start Date</mat-label>
-          <input type="date" matInput formControlName="startDate" required />
-        </mat-form-field>
-
-        <mat-form-field style="margin-left: 8rem">
-          <mat-label>End Date</mat-label>
-          <input type="date" matInput formControlName="endDate" required />
-        </mat-form-field>
-        <div>
-          <button
-            mat-raised-button
-            color="primary"
-            [disabled]="!firstFormGroup.valid"
-            matStepperNext
-          >
-            Save
-          </button>
-        </div>
-      </form>
-    </mat-step>
-    <!-- <mat-step [stepControl]="thirdFormGroup">
-      <ng-template matStepLabel>Edit Test</ng-template>
-    </mat-step> -->
-    <mat-step [stepControl]="secondFormGroup">
-      <form [formGroup]="secondFormGroup" (ngSubmit)="onSubmitfile()">
-        <ng-template matStepLabel>Upload Test</ng-template>
-        <mat-form-field>
-          <mat-label>Exam Code</mat-label>
-          <mat-select
-            formControlName="examId"
-            required
-            [(ngModel)]="examCode"
-            (ngModelChange)="onExamCodeSelect()"
-          >
-            <mat-option *ngFor="let exam of exams_code" [value]="exam">
-              {{ exam.examId }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <br />
-        <!-- <mat-form-field>
-          <mat-label>Test Id</mat-label>
-          <input matInput formControlName="courseId" required />
-        </mat-form-field> -->
-        <mat-form-field>
-          <mat-label>Test Code</mat-label>
-          <mat-select formControlName="courseId" required>
-            <mat-option *ngFor="let test of testList" [value]="test">
-              {{ test }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <br />
-
-        <input
-          (change)="onFileSelected($event)"
-          #fileInput
-          type="file"
-          id="file"
-        />
-        <br />
-
-        <br />
-        <div>
-          <button mat-raised-button color="primary" matStepperNext>Save</button>
-        </div>
-      </form>
-    </mat-step>
-  </mat-horizontal-stepper>
-</mat-card>
-
-<mat-card style="margin-left: 3rem; margin-top: 2rem;text-align: center;">
-  <button mat-raised-button color="primary" >Download Page Admin</button><br>
-  <form style="text-align: left;margin-left: 9rem;" #f="ngForm" (ngSubmit)="submitDownload(f)" >
-  <mat-form-field style="width: 30%;margin-right: 20%;" appearance="fill">
-    <mat-label>Exam</mat-label>
-    <mat-select [(ngModel)]="selectedExam.id" (ngModelChange)="onSelectExam($event)"  required name="exam">
-      <mat-option  *ngFor="let exam of exams" value={{exam.id}}>
-        {{exam.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field  style="width: 30%;" appearance="fill">
-    <mat-label>Select Subsection</mat-label>
-    <mat-select ngModel  (ngModelChange)="onSelectSubsection($event)" required name="subsection">
-      <mat-option *ngFor="let subsection of subsections" value={{subsection.id}}>
-        {{subsection.name}}
-      </mat-option> 
-    </mat-select>
-  </mat-form-field>
-  <br>
-  <mat-form-field  style="width: 30%;margin-right: 20%;" appearance="fill">
-    <mat-label>Select Department</mat-label>
-    <mat-select ngModel required name="branch" >
-      <mat-option *ngFor="let branche of branches" value={{branche.id}}>
-        {{branche.name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-
-<mat-form-field  style="width: 30%;" class="example-full-width">
-  <mat-label>Topic</mat-label>
-  <input ngModel required name="topic"  matInput >
-</mat-form-field>
-<br>
-<mat-form-field appearance="fill">
-  <mat-label>Select</mat-label>
-  <mat-select ngModel required name="label1">
-    <mat-option value="STUDY MATERIAL">STUDY MATERIAL</mat-option>
-    <mat-option value="QUESTION PAPERS">QUESTION PAPERS</mat-option>
-  </mat-select>
-</mat-form-field>
-
-<label for="">Upload File1&nbsp;&nbsp;&nbsp;&nbsp;</label>
-<input  style="width: 30%;"
-          (change)="onFile1Selected($event)"
-         
-          #fileInput
-          type="file"
-          id="file"
-        />
-        <br>
-        <mat-form-field appearance="fill">
-          <mat-label>Select</mat-label>
-          <mat-select ngModel required name="label2">
-            <mat-option value="PRACTICE QUESTIONS">PRACTICE QUESTIONS</mat-option>
-            <mat-option value="SOLUTIONS">SOLUTIONS</mat-option>
-          </mat-select>
-        </mat-form-field>
-      
-        
-<label for="">Upload File2 &nbsp;&nbsp;&nbsp;&nbsp;</label>
-        <input  style="width: 30%;"
-                  (change)="onFile2Selected($event)"
-                  #fileInput
-                  type="file"
-                  id="file"
-                /> <br>
-                <button style="float: right;" type="submit" mat-raised-button color="primary" >Submit</button><br>   
-              </form>
-</mat-card>
-
-<mat-card style="margin-left: 3rem; margin-top: 2rem; text-align: center">
+      <!-- <button mat-raised-button color="primary" style="text-align: center;">Test Upload Admin</button><br> -->
+      <mat-horizontal-stepper [linear]="isLinear" #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+          <form [formGroup]="firstFormGroup" (ngSubmit)="onSubmit()">
+            <ng-template matStepLabel>Create Test</ng-template>
+            <mat-form-field>
+              <mat-label>Test ID</mat-label>
+              <input matInput formControlName="courseId" required />
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <mat-label>Title</mat-label>
+              <input matInput formControlName="title" required />
+            </mat-form-field>
+    
+            <mat-form-field style="margin-left: 8rem">
+              <mat-label>Description</mat-label>
+              <input matInput formControlName="description" required />
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <mat-label>Exam Code</mat-label>
+              <mat-select formControlName="examId" required>
+                <mat-option *ngFor="let exam of exams_code" [value]="exam">
+                  {{ exam.examId }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+    
+            <mat-form-field style="margin-left: 8rem">
+              <mat-label>Total Marks</mat-label>
+              <input type="number" matInput formControlName="totalMarks" required />
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <mat-label>Number of Questions</mat-label>
+              <input
+                type="number"
+                matInput
+                formControlName="totalQuestion"
+                required
+              />
+            </mat-form-field>
+    
+            <mat-form-field style="margin-left: 8rem">
+              <mat-label>Duration Of Test(min)</mat-label>
+              <input type="number" matInput formControlName="duration" required />
+            </mat-form-field>
+            <br />
+            <mat-form-field>
+              <mat-label>Start Date</mat-label>
+              <input type="date" matInput formControlName="startDate" required />
+            </mat-form-field>
+    
+            <mat-form-field style="margin-left: 8rem">
+              <mat-label>End Date</mat-label>
+              <input type="date" matInput formControlName="endDate" required />
+            </mat-form-field>
+            <div>
+              <button
+                mat-raised-button
+                color="primary"
+                [disabled]="!firstFormGroup.valid"
+                matStepperNext
+              >
+                Save
+              </button>
+            </div>
+          </form>
+        </mat-step>
+        <!-- <mat-step [stepControl]="thirdFormGroup">
+          <ng-template matStepLabel>Edit Test</ng-template>
+        </mat-step> -->
+        <mat-step [stepControl]="secondFormGroup">
+          <form [formGroup]="secondFormGroup" (ngSubmit)="onSubmitfile()">
+            <ng-template matStepLabel>Upload Test</ng-template>
+            <mat-form-field>
+              <mat-label>Exam Code</mat-label>
+              <mat-select
+                formControlName="examId"
+                required
+                [(ngModel)]="examCode"
+                (ngModelChange)="onExamCodeSelect()"
+              >
+                <mat-option *ngFor="let exam of exams_code" [value]="exam">
+                  {{ exam.examId }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br />
+            <!-- <mat-form-field>
+              <mat-label>Test Id</mat-label>
+              <input matInput formControlName="courseId" required />
+            </mat-form-field> -->
+            <mat-form-field>
+              <mat-label>Test Code</mat-label>
+              <mat-select formControlName="courseId" required>
+                <mat-option *ngFor="let test of testList" [value]="test">
+                  {{ test }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br />
+    
+            <input
+              (change)="onFileSelected($event)"
+              #fileInput
+              type="file"
+              id="file"
+            />
+            <br />
+    
+            <br />
+            <div>
+              <button mat-raised-button color="primary" matStepperNext>Save</button>
+            </div>
+          </form>
+        </mat-step>
+      </mat-horizontal-stepper>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label="Download Page Admin"> 
+    <mat-card style=" margin-top: 1rem;text-align: center;">
+      <!-- <button mat-raised-button color="primary" >Download Page Admin</button><br> -->
+      <form style="text-align: left;margin-left: 9rem;" #f="ngForm" (ngSubmit)="submitDownload(f)" >
+      <mat-form-field style="width: 30%;margin-right: 20%;" appearance="fill">
+        <mat-label>Exam</mat-label>
+        <mat-select [(ngModel)]="selectedExam.id" (ngModelChange)="onSelectExam($event)"  required name="exam">
+          <mat-option  *ngFor="let exam of exams" value={{exam.id}}>
+            {{exam.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+      <mat-form-field  style="width: 30%;" appearance="fill">
+        <mat-label>Select Subsection</mat-label>
+        <mat-select ngModel  (ngModelChange)="onSelectSubsection($event)" required name="subsection">
+          <mat-option *ngFor="let subsection of subsections" value={{subsection.id}}>
+            {{subsection.name}}
+          </mat-option> 
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <mat-form-field  style="width: 30%;margin-right: 20%;" appearance="fill">
+        <mat-label>Select Department</mat-label>
+        <mat-select ngModel required name="branch" >
+          <mat-option *ngFor="let branche of branches" value={{branche.id}}>
+            {{branche.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+    <mat-form-field  style="width: 30%;" class="example-full-width">
+      <mat-label>Topic</mat-label>
+      <input ngModel required name="topic"  matInput >
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Select</mat-label>
+      <mat-select ngModel required name="label1">
+        <mat-option value="STUDY MATERIAL">STUDY MATERIAL</mat-option>
+        <mat-option value="QUESTION PAPERS">QUESTION PAPERS</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <label for="">Upload File1&nbsp;&nbsp;&nbsp;&nbsp;</label>
+    <input  style="width: 30%;"
+              (change)="onFile1Selected($event)"
+             
+              #fileInput
+              type="file"
+              id="file"
+            />
+            <br>
+            <mat-form-field appearance="fill">
+              <mat-label>Select</mat-label>
+              <mat-select ngModel required name="label2">
+                <mat-option value="PRACTICE QUESTIONS">PRACTICE QUESTIONS</mat-option>
+                <mat-option value="SOLUTIONS">SOLUTIONS</mat-option>
+              </mat-select>
+            </mat-form-field>
+          
+            
+    <label for="">Upload File2 &nbsp;&nbsp;&nbsp;&nbsp;</label>
+            <input  style="width: 30%;"
+                      (change)="onFile2Selected($event)"
+                      #fileInput
+                      type="file"
+                      id="file"
+                    /> <br>
+                    <button style="text-align: center;" type="submit" mat-raised-button color="primary" >Submit</button><br>   
+                  </form>
+    </mat-card>
+  </mat-tab>
+  <mat-tab label="Unverified User"> 
+    
+<mat-card style="margin-left: 3rem; margin-top: 2rem; text-align: center;overflow: hidden;">
   <div
     style="
       display: flex;
@@ -303,3 +308,10 @@
     </form>
   </div>
 </mat-card>
+
+  
+  </mat-tab>
+</mat-tab-group>
+
+
+
