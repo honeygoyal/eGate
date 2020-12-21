@@ -557,11 +557,11 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
 
       if (this.timer === 1) {
         let actualTime:any=this.questiontoShow.totalTimeTaken/1000;
-        let sec:any = parseInt(actualTime)%60;
-        let minsDone:any = parseInt(sec)/60;
-        let actualTimer:any=(+this.duration) - minsDone;
+       // let sec:any = parseInt(actualTime)%60;
+       // let minsDone:any = parseInt(sec)/60;
+        let actualTimer:any=(+this.duration * 60) - actualTime;
         this.countdownconfig = {
-          leftTime: +actualTimer * 60,
+          leftTime: +actualTimer,
           format: "H:m:s",
         };
         this.timer = 0;
