@@ -17,22 +17,29 @@
 .login-card {
   border-radius: 20px;
   margin-top: 3rem;
-  background: #333;
+  margin-left: -2rem;
+  background: #3f3d56;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .login-form {
-  padding: 1rem;
+  padding: 1rem 3rem;
 }
 
 .login-input {
   width: 25rem;
-  height: 2.2rem;
+  height: 3.2rem;
   margin: 0.5rem;
   padding: 0.2rem 0.5rem;
   border: 1px solid #333;
   border-radius: 10px;
   outline: none;
   font-size: 1.1rem;
+  margin-bottom: 1rem;
 }
 
 .login-textarea {
@@ -57,26 +64,33 @@
 }
 
 .large-btn {
-  width: 26rem;
-  padding: 1rem;
+  width: 24rem;
+  padding: 1rem 0rem;
   margin: 1rem;
-  background: #07c4fb;
-  border: 1px solid white;
-  border-radius: 20px;
+  background: #00f5a2;
+  border: 1px solid #11bf87;
+  border-radius: 10px;
   outline: none;
   cursor: pointer;
+  color: white;
+}
+
+.large-btn:hover {
+  background: #52dbae;
+  border: 1px solid #52dbae;
 }
 
 .dontaccount {
   color: white;
   text-decoration: none;
-  margin-left: 11rem;
+  margin-left: 10rem;
   padding: 1rem;
+  margin-top: 1rem;
 }
 .forgetpasswd {
   color: white;
   text-decoration: none;
-  margin-left: 18rem;
+  margin-left: 17rem;
 }
 
 @media (max-width: 500px) {
