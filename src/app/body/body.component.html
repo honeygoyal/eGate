@@ -48,8 +48,11 @@
     [images]="bookImagesObject"
     [infinite]="true"
     [manageImageRatio]="true"
+    [animationSpeed]=4
+    [autoSlide]="{interval: 2, stopOnHover: false}"
     [imageSize]="{width: '20%', height: '50%',space: 3}"
     (imageClick)="clickbookfunc($event)"
+    slideImage="1"
     ></ng-image-slider>
   </div>
   <!-- <div id="course">
