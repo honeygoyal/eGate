@@ -37,10 +37,17 @@ document.body.removeChild(aux);
 alert("Print screen disabled!");
 }
 
-$(window).keyup(function(e){
-if(e.keyCode == 44){
+
+window.addEventListener("keyup",function(e){
+  if(e.which == '44'){
   copyToClipboard();
+  e.preventDefault();
 }
+})
+$(window).focus(function() {
+  $("body").show();
+}).blur(function() {
+  $("body").hide();
 });
 $(document).ready(function() { 
             $(document).keydown(function(event) { 
@@ -50,6 +57,20 @@ $(document).ready(function() {
                     $("#d2").text('paste. not allowed!'); 
                     event.preventDefault(); 
                 } 
+
+//                 if(event.keyCode===44){
+//                   if(e.keyCode == 44){
+//                     var aux = document.createElement("input");
+// aux.setAttribute("value", "print screen disabled!");      
+// document.body.appendChild(aux);
+// aux.select();
+// document.execCommand("copy");
+// // Remove it from the body
+// document.body.removeChild(aux);
+// console.log("Hi")
+// alert("Print screen disabled!");
+//                   }
+//                 }
   
                 // 88 is the keycode of x 
                 if (event.ctrlKey == true && (event.which == '88')) { 

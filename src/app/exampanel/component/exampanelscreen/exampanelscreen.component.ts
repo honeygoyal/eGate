@@ -47,7 +47,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
   name: string;
   length: number;
   gridContainer: any;
-  attempts = 3;
+  attempts = 2;
   timer = 1;
   questionGroup: any[];
   questiontoShow: any;
@@ -126,7 +126,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
       },
     });
   }
-  profilePhoto: any;
+  profilePhoto: any;3 
   //ngOninit
   ngOnInit(): void {
     window.onunload = refreshParent;
