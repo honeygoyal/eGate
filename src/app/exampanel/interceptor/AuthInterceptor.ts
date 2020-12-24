@@ -30,6 +30,8 @@ export class AuthInterceptor implements HttpInterceptor {
         if (error instanceof HttpErrorResponse && error.status === 401) {
           this.router.navigateByUrl("/login");
           localStorage.removeItem("user");
+          localStorage.clear()
+          location.reload()
         } else {
           return throwError(error);
         }
