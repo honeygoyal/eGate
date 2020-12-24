@@ -338,7 +338,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
 
     if (this.localStorageNATKey === "natActiveValue") {
       this.localStorageNATKey =
-        this.localStorageNATKey + this.test_title.replace(" ", "");
+        this.localStorageNATKey + this.test_title.replace(/ /g, "");
       localStorage.setItem(this.localStorageNATKey, "");
     }
 
@@ -434,6 +434,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
             if (this.questiontoShow.questionType === "NAT") {
               localStorage.setItem(this.localStorageNATKey, "");
               this.currentOption = "";
+              (<HTMLInputElement>document.getElementById("answer")).value="";
             }else{
               this.currentOption = element.answerSubmitted;
             }
@@ -557,8 +558,6 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
 
       if (this.timer === 1) {
         let actualTime:any=this.questiontoShow.totalTimeTaken/1000;
-       // let sec:any = parseInt(actualTime)%60;
-       // let minsDone:any = parseInt(sec)/60;
         let actualTimer:any=(+this.duration * 60) - actualTime;
         this.countdownconfig = {
           leftTime: +actualTimer,
@@ -579,6 +578,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     if (!assignedCurrentOption && missedOutOnCurrentOption) {
       if (this.questiontoShow.questionType === "NAT") {
         this.currentOption="";
+        (<HTMLInputElement>document.getElementById("answer")).value="";
       }else if (this.questiontoShow.questionType === "MSQ") {
         this.IsAChecked=false;
         this.IsBChecked=false;
@@ -762,7 +762,9 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           }else{
             if (this.questiontoShow.questionType === "NAT") {
               localStorage.setItem(this.localStorageNATKey, "");
+              localStorage.setItem("natActiveValue", "");
               this.currentOption = "";
+              (<HTMLInputElement>document.getElementById("answer")).value="";
             }else{
               this.currentOption = element.answerSubmitted;
             }
@@ -964,7 +966,9 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           }else{
             if (this.questiontoShow.questionType === "NAT") {
               localStorage.setItem(this.localStorageNATKey, "");
+              localStorage.setItem("natActiveValue", "");
               this.currentOption = "";
+              (<HTMLInputElement>document.getElementById("answer")).value="";
             }else{
               this.currentOption = element.answerSubmitted;
             }
@@ -1225,7 +1229,9 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
           }else{
             if (this.questiontoShow.questionType === "NAT") {
               localStorage.setItem(this.localStorageNATKey, "");
+              localStorage.setItem("natActiveValue", "");
               this.currentOption = "";
+              (<HTMLInputElement>document.getElementById("answer")).value="";
             }else{
               this.currentOption = element.answerSubmitted;
             }
@@ -1251,6 +1257,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     if (!assignedCurrentOption && missedOutOnCurrentOption) {
       if (this.questiontoShow.questionType === "NAT") {
         this.currentOption="";
+        //localStorage.setItem("natActiveValue", "");
       }else if (this.questiontoShow.questionType === "MSQ") {
         this.IsAChecked=false;
         this.IsBChecked=false;

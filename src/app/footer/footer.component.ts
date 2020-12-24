@@ -24,7 +24,7 @@ export class FooterComponent implements OnInit {
     window.open("https://www.youtube.com/egatetutor");
   }
   openTelegram(){
-    window.open("https://t.me/joinchat/WPTxOBfc0M2nlMta9CS1Og");
+    window.open("https://t.me/egatetutorchannel");
   }
   
 }
