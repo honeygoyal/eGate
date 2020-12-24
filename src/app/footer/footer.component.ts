@@ -11,35 +11,20 @@ declare let Email: any;
   styleUrls: ["./footer.component.scss"],
 })
 export class FooterComponent implements OnInit {
-  constructor(private spinnerService: Ng4LoadingSpinnerService) {}
+  constructor() {}
 
   ngOnInit() {}
-
-  openModal() {
-    document.getElementById("modal").style.display = "block";
-    document.getElementById("fade").style.display = "block";
+  openInsta(){
+    window.open("https://www.instagram.com/egatetutor/");
   }
-
-  closeModal() {
-    document.getElementById("modal").style.display = "none";
-    document.getElementById("fade").style.display = "none";
+  openFacebook(){
+    window.open("https://www.facebook.com/egate.tutor.18");
   }
-  onSubmit(f: NgForm) {
-    Email.send({
-      Host: "smtpout.asia.secureserver.net",
-      Username: "support@egatetutor.in",
-      Password: "egatetutor_2019",
-      To: "support@egatetutor.in",
-      From: "support@egatetutor.in",
-      Subject: "Mail sent from: " + f.value.email,
-      Body: `
-      <i>This is feedback mail.</i> <br/> 
-      <b>Name: </b>${f.value.name} <br /> 
-      <b>Email: </b>${f.value.email}<br />
-      <b>Message:</b>  ${f.value.message}<br />  `,
-    }).then((message) => {
-      Swal.fire("Message Sent!");
-      f.resetForm();
-    });
+  openYoutube(){
+    window.open("https://www.youtube.com/egatetutor");
   }
+  openTelegram(){
+    window.open("https://t.me/joinchat/WPTxOBfc0M2nlMta9CS1Og");
+  }
+  
 }
