@@ -1257,6 +1257,7 @@ export class ExampanelscreenComponent implements OnInit, OnDestroy {
     if (!assignedCurrentOption && missedOutOnCurrentOption) {
       if (this.questiontoShow.questionType === "NAT") {
         this.currentOption="";
+        (<HTMLInputElement>document.getElementById("answer")).value="";
         //localStorage.setItem("natActiveValue", "");
       }else if (this.questiontoShow.questionType === "MSQ") {
         this.IsAChecked=false;
