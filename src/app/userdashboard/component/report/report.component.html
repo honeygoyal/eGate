@@ -338,7 +338,7 @@
                 user.totalMarks
               }}
             </h4>
-            <h4>Time : {{ user.yourTime / 60000 | number: ".0-0" }} min {{ (user.yourTime / 1000) - (user.yourTime / 60000 | number: ".0-0") * 60 | number: ".0-0"}} sec</h4>
+            <h4>Time : {{ convertTime(user.yourTime) }}</h4>
           </mat-card-content>
         </mat-card>
       </div>
