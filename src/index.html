@@ -19,16 +19,16 @@
     integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
   <script>document.addEventListener('contextmenu', event => event.preventDefault());
    
-    function copyToClipboard() {
-
-var aux = document.createElement("input");
-aux.setAttribute("value", "print screen disabled!");      
-document.body.appendChild(aux);
-aux.select();
-document.execCommand("copy");
-// Remove it from the body
-document.body.removeChild(aux);
-alert("Print screen disabled!");
+function copyToClipboard() {
+  var aux = document.createElement("input");
+  navigator.clipboard.writeText('');
+  aux.setAttribute("value", "print screen is disabled!");      
+  document.body.appendChild(aux);
+  aux.select();
+  document.execCommand("copy");
+  // Remove it from the body
+  document.body.removeChild(aux);
+  alert("print screen is disabled!");
 }
 
 
