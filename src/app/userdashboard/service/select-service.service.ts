@@ -99,6 +99,7 @@ new Department(56,15,"Civil Engineering"),
 new Department(57,15,"Electrical Engineering"),
 new Department(58,15,"Chemical Engineering"),
 new Department(59,15,"Metallurgical Engineering"),
+new Department(60,1,"Engineering Sciences"),
     ];
   }
 }

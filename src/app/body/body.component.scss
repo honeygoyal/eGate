@@ -45,23 +45,23 @@
 
 //google-play-book-container
 .frame {
-  position:relative;
+  position: relative;
   background-color: #07c4fb;
   width: 100%;
   padding: 0.5rem;
-  overflow:hidden;
-  flex-flow:row wrap;
-  
+  overflow: hidden;
+  flex-flow: row wrap;
+
   -webkit-justify-content: flex;
   -moz-justify-content: -moz-flex;
   justify-content: flex;
-  
-  display: -webkit-box; /* Safari */ 
+
+  display: -webkit-box; /* Safari */
   display: -moz-box; /* Firefox 21- */
   display: -ms-flexbox; /* IE 10+ */
   display: -webkit-flex; /* Chrome */
   display: flex; /* Standard (Firefox 22+) */
-  
+
   -webkit-box-orient: horizontal;
   -moz-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -75,12 +75,12 @@
   width: 17%;
 }
 
-.bookInformation{
+.bookInformation {
   margin-left: 30rem;
   display: flex;
 }
 
-.bookText{
+.bookText {
   color: white;
   padding-bottom: -13px;
   display: flex;
@@ -94,7 +94,7 @@
   font-weight: bolder;
 }
 
-.bookSliderContainer{
+.bookSliderContainer {
   margin-top: 2rem;
 }
 
@@ -184,6 +184,10 @@
         }
       }
     }
+  }
+
+  #playStoreContainer {
+    display: none;
   }
 
   #course {

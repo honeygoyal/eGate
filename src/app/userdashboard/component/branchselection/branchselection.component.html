@@ -1,6 +1,8 @@
 <h2 style="text-align: center; margin-bottom: 1rem; color: #07c4fb">
   Select the branch to launch courses
 </h2>
+<div style="overflow-y: auto;max-height: 80vh;">
+
 <mat-card
   *ngFor="let branch of userDiscipline"
   style="
@@ -9,8 +11,8 @@
     justify-content: space-between;
     margin-bottom: 1rem;
     background-color: #fafafc;
-
     border: 1px solid #969696;
+    margin-right: 1rem;
   "
 >
   <div style="display: flex; align-items: center">
@@ -50,3 +52,6 @@
     Launch
   </button>
 </mat-card>
+
+  
+</div>

@@ -33,7 +33,7 @@
     [images]="bannerImagesObject"
     [infinite]="true"
     [autoSlide]="1"
-    [imageSize]="{width: '100%', height: '60%'}"
+    [imageSize]="{width: '100%', height: '40%'}"
     [animationSpeed]=4
     [autoSlide]="{interval: 2, stopOnHover: false}"
     slideImage="1"></ng-image-slider>
@@ -47,10 +47,10 @@
     <ng-image-slider #bij
     [images]="bookImagesObject"
     [infinite]="true"
-    [manageImageRatio]="true"
+    [manageImageRatio]="false"
     [animationSpeed]=4
     [autoSlide]="{interval: 2, stopOnHover: false}"
-    [imageSize]="{width: '20%', height: '50%',space: 3}"
+    [imageSize]="{width: 'auto', height: '25%',space: 40}"
     (imageClick)="clickbookfunc($event)"
     slideImage="1"
     ></ng-image-slider>

@@ -126,23 +126,46 @@ mat-checkbox {
   }
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 50%;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #07c4fb;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #07c4fb;
+}
+
 #choosequestion {
   margin-top: 1.5rem;
   margin-left: 1rem;
   color: rgb(99, 87, 87);
   /* width */
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
+    border-radius: 50%;
   }
 
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #3f3d56;
+    background: white;
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: #07c4fb;
+    border-radius: 5px;
   }
 
   /* Handle on hover */
