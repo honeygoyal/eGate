@@ -7,7 +7,7 @@ import { SignUpForm } from "../../model/signupform.model";
 import swal from "sweetalert2";
 import { catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-signup",
@@ -22,7 +22,11 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   signUpData: SignUpForm;
 
-  constructor(private authService: AuthService,private router:ActivatedRoute,private route:Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: ActivatedRoute,
+    private route: Router
+  ) {}
 
   //ngOnit Method
   ngOnInit() {
@@ -61,7 +65,7 @@ export class SignupComponent implements OnInit {
       };
       this.authService.saveUserProfile(this.signUpData).subscribe(
         (response) => {
-          this.route.navigateByUrl("/login")
+          this.route.navigateByUrl("/login");
           swal.fire("Registration Successfull");
           this.signupForm.reset();
         },
@@ -74,16 +78,16 @@ export class SignupComponent implements OnInit {
   }
 
   toppingList: string[] = [
-    "CS",
-    "ME",
-    "PI",
-    "CH",
-    "MT",
-    "CE",
-    "MA",
-    "AE",
-    "EE",
-    "ECE",
-    "IN",
+    "CS", //COMPUTER SCIENCE
+    "ME", //MECHANICAL
+    "PI", //PRODUCTION AND INDUSTRIAL
+    "CH", //CHEMICAL
+    "MT", //METALLURGICAL
+    "CE", //CIVIL
+    "MA", //MATHEMATICS
+    "AE", //AEROSPACE
+    "EE", //ELECTRICAL
+    "ECE", //ELECTRONICS AND COMMUNICATION
+    "IN", //INSTRUMENTATION
   ];
 }

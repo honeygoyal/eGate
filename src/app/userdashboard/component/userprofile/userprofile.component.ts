@@ -27,17 +27,16 @@ export class UserprofileComponent implements OnInit {
   branches: string[] = [];
   examref: any[];
   selectedItem: string;
-  addressLocation:string=location.href;
-  isVerified:any;
+  addressLocation: string = location.href;
+  isVerified: any;
 
   ngOnInit(): void {
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
-  
       if (data !== undefined) {
         this.name = data.user.name;
         this.branches = data.user.discipline.split(",");
         this.examref = [...data.user.coursesOffered];
-        this.isVerified=data.user.isVerified;
+        this.isVerified = data.user.isVerified;
       }
     });
     let user = JSON.parse(localStorage.getItem("user"));
@@ -56,11 +55,10 @@ export class UserprofileComponent implements OnInit {
       }
     }
 
-
     this.branchOpted = localStorage.getItem("branchOpted");
     this.branchOptedService.branchSelected(`${this.branchOpted}`);
-    
-    if ( this.addressLocation.indexOf("/userdashboard/profile/true") > -1 ) { 
+
+    if (this.addressLocation.indexOf("/userdashboard/profile/true") > -1) {
       const dialogRef = this.dialog.open(BranchselectionComponent, {
         width: "55%",
         disableClose: true,
@@ -72,13 +70,19 @@ export class UserprofileComponent implements OnInit {
         localStorage.setItem("branchOpted", `${result}`);
         this.branchOpted = `${result}`;
         this.router.navigateByUrl("userdashboard/profile/false");
-        if ( location.href.indexOf("/userdashboard/profile/") > -1 ) { 
-          if(this.isVerified === "UNVERIFIED"){
-             Swal.fire("Please upload your photograph, signature and valid Id proof in the profile section to verify the user and get access to the courses.");
-          }else if(this.isVerified ==='PENDING'){
-            Swal.fire("Your Verification is still in progress. It will take 24 hours to get verified. For any queries contact helpdesk")
-          }else if(this.isVerified ==='REJECTED'){
-            Swal.fire("One or more of your credentials are not according to the verification requirement(s). Please upload following the instructions given in the Profile section.")
+        if (location.href.indexOf("/userdashboard/profile/") > -1) {
+          if (this.isVerified === "UNVERIFIED") {
+            Swal.fire(
+              "Please upload your photograph, signature and valid Id proof in the profile section to verify the user and get access to the courses."
+            );
+          } else if (this.isVerified === "PENDING") {
+            Swal.fire(
+              "Your Verification is still in progress. It will take 24 hours to get verified. For any queries contact helpdesk"
+            );
+          } else if (this.isVerified === "REJECTED") {
+            Swal.fire(
+              "One or more of your credentials are not according to the verification requirement(s). Please upload following the instructions given in the Profile section."
+            );
           }
         }
       });
@@ -97,11 +101,11 @@ export class UserprofileComponent implements OnInit {
         this.branchOptedService.branchSelected(`${result}`);
         this.branchOpted = `${result}`;
         localStorage.setItem("branchOpted", `${result}`);
-        console.log(`${result}`)
+        console.log(`${result}`);
       });
     }
   }
-  popupEnabled:string;
+  popupEnabled: string;
   isAdmin: string;
   logout() {
     this.store.dispatch(logout());
@@ -116,7 +120,7 @@ export class UserprofileComponent implements OnInit {
   testseries(content: string) {
     this.branchOpted = this.branchOptedService.getBranch();
     this.selectedItem = this.branchOpted + "-" + content;
-   
+
     var testseriesurl: string;
     testseriesurl = "/userdashboard/testseries/" + this.selectedItem;
     this.router.navigateByUrl(testseriesurl);
@@ -140,5 +144,74 @@ export class UserprofileComponent implements OnInit {
       localStorage.setItem("branchOpted", `${result}`);
       this.router.navigateByUrl("userdashboard/profile/false");
     });
+  }
+
+  showSideContent(exam: any) {
+    if (exam === "GATE") {
+      if (
+        this.branchOpted === "CS" ||
+        this.branchOpted === "CE" ||
+        this.branchOpted === "CH" ||
+        this.branchOpted === "ME" ||
+        this.branchOpted === "MT" ||
+        this.branchOpted === "PI" ||
+        this.branchOpted === "MA" ||
+        this.branchOpted === "ECE" ||
+        this.branchOpted === "EE" ||
+        this.branchOpted === "IN" ||
+        this.branchOpted === "AE"
+      ) {
+        return true;
+      }
+    }
+    if (exam === "ESE") {
+      if (
+        this.branchOpted === "ME" ||
+        this.branchOpted === "CE" ||
+        this.branchOpted === "EE" ||
+        this.branchOpted === "ECE"
+      ) {
+        return true;
+      }
+    }
+    if (exam === "IIT-JAM") {
+      if (
+        this.branchOpted === "MA" ||
+        this.branchOpted === "PH" ||
+        this.branchOpted === "MAS"
+      ) {
+        return true;
+      }
+    }
+    if (exam === "TIFR") {
+      if (
+        this.branchOpted === "MA" ||
+        this.branchOpted === "PH" ||
+        this.branchOpted === "CS"
+      ) {
+        return true;
+      }
+    }
+    if (exam === "iPATE") {
+      if (
+        this.branchOpted === "CS" ||
+        this.branchOpted === "CE" ||
+        this.branchOpted === "CH" ||
+        this.branchOpted === "ME" ||
+        this.branchOpted === "MT" ||
+        this.branchOpted === "PI" ||
+        this.branchOpted === "ECE" ||
+        this.branchOpted === "EE" ||
+        this.branchOpted === "IN" ||
+        this.branchOpted === "AE"
+      ) {
+        return true;
+      }
+    }
+    if (exam === "JEST") {
+      if (this.branchOpted === "PH") {
+        return true;
+      }
+    }
   }
 }

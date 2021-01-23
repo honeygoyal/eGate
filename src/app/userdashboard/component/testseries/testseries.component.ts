@@ -38,18 +38,20 @@ export class TestseriesComponent implements OnInit {
     });
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
       if (data !== undefined) this.email = data.user.emailId;
-      
+
       this.testseries
         .getTestSeries(this.exam_code, this.email)
         .subscribe((data) => {
-          this.exams = [...data];
-          this.filterexams();
+          if (data !== null) {
+            this.exams = [...data];
+            this.filterexams();
+          }
         });
     });
 
-    let indexChar="GATE-OTS";
-    if(location.href.toLowerCase().indexOf(indexChar.toLowerCase()) > -1){
-      this.onlineTestSeriesLink="/courses/gate/online test series";
+    let indexChar = "GATE-OTS";
+    if (location.href.toLowerCase().indexOf(indexChar.toLowerCase()) > -1) {
+      this.onlineTestSeriesLink = "/courses/gate/online test series";
     }
   }
 
@@ -58,8 +60,8 @@ export class TestseriesComponent implements OnInit {
     for (let exam of this.exams) {
       let str = exam.title;
       let matches = str.match(/\b(\w)/g);
-      let acronym = matches.join(''); 
-      exam.abTitle=acronym;
+      let acronym = matches.join("");
+      exam.abTitle = acronym;
       if (exam.status === "PENDING") {
         let endDate = new Date(exam.endDate);
         let daysRemaining = "";
@@ -86,15 +88,14 @@ export class TestseriesComponent implements OnInit {
       if (exam.status === "START") {
         let startDate = new Date(exam.startDate);
         let endDate = new Date(exam.endDate);
-        
+
         if (startDate > currentDate) {
           exam.isExamActive = false;
-        } else if (currentDate >= startDate && currentDate <= endDate ) {
+        } else if (currentDate >= startDate && currentDate <= endDate) {
           exam.isExamActive = true;
         }
       }
       if (exam.status === "COMPLETED") {
-       
         this.examscompleted.push(exam);
       }
     }
@@ -114,9 +115,9 @@ export class TestseriesComponent implements OnInit {
     }
     return false;
   }
-  
+
   reportshow(exam: any) {
     this.router.navigateByUrl("/userdashboard/report/" + exam.id);
   }
-  loading:boolean;
+  loading: boolean;
 }
