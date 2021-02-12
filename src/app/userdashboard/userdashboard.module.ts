@@ -98,7 +98,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
         children: [
           { path: "brachselection", component: BranchselectionComponent },
           { path: "profile/:popupenable", component: ProfileComponent },
-          { path: "testseries/:subject", component: TestseriesComponent },
+          { path: "testseries/:subject", component: TestseriesComponent ,},
           { path: "report/:test_id", component: ReportComponent },
           { path: "demoseries/:exam", component: DemoseriesComponent },
           { path: "buypackage", component: BuypackageComponent },

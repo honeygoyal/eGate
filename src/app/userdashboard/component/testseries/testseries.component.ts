@@ -33,20 +33,24 @@ export class TestseriesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
-      this.exam_code = params["subject"];
-    });
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
       if (data !== undefined) this.email = data.user.emailId;
+    this.route.params.subscribe((params: Params) => {
+      this.exam_code = params["subject"];
 
       this.testseries
-        .getTestSeries(this.exam_code, this.email)
-        .subscribe((data) => {
-          if (data !== null) {
-            this.exams = [...data];
-            this.filterexams();
-          }
-        });
+      .getTestSeries(this.exam_code, this.email)
+      .subscribe((data) => {
+        if (data !== null) {
+          this.exams = [...data];
+          if(this.exams.length!==0)
+          this.filterexams();
+        }
+      });
+    });
+    
+
+     
     });
 
     let indexChar = "GATE-OTS";

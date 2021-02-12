@@ -124,6 +124,8 @@ export class UserprofileComponent implements OnInit {
     var testseriesurl: string;
     testseriesurl = "/userdashboard/testseries/" + this.selectedItem;
     this.router.navigateByUrl(testseriesurl);
+    //  let address=location.href.split('/');
+    //   location.href=address[0]+"//"+address[2]+"/"+address[3]+testseriesurl;
   }
 
   //demo Selection
@@ -159,7 +161,8 @@ export class UserprofileComponent implements OnInit {
         this.branchOpted === "ECE" ||
         this.branchOpted === "EE" ||
         this.branchOpted === "IN" ||
-        this.branchOpted === "AE"
+        this.branchOpted === "AE" ||
+        this.branchOpted === "XE"
       ) {
         return true;
       }
@@ -169,7 +172,7 @@ export class UserprofileComponent implements OnInit {
         this.branchOpted === "ME" ||
         this.branchOpted === "CE" ||
         this.branchOpted === "EE" ||
-        this.branchOpted === "ECE"
+        this.branchOpted === "EXTC"
       ) {
         return true;
       }
@@ -178,7 +181,7 @@ export class UserprofileComponent implements OnInit {
       if (
         this.branchOpted === "MA" ||
         this.branchOpted === "PH" ||
-        this.branchOpted === "MAS"
+        this.branchOpted === "MS"
       ) {
         return true;
       }
@@ -209,9 +212,22 @@ export class UserprofileComponent implements OnInit {
       }
     }
     if (exam === "JEST") {
-      if (this.branchOpted === "PH") {
+      if (this.branchOpted === "PH" || this.branchOpted==="CS") {
         return true;
       }
     }
+    if (exam === "ISRO") {
+      if (this.branchOpted === "CS" || this.branchOpted==="ME" || this.branchOpted==="CE"|| this.branchOpted==="EE"|| this.branchOpted==="ECE") {
+        return true;
+      }
+    }
+    if (exam === "BARC") {
+      if (this.branchOpted === "CS" || this.branchOpted==="ME" || this.branchOpted==="CH"|| this.branchOpted==="MT"|| this.branchOpted==="CE"|| this.branchOpted==="EE"|| this.branchOpted==="ECE") {
+        return true;
+      }
+    }
+  }
+  showPSU(){
+    return (this.showSideContent("ISRO") || this.showSideContent("BARC"));
   }
 }

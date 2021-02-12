@@ -93,7 +93,7 @@
       </div>
       <div class="right-content">
         <ul id="icon-list" style="list-style-type: none">
-          <li><a (click)="testseries('ESE-OTS')" href="#">Online Test Series</a></li>
+          <li><a (click)="testseries('ESE-OTS')" [ngClass]="{ sideSelect: selectedItem == 'ESE-OTS' }">Online Test Series</a></li>
           <li><a (click)="downloadSoon()" href="#">Video Lectures</a></li>
           <li><a (click)="downloadSoon()" href="#">Question Bank</a></li>
           <li><a (click)="downloadSoon()" href="#">E-study Material</a></li>
@@ -113,7 +113,7 @@
       </div>
       <div class="right-content">
         <ul id="icon-list" style="list-style-type: none">
-          <li><a (click)="downloadSoon()" href="#">Online Test Series</a></li>
+          <li><a  (click)="testseries('IIT-JAM-OTS')" [ngClass]="{ sideSelect: selectedItem == 'IIT-JAM-OTS' }">Online Test Series</a></li>
           <li><a (click)="downloadSoon()" href="#">Video Lectures</a></li>
           <li><a (click)="downloadSoon()" href="#">Question Bank</a></li>
           <li><a (click)="downloadSoon()" href="#">E-study Material</a></li>
@@ -133,7 +133,8 @@
       </div>
       <div class="right-content">
         <ul id="icon-list" style="list-style-type: none">
-          <li><a (click)="downloadSoon()" href="#">Online Test Series</a></li>
+          <li><a (click)="testseries('TIFR-OTS')"
+            [ngClass]="{ sideSelect: selectedItem == 'TIFR-OTS' }">Online Test Series</a></li>
           <li><a (click)="downloadSoon()" href="#">Video Lectures</a></li>
           <li><a (click)="downloadSoon()" href="#">Question Bank</a></li>
           <li><a (click)="downloadSoon()" href="#">E-study Material</a></li>
@@ -152,7 +153,7 @@
       </div>
       <div class="right-content">
         <ul id="icon-list" style="list-style-type: none">
-          <li><a (click)="downloadSoon()" href="#">Online Test Series</a></li>
+          <li><a (click)="testseries('iPATE-OTS')" [ngClass]="{ sideSelect: selectedItem == 'iPATE-OTS' }" >Online Test Series</a></li>
           <li><a (click)="downloadSoon()" href="#">Video Lectures</a></li>
           <li><a (click)="downloadSoon()" href="#">Question Bank</a></li>
           <li><a (click)="downloadSoon()" href="#">E-study Material</a></li>
@@ -161,7 +162,7 @@
     </div>
 
     <div style="clear: both"></div>
-    <div *ngIf="showSideContent('PSU')" class="side-content">
+    <div *ngIf="showPSU()" class="side-content">
       <div class="left-content">
    
         <p style="margin-top: 0.5rem">P</p>
@@ -172,8 +173,10 @@
       </div>
       <div class="right-content">
         <ul id="icon-list" style="list-style-type: none">
-          <li ><a (click)="downloadSoon()" href="#">ISRO Test Series</a></li>
-          <li><a (click)="downloadSoon()" href="#">BARC Test Series</a></li>
+          <li *ngIf="showSideContent('ISRO')" ><a (click)="testseries('ISRO-OTS')"
+            [ngClass]="{ sideSelect: selectedItem == 'ISRO-OTS' }">ISRO Test Series</a></li>
+          <li *ngIf="showSideContent('BARC')"><a (click)="testseries('BARC-OTS')"
+            [ngClass]="{ sideSelect: selectedItem == 'BARC-OTS' }">BARC Test Series</a></li>
           <!-- <li><a (click)="downloadSoon()" href="#">SAIL Test Series</a></li>
           <li><a (click)="downloadSoon()" href="#">CIL Test Series</a></li>
           <li><a (click)="downloadSoon()" href="#">RINL Test Series</a></li>
@@ -196,7 +199,8 @@
       </div>
       <div class="right-content">
         <ul id="icon-list" style="list-style-type: none">
-          <li><a (click)="downloadSoon()" href="#">Online Test Series</a></li>
+          <li><a (click)="testseries('JEST-OTS')"
+            [ngClass]="{ sideSelect: selectedItem == 'JEST-OTS' }">Online Test Series</a></li>
           <li><a (click)="downloadSoon()" href="#">Video Lectures</a></li>
           <li><a (click)="downloadSoon()" href="#">Question Bank</a></li>
           <li><a (click)="downloadSoon()" href="#">E-study Material</a></li>
