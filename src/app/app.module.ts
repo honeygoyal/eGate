@@ -61,6 +61,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DownloadComponent } from './download/download.component';
 import { DownloadService } from './download/downloadservice';
 import { NgImageSliderModule } from 'ng-image-slider';
+import { CarrersComponent } from './carrers/carrers.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { NgImageSliderModule } from 'ng-image-slider';
     ExamDetailsComponent,
     AboutComponent,
     DownloadComponent,
+    CarrersComponent,
   ],
   imports: [
     AuthModule.forRoot(),
