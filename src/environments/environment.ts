@@ -46,6 +46,9 @@ export const environment = {
   createDownloadAdmin:"https://egatetutor.com/download/uploadMaterial?label1=",
   getDownloadData:"https://egatetutor.com/download/getDownloadByExamAndTopicAndBranch?exam=",
   forgotpassword:"https://egatetutor.com/users/forgotPassword?emailId=",
+  
+  getQuestionBankByExamCode:"https://egatetutor.com/coursesDetailForQB/getCoursesDescriptionQBByExamCode",
+  getQuestionBank:"https://egatetutor.com/questionBank/getQuestions"
 };
 
 /*

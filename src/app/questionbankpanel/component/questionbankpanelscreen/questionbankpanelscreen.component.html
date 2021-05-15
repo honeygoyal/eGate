@@ -1,0 +1,363 @@
+<div cdkDrop
+id="exam-container"
+onbeforeunload=" return 'Do you really want to perform the action?'">
+    <div id="logoimage">
+        <img src="./../assets/logocrop.jpg" alt="" id="logo" />
+      </div>
+
+<div id="section-tab">
+    <mat-tab-group
+      style="z-index: 1"
+      (wheel)="scrollTabs($event)"
+      #tabGroup
+      (selectedTabChange)="selectedTab($event, questiontoShow)"
+    >
+      <mat-tab [label]="tab.key" *ngFor="let tab of question | keyvalue"
+        ><ng-template mat-tab-label>
+          {{ tab.key }}
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div style="display: flex;justify-content: space-between;align-items: flex-start;">
+  <div style="width: 75%;" *ngIf="questiontoShow !== undefined">
+    <div
+      id="head1"
+      style="
+        margin-top: 1rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      "
+    >
+      <h5 style="margin-top: 1rem; margin-bottom: 0.5rem; color: #f05666">
+        QUESTION TYPE : {{ questiontoShow.questionType }}
+      </h5>
+    </div>
+    <hr style="color: #07c4fb; background: #07c4fb; height: 1px" />
+    <div
+      id="quesOuterDiv"
+      style="height: auto; overflow: hidden; position: relative"
+    >
+      <div id="questionandanswer">
+        <h4 style="margin: 0.2rem 0rem">Question No: {{ count }}</h4>
+        <a target="_blank">
+          <img
+            [src]="transform(questiontoShow.question)"
+            style="height: auto; width: 50vw"
+            alt=""
+          />
+        </a>
+        <form
+          #f="ngForm"
+          (ngSubmit)="
+            showAnswer(
+              f,
+              questiontoShow.id,
+              questiontoShow.questionType
+            )
+          "
+        >
+          <div
+            id="radioButtonGroup"
+            *ngIf="questiontoShow.questionType === 'MCQ'"
+          >
+            <mat-radio-group
+              name="optionSelected"
+              [(ngModel)]="currentOption"
+              required
+              BlockCopyPasteDirective
+              style="
+                display: flex;
+                flex-direction: column;
+                margin-top: 0.5rem;
+              "
+              aria-label="Select an option"
+            >
+              <mat-radio-button style="margin-top: 0rem" value="A"
+                >A <span *ngIf="showanswer === true">✅</span>  <span *ngIf="showanswer === true">❌</span>  </mat-radio-button
+              >
+              <mat-radio-button value="B">B <span *ngIf="showanswer === true">✅</span>  <span *ngIf="showanswer === true">❌</span></mat-radio-button>
+              <mat-radio-button value="C">C <span *ngIf="showanswer === true">✅</span>  <span *ngIf="showanswer === true">❌</span></mat-radio-button>
+              <mat-radio-button value="D">D <span *ngIf="showanswer === true">✅</span>  <span *ngIf="showanswer === true">❌</span></mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <div
+            *ngIf="questiontoShow.questionType === 'NAT'"
+            style="padding-left: 2%; margin-top: 20px; margin-bottom: 20px"
+            id="numericKeyBoardDiv"
+          >
+            <input
+              type="text"
+              id="answer"
+              autocomplete="off"
+              class="keyboardInput answer"
+              value="{{ currentOption }}"
+              readonly
+            />
+            <div id="vKeyboard" class="vKeyboard">
+              <span class="vKeyboardSplKeys" style="border-radius: 6px"
+                >Backspace</span
+              ><br />
+              <span class="vKeyboardKeys" style="border-radius: 6px"
+                >7</span
+              >
+              <span class="vKeyboardKeys" style="border-radius: 6px"
+                >8</span
+              >
+              <span class="vKeyboardKeys" style="border-radius: 6px">9</span
+              ><br />
+              <span class="vKeyboardKeys" style="border-radius: 6px"
+                >4</span
+              >
+              <span class="vKeyboardKeys" style="border-radius: 6px"
+                >5</span
+              >
+              <span class="vKeyboardKeys" style="border-radius: 6px">6</span
+              ><br />
+              <span class="vKeyboardKeys" style="border-radius: 6px"
+                >1</span
+              >
+              <span class="vKeyboardKeys" style="border-radius: 6px"
+                >2</span
+              >
+              <span class="vKeyboardKeys" style="border-radius: 6px">3</span
+              ><br />
+              <span class="vKeyboardKeys" style="border-radius: 6px"
+                >0</span
+              >
+              <span class="vKeyboardKeys" style="border-radius: 6px"
+                >.</span
+              >
+              <span class="vKeyboardKeys" style="border-radius: 6px">-</span
+              ><br />
+              <span
+                class="vKeyboardSplKeys"
+                data="left"
+                style="font-weight: normal; border-radius: 6px"
+                >←</span
+              >
+              <span
+                class="vKeyboardSplKeys"
+                data="right"
+                style="font-weight: normal; border-radius: 6px"
+                >→</span
+              ><br />
+              <span class="vKeyboardSplKeys" style="border-radius: 6px"
+                >Clear All</span
+              ><br />
+            </div>
+          </div>
+
+          <div
+            id="radioButtonGroup"
+            *ngIf="questiontoShow.questionType === 'MSQ'"
+          >
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                margin-top: 0.5rem;
+              "
+            >
+              <mat-checkbox
+                style="margin-top: 0rem"
+                value="A"
+                [(checked)]="IsAChecked"
+                (change)="onMSQChange($event, 'A')"
+                >A <span *ngIf="showanswer === true ">✅</span>  <span *ngIf="showanswer === true">❌</span></mat-checkbox
+              >
+              <mat-checkbox
+                [(checked)]="IsBChecked"
+                (change)="onMSQChange($event, 'B')"
+                >B <span *ngIf="showanswer === true">✅</span>  <span *ngIf="showanswer === true">❌</span></mat-checkbox
+              >
+              <mat-checkbox
+                [(checked)]="IsCChecked"
+                (change)="onMSQChange($event, 'C')"
+                >C <span *ngIf="showanswer === true">✅</span>  <span *ngIf="showanswer === true">❌</span></mat-checkbox
+              >
+              <mat-checkbox
+                [(checked)]="IsDChecked"
+                (change)="onMSQChange($event, 'D')"
+                >D <span *ngIf="showanswer === true">✅</span>  <span *ngIf="showanswer === true">❌</span></mat-checkbox
+              >
+            </div>
+          </div>
+          <div
+            id="actnbtn"
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-top: 0.4rem;
+            "
+          >
+            <div
+              id="group1"
+              style="
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+              "
+            >
+             
+            
+            </div>
+
+            <div id="group2">
+              <button *ngIf="showanswer === false"
+                type="submit"
+                style="
+                  text-decoration: none;
+                  background: #07c4fb;
+                  color: white;
+                  border-radius: 20px;
+                  border: 1px solid #07c4fb;
+                  padding: 0.6rem 1rem;
+                  cursor: pointer;
+                  outline: none;
+                "
+              >
+                <b>Submit</b>
+              </button>
+              <button *ngIf="showanswer === true"
+                onclick="nextQuestion()"
+                style="
+                  text-decoration: none;
+                  background: #07c4fb;
+                  color: white;
+                  border-radius: 20px;
+                  border: 1px solid #07c4fb;
+                  padding: 0.6rem 1rem;
+                  cursor: pointer;
+                  outline: none;
+                "
+              >
+                <b>Next</b>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div *ngIf="showanswer === true">
+      <img
+      [src]="transform(questiontoShow.solution)"
+      style="height: auto; width: 50vw"
+      alt=""
+    />
+      </div>
+    </div>
+  </div>
+  <div id="question-lookup">
+    <mat-card
+      style="
+        z-index: 1;
+        width: 100%;
+        margin-left: 2rem;
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
+        background: #3f3d56;
+      "
+    >
+     
+      <div
+        id="profile-image"
+        style="
+          margin-left: 1rem;
+          margin-top: 1rem;
+          margin-bottom: -2rem;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+        "
+      >
+        <!-- <img src="./../../../../assets/profilr.jpg" alt="" /> -->
+        <img
+          *ngIf="profilePhoto !== null"
+          [src]="transform(profilePhoto)"
+          style="
+            width: 6rem;
+            height: 6rem;
+            border-radius: 50%;
+            margin-right: 10%;
+            border: 3px solid white;
+            margin-bottom: 0.5rem;
+          "
+          alt=""
+        />
+        <img
+          src="./../../../../assets/download.jpg"
+          *ngIf="profilePhoto === '' || profilePhoto === null"
+          style="
+            width: 6rem;
+            height: 6rem;
+            border-radius: 50%;
+            margin-right: 10%;
+            border: 3px solid white;
+            margin-bottom: 0.5rem;
+          "
+          alt=""
+        />
+        <h3 style="color: white; margin-right: 10%">{{ name }}</h3>
+      </div>
+      <div id="buttoninstructions">
+        
+      </div>
+      <h4
+        style="
+          margin-top: 1rem;
+          color: white;
+          text-align: center;
+          border: 1px solid rgb(151, 148, 148);
+          background: rgb(151, 148, 148);
+          padding: 0.2rem 7rem;
+          margin-left: 1rem;
+          width: 95%;
+          border-radius: 5px;
+        "
+      >
+        {{ selectedTabCurrent }}
+      </h4>
+      <div id="choosequestion">
+        <h4 style="color: white; margin-left: 0.6rem">Choose a question</h4>
+        <div class="grid-container question_area">
+          <a
+            *ngFor="let group of questionGroup; let i = index"
+            (click)="
+              sidebuttonforquestion(
+                i + 1,
+                questiontoShow,
+                questiontoShow.questionType
+              )
+            "
+            ><div [ngStyle]="getStyles(group)" class="grid-item">
+              {{ i + 1 }}
+            </div></a
+          >
+        </div>
+      </div>
+      <div id="actionbtn" style="margin-left: 1rem; margin-top: 2rem">
+        <a
+          (click)="submittheanswer(true)"
+          style="
+            color: white;
+            padding: 0.5rem 8rem;
+            background: #99d12a;
+            border-radius: 20px;
+            margin: auto;
+            width: 95%;
+            text-align: center;
+            cursor: pointer;
+          "
+        >
+          <b>Submit</b>
+        </a>
+      </div>
+    </mat-card>
+  </div>
+</div>
+</div>

@@ -31,6 +31,12 @@ const routes: Routes = [
       import("./exampanel/exampanel.module").then((m) => m.ExampanelModule),
     canActivate: [AuthGuard],
   },
+  {
+    path: "questionbankpanel",
+    loadChildren: () =>
+      import("./questionbankpanel/questionbankpanel.module").then((m) => m.QuestionbankpanelModule),
+    canActivate: [AuthGuard],
+  },
   { path: "**", component: BodyComponent },
 ];
 

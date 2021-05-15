@@ -128,6 +128,14 @@ export class UserprofileComponent implements OnInit {
     //   location.href=address[0]+"//"+address[2]+"/"+address[3]+testseriesurl;
   }
 
+  questionbank(content:string){
+    this.branchOpted=this.branchOptedService.getBranch();
+    this.selectedItem=this.branchOpted+"-"+content;
+    var questionbankurl:string;
+    questionbankurl="/userdashboard/questionbank/"+this.selectedItem;
+    this.router.navigateByUrl(questionbankurl);
+  }
+
   //demo Selection
   demo(content: string) {
     this.selectedItem = "DEMO";

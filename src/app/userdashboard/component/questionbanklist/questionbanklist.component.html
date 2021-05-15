@@ -1,0 +1,66 @@
+<app-loader></app-loader>
+<div id="contentcontainerforquestionbank">
+    <mat-card *ngFor="let exam of exams"  class="example-card">
+        <mat-card-header style="display: flex;flex-direction: column;  align-items: center;justify-content: center;text-align: center;margin-left: -1rem;">
+            <div mat-card-avatar>
+                <svg height="100" width="100">
+                  <circle
+                    *ngIf="exam.status === 'COMPLETED'"
+                    cx="30"
+                    cy="30"
+                    r="30"
+                    fill="rgba(0,222,147,1)"
+                  />
+                  <circle
+                    *ngIf="exam.status === 'PENDING'"
+                    cx="30"
+                    cy="30"
+                    r="30"
+                    fill="#6C63FF"
+                  />
+                  <circle
+                    *ngIf="exam.status !== 'PENDING' && exam.status !== 'COMPLETED'"
+                    cx="30"
+                    cy="30"
+                    r="30"
+                    fill="#07C4FB"
+                  />
+                  <text
+                    x="30%"
+                    y="35"
+                    text-anchor="middle"
+                    stroke="black"
+                    stroke-width="1px"
+                  >
+                    {{ exam.title.slice(0,2) | uppercase }}
+                  </text>
+                </svg>
+              </div>
+             
+          </mat-card-header>
+        <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
+        <mat-card-content style="display: flex;flex-direction: column;  align-items: center;justify-content: center;">
+            <mat-card-title
+            style="margin-top: 2rem;display: flex;flex-direction: column;text-align: center;"
+           >
+             <span>{{ exam.title }}</span>
+             <span class="examDescription">{{exam.description}}</span>
+             <span class="examDescription">{{exam.totalQuestion}} Questions</span>
+           </mat-card-title>
+          <!-- <p>
+            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+            bred for hunting.
+          </p> -->
+        </mat-card-content>
+        <mat-card-actions style="display: flex;justify-content: center;align-items: center;text-align: center;">
+            <button
+            (click)="startaction(exam.courseId, exam)"
+            class="btnactioncard"
+            style="background: #07c4fb"
+          >
+            PRACTICE
+          </button>
+        </mat-card-actions>
+      </mat-card>
+</div>

@@ -1,0 +1,46 @@
+#contentcontainerforquestionbank{
+    margin-left: 2rem;
+    display: flex !important;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.example-card {
+    max-width: 1000px;
+    min-width: 300px;
+    height: 240px;
+    margin: 2rem;
+    padding: 1rem 1rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 0 20px 1px #07c4fb;
+  transition: padding 0.5s;
+  }
+ 
+  
+  .btnactioncard {
+    border: #00f5a2;
+    background: #00f5a2;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 0.5rem 2rem;
+    outline: none;
+    display: none;
+  }
+
+  .examDescription {
+    font-size: small;
+    color: #07c4fb;
+    margin-top: 0.2rem;
+  }
+  
+  .example-card:hover {
+    transition: all 2s ease;
+    .btnactioncard{
+        display: inline;
+    }
+}

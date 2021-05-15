@@ -10,12 +10,6 @@ import { Department } from './department.model';
 import { Exam } from './exam.model';
 import { Subsection } from './subsection.model';
 declare let Email: any;
-interface Food {
-  value: string;
-  viewValue: string;
-}
-
-
 
 @Component({
   selector: "app-admin-panel",
@@ -128,11 +122,7 @@ Swal.fire('Something went wrong');
     this.branches = this.selectService.getbranch().filter(item => item.Subsectionid == Subsectionid);
   }
 
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
+ 
   onSubmit() {
     console.log(this.firstFormGroup);
     const token = this.getToken();

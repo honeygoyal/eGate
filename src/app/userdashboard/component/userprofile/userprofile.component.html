@@ -75,7 +75,7 @@
             >
           </li>
           <li><a (click)="downloadSoon()" href="#">Video Lectures</a></li>
-          <li><a (click)="downloadSoon()" href="#">Question Bank</a></li>
+          <li><a (click)="questionbank('GATE-QB')" [ngClass]="{ sideSelect: selectedItem == 'GATE-QB' }">Question Bank</a></li>
           <li><a (click)="downloadSoon()" href="#">E-study Material</a></li>
         </ul>
       </div>

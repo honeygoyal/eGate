@@ -46,6 +46,7 @@ import { LoaderComponent } from './component/loader/loader.component';
 import {NgxPaginationModule} from 'ngx-pagination'; 
 import {MatExpansionModule} from '@angular/material/expansion';
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { QuestionbanklistComponent } from './component/questionbanklist/questionbanklist.component';
 @NgModule({
   declarations: [
     UserprofileComponent,
@@ -57,7 +58,8 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     ReportComponent,
     AdminPanelComponent,
     BranchselectionComponent,
-    LoaderComponent
+    LoaderComponent,
+    QuestionbanklistComponent
   ],
   imports: [
     CommonModule,
@@ -98,7 +100,8 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
         children: [
           { path: "brachselection", component: BranchselectionComponent },
           { path: "profile/:popupenable", component: ProfileComponent },
-          { path: "testseries/:subject", component: TestseriesComponent ,},
+          { path: "testseries/:subject", component: TestseriesComponent },
+          {path:"questionbank/:subject",component:QuestionbanklistComponent},
           { path: "report/:test_id", component: ReportComponent },
           { path: "demoseries/:exam", component: DemoseriesComponent },
           { path: "buypackage", component: BuypackageComponent },

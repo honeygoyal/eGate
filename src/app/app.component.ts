@@ -14,7 +14,7 @@ import { Router } from "@angular/router";
 })
 export class AppComponent implements OnInit {
 
-  checkForCurrentUrl=location.href.includes('/exampanel');
+  checkForCurrentUrl=location.href.includes('panel');
 
   ngOnInit(): void {
     const userProfile = localStorage.getItem("user");

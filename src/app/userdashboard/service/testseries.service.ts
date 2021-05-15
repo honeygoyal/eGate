@@ -14,4 +14,9 @@ export class TestseriesService {
       params: { exam_code: content, email: email },
     });
   }
+  getQuestionBank(content: string, email: string): Observable<any> {
+    return this.http.get(environment.getQuestionBankByExamCode, {
+      params: { exam_code: content, email: email },
+    });
+  }
 }
