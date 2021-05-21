@@ -25,8 +25,9 @@ export class AdminPanelComponent implements OnInit {
     examId: "",
   };
   firstFormGroup: FormGroup;
-  // thirdFormGroup:FormGroup;
   secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+  fourthFormGroup: FormGroup;
   exams_code: any;
   exams_code_array: any[] = [];
   constructor(
@@ -50,6 +51,21 @@ export class AdminPanelComponent implements OnInit {
       endDate: ["", Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
+      examId: ["", Validators.required],
+      courseId: ["", Validators.required],
+    });
+
+
+    this.thirdFormGroup = this._formBuilder.group({
+      courseId: ["", Validators.required],
+      title: ["", Validators.required],
+      description: ["", Validators.required],
+      examId: ["", Validators.required],
+      totalQuestion: ["", Validators.required],
+      startDate: ["", Validators.required],
+      endDate: ["", Validators.required],
+    });
+    this.fourthFormGroup = this._formBuilder.group({
       examId: ["", Validators.required],
       courseId: ["", Validators.required],
     });
@@ -144,6 +160,27 @@ Swal.fire('Something went wrong');
         Swal.fire("Test Created!");
       });
   }
+
+  onSubmitQuestionBank(){
+    const token = this.getToken();
+    this.http
+      .post(environment.createQuestionBank, this.thirdFormGroup.value)
+      .subscribe((data) => {
+        console.log(data);
+        this.firstFormGroup.reset({
+          courseId: "",
+          title: "",
+          description: "",
+          examId: "",
+          totalQuestion: "",
+          startDate: "",
+          endDate: "",
+        });
+        Swal.fire("QuestionBank Created!");
+      });
+  }
+
+
   getToken(): string {
     var ret = JSON.parse(localStorage.getItem("user"));
     return ret.token;
@@ -157,6 +194,19 @@ Swal.fire('Something went wrong');
         })
         .subscribe((data) => {
           this.testList = data;
+        });
+    }
+  }
+  questionankList:any;
+  onExamCodeSelectQuestionBank(){
+    console.log(this.examCode);
+    if (this.examCode["examId"] !== "") {
+      this.http
+        .get(environment.getCourseIdListQBForAdmin, {
+          params: { exam_code: this.examCode["examId"] },
+        })
+        .subscribe((data) => {
+          this.questionankList = data;
         });
     }
   }
@@ -174,7 +224,11 @@ Swal.fire('Something went wrong');
     const file = event.target.files[0];
     this.File2 = file;
   }
-
+  onQuestionBankFileSelected(event){
+    const file = event.target.files[0];
+    this.questionBankFile = file;
+  }
+  public  questionBankFile:any =File;
   public userFile: any = File;
   public File1: any = File;
   public File2: any = File;
@@ -196,6 +250,27 @@ Swal.fire('Something went wrong');
     }
     );
   }
+
+  onSubmitfileQuestionBank(){
+    let server_url =
+    environment.questionBankUpload + this.fourthFormGroup.value.courseId;
+    const formData = new FormData();
+    formData.append("file", this.questionBankFile);
+    const token = this.getToken();
+    console.log(server_url);
+    console.log(formData);
+    this.http.post(server_url, formData).subscribe((data) => {
+    this.fourthFormGroup.reset();
+    Swal.fire("Question Bank Uploaded for Test!");
+   
+  },
+  (err)=>{
+    console.log("Hi",err)
+    Swal.fire("Something went wrong while uploading.")
+  }
+  );
+  }
+
   comment: any;
   VerificationAction(action,email, id, form: NgForm) {
     console.log(email);

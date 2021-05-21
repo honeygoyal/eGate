@@ -48,7 +48,12 @@ export const environment = {
   forgotpassword:"https://egatetutor.com/users/forgotPassword?emailId=",
   
   getQuestionBankByExamCode:"https://egatetutor.com/coursesDetailForQB/getCoursesDescriptionQBByExamCode",
-  getQuestionBank:"https://egatetutor.com/questionBank/getQuestions"
+  getQuestionBank:"https://egatetutor.com/questionBank/getQuestions",
+  createQuestionBank:"https://egatetutor.com/coursesDetailForQB/createTestQB",
+  
+  getCourseIdListQBForAdmin:"https://egatetutor.com/coursesDetailForQB/getCourseIdListQBForAdmin",
+  
+  questionBankUpload:"https://egatetutor.com/questionBank/upload?courseId=",
 };
 
 /*
