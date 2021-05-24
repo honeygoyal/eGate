@@ -1,6 +1,6 @@
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
-if(location.href.indexOf("exampanel") > -1 ){
+if(location.href.indexOf("panel") > -1 ){
    console.log("Disabling chat panel in exam panel");
 }else{
     var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];

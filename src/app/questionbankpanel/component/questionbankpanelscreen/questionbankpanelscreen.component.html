@@ -76,11 +76,11 @@ onbeforeunload=" return 'Do you really want to perform the action?'">
               aria-label="Select an option"
             >
               <mat-radio-button style="margin-top: 0rem" value="A"
-                >A <span *ngIf="showanswer === true">✅</span>  <span *ngIf="showanswer === true">❌</span>  </mat-radio-button
+                >A <span *ngIf="showanswer === true && correctanswer === 'A'">✅</span>  <span *ngIf="showanswer === true && correctanswer !== 'A' && attemptedAnswer[0] === true">❌</span>  </mat-radio-button
               >
-              <mat-radio-button value="B">B <span *ngIf="showanswer === true">✅</span>  <span *ngIf="showanswer === true">❌</span></mat-radio-button>
-              <mat-radio-button value="C">C <span *ngIf="showanswer === true">✅</span>  <span *ngIf="showanswer === true">❌</span></mat-radio-button>
-              <mat-radio-button value="D">D <span *ngIf="showanswer === true">✅</span>  <span *ngIf="showanswer === true">❌</span></mat-radio-button>
+              <mat-radio-button value="B">B <span *ngIf="showanswer === true  && correctanswer === 'B'">✅</span>  <span *ngIf="showanswer === true && correctanswer !== 'B' && attemptedAnswer[1] === true">❌</span></mat-radio-button>
+              <mat-radio-button value="C">C <span *ngIf="showanswer === true  && correctanswer === 'C'">✅</span>  <span *ngIf="showanswer === true && correctanswer !== 'C' && attemptedAnswer[2] === true">❌</span></mat-radio-button>
+              <mat-radio-button value="D">D <span *ngIf="showanswer === true  && correctanswer === 'D'">✅</span>  <span *ngIf="showanswer === true && correctanswer !== 'D' && attemptedAnswer[3] === true">❌</span></mat-radio-button>
             </mat-radio-group>
           </div>
 
@@ -97,6 +97,7 @@ onbeforeunload=" return 'Do you really want to perform the action?'">
               value="{{ currentOption }}"
               readonly
             />
+            <span *ngIf="showanswer === true && correctanswer === 'true'">✅</span>  <span *ngIf="showanswer === true && correctanswer !== 'true'">❌</span>
             <div id="vKeyboard" class="vKeyboard">
               <span class="vKeyboardSplKeys" style="border-radius: 6px"
                 >Backspace</span
@@ -167,22 +168,22 @@ onbeforeunload=" return 'Do you really want to perform the action?'">
                 value="A"
                 [(checked)]="IsAChecked"
                 (change)="onMSQChange($event, 'A')"
-                >A <span *ngIf="showanswer === true ">✅</span>  <span *ngIf="showanswer === true">❌</span></mat-checkbox
+                >A <span *ngIf="showanswer === true && correctanswer.indexOf('A') !== -1">✅</span>  <span *ngIf="showanswer === true && correctanswer.indexOf('A') === -1 && attemptedAnswer[0] === true">❌</span></mat-checkbox
               >
               <mat-checkbox
                 [(checked)]="IsBChecked"
                 (change)="onMSQChange($event, 'B')"
-                >B <span *ngIf="showanswer === true">✅</span>  <span *ngIf="showanswer === true">❌</span></mat-checkbox
+                >B <span *ngIf="showanswer === true && correctanswer.indexOf('B') !== -1">✅</span>  <span *ngIf="showanswer === true && correctanswer.indexOf('B') === -1 && attemptedAnswer[1] === true">❌</span></mat-checkbox
               >
               <mat-checkbox
                 [(checked)]="IsCChecked"
                 (change)="onMSQChange($event, 'C')"
-                >C <span *ngIf="showanswer === true">✅</span>  <span *ngIf="showanswer === true">❌</span></mat-checkbox
+                >C <span *ngIf="showanswer === true && correctanswer.indexOf('C') !== -1">✅</span>  <span *ngIf="showanswer === true && correctanswer.indexOf('C') === -1 && attemptedAnswer[2] === true">❌</span></mat-checkbox
               >
               <mat-checkbox
                 [(checked)]="IsDChecked"
                 (change)="onMSQChange($event, 'D')"
-                >D <span *ngIf="showanswer === true">✅</span>  <span *ngIf="showanswer === true">❌</span></mat-checkbox
+                >D <span *ngIf="showanswer === true && correctanswer.indexOf('D') !== -1">✅</span>  <span *ngIf="showanswer === true && correctanswer.indexOf('D') === -1 && attemptedAnswer[3] === true">❌</span></mat-checkbox
               >
             </div>
           </div>
@@ -223,8 +224,10 @@ onbeforeunload=" return 'Do you really want to perform the action?'">
               >
                 <b>Submit</b>
               </button>
-              <button *ngIf="showanswer === true"
-                onclick="nextQuestion()"
+              <button *ngIf="showanswer === true && questiontoShow.id < totalCollectionLength"
+                (click)="nextQuestion(f,
+                questiontoShow.id,
+                questiontoShow.questionType)"
                 style="
                   text-decoration: none;
                   background: #07c4fb;
@@ -251,7 +254,7 @@ onbeforeunload=" return 'Do you really want to perform the action?'">
       </div>
     </div>
   </div>
-  <div id="question-lookup">
+  <div id="question-lookup" *ngIf="showQuestionLookup === true">
     <mat-card
       style="
         z-index: 1;

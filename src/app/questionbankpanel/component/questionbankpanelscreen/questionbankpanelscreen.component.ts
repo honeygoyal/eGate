@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { map } from 'rxjs/operators';
 import { Useranswer } from 'src/app/exampanel/model/Useranswer.model';
 import { AppState } from 'src/app/reducers';
+import "./../../../../assets/virtual_keyboard.js";
 import { GetquestionforquesbankService } from '../../services/getquestionforquesbank.service';
 
 @Component({
@@ -20,13 +21,27 @@ export class QuestionbankpanelscreenComponent implements OnInit {
   userId:Number;
   profilePhoto:string;
   test_code:string;
-  
+  currentOption = "";
   count = 1;
+  showQuestionLookup=false;
   answerDataofUser: Useranswer[] = [];
   loader:boolean;
   question:any;
   questionGroup:any;
   questiontoShow:any;
+
+
+  natInput: string = "";
+  IsAChecked: boolean;
+  IsBChecked: boolean;
+  IsCChecked: boolean;
+  IsDChecked: boolean;
+  finalCheckedValue: boolean = false;
+  totalOptionsChecked: string = "";
+  examStatus = "";
+  initializeCounts: boolean = false;
+  localStorageNATKey: string = "natActiveValue";
+  totalCollectionLength:number=0;
   constructor( private quesService: GetquestionforquesbankService,
     private route: ActivatedRoute,
     private store: Store<AppState>,
@@ -52,13 +67,16 @@ export class QuestionbankpanelscreenComponent implements OnInit {
         .subscribe((data) => {
           console.log(data);
           this.question = data;
+          
           this.loader=false;
-         
+          this.showQuestionLookup=true;
         }, (err)=>{
           this.loader=false;
           window.close();
         });
+
     });
+    
   }
 
   sect:string;
@@ -72,7 +90,8 @@ export class QuestionbankpanelscreenComponent implements OnInit {
     this.questiontoShow = {
       ...this.questionGroup[0],
     };
-    
+    this.totalCollectionLength=this.questionGroup.length;
+
     console.log(this.questionGroup);
   }
 
@@ -80,6 +99,13 @@ export class QuestionbankpanelscreenComponent implements OnInit {
     var base64Image = "data:image/png;base64," + imageString;
     return this.sanitizer.bypassSecurityTrustResourceUrl(base64Image);
   }
+
+
+  pushToArray(arr, obj) {
+      var existingIds = arr.map((obj) => obj.questionId);
+      arr.push(obj);
+  }
+
   getStyles(group: any): any {
     let myStyles = {
       background: "url('./../../../../assets/questions-sprite.png') no-repeat",
@@ -120,26 +146,351 @@ export class QuestionbankpanelscreenComponent implements OnInit {
 
   sidebuttonforquestion(position: number, prevquestion: any, quesType: string) {
     this.showanswer=false;
+    this.attemptedAnswer=[false,false,false,false];
     this.questiontoShow = {
       ...this.questionGroup[position - 1],
     };
+    
+    this.correctanswer="";
+    var t: string;
+    var r: string;
+    if (prevquestion !== undefined) {
+      this.answerDataofUser.forEach((element, index) => {
+        if (element.questionId === prevquestion["id"]) {
+          t = element.answerSubmitted;
+          r = element.questionStatus;
+        }
+      });
+    }
+
+    let assignedCurrentOption = false;
+    let missedOutOnCurrentOption = false;
+    this.answerDataofUser.forEach((element, index) => {
+      if (element.questionId === this.questiontoShow.id) {
+        if (this.questiontoShow.questionType === "MSQ") {
+          this.IsAChecked = false;
+          this.IsBChecked = false;
+          this.IsCChecked = false;
+          this.IsDChecked = false;
+          if (element.answerSubmitted !== null) {
+            let checkBoxOptions = element.answerSubmitted
+              .split("(")
+              .join("")
+              .split(")")
+              .join("")
+              .split(",");
+            checkBoxOptions.forEach((checkedOption) => {
+              this.assignMSQOptionsChecked(checkedOption);
+            });
+          }
+        } else {
+          let ansSub="";
+          if(element.answerSubmitted === "null"  || element.answerSubmitted === null){
+             ansSub="null";
+          }
+          if(ansSub !== "null") {
+            if (this.questiontoShow.questionType === "NAT") {
+              localStorage.setItem(this.localStorageNATKey, element.answerSubmitted);
+              this.currentOption = element.answerSubmitted;
+            }else{
+              this.currentOption = element.answerSubmitted;
+            }
+          }else{
+            if (this.questiontoShow.questionType === "NAT") {
+              localStorage.setItem(this.localStorageNATKey, "");
+              localStorage.setItem("natActiveValue", "");
+              this.currentOption = "";
+              (<HTMLInputElement>document.getElementById("answer")).value="";
+            }else{
+              this.currentOption = element.answerSubmitted;
+            }
+          }
+        }
+       
+        assignedCurrentOption = true;
+      } else {
+        missedOutOnCurrentOption = true;
+      }
+    });
+
+    if (!assignedCurrentOption && missedOutOnCurrentOption) {
+      if (this.questiontoShow.questionType === "NAT") {
+        this.currentOption="";
+        (<HTMLInputElement>document.getElementById("answer")).value="";
+        //localStorage.setItem("natActiveValue", "");
+      }else if (this.questiontoShow.questionType === "MSQ") {
+        this.IsAChecked=false;
+        this.IsBChecked=false;
+        this.IsCChecked=false;
+        this.IsDChecked=false;
+      }
+      else{
+        this.currentOption=null;
+      }
+    }
 
     this.count = position;
   }
+
+  onMSQChange($event, passedOption) {
+    switch (passedOption) {
+      case "A":
+        this.IsAChecked = $event.checked;
+        this.finalCheckedValue = true;
+        this.totalOptionsChecked =
+          this.totalOptionsChecked + passedOption + ",";
+        this.attemptedAnswer[0]=true;
+        break;
+      case "B":
+        this.IsBChecked = $event.checked;
+        this.finalCheckedValue = true;
+        this.totalOptionsChecked =
+          this.totalOptionsChecked + passedOption + ",";
+        this.attemptedAnswer[1]=true;
+        break;
+      case "C":
+        this.IsCChecked = $event.checked;
+        this.finalCheckedValue = true;
+        this.totalOptionsChecked =
+          this.totalOptionsChecked + passedOption + ",";
+          this.attemptedAnswer[2]=true;
+        break;
+      case "D":
+        this.IsDChecked = $event.checked;
+        this.finalCheckedValue = true;
+        this.totalOptionsChecked =
+          this.totalOptionsChecked + passedOption + ",";
+        this.attemptedAnswer[3]=true;
+        break;
+    }
+  }
+
+  nextQuestion(form: NgForm, quesId: number, quesType: string){
+    this.showanswer=false;
+    this.attemptedAnswer=[false,false,false,false];
+    this.count=quesId+1;
+    this.questiontoShow = {
+      ...this.questionGroup[quesId],
+    };
+    this.correctanswer="";
+    form.reset();
+    if (quesType === "MSQ") {
+      if (this.IsAChecked) {
+        this.IsAChecked=false;
+      }
+      if (this.IsBChecked) {
+        this.IsBChecked=false;
+      }
+      if (this.IsCChecked) {
+        this.IsCChecked=false;
+      }
+      if (this.IsDChecked) {
+        this.IsDChecked=false;
+      }
+    }
+
+    this.answerDataofUser.forEach((element, index) => {
+      if (element.questionId === this.questiontoShow.id) {
+        if (this.questiontoShow.questionType === "MSQ") {
+          this.IsAChecked = false;
+          this.IsBChecked = false;
+          this.IsCChecked = false;
+          this.IsDChecked = false;
+          if (element.answerSubmitted !== null) {
+            let checkBoxOptions = element.answerSubmitted
+              .split("(")
+              .join("")
+              .split(")")
+              .join("")
+              .split(",");
+            checkBoxOptions.forEach((checkedOption) => {
+              this.assignMSQOptionsChecked(checkedOption);
+            });
+          }
+        } else {
+          let ansSub="";
+          if(element.answerSubmitted === "null"  || element.answerSubmitted === null){
+             ansSub="null";
+          }
+          if(ansSub !== "null") {
+            if (this.questiontoShow.questionType === "NAT") {
+              localStorage.setItem(this.localStorageNATKey, element.answerSubmitted);
+              this.currentOption = element.answerSubmitted;
+            }else{
+              this.currentOption = element.answerSubmitted;
+            }
+          }else{
+            if (this.questiontoShow.questionType === "NAT") {
+              localStorage.setItem(this.localStorageNATKey, "");
+              localStorage.setItem("natActiveValue", "");
+              this.currentOption = "";
+              (<HTMLInputElement>document.getElementById("answer")).value="";
+            }else{
+              this.currentOption = element.answerSubmitted;
+            }
+          }
+        }
+       
+      } 
+    });
+  }
+  
   showanswer:boolean=false;
-  selectAnswer:boolean[]=[false,false,false,false];
+  correctanswer:string="";
+  attemptedAnswer:boolean[]=[false,false,false,false];
+  
+  
   showAnswer(form: NgForm, quesId: number, quesType: string) {
     this.showanswer=true;
     console.log(form);
     console.log(quesId);
     console.log(quesType);
     console.log(this.showAnswer);
+  
+    this.correctanswer=this.questiontoShow.answer;
+  
     
+    let submittedTextValue = "natNotSelected";
+    if (localStorage.getItem("natActiveValue") !== "") {
+      this.natInput = localStorage.getItem("natActiveValue");
+    } else if (localStorage.getItem(this.localStorageNATKey) !== "") {
+      this.natInput = localStorage.getItem(this.localStorageNATKey);
+    } else if (
+      localStorage.getItem("natActiveValue") === "" &&
+      localStorage.getItem(this.localStorageNATKey) === ""
+    ) {
+      this.natInput = "";
+    }
+
+    if (quesType === "NAT") {
+      submittedTextValue = this.natInput;
+      let replaceString=this.questiontoShow.answer.replace('(','').replace(')','');
+      let finalstring=replaceString.split(',');
+      if(submittedTextValue >= finalstring[0].trim() || submittedTextValue <= finalstring[1].trim()){
+        this.correctanswer="true";
+      }
+      this.finalCheckedValue = true;
+    }
+    if (quesType === "MCQ" ) {
+      this.attemptedAnswer=[false,false,false,false];
+      this.finalCheckedValue = true;
+      switch (form.value.optionSelected) {
+        case 'A':
+          this.attemptedAnswer[0]=true;
+
+          break;
+        case 'B':
+          this.attemptedAnswer[1]=true;
+          break;
+        case 'C':
+          this.attemptedAnswer[2]=true;
+          break;
+        case 'D':
+          this.attemptedAnswer[3]=true;
+          break;
+      }
+    }
+
+    if (quesType === "MSQ") {
+      if (this.totalOptionsChecked === "") {
+        this.answerDataofUser.forEach((element, index) => {
+          if (element.questionId === this.questiontoShow.id) {
+            this.finalCheckedValue = true;
+            this.totalOptionsChecked = element.answerSubmitted;
+          }
+        });
+      }
+    }
+
+    if (
+      form.value.optionSelected === "" ||
+      form.value.optionSelected === null ||
+      submittedTextValue === "" ||
+      this.finalCheckedValue === false
+    ) {
+      let selectedValue = form.value.optionSelected;
+      this.finalCheckedValue = false;
+      if (quesType === "NAT") {
+        selectedValue = "";
+      }
+
+      if (quesType === "MSQ") {
+        this.totalOptionsChecked = "";
+        selectedValue = null;
+      }
+
+      this.pushToArray(
+        this.answerDataofUser,
+        {
+          questionId: quesId,
+          questionType: quesType,
+          answerSubmitted: selectedValue
+        }
+      );
+    } else {
+      let selectedValue = form.value.optionSelected;
+
+      if (quesType === "MCQ") {
+        this.finalCheckedValue = false;
+      }
+
+      if (quesType === "NAT") {
+        selectedValue = submittedTextValue;
+        this.finalCheckedValue = false;
+        localStorage.setItem(this.localStorageNATKey, selectedValue);
+        localStorage.setItem("natActiveValue", "");
+      }
+
+      if (quesType === "MSQ") {
+        let listOfCheckedValues = "(";
+        if (this.IsAChecked) {
+          listOfCheckedValues = listOfCheckedValues + "A,";
+        }
+        if (this.IsBChecked) {
+          listOfCheckedValues = listOfCheckedValues + "B,";
+        }
+        if (this.IsCChecked) {
+          listOfCheckedValues = listOfCheckedValues + "C,";
+        }
+        if (this.IsDChecked) {
+          listOfCheckedValues = listOfCheckedValues + "D,";
+        }
+
+        listOfCheckedValues =
+          listOfCheckedValues.substring(0, listOfCheckedValues.length - 1) +
+          ")";
+        selectedValue = listOfCheckedValues;
+        this.finalCheckedValue = false;
+        this.totalOptionsChecked = "";
+      }
+
+    this.pushToArray(
+      this.answerDataofUser,
+      {
+        questionId: quesId,
+        questionType: quesType,
+        answerSubmitted: selectedValue
+      }
+    );
+  }
   }
 
-  nextQuestion(){
-    this.questiontoShow = {
-      ...this.questionGroup[this.count-1]
+  assignMSQOptionsChecked(answerSubmitted: string) {
+    switch (answerSubmitted) {
+      case "A":
+        this.IsAChecked = true;
+        break;
+      case "B":
+        this.IsBChecked = true;
+        break;
+      case "C":
+        this.IsCChecked = true;
+        break;
+      case "D":
+        this.IsDChecked = true;
+        break;
     }
   }
+
+
 }
