@@ -7,7 +7,7 @@ import { logout } from "src/app/auth/auth.actions";
 import { BranchOptedService } from "../../service/branch-opted.service";
 import { MatDialog } from "@angular/material/dialog";
 import { BranchselectionComponent } from "../branchselection/branchselection.component";
-
+import * as $ from 'jquery'
 import Swal from "sweetalert2";
 @Component({
   selector: "app-userprofile",
@@ -31,6 +31,22 @@ export class UserprofileComponent implements OnInit {
   isVerified: any;
 
   ngOnInit(): void {
+
+    $('.sub-btn').click(function(){
+      $(this).next('.sub-menu').slideToggle();
+      $(this).find('.dropdown').toggleClass('rotate');
+    });
+
+    //jquery for expand and collapse the sidebar
+    $('.menu-btn').click(function(){
+      $('.side-bar').addClass('active');
+      $('.menu-btn').css("visibility", "hidden");
+    });
+
+    $('.close-btn').click(function(){
+      $('.side-bar').removeClass('active');
+      $('.menu-btn').css("visibility", "visible");
+    });
     this.store.pipe(map((data) => data["auth"]["user"])).subscribe((data) => {
       if (data !== undefined) {
         this.name = data.user.name;
@@ -170,7 +186,10 @@ export class UserprofileComponent implements OnInit {
         this.branchOpted === "EE" ||
         this.branchOpted === "IN" ||
         this.branchOpted === "AE" ||
-        this.branchOpted === "XE"
+        this.branchOpted === "XE" ||
+        this.branchOpted === "PH" ||
+        this.branchOpted === "ST" ||
+        this.branchOpted === "ES" 
       ) {
         return true;
       }
@@ -189,7 +208,8 @@ export class UserprofileComponent implements OnInit {
       if (
         this.branchOpted === "MA" ||
         this.branchOpted === "PH" ||
-        this.branchOpted === "MS"
+        this.branchOpted === "MS" ||
+        this.branchOpted === "ST" 
       ) {
         return true;
       }

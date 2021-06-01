@@ -14,13 +14,17 @@ export class BranchselectionComponent implements OnInit {
     ME: "Mechanical Engineering ",
     AE: "Aerospace Engineering",
     CH: "Chemical Engineering",
-    PI: "Production and Industrial Enginnering",
+    PI: "Production and Industrial Engineering",
     MA: "Mathematics",
     MT: "Metallurgical Engineering",
-    XE: "",
+    XE: "Engineering Science",
     EE: "Electrical Engineering",
-    ECE: "Electronics & Communication Engg.",
+    ECE: "Electronics & Communication Engineering",
     IN: "Instrumentation Engineering",
+    ST: "Statistics",
+    PH: "Physics",
+    ES: "Environmental Science"
+    
   };
   user: any;
   userDiscipline: any[] = [];

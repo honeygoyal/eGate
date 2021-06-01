@@ -16,6 +16,23 @@ export var examsExport;
   styleUrls: ["./testseries.component.scss"],
 })
 export class TestseriesComponent implements OnInit {
+  
+activePageDataChunk:any = []
+activePageDataChunkInProgress = []
+activePageDataChunkCompleted = []
+  // MatPaginator Inputs
+  pageSize = 5;
+  pageSizeOptions: number[] = [3, 5, 8, 10];
+  onPageChanged(e) {
+    let firstCut = e.pageIndex * e.pageSize;
+    let secondCut = firstCut + e.pageSize;
+    this.activePageDataChunk = this.exams.slice(firstCut, secondCut);
+    this.activePageDataChunkInProgress = this.examsinprogress.slice(firstCut,secondCut);
+    this.activePageDataChunkCompleted = this.examscompleted.slice(firstCut,secondCut);
+  }
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
+  }
   exam_code: string;
   email: string;
   exams: any[] = [];
@@ -43,8 +60,12 @@ export class TestseriesComponent implements OnInit {
       .subscribe((data) => {
         if (data !== null) {
           this.exams = [...data];
+          this.activePageDataChunk = this.exams.slice(0,this.pageSize);
           if(this.exams.length!==0)
           this.filterexams();
+          this.activePageDataChunkInProgress = this.examsinprogress.slice(0,this.pageSize);
+          this.activePageDataChunkCompleted = this.examscompleted.slice(0,this.pageSize);
+
         }
       });
     });
@@ -57,6 +78,7 @@ export class TestseriesComponent implements OnInit {
     if (location.href.toLowerCase().indexOf(indexChar.toLowerCase()) > -1) {
       this.onlineTestSeriesLink = "/courses/gate/online test series";
     }
+    
   }
 
   filterexams() {

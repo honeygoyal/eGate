@@ -77,17 +77,39 @@ export class SignupComponent implements OnInit {
     }
   }
 
-  toppingList: string[] = [
-    "CS", //COMPUTER SCIENCE
-    "ME", //MECHANICAL
-    "PI", //PRODUCTION AND INDUSTRIAL
-    "CH", //CHEMICAL
-    "MT", //METALLURGICAL
-    "CE", //CIVIL
-    "MA", //MATHEMATICS
-    "AE", //AEROSPACE
-    "EE", //ELECTRICAL
-    "ECE", //ELECTRONICS AND COMMUNICATION
-    "IN", //INSTRUMENTATION
-  ];
+  // toppingList: string[] = [
+  //   "CS", //COMPUTER SCIENCE
+  //   "ME", //MECHANICAL
+  //   "PI", //PRODUCTION AND INDUSTRIAL
+  //   "CH", //CHEMICAL
+  //   "MT", //METALLURGICAL
+  //   "CE", //CIVIL
+  //   "MA", //MATHEMATICS
+  //   "AE", //AEROSPACE
+  //   "EE", //ELECTRICAL
+  //   "ECE", //ELECTRONICS AND COMMUNICATION
+  //   "IN", //INSTRUMENTATION
+  //   "ES", //Environmental Science
+  //   "PH", //PHYSICS
+  //   "ST", //STATISTICS
+  // ];
+
+    branchMap = new Map([
+      ["CS","COMPUTER SCIENCE"],
+      ["ME", "MECHANICAL"],
+      ["PI", "PRODUCTION AND INDUSTRIAL"],
+      [ "CH", "CHEMICAL"],
+      [ "MT", "METALLURGICAL"],
+      ["CE", "CIVIL"],
+      ["MA", "MATHEMATICS"],
+      [ "AE", "AEROSPACE"],
+      ["EE", "ELECTRICAL"],
+      [ "ECE", "ELECTRONICS AND COMMUNICATION"],
+      ["IN", "INSTRUMENTATION"],
+      ["ES","Environmental Science"],
+      ["PH", "PHYSICS"],
+      ["ST", "STATISTICS"],
+    ]);
+    
 }
+

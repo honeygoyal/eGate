@@ -246,6 +246,9 @@ onbeforeunload=" return 'Do you really want to perform the action?'">
         </form>
       </div>
       <div *ngIf="showanswer === true">
+        <!-- <h2 *ngIf="questiontoShow.answer === ">Correct</h2>
+        <h2>InCorrect</h2> -->
+        <h2 style="color: green;">Answer: {{questiontoShow.answer}}</h2>
       <img
       [src]="transform(questiontoShow.solution)"
       style="height: auto; width: 50vw"

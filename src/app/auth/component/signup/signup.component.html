@@ -107,9 +107,9 @@
                   <mat-form-field style="width: 15rem; margin-left: 0.5rem">
                     <mat-select formControlName="discipline" multiple>
                       <mat-option
-                        *ngFor="let topping of toppingList"
-                        [value]="topping"
-                        >{{ topping }}</mat-option
+                        *ngFor="let branch of branchMap | keyvalue"
+                        [value]="branch.key"
+                        >{{branch.value}}  ({{branch.key}})</mat-option
                       >
                     </mat-select>
                   </mat-form-field>
