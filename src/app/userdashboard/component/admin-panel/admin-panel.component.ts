@@ -24,11 +24,32 @@ export class AdminPanelComponent implements OnInit {
   examCode: any = {
     examId: "",
   };
+  branchCode:any;
+
+  branchMap = new Map([
+    ["CS","COMPUTER SCIENCE"],
+    ["ME", "MECHANICAL"],
+    ["PI", "PRODUCTION AND INDUSTRIAL"],
+    [ "CH", "CHEMICAL"],
+    [ "MT", "METALLURGICAL"],
+    ["CE", "CIVIL"],
+    ["MA", "MATHEMATICS"],
+    [ "AE", "AEROSPACE"],
+    ["EE", "ELECTRICAL"],
+    [ "ECE", "ELECTRONICS AND COMMUNICATION"],
+    ["IN", "INSTRUMENTATION"],
+    ["ES","Environmental Science"],
+    ["PH", "PHYSICS"],
+    ["ST", "STATISTICS"],
+  ]);
+
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
   exams_code: any;
+  
+  exam_code_to_show:any;
   exams_code_array: any[] = [];
   constructor(
     private _formBuilder: FormBuilder,
@@ -72,7 +93,6 @@ export class AdminPanelComponent implements OnInit {
     // this.thirdFormGroup=this._formBuilder.group({
       
     // })
-
     this.http.get(environment.getAllCoursesOffered).subscribe((data) => {
       this.exams_code = data;
       for (let exam of this.exams_code) {
@@ -93,7 +113,10 @@ export class AdminPanelComponent implements OnInit {
     var base64Image = "data:image/png;base64," + imageString;
     return this.sanitizer.bypassSecurityTrustResourceUrl(base64Image);
   }
-
+  onBranchSelect(){
+    console.log(this.branchCode);
+    this.exam_code_to_show=this.exams_code.filter(exam=>exam.branch===this.branchCode)
+  }
   submitDownload(form:NgForm){
     console.log(form.value)
     const formData = new FormData();

@@ -5,12 +5,23 @@
       <!-- <button mat-raised-button color="primary" style="text-align: center;">Test Upload Admin</button><br> -->
       <mat-horizontal-stepper [linear]="isLinear" #stepper>
         <mat-step [stepControl]="firstFormGroup">
+          <mat-form-field>
+            <mat-label>Branch</mat-label>
+            <mat-select required [(ngModel)]="branchCode" (ngModelChange)="onBranchSelect()">
+              <mat-option
+                      *ngFor="let branch of branchMap | keyvalue"
+                      [value]="branch.key"
+                      >{{branch.value}}  ({{branch.key}})</mat-option
+                    >
+            </mat-select>
+          </mat-form-field>
           <form [formGroup]="firstFormGroup" (ngSubmit)="onSubmit()">
             <ng-template matStepLabel>Create Test</ng-template>
             <mat-form-field>
               <mat-label>Test ID</mat-label>
               <input matInput formControlName="courseId" required />
             </mat-form-field>
+            
             <br />
             <mat-form-field>
               <mat-label>Title</mat-label>
@@ -25,7 +36,7 @@
             <mat-form-field>
               <mat-label>Exam Code</mat-label>
               <mat-select formControlName="examId" required>
-                <mat-option *ngFor="let exam of exams_code" [value]="exam">
+                <mat-option *ngFor="let exam of exam_code_to_show" [value]="exam">
                   {{ exam.examId }}
                 </mat-option>
               </mat-select>
@@ -76,6 +87,17 @@
           <ng-template matStepLabel>Edit Test</ng-template>
         </mat-step> -->
         <mat-step [stepControl]="secondFormGroup">
+          <mat-form-field>
+            <mat-label>Branch</mat-label>
+            <mat-select required [(ngModel)]="branchCode" (ngModelChange)="onBranchSelect()">
+              <mat-option
+                      *ngFor="let branch of branchMap | keyvalue"
+                      [value]="branch.key"
+                      >{{branch.value}}  ({{branch.key}})</mat-option
+                    >
+            </mat-select>
+          </mat-form-field>
+          
           <form [formGroup]="secondFormGroup" (ngSubmit)="onSubmitfile()">
             <ng-template matStepLabel>Upload Test</ng-template>
             <mat-form-field>
@@ -86,7 +108,7 @@
                 [(ngModel)]="examCode"
                 (ngModelChange)="onExamCodeSelect()"
               >
-                <mat-option *ngFor="let exam of exams_code" [value]="exam">
+                <mat-option *ngFor="let exam of exam_code_to_show" [value]="exam">
                   {{ exam.examId }}
                 </mat-option>
               </mat-select>
@@ -135,6 +157,7 @@
               <mat-label>QuestionBank ID</mat-label>
               <input matInput formControlName="courseId" required />
             </mat-form-field>
+           
             <br />
             <mat-form-field>
               <mat-label>Title</mat-label>
