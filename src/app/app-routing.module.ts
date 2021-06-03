@@ -7,7 +7,7 @@ import { ExamDetailsComponent } from "./exam-details/exam-details.component";
 import { AboutComponent } from "./about/about.component";
 import { AuthGuard } from "./auth/auth.guard";
 import { DownloadComponent } from './download/download.component';
-import { CareersComponent } from './Careers/Careers.component';
+import { CareersComponent } from './careers/careers.component';
 const routes: Routes = [
   { path: "", component: BodyComponent },
   { path: "home", component: BodyComponent },

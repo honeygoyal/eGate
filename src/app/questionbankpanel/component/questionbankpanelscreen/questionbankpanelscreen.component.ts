@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatTabChangeEvent } from '@angular/material/tabs';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -338,7 +338,20 @@ export class QuestionbankpanelscreenComponent implements OnInit {
   showanswer:boolean=false;
   correctanswer:string="";
   attemptedAnswer:boolean[]=[false,false,false,false];
-  
+  @ViewChild("tabGroup", { static: true })
+  tabGroup;
+
+  scrollTabs(event) {
+    const children = this.tabGroup._tabHeader._elementRef.nativeElement
+      .children;
+    const back = children[0];
+    const forward = children[2];
+    if (event.deltaY > 0) {
+      forward.click();
+    } else {
+      back.click();
+    }
+  }
   
   showAnswer(form: NgForm, quesId: number, quesType: string) {
     this.showanswer=true;

@@ -61,7 +61,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { DownloadComponent } from './download/download.component';
 import { DownloadService } from './download/downloadservice';
 import { NgImageSliderModule } from 'ng-image-slider';
-import { CareersComponent } from './Careers/Careers.component';
+import { CareersComponent } from './careers/careers.component';
 
 @NgModule({
   declarations: [

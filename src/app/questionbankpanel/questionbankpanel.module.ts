@@ -31,14 +31,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatDialogModule } from '@angular/material/dialog';
-import { CalculatorComponent } from '../exampanel/component/calculator/calculator.component';
 import { LoaderExampanel } from '../exampanel/services/loaderexampanel';
 import { LoaderInterceptorExam } from '../exampanel/interceptor/LoaderExamInterceptor';
 import { authInterceptorProviders } from '../userdashboard/interceptors/AuthInterceptor';
 
 
 @NgModule({
-  declarations: [QuestionbankpanelscreenComponent,CalculatorComponent],
+  declarations: [QuestionbankpanelscreenComponent],
   imports: [
     CommonModule,
     DragDropModule,
