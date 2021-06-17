@@ -169,6 +169,12 @@ export class CoursesDetailComponent implements OnInit {
         return "Electronics & Communication Engg.";
       case "IN":
         return "Instrumentation Engineering";
+      case "ST":
+        return "Statistics";
+      case "PH":
+        return "Physics";
+      case "ES":
+        return "Environmental Science";
       default:
         return "";
     }

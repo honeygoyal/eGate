@@ -41,7 +41,20 @@ onbeforeunload=" return 'Do you really want to perform the action?'">
       style="height: auto; overflow: hidden; position: relative"
     >
       <div id="questionandanswer">
+        <div style="display: flex;flex-direction: row;justify-content: space-between;">
         <h4 style="margin: 0.2rem 0rem">Question No: {{ count }}</h4>
+        <div *ngIf=this.checkAnswer(questiontoShow.questionType,f)>
+          <h4 *ngIf="this.showanswer === true" style="color: white;background: green;
+          padding: 5px 10px;margin-right: 2rem;border-radius:30px;margin-top: 20px;">
+          CORRECT</h4>
+        </div>
+        <div *ngIf=!this.checkAnswer(questiontoShow.questionType,f)>
+          <h4 *ngIf="this.showanswer === true" style="color: white;background: red;
+          padding: 5px 10px;margin-right: 2rem;border-radius:30px;margin-top: 20px;">
+          WRONG</h4>
+        </div>
+       
+        </div>
         <a target="_blank">
           <img
             [src]="transform(questiontoShow.question)"
@@ -157,6 +170,8 @@ onbeforeunload=" return 'Do you really want to perform the action?'">
             *ngIf="questiontoShow.questionType === 'MSQ'"
           >
             <div
+              ngModel
+              name="options"
               style="
                 display: flex;
                 flex-direction: column;
@@ -248,7 +263,7 @@ onbeforeunload=" return 'Do you really want to perform the action?'">
       <div *ngIf="showanswer === true">
         <!-- <h2 *ngIf="questiontoShow.answer === ">Correct</h2>
         <h2>InCorrect</h2> -->
-        <h2 style="color: green;">Answer: {{questiontoShow.answer}}</h2>
+        <h4 style="color: green;">Answer: {{questiontoShow.answer}}</h4>
       <img
       [src]="transform(questiontoShow.solution)"
       style="height: auto; width: 50vw"

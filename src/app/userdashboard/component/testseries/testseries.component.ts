@@ -84,9 +84,12 @@ activePageDataChunkCompleted = []
   filterexams() {
     let currentDate = new Date(this.currentDateAsString);
     for (let exam of this.exams) {
-      let str = exam.title;
+      let str = exam.description;
+      // str = str.replace(/Basic/g,);
+       //str = str.replace(/and/g,);
       let matches = str.match(/\b(\w)/g);
       let acronym = matches.join("");
+
       exam.abTitle = acronym;
       if (exam.status === "PENDING") {
         let endDate = new Date(exam.endDate);

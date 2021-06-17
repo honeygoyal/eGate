@@ -352,13 +352,44 @@ export class QuestionbankpanelscreenComponent implements OnInit {
       back.click();
     }
   }
+
+  checkAnswer(quesType:string,form: NgForm):boolean{
+
+    if(quesType === "NAT")
+      return (this.correctanswer === "false"?false:true);
+    else if (quesType === "MCQ" ) {
+       return (form.value.optionSelected === this.correctanswer ?true:false);
+    }else if(quesType === "MSQ"){
+      let selectedValue;
+      let listOfCheckedValues = "(";
+        if (this.IsAChecked) {
+          listOfCheckedValues = listOfCheckedValues + "A,";
+        }
+        if (this.IsBChecked) {
+          listOfCheckedValues = listOfCheckedValues + "B,";
+        }
+        if (this.IsCChecked) {
+          listOfCheckedValues = listOfCheckedValues + "C,";
+        }
+        if (this.IsDChecked) {
+          listOfCheckedValues = listOfCheckedValues + "D,";
+        }
+
+        listOfCheckedValues =
+          listOfCheckedValues.substring(0, listOfCheckedValues.length - 1) +
+          ")";
+        selectedValue = listOfCheckedValues;
+        return (this.correctanswer === selectedValue?true:false);
+    }
+  
+
+  }
   
   showAnswer(form: NgForm, quesId: number, quesType: string) {
     this.showanswer=true;
     console.log(form);
     console.log(quesId);
     console.log(quesType);
-    console.log(this.showAnswer);
   
     this.correctanswer=this.questiontoShow.answer;
   
@@ -377,11 +408,16 @@ export class QuestionbankpanelscreenComponent implements OnInit {
 
     if (quesType === "NAT") {
       submittedTextValue = this.natInput;
-      let replaceString=this.questiontoShow.answer.replace('(','').replace(')','');
-      let finalstring=replaceString.split(',');
-      if(submittedTextValue >= finalstring[0].trim() || submittedTextValue <= finalstring[1].trim()){
+      let replaceString=this.questiontoShow.answer.replace('(','').replace(')','').replace(' ','');
+      
+      let finalstring=replaceString.split(',')
+      
+      if(submittedTextValue >= finalstring[0].trim() && submittedTextValue <= finalstring[1].trim()){
         this.correctanswer="true";
+      }else{
+        this.correctanswer="false";
       }
+      console.log(this.correctanswer);
       this.finalCheckedValue = true;
     }
     if (quesType === "MCQ" ) {
