@@ -24,6 +24,7 @@ export class CoursesDetailComponent implements OnInit {
   notes:string= "EGatetutor payment";
   receipt: string="";
   initialCourseAmount:number=0;
+  bannerImagesObject:any=[];
   razorPayOptions={
     "key":'',
     "amount":'',
@@ -42,6 +43,20 @@ export class CoursesDetailComponent implements OnInit {
       this.user=JSON.parse(localStorage.getItem("user"));
       this.discipline=this.user.user.discipline.split(",");
       this.receipt=this.user.user.id.toString();
+
+      this.bannerImagesObject = [{
+            image: 'https://egatetutorstorage.blob.core.windows.net/gatecoursebannerimages/banner2.jpg',
+            thumbImage: 'https://egatetutorstorage.blob.core.windows.net/gatecoursebannerimages/banner2.jpg'
+        }, 
+        {
+          image: 'https://egatetutorstorage.blob.core.windows.net/gatecoursebannerimages/banner3.jpg',
+          thumbImage: 'https://egatetutorstorage.blob.core.windows.net/gatecoursebannerimages/banner3.jpg'
+        },
+        {
+          image: 'https://egatetutorstorage.blob.core.windows.net/gatecoursebannerimages/banner4.jpg',
+          thumbImage: 'https://egatetutorstorage.blob.core.windows.net/gatecoursebannerimages/banner4.jpg'
+        }
+      ];
     });
   }
 
@@ -173,6 +188,8 @@ export class CoursesDetailComponent implements OnInit {
         return "Statistics";
       case "PH":
         return "Physics";
+      case "XE":
+        return "Engineering Sciences";
       case "ES":
         return "Environmental Science";
       default:

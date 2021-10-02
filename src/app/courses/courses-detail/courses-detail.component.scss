@@ -61,6 +61,49 @@
       }
     }
   }
+  &-gatesection {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+    
+    .deptable{
+      margin-top: 2rem;
+      width: 100%;
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        padding:0.25rem;
+        //width: 100%;
+      }
+
+      #payinside {
+        border: 1px solid #07c4fb;
+        border-radius: 10px;
+        padding: 0.5rem 1rem;
+        background: #07c4fb;
+        font-size: 1rem;
+        color: white;
+        outline: none;
+        cursor: pointer;
+      }
+    }
+
+    .course-details-card {
+      padding-bottom: 6rem;
+      width: 100%;
+      height: auto;
+      box-shadow: 0 0 20px 1px #07c4fb;
+      background: #464646;
+      color: white;
+      mat-card-title {
+        color: #07c4fb;
+        text-align: center;
+      }
+    }
+  }
 }
 
 #pay {

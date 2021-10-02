@@ -17,7 +17,9 @@
       *ngIf="contentSelected === 'gate' && content === 'online test series'"
     >
       {{ contentSelected | uppercase }} ONLINE TEST SERIES
+      
     </h1>
+
     <h1
       style="text-align: center;"
       *ngIf="contentSelected === 'gate' && content === 'e-study material'"
@@ -96,7 +98,233 @@
     >
       BHEL ONLINE TEST SERIES
     </h1>
-    <div id="course-details-section">
+
+    <h2  style="text-align: center;">
+      <div id="sliderContainer" style="margin-top: 1.5rem;">
+        <ng-image-slider #nav
+        [images]="bannerImagesObject"
+        [infinite]="true"
+        [autoSlide]="1"
+        [imageSize]="{width: '100%', height: '50%'}"
+        [animationSpeed]=4
+        [autoSlide]="{interval: 2, stopOnHover: false}"
+        slideImage="1"></ng-image-slider>
+      </div>
+    </h2>
+
+    <div id="course-details-gatesection" *ngIf="
+    contentSelected === 'gate' && content === 'online test series'
+    ">
+     <mat-card class="course-details-card">
+      <div class="divcen">
+        <mat-card-header>
+          <mat-card-title>GENERAL INSTRUCTIONS</mat-card-title>
+        </mat-card-header>
+      </div>
+      <div>
+        <mat-card-content>
+          <table style="width: 100%;">
+            <tr>
+              <td>
+                <li>Exam Interface similar to GATE</li>
+              </td>
+              <td>
+                <li>Performance Analysis for every Exam</li>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <li>Questions prepared by experts and GATE exam toppers</li>
+              </td>
+              <td>
+                <li>Complete coverage of syllabus</li>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <li>Detailed solutions to every questions</li>
+              </td>
+              <td>
+                <li>Rank Analysis for comparison</li>
+              </td>
+            </tr>
+          </table>
+        </mat-card-content>
+      </div>
+     </mat-card>
+
+     <div class="deptable">
+       <table>
+         <tr></tr>
+         <tr></tr>
+        <tr>
+          <th>S.No.</th>
+          <th>DEPARTMENT</th>
+          <th>DEPARTMENT CODE</th>
+          <th>No.OF Tests</th>
+          <th>START DATE</th>
+          <th>VALID TILL</th>
+          <th>SCHEDULE</th>
+          <th>PURCHASE</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>AEROSPACE ENGINEERING</td>
+          <td>AE</td>
+          <td>75+</td>
+          <td>11/7/21</td>
+          <td>31/3/22</td>
+          <td><a href="#" target="_blank">AE-SCHEDULE</a></td>
+          <td> <button (click)="paymentstart()" id="payinside">BUY NOW</button> </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>CHEMICAL ENGINEERING</td>
+          <td>CH</td>
+          <td>75+</td>
+          <td>11/7/21</td>
+          <td>31/3/22</td>
+          <td><a href="#" target="_blank">CH-SCHEDULE</a></td>
+          <td> <button (click)="paymentstart()" id="payinside">BUY NOW</button> </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>CIVIL ENGINEERING</td>
+          <td>CE</td>
+          <td>75+</td>
+          <td>11/7/21</td>
+          <td>31/3/22</td>
+          <td><a href="#" target="_blank">CE-SCHEDULE</a></td>
+          <td> <button (click)="paymentstart()" id="payinside">BUY NOW</button> </td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>COMPUTER SCIENCE AND ENGINEERING</td>
+          <td>CSE</td>
+          <td>75+</td>
+          <td>11/7/21</td>
+          <td>31/3/22</td>
+          <td><a href="#" target="_blank">CSE-SCHEDULE</a></td>
+          <td> <button (click)="paymentstart()" id="payinside">BUY NOW</button> </td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>ELECTRICAL ENGINEERING</td>
+          <td>EE</td>
+          <td>75+</td>
+          <td>1/8/21</td>
+          <td>31/3/22</td>
+          <td><a href="#" target="_blank">EE-SCHEDULE</a></td>
+          <td> <button (click)="paymentstart()" id="payinside">BUY NOW</button> </td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>ELECTRONICS AND COMMUNICATION ENGINEERING</td>
+          <td>EC</td>
+          <td>75+</td>
+          <td>1/8/21</td>
+          <td>31/3/22</td>
+          <td><a href="#" target="_blank">EC-SCHEDULE</a></td>
+          <td> <button (click)="paymentstart()" id="payinside">BUY NOW</button> </td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>ENGINEERING SCIENCES</td>
+          <td>XE</td>
+          <td>75+</td>
+          <td>11/7/21</td>
+          <td>31/3/22</td>
+          <td><a href="#" target="_blank">XE-SCHEDULE</a></td>
+          <td> <button (click)="paymentstart()" id="payinside">BUY NOW</button> </td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>ENVIRONMENTAL SCIENCE AND ENGINEERING</td>
+          <td>ES</td>
+          <td>75+</td>
+          <td>1/8/21</td>
+          <td>31/3/22</td>
+          <td><a href="#" target="_blank">ES-SCHEDULE</a></td>
+          <td> <button (click)="paymentstart()" id="payinside">BUY NOW</button> </td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>INSTRUMENTATION ENGINEERING</td>
+          <td>IN</td>
+          <td>75+</td>
+          <td>1/8/21</td>
+          <td>31/3/22</td>
+          <td><a href="#" target="_blank">IN-SCHEDULE</a></td>
+          <td> <button (click)="paymentstart()" id="payinside">BUY NOW</button> </td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>MATHEMATICS</td>
+          <td>MA</td>
+          <td>75+</td>
+          <td>1/8/21</td>
+          <td>31/3/22</td>
+          <td><a href="#" target="_blank">MA-SCHEDULE</a></td>
+          <td> <button (click)="paymentstart()" id="payinside">BUY NOW</button> </td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>MECHANICAL ENGINEERING</td>
+          <td>ME</td>
+          <td>75+</td>
+          <td>11/7/21</td>
+          <td>31/3/22</td>
+          <td><a href="#" target="_blank">ME-SCHEDULE</a></td>
+          <td> <button (click)="paymentstart()" id="payinside">BUY NOW</button> </td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>METALLURGICAL ENGINEERING</td>
+          <td>MT</td>
+          <td>75+</td>
+          <td>11/7/21</td>
+          <td>31/3/22</td>
+          <td><a href="#" target="_blank">MT-SCHEDULE</a></td>
+          <td> <button (click)="paymentstart()" id="payinside">BUY NOW</button> </td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td>PHYSICS</td>
+          <td>PH</td>
+          <td>75+</td>
+          <td>1/8/21</td>
+          <td>31/3/22</td>
+          <td><a href="#" target="_blank">PH-SCHEDULE</a></td>
+          <td> <button (click)="paymentstart()" id="payinside">BUY NOW</button> </td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td>PRODUCTION AND INDUSTRIAL ENGINEERING</td>
+          <td>PI</td>
+          <td>75+</td>
+          <td>11/7/21</td>
+          <td>31/3/22</td>
+          <td><a href="#" target="_blank">PI-SCHEDULE</a></td>
+          <td> <button (click)="paymentstart()" id="payinside">BUY NOW</button> </td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td>STATISTICS</td>
+          <td>ST</td>
+          <td>75+</td>
+          <td>1/8/21</td>
+          <td>31/3/22</td>
+          <td><a href="#" target="_blank">ST-SCHEDULE</a></td>
+          <td> <button (click)="paymentstart()" id="payinside">BUY NOW</button> </td>
+        </tr>
+       </table>
+     </div>
+
+    </div>
+
+    <div id="course-details-section" *ngIf="
+    contentSelected !== 'gate' && content !== 'online test series'
+    ">
       <mat-card class="course-details-card">
         <div class="divcen">
           <mat-card-header>
@@ -280,7 +508,7 @@
           </mat-card-content>
         </div>
       </mat-card>
-      <mat-card class="course-details-card">
+      <mat-card class="course-details-card" >
         <div class="divcen">
           <mat-card-header>
             <mat-card-title>
@@ -320,7 +548,7 @@
               SOLID MECHANICS<br />&nbsp; &nbsp; b. MATERIAL SCIENCE<br />&nbsp;
               &nbsp; c. FLUID MECHANICS<br />&nbsp; &nbsp; d. THERMODYNAMICS
             </p>
-            <ol
+            <!-- <ol
               *ngIf="
                 contentSelected === 'gate' && content === 'online test series'
               "
@@ -344,7 +572,7 @@
                 <li>FLUID MECHANICS</li>
                 <li>THERMODYNAMICS</li>
               </ol>
-            </ol>
+            </ol> -->
             <p
               *ngIf="
                 contentSelected === 'gate' && content === 'e-study material'
@@ -530,13 +758,13 @@
               <span style="color: #07c4fb;">(</span><span id="VL">3999</span>/-<sup>*</sup
               ><span style="color: #07c4fb;">)</span>
             </h1>
-            <h1 style="color: #07c4fb;"
+            <!-- <h1 style="color: #07c4fb;"
               *ngIf="
                 contentSelected === 'gate' && content === 'online test series'
               "
             >
               <span>(<span id="OTS">1299</span>/-<sup>*</sup>)</span>
-            </h1>
+            </h1> -->
             <h1
               *ngIf="
                 contentSelected === 'gate' && content === 'e-study material'
