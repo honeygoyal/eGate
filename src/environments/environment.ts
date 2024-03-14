@@ -5,55 +5,55 @@
 export const environment = {
   production: false,
   saveUserProfile:
-    "https://egatetutor.com/users/register",
+    "http://127.0.0.1:8080/users/register",
   authenticate:
-    "https://egatetutor.com/users/authenticate",
+    "http://127.0.0.1:8080/users/authenticate",
   getQuestionsForTestSeries:
-    "https://egatetutor.com/questionLayout/getQuestions",
+    "http://127.0.0.1:8080/questionLayout/getQuestions",
   postSavedAnswer:
-    "https://egatetutor.com/reportDetail/saveReportQuestionWise",
+    "http://127.0.0.1:8080/reportDetail/saveReportQuestionWise",
   postSubmittedAnswer:
-    "https://egatetutor.com/reportOverall/saveOverallReport",
+    "http://127.0.0.1:8080/reportOverall/saveOverallReport",
   getAllCoursesOffered:
-    "https://egatetutor.com/coursesOffered/getAllCoursesOffered",
+    "http://127.0.0.1:8080/coursesOffered/getAllCoursesOffered",
   findAllUnVerifiedUser:
-    "https://egatetutor.com/users/findAllUnVerifiedUser?userId=",
+    "http://127.0.0.1:8080/users/findAllUnVerifiedUser?userId=",
   createTest:
-    "https://egatetutor.com/coursesDetail/createTest",
+    "http://127.0.0.1:8080/coursesDetail/createTest",
   getCourseIdListForAdmin:
-    "https://egatetutor.com/coursesDetail/getCourseIdListForAdmin",
+    "http://127.0.0.1:8080/coursesDetail/getCourseIdListForAdmin",
   questionLayoutUpload:
-    "https://egatetutor.com/questionLayout/upload?courseId=",
+    "http://127.0.0.1:8080/questionLayout/upload?courseId=",
   userVerification:
-    "https://egatetutor.com/users/verification?userId=",
+    "http://127.0.0.1:8080/users/verification?userId=",
   uploadProfileData:
-    "https://egatetutor.com/users/uploadProfileData?userId=",
+    "http://127.0.0.1:8080/users/uploadProfileData?userId=",
   getOverallReportByUserId:
-    "https://egatetutor.com/reportOverall/getOverallReportByUserId?user_id=",
+    "http://127.0.0.1:8080/reportOverall/getOverallReportByUserId?user_id=",
   getTopRank:
-    "https://egatetutor.com/reportOverall/getTopRank?course_id=",
+    "http://127.0.0.1:8080/reportOverall/getTopRank?course_id=",
   getQuestionAnalysis:
-    "https://egatetutor.com/reportDetail/getQuestionAnalysis?user_id=",
+    "http://127.0.0.1:8080/reportDetail/getQuestionAnalysis?user_id=",
   getCoursesDescriptionByExamCode:
-    "https://egatetutor.com/coursesDetail/getCoursesDescriptionByExamCode",
+    "http://127.0.0.1:8080/coursesDetail/getCoursesDescriptionByExamCode",
   createOrder:
-    "https://egatetutor.com/payment/createOrder",
+    "http://127.0.0.1:8080/payment/createOrder",
   verifiedPayment:
-    "https://egatetutor.com/payment/verifiedPayment",
-  getAllBooks:"https://egatetutor.com/books/getAllBooks",
-  getAllBanners:"https://egatetutor.com/banner/getAllBanner",
+    "http://127.0.0.1:8080/payment/verifiedPayment",
+  getAllBooks:"http://127.0.0.1:8080/books/getAllBooks",
+  getAllBanners:"http://127.0.0.1:8080/banner/getAllBanner",
   
-  createDownloadAdmin:"https://egatetutor.com/download/uploadMaterial?label1=",
-  getDownloadData:"https://egatetutor.com/download/getDownloadByExamAndTopicAndBranch?exam=",
-  forgotpassword:"https://egatetutor.com/users/forgotPassword?emailId=",
+  createDownloadAdmin:"http://127.0.0.1:8080/download/uploadMaterial?label1=",
+  getDownloadData:"http://127.0.0.1:8080/download/getDownloadByExamAndTopicAndBranch?exam=",
+  forgotpassword:"http://127.0.0.1:8080/users/forgotPassword?emailId=",
   
-  getQuestionBankByExamCode:"https://egatetutor.com/coursesDetailForQB/getCoursesDescriptionQBByExamCode",
-  getQuestionBank:"https://egatetutor.com/questionBank/getQuestions",
-  createQuestionBank:"https://egatetutor.com/coursesDetailForQB/createTestQB",
+  getQuestionBankByExamCode:"http://127.0.0.1:8080/coursesDetailForQB/getCoursesDescriptionQBByExamCode",
+  getQuestionBank:"http://127.0.0.1:8080/questionBank/getQuestions",
+  createQuestionBank:"http://127.0.0.1:8080/coursesDetailForQB/createTestQB",
   
-  getCourseIdListQBForAdmin:"https://egatetutor.com/coursesDetailForQB/getCourseIdListQBForAdmin",
+  getCourseIdListQBForAdmin:"http://127.0.0.1:8080/coursesDetailForQB/getCourseIdListQBForAdmin",
   
-  questionBankUpload:"https://egatetutor.com/questionBank/upload?courseId=",
+  questionBankUpload:"http://127.0.0.1:8080/questionBank/upload?courseId=",
 };
 
 /*
